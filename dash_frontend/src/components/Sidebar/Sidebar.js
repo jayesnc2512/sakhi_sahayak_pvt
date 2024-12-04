@@ -60,10 +60,11 @@ function Sidebar(props) {
                   activeRoute(prop.path) + (prop.pro ? " active-pro" : "")
                 }
                 key={key}
+                
               >
                 <NavLink to={prop.layout + prop.path} className="nav-NavLink">
                   <i className={prop.icon} />
-                  <p>{prop.name}</p>
+                  <p style={{paddingTop:"7px"}}>{prop.name}</p>
                 </NavLink>
               </li>
             );
