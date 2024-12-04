@@ -1,36 +1,28 @@
 import React, { useState, useEffect } from "react";
-import {
-  APIProvider,
-  Map,
-  AdvancedMarker,
-  Pin,
-  InfoWindow,
-} from "@vis.gl/react-google-maps";
+import L from "leaflet";
 import styled from "styled-components";
-import { Circle } from "./circle.tsx";
+import "leaflet/dist/leaflet.css";
+import { Circle } from "./circle";
+import markerIcon from "../../../node_modules/leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
+
+L.Marker.prototype.setIcon(
+  L.icon({
+    iconUrl: markerIcon,
+  //  shadowUrl: markerShadow,
+  iconSize: [18, 30], // New icon size (width, height)
+  iconAnchor: [9, 30], // Anchor point at the bottom center of the icon
+  popupAnchor: [1, -28], // Adjust popup anchor accordingly
+  tooltipAnchor: [16, -28], // Adjust tooltip anchor accordingly
+  //shadowSize: [41, 41] // Size of the shadow
+  })
+);
+
+
 
 const GmapsWrap = styled.div`
-  .infowindow {
-    padding: 5px;
-  }
-  .infowindow img {
-    width: 100px;
-    height: 100px;
-  }
-  .card {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: white;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  .card img {
-    width: 50px;
-    height: 50px;
-  }
+  position: relative;
+
   .control-panel {
     position: absolute;
     top: 10px;
@@ -40,40 +32,51 @@ const GmapsWrap = styled.div`
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+
+  .tile-toggle {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #fff;
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px 12px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+
+  #map {
+    height: 75vh; /* Ensure the map container has a visible height */
+    width: 100%; /* Full width for the map container */
   }
 `;
 
 const Gmaps = ({ cameras }) => {
-  const [userLocation, setUserLocation] = useState("");
-  const [selectedMarker, setSelectedMarker] = useState(null);
-  const [showMoreInfo, setShowMoreInfo] = useState(false);
-  const [selectedMarkerData, setSelectedMarkerData] = useState(null);
-  const [radius, setRadius] = useState(15000); // Default radius
+  const [userLocation, setUserLocation] = useState(null);
+  const [radius, setRadius] = useState(15000);
   const [showNearbyCameras, setShowNearbyCameras] = useState(false);
-  const [markerColor, setMarkerColor] = useState("blue");
-  const [isBlinking, setIsBlinking] = useState(false);
+  const [map, setMap] = useState(null);
+  const [circleLayer, setCircleLayer] = useState(null);
+  const [tileLayer, setTileLayer] = useState(null);
 
   useEffect(() => {
-    let colorInterval;
-
-    if (isBlinking) {
-      colorInterval = setInterval(() => {
-        setMarkerColor(prevColor => (prevColor === "blue" ? "red" : "blue"));
-      }, 1000);  // Change color every 1 second
-    } else {
-      clearInterval(colorInterval);
-      setMarkerColor("blue");  // Reset to default color when blinking stops
-    }
-
-    return () => clearInterval(colorInterval);  // Cleanup interval on unmount
-  }, [isBlinking]);
-
-  useEffect(() => {
+    // Get user location
     const getLocation = () => {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          setUserLocation({ lat: latitude, lng: longitude });
+          setUserLocation([latitude, longitude]);
         },
         (error) => {
           console.error("Error getting user's location:", error.message);
@@ -84,93 +87,81 @@ const Gmaps = ({ cameras }) => {
     getLocation();
   }, []);
 
+  useEffect(() => {
+    if (userLocation && !map) {
+      const mapInstance = L.map("map").setView(userLocation, 13);
 
-  const calculateDistance = (point1, point2) => {
-    if (!point1.lat || !point1.lng) return Infinity;
-    const deg2rad = (deg) => deg * (Math.PI / 180);
-    const R = 6371; // Radius of the Earth in km
-    const dLat = deg2rad(point2.latitude - point1.lat);
-    const dLon = deg2rad(point2.longitude - point1.lng);
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(deg2rad(point1.lat)) *
-        Math.cos(deg2rad(point2.latitude)) *
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const distance = R * c; // Distance in km
-    return distance * 1000; // Convert to meters
-  };
+      const defaultTileLayer = L.tileLayer(
+        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        {
+          attribution: "© OpenStreetMap contributors",
+        }
+      );
+      defaultTileLayer.addTo(mapInstance);
 
-  const handleMarkerClick = (index, data) => {
-    setSelectedMarker(index);
-    setSelectedMarkerData(data);
-    setShowMoreInfo(true);
-    setIsBlinking(true);  // Start blinking when marker is clicked
-  };
+      setTileLayer(defaultTileLayer);
 
-  const handleViewMoreClick = () => {
-    setShowMoreInfo(!showMoreInfo);
-  };
+      L.marker(userLocation)
+        .addTo(mapInstance)
+        .bindPopup("Your Location")
+        .openPopup();
+
+      setMap(mapInstance);
+    }
+  }, [userLocation, map]);
 
   const handleRadiusChange = (event) => {
-    setRadius(Number(event.target.value));
+    const newRadius = Number(event.target.value);
+    setRadius(newRadius);
+
+    if (circleLayer) {
+      circleLayer.setRadius(newRadius);
+    }
   };
 
   const handleToggleNearbyCameras = () => {
-    setShowNearbyCameras(!showNearbyCameras);
+    setShowNearbyCameras((prevState) => {
+      if (prevState && circleLayer) {
+        map.removeLayer(circleLayer);
+        setCircleLayer(null);
+      }
+      return !prevState;
+    });
+
+    if (!showNearbyCameras && map && userLocation) {
+      const newCircle = L.circle(userLocation, {
+        radius,
+        color: "red",
+        fillColor: "pink",
+        fillOpacity: 0.5,
+      }).addTo(map);
+
+      setCircleLayer(newCircle);
+    }
+  };
+
+  const toggleTileColor = () => {
+    if (tileLayer) {
+      map.removeLayer(tileLayer);
+    }
+
+    const newTileLayerUrl =
+      tileLayer._url === "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        ? "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
+        : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+
+    const newTileLayer = L.tileLayer(newTileLayerUrl, {
+      attribution: "© OpenStreetMap contributors",
+    });
+
+    newTileLayer.addTo(map);
+    setTileLayer(newTileLayer);
   };
 
   return (
     <GmapsWrap>
-      <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
-        <div style={{ position: "relative", height: "75vh", width: "100%" }}>
-          <Map
-            defaultZoom={5}
-            defaultCenter={{ lat: 20.5937, lng: 78.9629 }}
-            mapId={process.env.REACT_APP_GOOGLE_MAPS_ID}
-          >
-            {cameras &&
-              Object.keys(cameras).map((key, index) => {
-                const coord = cameras[key];
-                const distance = calculateDistance(userLocation, coord);
-
-                if (!showNearbyCameras || distance <= radius) {
-                  return (
-                    <AdvancedMarker
-                      key={index}
-                      position={{
-                        lat: parseFloat(coord.latitude) ,
-                        lng: parseFloat(coord.longitude),
-                      }}
-                      onClick={() => handleMarkerClick(index, coord)}
-                    >
-                      <Pin background={markerColor} borderColor={"darkblue"} glyphColor={"white"} />
-                    </AdvancedMarker>
-                  );
-                }
-                return null;
-              })}
-            {userLocation && (
-              <AdvancedMarker
-                position={userLocation}
-                onClick={() => handleMarkerClick(null)}
-              >
-                <Pin background={"green"} borderColor={"green"} glyphColor={"white"} />
-                {/* {selectedMarker === null && userLocation && (
-                  <InfoWindow position={userLocation}>
-                    <p>
-                      Your Location: Latitude {userLocation.lat}, Longitude{" "}
-                      {userLocation.lng}
-                    </p>
-                  </InfoWindow>
-                )} */}
-              </AdvancedMarker>
-            )}
-            {showNearbyCameras && (
-              <Circle center={userLocation} radius={radius} />
-            )}
-            <div className="control-panel">
+      <div id="map"></div>
+      <div className="control-panel">
         <label>Radius:</label>
         <input
           type="range"
@@ -183,36 +174,9 @@ const Gmaps = ({ cameras }) => {
           {showNearbyCameras ? "Hide Nearby Cameras" : "Show Nearby Cameras"}
         </button>
       </div>
-          </Map>
-          {selectedMarkerData && showMoreInfo && (
-            <div className="card">
-              <h3>More Information</h3>
-              <p>
-                <strong>Cam IP: </strong>
-                {selectedMarkerData.ip}
-              </p>
-              <p>
-                <strong>License ID: </strong>
-                {selectedMarkerData.lid}
-              </p>
-              <p>
-                <strong>Latitude: </strong>
-                {selectedMarkerData.latitude}
-              </p>
-              <p>
-                <strong>Longitude: </strong>
-                {selectedMarkerData.longitude}
-              </p>
-              <p>
-                <strong>Image: </strong>
-                <img src={selectedMarkerData.imgs} alt="cameraimg" />
-              </p>
-              <button onClick={handleViewMoreClick}>Hide Info</button>
-            </div>
-          )}
-        </div>
-      </APIProvider>
-      
+      <div className="tile-toggle" onClick={toggleTileColor}>
+        Toggle Map Tile
+      </div>
     </GmapsWrap>
   );
 };
