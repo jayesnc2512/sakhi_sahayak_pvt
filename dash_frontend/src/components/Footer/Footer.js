@@ -24,12 +24,22 @@ function Footer(props) {
               </li>
               <li>
                 <a href="#" target="_blank">
-                  Shreyas
+                  Tejashree
                 </a>
               </li>
               <li>
                 <a href="#" target="_blank">
-                  Neeranjan
+                  Devashish
+                </a>
+              </li>
+              <li>
+                <a href="#" target="_blank">
+                  Harsh
+                </a>
+              </li>
+              <li>
+                <a href="#" target="_blank">
+                  Suhani
                 </a>
               </li>
             </ul>
@@ -37,7 +47,7 @@ function Footer(props) {
           <div className="credits ml-auto">
             <div className="copyright">
               &copy; {1900 + new Date().getYear()}, made with{" "}
-              <i className="fa fa-heart heart" /> by Team GeoGuard
+              <i className="fa fa-heart heart" /> by Team BOKA
             </div>
           </div>
         </Row>

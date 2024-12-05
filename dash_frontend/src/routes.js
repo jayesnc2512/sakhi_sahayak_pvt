@@ -11,7 +11,7 @@ import AddCamera from "./views/AddCamera";
 import Cameras from "./views/Cameras";
 import Alerts from "./views/Alerts";
 import AddVideo from "./views/AddVideo.js";
-
+import CityWiseHotspot from "./views/CityWiseHotspot/index.js";
 
 
 var routes = [
@@ -41,6 +41,13 @@ var routes = [
     name: "Maps",
     icon: "nc-icon nc-pin-3",
     component: <Maps />,
+    layout: "",
+  },
+  {
+    path: "/city-hostspots",
+    name: "City-wise Hotspots",
+    icon: "nc-icon nc-pin-3",
+    component: <CityWiseHotspot />,
     layout: "",
   },
   {
