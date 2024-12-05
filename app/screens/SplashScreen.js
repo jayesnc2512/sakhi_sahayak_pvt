@@ -1,41 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Animated } from 'react-native';
-import * as Font from 'expo-font';
-import AppLoading from 'expo-app-loading';
 
 export default function SplashScreen({ navigation }) {
-  const [fontsLoaded, setFontsLoaded] = useState(false);
   const fadeAnim = new Animated.Value(0);
 
-  // Font loading function
-  async function loadFonts() {
-    await Font.loadAsync({
-      Pacifico: require('../assets/fonts/Pacifico-Regular.ttf'), // Ensure the correct path to the font
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 2000,
+      useNativeDriver: true,
+    }).start(() => {
+ 
+      setTimeout(() => {
+        navigation.replace('Home');
+      }, 1800);
     });
-    setFontsLoaded(true);
-  }
-
-  // Run font loading on component mount
-  useEffect(() => {
-    loadFonts();
   }, []);
-
-  useEffect(() => {
-    if (fontsLoaded) {
-      Animated.timing(fadeAnim, {
-        toValue: 1,
-        duration: 2000,
-        useNativeDriver: true,
-      }).start(() => {
-        navigation.replace('Login');
-      });
-    }
-  }, [fontsLoaded]);
-
-  // Return loading screen until fonts are loaded
-  if (!fontsLoaded) {
-    return <AppLoading startAsync={loadFonts} onFinish={() => setFontsLoaded(true)} onError={console.warn} />;
-  }
 
   return (
     <View style={styles.container}>
@@ -43,6 +23,7 @@ export default function SplashScreen({ navigation }) {
         Sakhi Sahayak
       </Animated.Text>
     </View>
+
   );
 }
 
@@ -54,9 +35,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    fontSize: 30,
+    fontSize: 40,
     color: '#FFFFFF',
-    fontWeight: 'bold',
-    fontFamily: 'Pacifico', // Use the loaded font here
+    fontFamily: 'Pacifico',
   },
 });
