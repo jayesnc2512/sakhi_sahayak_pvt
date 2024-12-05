@@ -1,0 +1,34 @@
+City,Crime Count,city,CityName,lat,lng,country,iso2,iso3,admin_name,capital,population,id,Crime to Population Ratio,Hotspot
+Agra,764,Āgra,Agra,27.18,78.02,India,IN,IND,Uttar Pradesh,,1585704.0,1356187395.0,2075.528795811518,False
+Ahmedabad,1817,Ahmedabad,Ahmedabad,23.0225,72.5714,India,IN,IND,Gujarāt,minor,8009000.0,1356304381.0,4407.815079801871,False
+Bangalore,3588,Bangalore,Bangalore,12.9789,77.5917,India,IN,IND,Karnātaka,admin,15386000.0,1356410365.0,4288.182831661093,False
+Bhopal,690,Bhopāl,Bhopal,23.2599,77.4126,India,IN,IND,Madhya Pradesh,admin,1798218.0,1356734039.0,2606.113043478261,False
+Chennai,2493,Chennai,Chennai,13.0825,80.275,India,IN,IND,Tamil Nādu,admin,12395000.0,1356374944.0,4971.921379863618,False
+Delhi,5400,Delhi,Delhi,28.61,77.23,India,IN,IND,Delhi,admin,32226000.0,1356872604.0,5967.777777777777,False
+Faridabad,354,Farīdābād,Faridabad,28.4211,77.3078,India,IN,IND,Haryāna,,1414050.0,1356013205.0,3994.491525423729,False
+Ghaziabad,704,Ghāziābād,Ghaziabad,28.67,77.42,India,IN,IND,Uttar Pradesh,,2375820.0,1356691871.0,3374.744318181818,False
+Hyderabad,2881,Hyderābād,Hyderabad,17.3617,78.4747,India,IN,IND,Telangāna,admin,10494000.0,1356871768.0,3642.485248177716,False
+Indore,699,Indore,Indore,22.7167,75.8472,India,IN,IND,Madhya Pradesh,,1994397.0,1356402812.0,2853.214592274678,False
+Jaipur,1479,Jaipur,Jaipur,26.9,75.8,India,IN,IND,Rājasthān,admin,3073350.0,1356293537.0,2077.9918864097363,False
+Jaipur,1479,Jaipur,Jaipur,23.4313,86.1493,India,IN,IND,West Bengal,,10259.0,1356450301.0,6.936443542934415,True
+Kalyan,355,Kalyān,Kalyan,19.2502,73.1602,India,IN,IND,Mahārāshtra,,1246381.0,1356172246.0,3510.932394366197,False
+Kanpur,1112,Kanpur,Kanpur,26.4499,80.3319,India,IN,IND,Uttar Pradesh,,2701324.0,1356575238.0,2429.248201438849,False
+Kolkata,2518,Kolkāta,Kolkata,22.5675,88.37,India,IN,IND,West Bengal,admin,18502000.0,1356060520.0,7347.895154884829,False
+Lucknow,1456,Lucknow,Lucknow,26.85,80.95,India,IN,IND,Uttar Pradesh,admin,3382000.0,1356891790.0,2322.802197802198,False
+Ludhiana,761,Ludhiāna,Ludhiana,30.91,75.85,India,IN,IND,Punjab,,1618879.0,1356929498.0,2127.304862023653,False
+Meerut,395,Meerut,Meerut,28.98,77.71,India,IN,IND,Uttar Pradesh,,1305429.0,1356390476.0,3304.8835443037974,False
+Mumbai,4415,Mumbai,Mumbai,19.0761,72.8775,India,IN,IND,Mahārāshtra,admin,24973000.0,1356226629.0,5656.398640996603,False
+Nagpur,1053,Nāgpur,Nagpur,21.1497,79.0806,India,IN,IND,Mahārāshtra,,2405665.0,1356365743.0,2284.582146248813,False
+Nashik,366,,,,,,,,,,,,0.0,True
+Patna,695,Patna,Patna,25.594,85.1376,India,IN,IND,Bihār,admin,1684222.0,1356821429.0,2423.3410071942444,False
+Pune,2212,Pune,Pune,18.5203,73.8567,India,IN,IND,Mahārāshtra,,8231000.0,1356081074.0,3721.0669077757684,False
+Rajkot,320,Rājkot,Rajkot,22.3,70.7833,India,IN,IND,Gujarāt,,2043000.0,1356317190.0,6384.375,False
+Srinagar,371,Srīnagar,Srinagar,34.09,74.79,India,IN,IND,Jammu and Kashmīr,admin,1180570.0,1356442950.0,3182.1293800539083,False
+Srinagar,371,Srīnagar,Srinagar,30.22,78.78,India,IN,IND,Uttarākhand,,37911.0,1356107519.0,102.18598382749326,True
+Srinagar,371,Srīnagar,Srinagar,26.783,84.3018,India,IN,IND,Bihār,,14454.0,1356950611.0,38.95956873315364,True
+Srinagar,371,Srīnagar,Srinagar,25.9823,86.6662,India,IN,IND,Bihār,,12167.0,1356882320.0,32.79514824797844,True
+Surat,1111,Sūrat,Surat,21.1702,72.8311,India,IN,IND,Gujarāt,,6538000.0,1356758738.0,5884.788478847885,False
+Thane,706,Thāne,Thane,19.1972,72.9722,India,IN,IND,Mahārāshtra,,1886941.0,1356681152.0,2672.7209631728047,False
+Varanasi,355,Vārānasi,Varanasi,25.3189,83.0128,India,IN,IND,Uttar Pradesh,,1198491.0,1356145782.0,3376.030985915493,False
+Vasai,362,,,,,,,,,,,,0.0,True
+Visakhapatnam,728,,,,,,,,,,,,0.0,True
