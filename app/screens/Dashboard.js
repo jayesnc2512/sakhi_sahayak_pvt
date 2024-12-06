@@ -8,7 +8,7 @@ export default function Dashboard ({navigation}){
     const handleClickSOS= () =>{
         setTimeout(()=>{
             navigation.navigate('SOSN');
-        }, 200)
+        }, 300)
     }
 
     return(
@@ -65,7 +65,7 @@ export default function Dashboard ({navigation}){
                         <Image source={require('../assets/emergency.png')} style={styles.optionsImage}/>
                         <Text style={styles.optionsText}>Emergency Contact</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.optionsButton}>
+                    <TouchableOpacity style={styles.optionsButton} onPress={() => navigation.navigate('Map')}>
                         <Image source={require('../assets/location.png')} style={styles.optionsImage}/>
                         <Text style={styles.optionsText}>Location</Text>  
                     </TouchableOpacity>

@@ -7,8 +7,8 @@ import SplashScreen from './screens/SplashScreen';
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
 import Dashboard from './screens/Dashboard';
-import SOSNotify from './screens/SOSNotify';
-import MapScreen from './screens/mapScreen';
+import SOSNotify from './screens/DashScreen/SOSNotify';
+import MapScreen from './screens/DashScreen/mapScreen';
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -42,7 +42,35 @@ export default function App() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Dash" component={Dashboard} />
-        <Stack.Screen name="SOSN" component={SOSNotify} />
+        <Stack.Screen name="SOSN" component={SOSNotify} 
+options={{
+  cardStyleInterpolator: ({ current, next, layouts }) => {
+      return {
+          cardStyle: {
+              transform: [
+                  {
+                      translateY: current.progress.interpolate({
+                          inputRange: [0, 1],
+                          outputRange: [layouts.screen.height, 0], 
+                      }),
+                  },
+              ],
+          },
+          overlayStyle: {
+              opacity: next
+                  ? next.progress.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [0.5, 0], 
+                    })
+                  : current.progress.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [0, 0.5], 
+                    }),
+          },
+      };
+  },
+}}
+    />
         <Stack.Screen name="Map" component={MapScreen} />
       </Stack.Navigator>
     </NavigationContainer>

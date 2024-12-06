@@ -51,7 +51,7 @@ export default function SOSNotify({ navigation }) {
       <Text style={styles.notifyText}>Notifying SOS Contacts</Text>
       <TouchableOpacity style={styles.cancelSOSButton} onPress={handleCancelSOS}>
         <Text style={styles.cancelText}>Cancel SOS</Text>
-        <Image source={require('../assets/cancel.png')} style={styles.cancelIcon} />
+        <Image source={require('../../assets/cancel.png')} style={styles.cancelIcon} />
       </TouchableOpacity>
     </View>
   );
