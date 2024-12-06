@@ -4,6 +4,18 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'reac
 export default function LoginScreen({ navigation }) {
   const [isLogin, setIsLogin] = useState(true);
 
+  const handleLogin = async () => {
+    setTimeout(()=>{
+      navigation.navigate('Dash');
+    }, 200);
+  }
+
+  const handleSignup = async () => {
+    setTimeout(()=>{
+      navigation.navigate('Dash');
+    }, 200);
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
@@ -53,7 +65,7 @@ export default function LoginScreen({ navigation }) {
             </TouchableOpacity>
           </View>
           <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Home')}>
-            <Text style={styles.loginText}>Login</Text>
+            <Text style={styles.loginText} onPress={handleLogin}>Login</Text>
           </TouchableOpacity>
         </View>
       ) : (
@@ -79,7 +91,7 @@ export default function LoginScreen({ navigation }) {
             </TouchableOpacity>
           </View>
           <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Home')}>
-            <Text style={styles.loginText}>Sign Up</Text>
+            <Text style={styles.loginText} onPress={handleSignup}>Sign Up</Text>
           </TouchableOpacity>
         </View>
       )}
