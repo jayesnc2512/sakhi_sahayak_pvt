@@ -6,6 +6,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import SplashScreen from './screens/SplashScreen';
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
+import Dashboard from './screens/Dashboard';
+import SOSNotify from './screens/SOSNotify';
 
 const Stack = createStackNavigator();
 
@@ -39,6 +41,8 @@ export default function App() {
         <Stack.Screen name="Splash" component={SplashScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Dash" component={Dashboard} />
+        <Stack.Screen name="SOSN" component={SOSNotify} />
       </Stack.Navigator>
     </NavigationContainer>
   );
