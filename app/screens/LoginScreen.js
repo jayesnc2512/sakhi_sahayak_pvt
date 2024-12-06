@@ -3,6 +3,11 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'reac
 
 export default function LoginScreen({ navigation }) {
   const [isLogin, setIsLogin] = useState(true);
+  const handleLogin = async () => {
+    setTimeout(()=>{
+      navigation.navigate('Map');
+    }, 200);
+  }
 
   return (
     <View style={styles.container}>
@@ -52,7 +57,7 @@ export default function LoginScreen({ navigation }) {
               <Image source={require('../assets/apple-icon.png')} style={styles.icon} />
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Home')}>
+          <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Map')}>
             <Text style={styles.loginText}>Login</Text>
           </TouchableOpacity>
         </View>
@@ -78,7 +83,7 @@ export default function LoginScreen({ navigation }) {
               <Image source={require('../assets/apple-icon.png')} style={styles.icon} />
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Home')}>
+          <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Map')}>
             <Text style={styles.loginText}>Sign Up</Text>
           </TouchableOpacity>
         </View>
