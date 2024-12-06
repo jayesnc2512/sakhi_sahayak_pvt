@@ -3,9 +3,16 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'reac
 
 export default function LoginScreen({ navigation }) {
   const [isLogin, setIsLogin] = useState(true);
+
   const handleLogin = async () => {
     setTimeout(()=>{
-      navigation.navigate('Map');
+      navigation.navigate('Dash');
+    }, 200);
+  }
+
+  const handleSignup = async () => {
+    setTimeout(()=>{
+      navigation.navigate('Dash');
     }, 200);
   }
 
@@ -57,8 +64,8 @@ export default function LoginScreen({ navigation }) {
               <Image source={require('../assets/apple-icon.png')} style={styles.icon} />
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Map')}>
-            <Text style={styles.loginText}>Login</Text>
+          <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Home')}>
+            <Text style={styles.loginText} onPress={handleLogin}>Login</Text>
           </TouchableOpacity>
         </View>
       ) : (
@@ -83,8 +90,8 @@ export default function LoginScreen({ navigation }) {
               <Image source={require('../assets/apple-icon.png')} style={styles.icon} />
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Map')}>
-            <Text style={styles.loginText}>Sign Up</Text>
+          <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Home')}>
+            <Text style={styles.loginText} onPress={handleSignup}>Sign Up</Text>
           </TouchableOpacity>
         </View>
       )}
