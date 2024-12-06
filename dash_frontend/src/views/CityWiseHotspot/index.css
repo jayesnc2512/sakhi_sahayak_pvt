@@ -19,9 +19,15 @@
     animation: slideIN 1s forwards ;
     /* Slide in to the right */
 }
+
+
+.side-panel.slide-out {
+    right: -300px;
+    /* Slide out to the right */
+}
 @keyframes slideIN {
     0% {
-        right: -300px;
+       animation: slideOut 1s backwards ; 
         /* Start off-screen */
     }
 
@@ -30,10 +36,16 @@
         /* Slide to the right */
     }
 }
+@keyframes slideOut {
+    0% {
+        right: 0px;
+        /* Start off-screen */
+    }
 
-.side-panel.slide-out {
-    right: -300px;
-    /* Slide out to the right */
+    100% {
+        right: -300px;
+        /* Slide to the right */
+    }
 }
 
 button {

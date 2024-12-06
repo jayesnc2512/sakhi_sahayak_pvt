@@ -17,7 +17,7 @@ Ghāziābād,Ghaziabad,28.67,77.42,India,IN,IND,Uttar Pradesh,,2375820,135669187
 Supaul,Supaul,26.126,86.605,India,IN,IND,Bihār,,2229076,1356015995
 Vadodara,Vadodara,22.3,73.2,India,IN,IND,Gujarāt,,2065771,1356705249
 Rājkot,Rajkot,22.3,70.7833,India,IN,IND,Gujarāt,,2043000,1356317190
-Vishākhapatnam,Vishakhapatnam,17.7042,83.2978,India,IN,IND,Andhra Pradesh,,2035922,1356692563
+Vishākhapatnam,Visakhapatnam,17.7042,83.2978,India,IN,IND,Andhra Pradesh,,2035922,1356692563
 Indore,Indore,22.7167,75.8472,India,IN,IND,Madhya Pradesh,,1994397,1356402812
 Thāne,Thane,19.1972,72.9722,India,IN,IND,Mahārāshtra,,1886941,1356681152
 Bhopāl,Bhopal,23.2599,77.4126,India,IN,IND,Madhya Pradesh,admin,1798218,1356734039
@@ -29,12 +29,12 @@ Ludhiāna,Ludhiana,30.91,75.85,India,IN,IND,Punjab,,1618879,1356929498
 Madurai,Madurai,9.9252,78.1198,India,IN,IND,Tamil Nādu,minor,1561129,1356257289
 Jamshedpur,Jamshedpur,22.7925,86.1842,India,IN,IND,Jhārkhand,,1558000,1356501259
 Prayagraj,Prayagraj,25.4358,81.8464,India,IN,IND,Uttar Pradesh,,1536218,1356718332
-Nāsik,Nasik,19.9975,73.7898,India,IN,IND,Mahārāshtra,,1486053,1356562598
+Nāsik,Nashik,19.9975,73.7898,India,IN,IND,Mahārāshtra,,1486053,1356562598
 Farīdābād,Faridabad,28.4211,77.3078,India,IN,IND,Haryāna,,1414050,1356013205
 Meerut,Meerut,28.98,77.71,India,IN,IND,Uttar Pradesh,,1305429,1356390476
 Jabalpur,Jabalpur,23.1667,79.9333,India,IN,IND,Madhya Pradesh,,1267564,1356115460
 Kalyān,Kalyan,19.2502,73.1602,India,IN,IND,Mahārāshtra,,1246381,1356172246
-Vasai-Virar,Vasai-Virar,19.3607,72.7956,India,IN,IND,Mahārāshtra,,1221233,1356707797
+Vasai-Virar,Vasai,19.3607,72.7956,India,IN,IND,Mahārāshtra,,1221233,1356707797
 Najafgarh,Najafgarh,28.6092,76.9798,India,IN,IND,Delhi,,1203180,1356180206
 Vārānasi,Varanasi,25.3189,83.0128,India,IN,IND,Uttar Pradesh,,1198491,1356145782
 Srīnagar,Srinagar,34.09,74.79,India,IN,IND,Jammu and Kashmīr,admin,1180570,1356442950
@@ -1411,7 +1411,6 @@ Thakraha,Thakraha,26.7419,84.2562,India,IN,IND,Uttar Pradesh,,38063,1356337463
 Dubrājpur,Dubrajpur,23.8,87.38,India,IN,IND,West Bengal,,38041,1356740995
 Gurais,Gurais,34.6333,74.8333,India,IN,IND,Jammu and Kashmīr,,37992,1356628089
 Goribidnūr,Goribidnur,13.6111,77.5167,India,IN,IND,Karnātaka,,37947,1356312142
-Srīnagar,Srinagar,30.22,78.78,India,IN,IND,Uttarākhand,,37911,1356107519
 Dhanera,Dhanera,24.52,72.02,India,IN,IND,Gujarāt,,37893,1356117721
 Pen,Pen,18.75,73.08,India,IN,IND,Mahārāshtra,,37852,1356056191
 Cheyyār,Cheyyar,12.662,79.5435,India,IN,IND,Tamil Nādu,,37802,1356916080
@@ -3795,7 +3794,6 @@ Khallikot,Khallikot,19.6091,85.0861,India,IN,IND,Odisha,,14464,1356087366
 Tiruvalanjuli,Tiruvalanjuli,10.9449,79.3286,India,IN,IND,Tamil Nādu,,14460,1356035619
 Lagunia Surajkanth,Lagunia Surajkanth,25.8304,85.7887,India,IN,IND,Bihār,,14457,1356706931
 Tarlapalli,Tarlapalli,18.8345,79.4907,India,IN,IND,Telangāna,,14454,1356167301
-Srīnagar,Srinagar,26.783,84.3018,India,IN,IND,Bihār,,14454,1356950611
 Shatrāna,Shatrana,29.9102,76.1202,India,IN,IND,Punjab,,14452,1356070208
 Narahia,Narahia,26.3681,86.5434,India,IN,IND,Bihār,,14450,1356992369
 Bāra,Bara,24.3146,87.9643,India,IN,IND,West Bengal,,14450,1356955037
@@ -4545,7 +4543,6 @@ Kuttūr,Kuttur,10.5631,76.1951,India,IN,IND,Kerala,,12179,1356211372
 Bhaisālotan,Bhaisalotan,27.45,83.9167,India,IN,IND,Bihār,,12175,1356650309
 Uppukkottai,Uppukkottai,9.9587,77.4105,India,IN,IND,Tamil Nādu,,12173,1356241697
 Ghorādal,Ghoradal,22.0519,88.3594,India,IN,IND,West Bengal,,12170,1356149424
-Srīnagar,Srinagar,25.9823,86.6662,India,IN,IND,Bihār,,12167,1356882320
 Nemili,Nemili,12.9783,79.6172,India,IN,IND,Tamil Nādu,,12166,1356646512
 Bhankarpur,Bhankarpur,30.65,76.82,India,IN,IND,Punjab,,12165,1356665921
 Matāla,Matala,17.8244,76.8591,India,IN,IND,Karnātaka,,12162,1356052569
@@ -5552,7 +5549,6 @@ Māli,Mali,25.1269,84.7084,India,IN,IND,Bihār,,10268,1356018726
 Reddipalle,Reddipalle,14.1993,78.0102,India,IN,IND,Andhra Pradesh,,10266,1356116933
 Indalvai,Indalvai,18.5403,78.2248,India,IN,IND,Telangāna,,10263,1356876515
 Tettuppatti,Tettuppatti,10.3979,77.8225,India,IN,IND,Tamil Nādu,,10260,1356247265
-Jaipur,Jaipur,23.4313,86.1493,India,IN,IND,West Bengal,,10259,1356450301
 Gohuma Bairia,Gohuma Bairia,26.3938,86.3976,India,IN,IND,Bihār,,10257,1356131175
 Shahmīrpet,Shahmirpet,17.5947,78.5749,India,IN,IND,Telangāna,,10255,1356385213
 Tārar,Tarar,25.1821,87.1671,India,IN,IND,Bihār,,10255,1356532159
