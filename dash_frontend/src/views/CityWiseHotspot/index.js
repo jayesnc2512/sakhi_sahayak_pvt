@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Map from './Map';
 import StatsPanel from './StatsPanel';
 import Charts from './Charts';
@@ -18,6 +18,8 @@ const CityWiseHotspot = () => {
     const [cityData, setCityData] = useState([]);
     const [stats, setStats] = useState({});
     const [isPanelOpen, setIsPanelOpen] = useState(false);
+    const [hotspots, setHotspots] = useState([]);
+
 
     const handleCityClick = (city) => {
         fetch(`http://127.0.0.1:8000/hotspot/city-stats/${city.name}`)
@@ -40,16 +42,45 @@ const CityWiseHotspot = () => {
             });
     };
 
+
+    useEffect(() => {
+        fetch('http://127.0.0.1:8000/hotspot/get-hotspots')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                setHotspots(data.hotspots);
+            })
+            .catch(error => {
+                console.error('Error fetching hotspots:', error);
+            });
+    }, []);
+
     const togglePanel = () => setIsPanelOpen(!isPanelOpen);
 
     return (
         <div className='content'>
             <Row>
+                <Col md="12" >
+                <Card>
+                    <CardHeader>
+                        Statistics
+                    </CardHeader>
+                    {/* <CardBody> */}
+                        <StatsPanel hotspots={hotspots} />
+                    {/* </CardBody> */}
+                    </Card>
+                    </Col>
                 <Col md="12">
                     <Card>
                         <CardHeader>Maps</CardHeader>
                         <CardBody>
-                            <Map onCityClick={handleCityClick} />
+                            <p >*Click on hostspot to get detailed analysis</p>
+
+                            <Map onCityClick={handleCityClick} hotspots={hotspots} />
                             <Collapse isOpen={isPanelOpen}>
                                 <div className={`side-panel ${isPanelOpen ? 'slide-in' : 'slide-out'}`}>
                                     <TransparentButton togglePanel={togglePanel} />

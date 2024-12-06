@@ -1,46 +1,64 @@
 import pandas as pd
 import os
-from geopy.geocoders import Nominatim
+import json
 
 class DataProcessor:
-    def __init__(self):
-        self.crimes_file = 'data/crime_data.csv'
-        self.cities_file = 'data/cities.csv'
-        self.geolocator = Nominatim(user_agent="crime_hotspot_app")
-        
-    def load_crimes_data(self):
-        if os.path.exists('data/crimes_processed.csv'):
-            return pd.read_csv('data/crimes_processed.csv')
-        else:
-            crimes = pd.read_csv(self.crimes_file)
-            crimes = self.process_crimes_data(crimes)
-            crimes.to_csv('data/crimes_processed.csv', index=False)
-            return crimes
+    crimes_file = pd.read_csv('data/crime_data.csv')
+    cities_file = pd.read_csv('data/cities.csv')
+    population_file = pd.read_csv('data/population.csv')
+    crime_processed_file=pd.read_csv('data/crime_processed_data.csv')
+    
+    # Load coordinates from JSON
+    with open('data/easy_coordinates.json', 'r') as file:
+        coordinates = json.load(file)
+    
+    @staticmethod
+    def aggregate_crimes_data():
+    # Count total crimes per city
+        crime_counts = DataProcessor.crimes_file.groupby('City').size().reset_index(name='crime_count')
+    
+    # Count crimes where Victim Gender is 'F' (against women)
+        against_women_counts = DataProcessor.crimes_file[DataProcessor.crimes_file['Victim Gender'] == 'F'] \
+                                .groupby('City').size().reset_index(name='against_women')
 
-    def load_cities_data(self):
-        cities = pd.read_csv(self.cities_file)
-        return cities
+    # Merge the two dataframes on 'City'
+        crime_counts = pd.merge(crime_counts, against_women_counts, on='City', how='left')
     
-    def process_crimes_data(self, crimes_df):
-        # Perform necessary data preprocessing
-        crimes_df['Date Reported'] = pd.to_datetime(crimes_df['Date Reported'], format='%d-%m-%Y %H:%M', errors='coerce')
-        return crimes_df
+    # Fill any NaN values in 'against_women' with 0 (in case a city has no female victims)
+        crime_counts['against_women'].fillna(0, inplace=True)
     
-    def calculate_hotspot_cities(self):
-        crimes_df = self.load_crimes_data()
-        crimes_by_city = crimes_df.groupby('City').size().reset_index(name='Crime Count')
-        crimes_by_city['Hotspot'] = crimes_by_city['Crime Count'] > crimes_by_city['Crime Count'].quantile(0.8)
+        return crime_counts
+
         
-        cities_df = self.load_cities_data()
-        hotspot_cities = crimes_by_city[crimes_by_city['Hotspot'] == True]
-        
-        # Merge crime data with city latitudes and longitudes
-        city_hotspot_info = pd.merge(hotspot_cities, cities_df, left_on='City', right_on='name')
-        hotspots = city_hotspot_info[['City', 'Crime Count', 'latitude', 'longitude']].to_dict(orient='records')
-        return hotspots
-    
-    def get_city_stats(self, city_name):
-        crimes_df = self.load_crimes_data()
+    @staticmethod
+    def merge_population_crime(aggregate_crimes):
+        # Select only the CityName and population columns
+        population_data = DataProcessor.population_file[['CityName', 'population','admin_name']]
+        # Rename the column 'CityName' to 'City' for merging
+        population_data = population_data.rename(columns={'CityName': 'City'})
+        # Merge the dataframes on 'City'
+        merged_data = pd.merge(aggregate_crimes, population_data, on='City', how='left')
+        return merged_data
+
+    @staticmethod
+    def get_coordinates(data):
+        # Function to fetch coordinates for each city
+        coordinates_data = DataProcessor.coordinates
+        data['coordinates'] = data['City'].apply(lambda city: coordinates_data.get(city, {}).get('coordinates', None))
+        return data
+
+    @staticmethod
+    def calculate_hotspot_cities():
+        aggregate_crimes = DataProcessor.aggregate_crimes_data()
+        crime_population = DataProcessor.merge_population_crime(aggregate_crimes)
+        crime_population['crime_rate'] = (crime_population['crime_count'] / crime_population['population']) * 100000
+        # crime_population=DataProcessor.crime_processed_file
+        crime_population_coordinates = DataProcessor.get_coordinates(crime_population)
+        return crime_population_coordinates
+
+    @staticmethod
+    def get_city_stats( city_name):
+        crimes_df = DataProcessor.crimes_file
         city_data = crimes_df[crimes_df['City'] == city_name]
         total_crimes = city_data.shape[0]
         crime_types = city_data['Crime Description'].value_counts().to_dict()
@@ -50,7 +68,8 @@ class DataProcessor:
             "Crime Types": crime_types
         }
         return city_stats
-    
-    def get_crime_data(self):
-        crimes_df = self.load_crimes_data()
+
+    @staticmethod
+    def get_crime_data():
+        crimes_df = DataProcessor.load_crimes_data()
         return crimes_df[['City', 'Crime Description', 'Date Reported']].to_dict(orient='records')
