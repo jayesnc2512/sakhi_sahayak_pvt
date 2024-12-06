@@ -51,7 +51,7 @@ const Charts = ({ data,name }) => {
         <div style={{ height: '300px' }}>
             <Pie data={chartData} options={options} />
             <h5 style={{ textAlign: 'center',marginTop:'-20px'}} >
-                Crime distribution in {name} 2024
+                Crime distribution in {name} 2020
             </h5>
         </div>
     );
