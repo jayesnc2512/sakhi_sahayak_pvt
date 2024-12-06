@@ -2895,6 +2895,18 @@ expo-asset@~11.0.1:
     invariant "^2.2.4"
     md5-file "^3.2.3"
 
+expo-av@~15.0.1:
+  version "15.0.1"
+  resolved "https://registry.yarnpkg.com/expo-av/-/expo-av-15.0.1.tgz#c337f831c2e29174de7117c37d2f92c1275bb4c4"
+  integrity sha512-2d4j7RTH9Y5nI1FoC0woRjqnj5G8sF0al2iW6kG21PPs/CgS4QARbHxMrPxKpUXrC6iu+6EMj2h5H6T0nqteFg==
+
+expo-camera@~16.0.9:
+  version "16.0.9"
+  resolved "https://registry.yarnpkg.com/expo-camera/-/expo-camera-16.0.9.tgz#e00448c7df18cdb8e5f4e1e31ccab8f9761d4452"
+  integrity sha512-zyjnv1UfSBU/FFqozAI4yWHjEun4Ex2tkN45TcdNWYb26xU+Ab+is7CLEk3bau/awP7W/xBgSpkI+Lz86hmBqQ==
+  dependencies:
+    invariant "^2.2.4"
+
 expo-constants@~17.0.0, expo-constants@~17.0.3:
   version "17.0.3"
   resolved "https://registry.npmjs.org/expo-constants/-/expo-constants-17.0.3.tgz"
@@ -2956,6 +2968,11 @@ expo-modules-core@2.1.1:
   integrity sha512-yQzYCLR2mre4BNMXuqkeJ0oSNgmGEMI6BcmIzeNZbC2NFEjiaDpKvlV9bclYCtyVhUEVNbJcEPYMr6c1Y4eR4w==
   dependencies:
     invariant "^2.2.4"
+
+expo-permissions@^14.4.0:
+  version "14.4.0"
+  resolved "https://registry.yarnpkg.com/expo-permissions/-/expo-permissions-14.4.0.tgz#d7bb2f0026b87e1294ee551969c35306193f4ad3"
+  integrity sha512-oAcnJ7dlZhpBydK73cwomA2xofizayVUz+FW5REl7dMu7MYyeN/3aqhlpZ3mYddrxvG161bqu97MQr01UixUnw==
 
 expo-sensors@^14.0.1:
   version "14.0.1"
@@ -4974,10 +4991,10 @@ react-native-screens@^4.3.0:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
 
-react-native-svg@^15.10.1:
-  version "15.10.1"
-  resolved "https://registry.npmjs.org/react-native-svg/-/react-native-svg-15.10.1.tgz"
-  integrity sha512-Hqz/doQciVFK/Df2v+wsW96oY5jxlta7rZ31KQYo78dlgvAHEaGr6paEOAMvlIruw7EHNQ0Vc1ZmJPJF2kfIPQ==
+react-native-svg@15.8.0:
+  version "15.8.0"
+  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-15.8.0.tgz#9b5fd4f5cf5675197b3f4cbfcc77c215de2b9502"
+  integrity sha512-KHJzKpgOjwj1qeZzsBjxNdoIgv2zNCO9fVcoq2TEhTRsVV5DGTZ9JzUZwybd7q4giT/H3RdtqC3u44dWdO0Ffw==
   dependencies:
     css-select "^5.1.0"
     css-tree "^1.1.3"

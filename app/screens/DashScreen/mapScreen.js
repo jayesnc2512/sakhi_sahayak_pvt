@@ -121,7 +121,6 @@ const MapScreen = ({ navigation }) => {
     const end = destination;
 
     const apiKey = OPENROUTE_API_KEY;
-    console.log(apiKey);
     const url = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${apiKey}&start=${start.lng},${start.lat}&end=${end.lng},${end.lat}`;
   
     try {
@@ -221,7 +220,7 @@ const MapScreen = ({ navigation }) => {
           loadingIndicator={() => <ActivityIndicator />}
           mapCenterPosition={mapCenterPosition}
           mapLayers={mapLayers}
-          mapMarkers={mapMarkers}  // Safely pass markers
+          mapMarkers={mapMarkers}  
           mapShapes={mapShapes}
           mapOptions={mapOptions}
           zoom={zoom}
