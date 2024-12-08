@@ -13,6 +13,7 @@ import Alerts from "./views/Alerts";
 import AddVideo from "./views/AddVideo.js";
 import CityWiseAnalysis from "./views/CityWiseAnalysis/index.js";
 import CityWiseHotspot from "./views/CityWiseHotspot/index.js";
+import Video from './assets/img/Video.png'
 
 var routes = [
   // {
@@ -74,7 +75,7 @@ var routes = [
   {
     path:"/addvideo",
     name:"Add Video",
-    icon:"nc-icon nc-simple-add",
+    icon: Video,
     component:<AddVideo />,
     layout:"",
   }
