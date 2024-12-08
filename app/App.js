@@ -9,6 +9,8 @@ import LoginScreen from './screens/LoginScreen';
 import Dashboard from './screens/Dashboard';
 import SOSNotify from './screens/DashScreen/SOSNotify';
 import MapScreen from './screens/DashScreen/mapScreen';
+import NavigationProfile from './screens/NavigationProfile';
+import Profile from './screens/profile';
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -42,6 +44,8 @@ export default function App() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Dash" component={Dashboard} />
+        <Stack.Screen name="NavP" component={NavigationProfile} />
+        <Stack.Screen name="Profile" component={Profile}/>
         <Stack.Screen name="SOSN" component={SOSNotify} 
 options={{
   cardStyleInterpolator: ({ current, next, layouts }) => {
