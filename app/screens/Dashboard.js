@@ -10,7 +10,11 @@ export default function Dashboard ({navigation}){
             navigation.navigate('SOSN');
         }, 300)
     }
-
+    const handleClickPfp= () =>{
+        setTimeout(()=>{
+            navigation.navigate('NavP');
+        }, 300)
+    }
     return(
         <View style={styles.container}>
             <View style={styles.headerArea}>
@@ -19,8 +23,8 @@ export default function Dashboard ({navigation}){
                     <Text style={styles.profileName}>Guest</Text>
                 </View>
                 
-                <TouchableOpacity style={styles.menuButton}>
-                    <Image source={require('../assets/Menu.png')} style={styles.menuButtonIcon}/>
+                <TouchableOpacity style={styles.menuButton} onPress={handleClickPfp}>
+                <Image source={require('../assets/Menu.png')} style={styles.menuButtonIcon} />
                 </TouchableOpacity>
 
                 
