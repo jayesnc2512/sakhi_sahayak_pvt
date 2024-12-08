@@ -6,6 +6,8 @@ from typing import List, Dict
 
 # Import routes for hotspots
 from routes.hotspotRoutes import router as hotspot_router
+from routes.websocket_handlers import router as video_analysis_router
+
 app = FastAPI()
 
 # Enable CORS for frontend React app
@@ -19,6 +21,7 @@ app.add_middleware(
 
 # Include hotspot routes
 app.include_router(hotspot_router,prefix="/hotspot")
+app.include_router(video_analysis_router,prefix="/ws")
 
 @app.get("/")
 def read_root():

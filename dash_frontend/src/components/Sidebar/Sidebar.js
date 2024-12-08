@@ -8,6 +8,7 @@ import PerfectScrollbar from "perfect-scrollbar";
 import logo from "../../logo.png";
 import Video from '../../assets/img/Video.png';
 
+
 var ps;
 
 function Sidebar(props) {
@@ -64,8 +65,8 @@ function Sidebar(props) {
                 
               >
                 <NavLink to={prop.layout + prop.path} className="nav-NavLink" style={{ display: 'flex', alignItems: 'center' }}>
-                  {prop.name === 'Add Video' ? (
-                    <img src={Video} alt={`${prop.name} icon`} style={{ width: '35px', height: '20px', marginRight: '10px', alignSelf: 'center' }} />
+                  {prop.name === 'Add Video' || prop.name === 'Lodged Complaints' ? (
+                    <img src={prop.icon} alt={`${prop.name} icon`} style={{ width: '30px', height: '25px', marginRight: '10px', alignSelf: 'center' }} />
                   ) : (
                     <i className={prop.icon} style={{ fontSize: '25px', marginRight: '10px', alignSelf: 'center' }} />
                   )}

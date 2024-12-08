@@ -1,65 +1,98 @@
 import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
 import {
-  Alert,
   Button,
   Card,
   CardHeader,
   CardBody,
   CardTitle,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
   Row,
   Col,
 } from "reactstrap";
 
-import { format } from "date-fns";
-import emailjs from "emailjs-com";
-import Swal from "sweetalert2";
-import "semantic-ui-css/semantic.min.css";
-
 function AddVideo() {
   const [videoFile, setVideoFile] = useState(null);
   const [videoURL, setVideoURL] = useState(null);
+  const [images, setImages] = useState([]);
+  const [socket, setSocket] = useState(null);
+  const videoRef = useRef(null);
+  const canvasRef = useRef(null);
 
-  // Handle video upload and set local state
+  // Initiate WebSocket connection
+  const startWebSocketConnection = () => {
+    const ws = new WebSocket("ws://127.0.0.1:8000/ws/video-analysis");
+  
+    ws.onopen = () => {
+      console.log("WebSocket connected.");
+      sendVideoPath(ws); // Send the video path when the WebSocket is open
+    };
+  
+    ws.onmessage = (event) => {
+      try {
+        const response = JSON.parse(event.data);
+        console.log("Message from server:", response);
+      } catch (e) {
+        console.error("Error parsing server response:", e);
+      }
+    };
+  
+    ws.onerror = (error) => console.error("WebSocket error:", error);
+  
+    ws.onclose = () => {
+      console.log("WebSocket disconnected.");
+    };
+  
+    setSocket(ws); 
+  };
+  
   const handleVideoUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
       setVideoFile(file);
-      setVideoURL(URL.createObjectURL(file)); // Generate video preview URL
+      setVideoURL(URL.createObjectURL(file));
     }
   };
 
-  // Handle video submission to the backend
-  const handleSubmit = async () => {
+  const handleCloseConnection = () => {
+    if (socket) {
+      socket.close();  // Close the WebSocket connection
+      console.log("WebSocket connection closed from the frontend.");
+      alert("WebSocket connection closed from the frontend.");
+    } else {
+      console.log("WebSocket is not connected.");
+      alert("WebSocket is not connected.");
+    }
+  };
+  
+  const handleSubmit = () => {
     if (!videoFile) {
       alert("Please upload a video first!");
       return;
     }
-
-    const formData = new FormData();
-    formData.append("video", videoFile);
-
-    try {
-      const response = await axios.post(
-        "http://your-backend-url/upload",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      alert("Video uploaded successfully!");
-      console.log("Server Response:", response.data);
-    } catch (error) {
-      console.error("Error uploading video:", error);
-      alert("Error uploading video. Please try again.");
+  
+    startWebSocketConnection();
+  };
+  
+  // New function to send the video path
+  const sendVideoPath = (ws) => {
+    if (videoFile) {
+      // Sending the absolute file path to the backend || videoFile.name
+      const absolutePath = `E:/SIH-SakhiSahayak/GDSCL.mp4` ; 
+      console.log("Sending video path:", absolutePath);
+  
+      if (ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({ path: absolutePath }));
+        console.log('absolute path:', absolutePath);
+        console.log("Video path sent to the backend.");
+      } else {
+        console.error("WebSocket is not open. Path not sent.");
+      }
+    } else {
+      console.error("No video file available.");
     }
   };
+  
+  
+  
 
   return (
     <div className="content">
@@ -71,10 +104,24 @@ function AddVideo() {
             </CardHeader>
             <CardBody>
               {videoURL && (
-                <video controls style={styles.video}>
-                  <source src={videoURL} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+                <>
+                  <video
+                    ref={videoRef}
+                    controls
+                    width="640"
+                    height="360"
+                    style={{ display: "block", marginBottom: "10px" }}
+                  >
+                    <source src={videoURL} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                  <canvas
+                    ref={canvasRef}
+                    width="640"
+                    height="360"
+                    style={{ display: "none" }}
+                  />
+                </>
               )}
 
               <div className="update ml-auto mr-auto">
@@ -88,26 +135,63 @@ function AddVideo() {
                 <Button
                   onClick={() => document.getElementById("videoInput").click()}
                   className="btn-round"
-                  style={{ backgroundColor: "#007bff" }}
-                  // color="danger"
-                  type="upload"
+                  color="primary"
                 >
                   Upload Video
                 </Button>
 
                 <Button
                   className="btn-round"
-                  color="primary"
-                  type="submit"
+                  color="success"
                   onClick={handleSubmit}
+                  style={{ marginLeft: "10px" }}
                 >
-                  Submit
+                  Analyse Video
+                </Button>
+                <Button
+                  className="btn-round"
+                  color="success"
+                  onClick={handleCloseConnection}
+                  style={{ marginLeft: "10px" }}
+                >
+                  Stop Analysis
                 </Button>
               </div>
             </CardBody>
           </Card>
         </Col>
+            <Col md="4">
+                <Card>
+                        <CardHeader>
+                          <CardTitle tag="h5">Analysis Results</CardTitle>
+                        </CardHeader>
+                        <CardBody>
+                          <Row>
+                            {images.length > 0 ? (
+                              images.map((image, index) => (
+                                <Col md="3" key={index}>
+                                  <Card className="card-image">
+                                    <img
+                                      src={`data:image/png;base64,${image.image_data}`}
+                                      alt={`frame ${index}`}
+                                      style={{ width: "100%", height: "auto" }}
+                                    />
+                                    <CardBody>
+                                      <p>Timestamp: timestamp</p>
+                                      <p>Analysis Result: Safe</p>
+                                    </CardBody>
+                                  </Card>
+                                </Col>
+                              ))
+                            ) : (
+                              <p>No frames received yet.</p>
+                            )}
+                          </Row>
+                        </CardBody>
+                      </Card>
+                </Col>
       </Row>
+    
     </div>
   );
 }
