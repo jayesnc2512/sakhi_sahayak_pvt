@@ -12,7 +12,7 @@ import routes from "../routes.js";
 
 var ps;
 
-function Dashboard(props) {
+function Dashboard(props) { 
   const [backgroundColor, setBackgroundColor] = React.useState("black");
   const [activeColor, setActiveColor] = React.useState("info");
   const mainPanel = React.useRef();

@@ -6,7 +6,6 @@ from typing import List, Dict
 
 # Import routes for hotspots
 from routes.hotspotRoutes import router as hotspot_router
-
 app = FastAPI()
 
 # Enable CORS for frontend React app
