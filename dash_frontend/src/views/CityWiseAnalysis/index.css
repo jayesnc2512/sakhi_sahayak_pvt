@@ -1,0 +1,56 @@
+.side-panel {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    /* Start hidden off-screen */
+    width: 300px;
+    height: 100%;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    z-index: 1000;
+    transition: right 0.5s ease-in-out;
+    /* Smooth transition for sliding */
+}
+
+.side-panel.slide-in {
+    /* right: 0; */
+    animation: slideIN 1s forwards ;
+    /* Slide in to the right */
+}
+
+
+.side-panel.slide-out {
+    right: -300px;
+    /* Slide out to the right */
+}
+@keyframes slideIN {
+    0% {
+       animation: slideOut 1s backwards ; 
+        /* Start off-screen */
+    }
+
+    100% {
+        right: 0;
+        /* Slide to the right */
+    }
+}
+@keyframes slideOut {
+    0% {
+        right: 0px;
+        /* Start off-screen */
+    }
+
+    100% {
+        right: -300px;
+        /* Slide to the right */
+    }
+}
+
+button {
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+}
