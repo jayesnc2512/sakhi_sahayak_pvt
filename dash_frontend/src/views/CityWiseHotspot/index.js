@@ -1,109 +1,106 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Map from './Map';
 import StatsPanel from './StatsPanel';
 import Charts from './Charts';
-import {
-    Collapse,
-    Row,
-    Col,
-    Card,
-    CardBody,
-    CardHeader
-
-} from "reactstrap";
+import { Collapse, Row, Col, Card, CardBody, CardHeader } from "reactstrap";
 import TransparentButton from './TransparentButton';
+import cityHotspotData from './easy_coordinates.json';
 import "./index.css";
+import crimeData from './crimeData1.json';
 
 const CityWiseHotspot = () => {
-    const [cityData, setCityData] = useState([]);
+    const [cityData, setCityData] = useState({});
     const [stats, setStats] = useState({});
     const [isPanelOpen, setIsPanelOpen] = useState(false);
     const [hotspots, setHotspots] = useState([]);
-
-
-    const handleCityClick = (city) => {
-        fetch(`http://127.0.0.1:8000/hotspot/city-stats/${city.name}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                data.name = city.name;
-                data.totalCount = city.count;
-                data.rate = city.population_crime_ratio;
-                setCityData(data);
-                setStats(data.stats);
-                setIsPanelOpen(true);
-            })
-            .catch(error => {
-                console.error('Error fetching city data:', error);
-            });
-    };
-
+    const [selectedCity, setSelectedCity] = useState(null);
+    const [selectedCrime, setSelectedCrime] = useState(null); // State for selected crime
 
     useEffect(() => {
-        fetch('http://127.0.0.1:8000/hotspot/get-hotspots')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                setHotspots(data.hotspots);
-            })
-            .catch(error => {
-                console.error('Error fetching hotspots:', error);
-            });
+        const formattedHotspots = Object.keys(cityHotspotData).map(cityName => ({
+            name: cityName,
+            coordinates: cityHotspotData[cityName].coordinates,
+            admin_name: cityHotspotData[cityName]?.admin_name || "Unknown",
+            population: cityHotspotData[cityName]?.population || "Unknown",
+        }));
+        const sortedHotspots = formattedHotspots.sort((a, b) => a.name.localeCompare(b.name));
+
+        setHotspots(sortedHotspots);
     }, []);
+
+    const handleCityClick = (city) => {
+        const data = {
+            name: city.name,
+            totalCount: cityHotspotData[city.name]?.totalCount || 0,
+            rate: cityHotspotData[city.name]?.population_crime_ratio || 0,
+            stats: cityHotspotData[city.name]?.stats || {},
+        };
+        setCityData(data);
+        setStats(data.stats);
+        setIsPanelOpen(true);
+        setSelectedCrime(null); 
+    };
+
+    const handleCrimeClick = (crime) => {
+        setSelectedCrime(crime); 
+        setIsPanelOpen(true); 
+    };
+
+    const handleCitySelect = (selectedCity) => {
+        setSelectedCity(selectedCity);
+        handleCityClick(selectedCity);
+    };
 
     const togglePanel = () => setIsPanelOpen(!isPanelOpen);
 
     return (
-        <div className='content'>
+        <div className="content">
             <Row>
-                <Col md="12" >
-                <Card>
-                    <CardHeader>
-                        Statistics
-                    </CardHeader>
-                    {/* <CardBody> */}
-                        <StatsPanel hotspots={hotspots} />
-                    {/* </CardBody> */}
+                <Col md="12">
+                    <Card>
+                        <CardHeader>Statistics</CardHeader>
+                        <StatsPanel hotspots={hotspots} onCitySelect={handleCitySelect} />
                     </Card>
-                    </Col>
+                </Col>
                 <Col md="12">
                     <Card>
                         <CardHeader>Maps</CardHeader>
                         <CardBody>
-                            <p >*Click on hostspot to get detailed analysis</p>
-
-                            <Map onCityClick={handleCityClick} hotspots={hotspots} />
+                            <p>*Click on a hotspot to get detailed analysis</p>
+                            <Map
+                                onCityClick={handleCityClick}
+                                onCrimeClick={handleCrimeClick} 
+                                hotspots={selectedCity ? [selectedCity] : ''} 
+                                crimeData={crimeData} 
+                            />
                             <Collapse isOpen={isPanelOpen}>
                                 <div className={`side-panel ${isPanelOpen ? 'slide-in' : 'slide-out'}`}>
                                     <TransparentButton togglePanel={togglePanel} />
-                                    <CardHeader style={{ padding: "0 px" }}>
-                                        <h3>{cityData.name}</h3>
+                                    <CardHeader>
+                                        <h3>{selectedCrime ? selectedCrime.crime_type : cityData.name}</h3>
                                     </CardHeader>
                                     <CardBody>
-                                        <Row>
-                                            <Col md="6" >
-                                                 Total Crimes: <h5>{cityData.totalCount}</h5>
-                                            </Col>
-
-                                            {/* <Col md="6">
-                                                Crime Rate Per Population: <h5>{cityData.rate ? cityData.rate : "1111"}</h5>
-                                            </Col> */}
-                                        </Row>
-
-
+                                        {selectedCrime ? (
+                                            <Row>
+                                                <Col md="6">
+                                                    <h5>Crime ID: {selectedCrime.id}</h5>
+                                                    <h5>Crime Type: {selectedCrime.crime_type}</h5>
+                                                    <h5>Timestamp: {selectedCrime.timestamp}</h5>
+                                                    <h5>Age of Victim: {selectedCrime.age_victim}</h5>
+                                                    <img src={selectedCrime.image_url} alt="Crime" style={{ width: '100%', height: 'auto' }} />
+                                                </Col>
+                                            </Row>
+                                        ) : (
+                                            <Row>
+                                                <Col md="6">
+                                                    Total Crimes: <h5>{cityData.totalCount}</h5>
+                                                </Col>
+                                            </Row>
+                                        )}
                                         <Charts data={stats} name={cityData.name} totalCount={cityData.totalCount} />
-                                        <p style={{fontSize:"10px"}}>
+                                        <p style={{ fontSize: "10px" }}>
                                             *hover over each section to get the counts
                                         </p>
-
                                     </CardBody>
                                 </div>
                             </Collapse>
@@ -112,7 +109,7 @@ const CityWiseHotspot = () => {
                 </Col>
             </Row>
         </div>
-    );
+    ); 
 };
 
 export default CityWiseHotspot;
