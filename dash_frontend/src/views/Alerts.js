@@ -12,8 +12,13 @@ import {
   ModalFooter,
   Row,
   Col,
+  InputGroup,
+  InputGroupText,
+  InputGroupAddon,
+  Input,
 } from "reactstrap";
 import { db, auth } from "../firebase";
+import routes from "../routes.js";
 import {
   collection,
   query,
@@ -26,6 +31,8 @@ import { format } from "date-fns";
 import emailjs from "emailjs-com";
 import Swal from "sweetalert2";
 import "semantic-ui-css/semantic.min.css";
+
+
 const Alerts = () => {
   const [alerts, setAlerts] = useState([]);
   const [uid, setUid] = useState(1);
@@ -34,42 +41,57 @@ const Alerts = () => {
   const SERVICE_ID = process.env.REACT_APP_SERVICE_ID;
   const TEMPLATE_ID = process.env.REACT_APP_TEMPLATE_ID;
   const USER_ID = process.env.REACT_APP_USER_ID;
-  // useEffect(() => {
-  //   const getUserUid = async () => {
-  //     const user = auth.currentUser;
-  //     if (user) {
-  //       setUid(user.uid);
-  //     } else {
-  //       console.log('No user is currently signed in.');
-  //     }
-  //   };
 
-  //   getUserUid();
-  // }, []);
+  const DUMMY_ALERTS = [
+    { id: "1", message: "Violence Detected", read: false, created: 1690834567, uid: "123", color:'info' },
+    { id: "2", message: "", read: false, created: 1690834577, uid: "123", color:'info' },
+    { id: "3", message: "Something", read: true, created: 1690834587, uid: "123", color:'info' },
+  ];
+
 
   useEffect(() => {
-    const getLocations = async () => {
-      if (!uid) return;
-
+    const fetchAlerts = async () => {
       try {
-        const camerasRef = collection(db, "alerts");
-        const q = query(camerasRef, where("uid", "==", uid));
-        const querySnapshot = await getDocs(q);
-        const alertsList = querySnapshot.docs.map((doc) => {
-          return { id: doc.id, ...doc.data() };
-        });
-        setAlerts(alertsList);
+        //Simulate an API call using dummy data
+        const response = await new Promise((resolve) =>
+          setTimeout(() => resolve({ data: DUMMY_ALERTS }), 1000)
+        );
+        setAlerts(response.data);
+
+        // const response= await fetch('http://localhost:127.0.0.1');
+        // const data= await response.json();
+        // console.log(data);
       } catch (err) {
-        console.warn("getCameras failed", err);
+        console.error("Error fetching alerts:", err);
       }
     };
 
-    getLocations();
-  }, [uid]);
+    fetchAlerts();
+  }, []);
+
+
   const [complaintText, setComplaintText] = useState("");
-  const [isComplaintOpen, setIsComplaintOpen] = useState(false); // State for the complaint dialog
+  const [isComplaintOpen, setIsComplaintOpen] = useState(false);
+  
+  
+  const [searchQueryAlerts, setSearchQueryAlerts] = useState("");
+  
+
+  const handleSearchAlertsChange = (event) => {
+    setSearchQueryAlerts(event.target.value);
+  };
+  
+  
+
+  // const filteredAlerts = alerts.filter(alert =>
+  //   alert.message.toLowerCase().includes(searchQueryAlerts.toLowerCase())
+  // );
+  
+  
+
   const formattedTime = (timestamp) => {
-    const dateObject = new Date(timestamp * 1000);
+    if (!timestamp || isNaN(timestamp)) return "Invalid Date"; 
+    const dateObject = new Date(timestamp * 1000); 
     return format(dateObject, "MMMM dd, yyyy hh:mm a");
   };
 
@@ -86,12 +108,14 @@ const Alerts = () => {
     setIsComplaintOpen(false);
     setComplaintText("");
   };
+
   const handleClose = () => {
     setSelectedAlert(null);
   };
 
+  
   // const form = useRef();
-  const formRef = useRef(null); // Ref for the form element
+  const formRef = useRef(null); 
 
   const handleOnSubmit = async (e) => {
     handleClose();
@@ -115,9 +139,9 @@ const Alerts = () => {
         title: "Complaint Sent Successfully",
       });
 
-      // Reset form inputs
+      
       form.reset();
-      setComplaintText(""); // Reset the state controlling the input field
+      setComplaintText(""); 
     } catch (error) {
       console.log(error);
       Swal.fire({
@@ -128,48 +152,74 @@ const Alerts = () => {
     }
     handleCloseComplaint();
   };
+
+
   const unReadAlerts = alerts.filter((ale) => !ale.read);
   const readAlerts = alerts.filter((ale) => ale.read);
+
   console.log(selectedAlert);
   const handleMarkAsViewed = async () => {
     if (selectedAlert) {
       try {
-        const alertDocRef = doc(db, "alerts", selectedAlert.id);
-        await updateDoc(alertDocRef, { read: true });
-
-        // Update state to move the alert from unReadAlerts to readAlerts
+     
+        // const response = await fetch(`/api/alerts/mark-as-viewed`, {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify({ id: selectedAlert.id }),
+        // });
+  
+        // if (!response.ok) {
+        //   throw new Error("Failed to mark the alert as viewed");
+        // }
+  
+   
         setAlerts((prevAlerts) =>
           prevAlerts.map((alert) =>
-            alert.id === selectedAlert.id ? { ...alert, read: true } : alert
+            alert.id === selectedAlert.id ? { ...alert, read: true} : alert
           )
         );
-
-        setSelectedAlert(null); // Close the alert
+  
+        setSelectedAlert(null); 
+        toggleModal();
       } catch (err) {
         console.error("Error marking alert as viewed:", err);
       }
     }
   };
-
+  
   const handleMarkAsUnviewed = async () => {
     if (selectedAlert) {
       try {
-        const alertDocRef = doc(db, "alerts", selectedAlert.id);
-        await updateDoc(alertDocRef, { read: false });
-
-        // Update state to move the alert from readAlerts to unReadAlerts
+    
+        // const response = await fetch(`/api/alerts/mark-as-unviewed`, {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify({ id: selectedAlert.id }),
+        // });
+  
+        // if (!response.ok) {
+        //   throw new Error("Failed to mark the alert as unviewed");
+        // }
+  
+      
         setAlerts((prevAlerts) =>
           prevAlerts.map((alert) =>
-            alert.id === selectedAlert.id ? { ...alert, read: false } : alert
+            alert.id === selectedAlert.id ? { ...alert, read: false} : alert
           )
         );
-
-        setSelectedAlert(null); // Close the alert
+  
+        setSelectedAlert(null); 
+        toggleModal();
       } catch (err) {
         console.error("Error marking alert as unviewed:", err);
       }
     }
   };
+  
 
   const toggleModal = () => {
     setModalOpen(!modalOpen);
@@ -178,35 +228,46 @@ const Alerts = () => {
   return (
     <>
       <div className="content">
-        <Row>
+        {/* <Row> */}
           <Col md="12">
             <Card>
-              <CardHeader>
+              <CardHeader style={{display:'flex', justifyContent:'space-between'}}>
                 <CardTitle tag="h5">Alerts</CardTitle>
+                <form>
+                  <InputGroup className="no-border">
+                    <Input placeholder="Search..." />
+                    <InputGroupAddon addonType="append">
+                      <InputGroupText>
+                        <i className="nc-icon nc-zoom-split" />
+                      </InputGroupText>
+                    </InputGroupAddon>
+                  </InputGroup>
+                </form>
               </CardHeader>
               <CardBody>
                 <Row>
                   <Col md="6">
                     <Card className="card-plain">
-                      <CardHeader>
+                      <CardHeader  >
                         <CardTitle tag="h5">
                           Alert ({unReadAlerts.length})
                         </CardTitle>
+                       
                       </CardHeader>
                       <CardBody>
                         {unReadAlerts.map((ele) => (
                           <Alert
-                            color="info"
+                            color={ele.color}
                             key={ele.id}
                             onClick={() => {
                               setSelectedAlert(ele);
                               toggleModal();
                             }}
                           >
-                            <span>{ele.message}</span>
+                            <span>Unread: {ele.message}</span>
                           </Alert>
                         ))}
-                        <Modal isOpen={modalOpen} toggle={toggleModal}>
+                        {/* <Modal isOpen={modalOpen} toggle={toggleModal}>
                           <ModalHeader toggle={toggleModal}>
                             Alert Actions
                           </ModalHeader>
@@ -230,7 +291,7 @@ const Alerts = () => {
                               </Button>
                             </>
                           </ModalFooter>
-                        </Modal>
+                        </Modal> */}
                       </CardBody>
                     </Card>
                   </Col>
@@ -249,9 +310,10 @@ const Alerts = () => {
                               toggleModal();
                             }}
                           >
-                            <span>{ele.message}</span>
+                            <span>Viewed: {ele.message}</span>
                           </Alert>
                         ))}
+                        
                         <Modal isOpen={modalOpen} toggle={toggleModal}>
                           <ModalHeader toggle={toggleModal}>
                             Alert Actions
@@ -260,26 +322,34 @@ const Alerts = () => {
                             {selectedAlert && (
                               <>
                                 <div>{selectedAlert.message}</div>
+                                {/*give href below for a tag*/}
+                                <a>Url: </a>
                               </>
                             )}
                           </ModalBody>
                           <ModalFooter>
-                            <Button
-                              color="primary"
-                              onClick={handleMarkAsUnviewed}
-                            >
-                              Mark as Unviewed
-                            </Button>{" "}
-                            <Button
-                              style={{
-                                backgroundColor: "rgb(255, 64, 64)",
-                                borderColor: "rgb(255, 64, 64)",
-                                color: "white",
-                              }}
-                              onClick={() => handleOpenComplaint(selectedAlert)}
-                            >
-                              Lodge a complaint
-                            </Button>{" "}
+                            {selectedAlert && !selectedAlert.read && (
+                              <Button color="primary" onClick={handleMarkAsViewed}>
+                                Mark as Viewed
+                              </Button>
+                            )}
+                            {selectedAlert && selectedAlert.read && (
+                              <>
+                                <Button color="primary" onClick={handleMarkAsUnviewed}>
+                                  Mark as Unviewed
+                                </Button>
+                                <Button
+                                  style={{
+                                    backgroundColor: "rgb(255, 64, 64)",
+                                    borderColor: "rgb(255, 64, 64)",
+                                    color: "white",
+                                  }}
+                                  onClick={() => handleOpenComplaint(selectedAlert)}
+                                >
+                                  Lodge a complaint
+                                </Button>
+                              </>
+                            )}
                             <Button color="secondary" onClick={toggleModal}>
                               Close
                             </Button>
@@ -375,8 +445,10 @@ const Alerts = () => {
                 </Row>
               </CardBody>
             </Card>
+            
           </Col>
-        </Row>
+        {/* </Row> */}
+
       </div>
     </>
   );

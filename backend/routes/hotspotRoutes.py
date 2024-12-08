@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, WebSocket
 from helpers.dataProcessing import DataProcessor
 import json
 from fastapi.responses import JSONResponse
@@ -21,3 +21,5 @@ async def get_city_stats(city_name: str):
 async def get_crime_data():
     data = DataProcessor.get_crime_data()
     return JSONResponse(content={"crime_data": data})
+
+
