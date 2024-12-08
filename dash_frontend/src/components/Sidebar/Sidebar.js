@@ -6,6 +6,7 @@ import { Nav } from "reactstrap";
 import PerfectScrollbar from "perfect-scrollbar";
 
 import logo from "../../logo.png";
+import Video from '../../assets/img/Video.png';
 
 var ps;
 
@@ -62,9 +63,13 @@ function Sidebar(props) {
                 key={key}
                 
               >
-                <NavLink to={prop.layout + prop.path} className="nav-NavLink">
-                  <i className={prop.icon} />
-                  <p style={{paddingTop:"7px"}}>{prop.name}</p>
+                <NavLink to={prop.layout + prop.path} className="nav-NavLink" style={{ display: 'flex', alignItems: 'center' }}>
+                  {prop.name === 'Add Video' ? (
+                    <img src={Video} alt={`${prop.name} icon`} style={{ width: '35px', height: '20px', marginRight: '10px', alignSelf: 'center' }} />
+                  ) : (
+                    <i className={prop.icon} style={{ fontSize: '25px', marginRight: '10px', alignSelf: 'center' }} />
+                  )}
+                  <p style={{ paddingTop: "0", margin: 0, alignSelf: 'center' }}>{prop.name}</p>
                 </NavLink>
               </li>
             );
@@ -76,3 +81,4 @@ function Sidebar(props) {
 }
 
 export default Sidebar;
+//
