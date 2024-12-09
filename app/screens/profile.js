@@ -1,28 +1,34 @@
-
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
 const ProfilePage = () => {
   return (
     <View style={styles.container}>
+      {/* Header Section */}
       <View style={styles.header}>
         <Image 
-          source={{ uri: 'https://placekitten.com/200/200' }} 
+          source={require('../assets/profilePic.png')} 
           style={styles.profileImage} 
         />
         <Text style={styles.name}>Sara Jones</Text>
         <Text style={styles.location}>Mumbai, India</Text>
       </View>
 
-      <View style={styles.alertsContainer}>
-        <View style={styles.alert}>
-          <Text style={styles.alertText}>Orange Alert</Text>
-        </View>
-        <View style={styles.alert}>
-          <Text style={styles.alertText}>Red Alert</Text>
-        </View>
+      {/* About Section */}
+      <View style={styles.aboutSection}>
+        <Text style={styles.sectionTitle}>About</Text>
+        <Text style={styles.aboutText}>
+        Hi there! My name is Sara, and safety is my top priority. This app is my trusted companion, guiding me through the safest routes wherever I go. It’s designed to alert my loved ones instantly in case of emergencies with its SOS feature. Whether I'm navigating the city or reaching out for help, I feel more confident and secure knowing this app has my back. Together, we’re making every step safer!</Text>
       </View>
 
+      {/* Contact Info Section */}
+      <View style={styles.contactSection}>
+        <Text style={styles.sectionTitle}>Contact Info</Text>
+        <Text style={styles.contactText}>Email: sara.jones@example.com</Text>
+        <Text style={styles.contactText}>Phone: +91 98765 43210</Text>
+      </View>
+
+      {/* Alerts Section */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Alerts</Text>
         <View style={styles.optionsContainer}>
@@ -35,34 +41,6 @@ const ProfilePage = () => {
         </View>
       </View>
 
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Recorder</Text>
-        <View style={styles.optionsContainer}>
-          <View style={styles.option}>
-            <Text style={styles.optionText}>1 minute</Text>
-          </View>
-          <View style={styles.option}>
-            <Text style={styles.optionText}>5 minutes</Text>
-          </View>
-          <View style={styles.option}>
-            <Text style={styles.optionText}>10 minutes</Text>
-          </View>
-          <View style={styles.option}>
-            <Text style={styles.optionText}>Set Time</Text>
-          </View>
-        </View>
-      </View>
-
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Fake Caller</Text> <View style={styles.optionsContainer}>
-          <View style={styles.option}>
-            <Text style={styles.optionText}>Call Now</Text>
-          </View>
-          <View style={styles.option}>
-            <Text style={styles.optionText}>Schedule Call</Text>
-          </View>
-        </View>
-      </View>
     </View>
   );
 };
@@ -75,8 +53,9 @@ const styles = StyleSheet.create({
   header: {
     alignItems: 'center',
     marginBottom: 20,
-    
-    backgroundColor: '#AB90CE',  
+    paddingTop: 50,
+    padding: 20,
+    backgroundColor: '#AB90CE',
   },
   profileImage: {
     width: 100,
@@ -92,25 +71,29 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#666',
   },
-  alertsContainer: {
-    padding: 20,
-
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 20,
-  },
-  alert: {
-    margin: 5,
-    backgroundColor: '#ffcc00',
+  aboutSection: {
+    margin: 20,
     padding: 10,
-    borderRadius: 5,
+    backgroundColor: '#f9f9f9',
+    borderRadius: 10,
   },
-  alertText: {
-    color: '#fff',
+  aboutText: {
+    fontSize: 16,
+    color: '#333',
+  },
+  contactSection: {
+    margin: 20,
+    padding: 10,
+    backgroundColor: '#f9f9f9',
+    borderRadius: 10,
+  },
+  contactText: {
+    fontSize: 16,
+    color: '#333',
+    marginBottom: 5,
   },
   section: {
     margin: 20,
-
     marginBottom: 20,
   },
   sectionTitle: {
@@ -132,6 +115,28 @@ const styles = StyleSheet.create({
   },
   optionText: {
     fontSize: 16,
+  },
+  routeButton: {
+    backgroundColor: '#4CAF50',
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  routeButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  sosButton: {
+    backgroundColor: '#FF5722',
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  sosButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 

@@ -1,94 +1,126 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, Modal, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import * as Progress from 'react-native-progress';
+import SidebarNavigation from './NavigationProfile';
 
-export default function Dashboard ({navigation}){
-    const [isProfileInComplete, setProfileComplete] = useState(true);
+export default function Dashboard({ navigation }) {
+  const [isProfileInComplete, setProfileComplete] = useState(true);
+  const [isSidebarVisible, setSidebarVisible] = useState(false);
 
-    const handleClickSOS= () =>{
-        setTimeout(()=>{
-            navigation.navigate('SOSN');
-        }, 300)
-    }
-    const handleClickPfp= () =>{
-        setTimeout(()=>{
-            navigation.navigate('NavP');
-        }, 300)
-    }
-    return(
-        <View style={styles.container}>
-            <View style={styles.headerArea}>
-                <View style= {styles.profileArea}>
-                    <Image source={require('../assets/profilePic.png')} style={styles.profilePic}/>
-                    <Text style={styles.profileName}>Guest</Text>
-                </View>
-                
-                <TouchableOpacity style={styles.menuButton} onPress={handleClickPfp}>
-                <Image source={require('../assets/Menu.png')} style={styles.menuButtonIcon} />
-                </TouchableOpacity>
+  const handleSidebarToggle = () => {
+    setSidebarVisible(!isSidebarVisible);
+  };
 
-                
-            </View>
+  const handleCloseModal = () => {
+    setSidebarVisible(false);
+    //opacity: 1;
+  };
 
-            <Text style={styles.welcome}>Welcome to Sakhi Sahayak!!</Text>
+  const handleClickSOS = () => {
+    setTimeout(() => {
+      navigation.navigate('SOSN');
+    }, 300);
+  };
 
-            {
-                isProfileInComplete ? (
-                    <>
-                        <View style={styles.inCompleteProfileContainer}>
-                            <Text style={styles.inCompleteProfileHeader}>Complete your profile to stay safer!</Text>
-                            <Text style={styles.inCompleteProfileText}>Keep your emergency contant updated for instant assistance</Text>
-                            <Text style={styles.inCompleteProfileText}>Complete Now..</Text>
-
-                            <View style={styles.progressBarContainer}>
-                                <Progress.Bar progress={0.25} width={320} color="rgba(255, 193, 7, 1)" borderColor='rgba(0,0,0,0.1)' unfilledColor="rgba(0,0,0,0.1)" />
-                                <View style={styles.progressBarTextContainer}>
-                                    <Text style={styles.progressBarText}>25% Completed</Text>
-                                </View>
-                            </View>
-                        </View>
-                    </>
-                ) : null
-            }
-
-            <View style={styles.optionsContainer}>
-                <View style={styles.optionsRow}>
-                    <TouchableOpacity style={styles.optionsButton}>
-                        <Image source={require('../assets/police.png')} style={styles.optionsImage}/>
-                        <Text style={styles.optionsText}>Police</Text>
-
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.optionsButton}>
-                        <Image source={require('../assets/ambulance.png')} style={styles.optionsImage}/>
-                        <Text style={styles.optionsText}>Ambulance</Text>
-                    </TouchableOpacity>
-
-                </View>
-                <View style={styles.optionsRow}>
-                    <TouchableOpacity style={styles.optionsButton}>
-                        <Image source={require('../assets/emergency.png')} style={styles.optionsImage}/>
-                        <Text style={styles.optionsText}>Emergency Contact</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.optionsButton} onPress={() => navigation.navigate('Map')}>
-                        <Image source={require('../assets/location.png')} style={styles.optionsImage}/>
-                        <Text style={styles.optionsText}>Location</Text>  
-                    </TouchableOpacity>
-                </View>
-            </View>
-            <View style={styles.sosContainer}>
-                <View style={styles.sosCircleWrapper}>
-                    <TouchableOpacity style={styles.sosButton} onPress={handleClickSOS}>
-                        <Text style={styles.sosButtonText}>SOS</Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
+  return (
+    <View style={styles.container}>
+      {/* <View style={[styles.dashboardContent,{ opacity: isSidebarVisible ? 0.3 : 1 }]}> */}
+        <View style={styles.headerArea}>
+          <View style={styles.profileArea}>
+            <Image source={require('../assets/profilePic.png')} style={styles.profilePic} />
+            <Text style={styles.profileName}>Guest</Text>
+          </View>
+          <TouchableOpacity style={styles.menuButton} onPress={handleSidebarToggle}>
+            <Image source={require('../assets/Menu.png')} style={styles.menuButtonIcon} />
+          </TouchableOpacity>
         </View>
-    );
+
+        <Text style={styles.welcome}>Welcome to Sakhi Sahayak!!</Text>
+
+        {isProfileInComplete && (
+          <View style={styles.inCompleteProfileContainer}>
+            <Text style={styles.inCompleteProfileHeader}>Complete your profile to stay safer!</Text>
+            <Text style={styles.inCompleteProfileText}>Keep your emergency contact updated for instant assistance</Text>
+            <Text style={styles.inCompleteProfileText}>Complete Now..</Text>
+
+            <View style={styles.progressBarContainer}>
+              <Progress.Bar
+                progress={0.25}
+                width={320}
+                color="rgba(255, 193, 7, 1)"
+                borderColor="rgba(0,0,0,0.1)"
+                unfilledColor="rgba(0,0,0,0.1)"
+              />
+              <View style={styles.progressBarTextContainer}>
+                <Text style={styles.progressBarText}>25% Completed</Text>
+              </View>
+            </View>
+          </View>
+        )}
+
+        <View style={styles.optionsContainer}>
+          <View style={styles.optionsRow}>
+            <TouchableOpacity style={styles.optionsButton}>
+              <Image source={require('../assets/police.png')} style={styles.optionsImage} />
+              <Text style={styles.optionsText}>Police</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.optionsButton}>
+              <Image source={require('../assets/ambulance.png')} style={styles.optionsImage} />
+              <Text style={styles.optionsText}>Ambulance</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.optionsRow}>
+            <TouchableOpacity style={styles.optionsButton}>
+              <Image source={require('../assets/emergency.png')} style={styles.optionsImage} />
+              <Text style={styles.optionsText}>Emergency Contact</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.optionsButton} onPress={() => navigation.navigate('Map')}>
+              <Image source={require('../assets/location.png')} style={styles.optionsImage} />
+              <Text style={styles.optionsText}>Location</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={styles.sosContainer}>
+          <View style={styles.sosCircleWrapper}>
+            <TouchableOpacity style={styles.sosButton} onPress={handleClickSOS}>
+              <Text style={styles.sosButtonText}>SOS</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      {/* </View> */}
+
+      <Modal
+        transparent={true}
+        visible={isSidebarVisible}
+        animationType="slide"
+        onRequestClose={handleCloseModal}
+        >
+        <TouchableWithoutFeedback onPress={handleCloseModal}>
+            <View style={styles.modalBackground}>
+            {/* <TouchableWithoutFeedback> */}
+                <View style={styles.sidebarContainer}>
+                <SidebarNavigation navigation={navigation} onClose={handleSidebarToggle} />
+                </View>
+            {/* </TouchableWithoutFeedback> */}
+            </View>
+        </TouchableWithoutFeedback>
+        </Modal>
+    </View>
+  );
 }
 
-const styles= StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#E6E6FA'},
-    headerArea: {marginTop: 30, flexDirection:'row', justifyContent:'space-between', alignItems:'center', paddingTop: 25, paddingHorizontal: 25},
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: '#E6E6FA' },
+//   dashboardContent: { flex: 1 },
+//   modalBackground: {
+//     flex: 1,
+//     backgroundColor: 'rgba(0, 0, 0, 0.5)',
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//   },
+
+      headerArea: {marginTop: 30, flexDirection:'row', justifyContent:'space-between', alignItems:'center', paddingTop: 25, paddingHorizontal: 25},
     profileArea: {flex:1, flexDirection:'row', alignItems:'center', gap: 10},
     profilePic: {height: 50, width: 48},
     profileName: {fontFamily:'PoppinsMedium', fontSize:18},
