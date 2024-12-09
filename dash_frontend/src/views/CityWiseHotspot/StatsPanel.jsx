@@ -32,7 +32,7 @@ const StatsPanel = ({ hotspots, onCitySelect }) => {
                         ))}
                     </select>
                 </Col>
-                <SmallCard
+                {/* <SmallCard
                     head={"State"}
                     number={city ? hotspots.find(h => h.name === city)?.admin_name : "...."}
                     Icon={<PiBuildingOffice color="orange" />}
@@ -41,7 +41,7 @@ const StatsPanel = ({ hotspots, onCitySelect }) => {
                     head={"Population"}
                     number={city ? hotspots.find(h => h.name === city)?.population : "..."}
                     Icon={<FaPeopleGroup />}
-                />
+                /> */}
             </Row>
         </>
     );
