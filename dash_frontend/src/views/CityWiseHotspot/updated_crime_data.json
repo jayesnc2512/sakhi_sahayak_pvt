@@ -1,0 +1,1002 @@
+[
+  {
+    "id": 1,
+    "crime_type": "Theft",
+    "latitude": 13.049948,
+    "longitude": 77.693075,
+    "timestamp": "2024-05-07 01:18:23",
+    "age_victim": 62,
+    "city": "bengaluru",
+    "cluster": 0
+  },
+  {
+    "id": 2,
+    "crime_type": "Domestic Violence",
+    "latitude": 13.190743,
+    "longitude": 77.595959,
+    "timestamp": "2024-10-15 02:26:07",
+    "age_victim": 42,
+    "city": "bengaluru",
+    "cluster": 1
+  },
+  {
+    "id": 3,
+    "crime_type": "Burglary",
+    "latitude": 19.12326,
+    "longitude": 73.186338,
+    "timestamp": "2024-06-29 09:52:34",
+    "age_victim": 60,
+    "city": "thane",
+    "cluster": 2
+  },
+  {
+    "id": 4,
+    "crime_type": "Vandalism",
+    "latitude": 19.273362,
+    "longitude": 73.182992,
+    "timestamp": "2024-11-19 05:50:52",
+    "age_victim": 74,
+    "city": "thane",
+    "cluster": 3
+  },
+  {
+    "id": 5,
+    "crime_type": "Robbery",
+    "latitude": 19.260202,
+    "longitude": 72.949219,
+    "timestamp": "2024-02-04 11:42:48",
+    "age_victim": 57,
+    "city": "thane",
+    "cluster": 4
+  },
+  {
+    "id": 6,
+    "crime_type": "Domestic Violence",
+    "latitude": 19.143518,
+    "longitude": 72.889927,
+    "timestamp": "2024-12-30 16:54:48",
+    "age_victim": 17,
+    "city": "mumbai",
+    "cluster": 5
+  },
+  {
+    "id": 7,
+    "crime_type": "Vandalism",
+    "latitude": 19.149474,
+    "longitude": 73.103091,
+    "timestamp": "2024-01-14 03:24:34",
+    "age_victim": 80,
+    "city": "thane",
+    "cluster": 2
+  },
+  {
+    "id": 8,
+    "crime_type": "Cybercrime",
+    "latitude": 19.099789,
+    "longitude": 72.837125,
+    "timestamp": "2024-12-19 23:32:16",
+    "age_victim": 23,
+    "city": "mumbai",
+    "cluster": 5
+  },
+  {
+    "id": 9,
+    "crime_type": "Theft",
+    "latitude": 19.141618,
+    "longitude": 73.252553,
+    "timestamp": "2024-12-17 03:46:38",
+    "age_victim": 53,
+    "city": "thane",
+    "cluster": 6
+  },
+  {
+    "id": 10,
+    "crime_type": "Vandalism",
+    "latitude": 19.289124,
+    "longitude": 73.200881,
+    "timestamp": "2024-01-21 05:26:05",
+    "age_victim": 31,
+    "city": "thane",
+    "cluster": 3
+  },
+  {
+    "id": 11,
+    "crime_type": "Burglary",
+    "latitude": 19.039409,
+    "longitude": 72.7757,
+    "timestamp": "2024-02-20 16:30:52",
+    "age_victim": 23,
+    "city": "mumbai",
+    "cluster": 7
+  },
+  {
+    "id": 12,
+    "crime_type": "Cybercrime",
+    "latitude": 19.168369,
+    "longitude": 72.718348,
+    "timestamp": "2024-05-12 00:50:35",
+    "age_victim": 80,
+    "city": "mumbai",
+    "cluster": 8
+  },
+  {
+    "id": 13,
+    "crime_type": "Fraud",
+    "latitude": 19.289295,
+    "longitude": 73.099712,
+    "timestamp": "2024-02-09 16:19:52",
+    "age_victim": 49,
+    "city": "thane",
+    "cluster": 9
+  },
+  {
+    "id": 14,
+    "crime_type": "Theft",
+    "latitude": 19.000665,
+    "longitude": 72.753866,
+    "timestamp": "2024-12-23 13:41:31",
+    "age_victim": 65,
+    "city": "mumbai",
+    "cluster": 7
+  },
+  {
+    "id": 15,
+    "crime_type": "Domestic Violence",
+    "latitude": 20.09321,
+    "longitude": 73.898858,
+    "timestamp": "2024-08-17 13:46:31",
+    "age_victim": 64,
+    "city": "nashik",
+    "cluster": 10
+  },
+  {
+    "id": 16,
+    "crime_type": "Theft",
+    "latitude": 19.283394,
+    "longitude": 72.981265,
+    "timestamp": "2024-08-28 14:13:55",
+    "age_victim": 66,
+    "city": "thane",
+    "cluster": 4
+  },
+  {
+    "id": 17,
+    "crime_type": "Domestic Violence",
+    "latitude": 19.92523,
+    "longitude": 73.716049,
+    "timestamp": "2024-02-01 08:03:12",
+    "age_victim": 37,
+    "city": "nashik",
+    "cluster": 11
+  },
+  {
+    "id": 18,
+    "crime_type": "Vandalism",
+    "latitude": 18.97951,
+    "longitude": 72.896198,
+    "timestamp": "2024-04-11 07:38:02",
+    "age_victim": 11,
+    "city": "mumbai",
+    "cluster": 12
+  },
+  {
+    "id": 19,
+    "crime_type": "Vandalism",
+    "latitude": 19.993198,
+    "longitude": 73.738598,
+    "timestamp": "2024-02-27 16:52:11",
+    "age_victim": 18,
+    "city": "nashik",
+    "cluster": 13
+  },
+  {
+    "id": 20,
+    "crime_type": "Burglary",
+    "latitude": 13.024415,
+    "longitude": 77.657705,
+    "timestamp": "2024-03-25 10:07:47",
+    "age_victim": 25,
+    "city": "bengaluru",
+    "cluster": 0
+  },
+  {
+    "id": 21,
+    "crime_type": "Domestic Violence",
+    "latitude": 19.120416,
+    "longitude": 72.865513,
+    "timestamp": "2024-07-25 07:46:04",
+    "age_victim": 40,
+    "city": "mumbai",
+    "cluster": 5
+  },
+  {
+    "id": 22,
+    "crime_type": "Burglary",
+    "latitude": 20.026053,
+    "longitude": 73.724005,
+    "timestamp": "2024-06-21 19:20:03",
+    "age_victim": 33,
+    "city": "nashik",
+    "cluster": 13
+  },
+  {
+    "id": 23,
+    "crime_type": "Assault",
+    "latitude": 19.215174,
+    "longitude": 73.015775,
+    "timestamp": "2024-10-03 04:54:50",
+    "age_victim": 22,
+    "city": "thane",
+    "cluster": 4
+  },
+  {
+    "id": 24,
+    "crime_type": "Fraud",
+    "latitude": 19.177755,
+    "longitude": 73.279285,
+    "timestamp": "2024-08-26 14:08:03",
+    "age_victim": 47,
+    "city": "thane",
+    "cluster": 6
+  },
+  {
+    "id": 25,
+    "crime_type": "Assault",
+    "latitude": 13.164134,
+    "longitude": 77.616208,
+    "timestamp": "2024-12-02 09:15:48",
+    "age_victim": 50,
+    "city": "bengaluru",
+    "cluster": 1
+  },
+  {
+    "id": 26,
+    "crime_type": "Stalking",
+    "latitude": 19.951706,
+    "longitude": 73.813541,
+    "timestamp": "2024-03-19 02:59:50",
+    "age_victim": 56,
+    "city": "nashik",
+    "cluster": 14
+  },
+  {
+    "id": 27,
+    "crime_type": "Stalking",
+    "latitude": 19.118976,
+    "longitude": 72.995731,
+    "timestamp": "2024-07-23 10:51:56",
+    "age_victim": 49,
+    "city": "thane",
+    "cluster": 15
+  },
+  {
+    "id": 28,
+    "crime_type": "Vandalism",
+    "latitude": 19.100777,
+    "longitude": 73.09012,
+    "timestamp": "2024-11-12 14:40:20",
+    "age_victim": 40,
+    "city": "thane",
+    "cluster": 2
+  },
+  {
+    "id": 29,
+    "crime_type": "Vandalism",
+    "latitude": 19.116448,
+    "longitude": 73.25985,
+    "timestamp": "2024-01-25 01:10:42",
+    "age_victim": 74,
+    "city": "thane",
+    "cluster": 6
+  },
+  {
+    "id": 30,
+    "crime_type": "Robbery",
+    "latitude": 19.100486,
+    "longitude": 72.827447,
+    "timestamp": "2024-03-04 01:47:31",
+    "age_victim": 74,
+    "city": "mumbai",
+    "cluster": 5
+  },
+  {
+    "id": 31,
+    "crime_type": "Robbery",
+    "latitude": 19.13237,
+    "longitude": 73.290023,
+    "timestamp": "2024-11-06 21:56:09",
+    "age_victim": 11,
+    "city": "thane",
+    "cluster": 6
+  },
+  {
+    "id": 32,
+    "crime_type": "Stalking",
+    "latitude": 19.090997,
+    "longitude": 72.784196,
+    "timestamp": "2024-07-04 09:49:34",
+    "age_victim": 68,
+    "city": "mumbai",
+    "cluster": 5
+  },
+  {
+    "id": 33,
+    "crime_type": "Robbery",
+    "latitude": 19.060044,
+    "longitude": 72.74624,
+    "timestamp": "2024-02-04 16:21:19",
+    "age_victim": 80,
+    "city": "mumbai",
+    "cluster": 7
+  },
+  {
+    "id": 34,
+    "crime_type": "Theft",
+    "latitude": 19.155167,
+    "longitude": 73.222299,
+    "timestamp": "2024-09-01 01:50:50",
+    "age_victim": 34,
+    "city": "thane",
+    "cluster": 6
+  },
+  {
+    "id": 35,
+    "crime_type": "Stalking",
+    "latitude": 19.031729,
+    "longitude": 72.871608,
+    "timestamp": "2024-04-01 12:25:01",
+    "age_victim": 74,
+    "city": "mumbai",
+    "cluster": 5
+  },
+  {
+    "id": 36,
+    "crime_type": "Cybercrime",
+    "latitude": 19.193808,
+    "longitude": 72.775995,
+    "timestamp": "2024-01-02 11:54:57",
+    "age_victim": 38,
+    "city": "mumbai",
+    "cluster": 16
+  },
+  {
+    "id": 37,
+    "crime_type": "Stalking",
+    "latitude": 19.01117,
+    "longitude": 72.841146,
+    "timestamp": "2024-12-22 05:12:10",
+    "age_victim": 78,
+    "city": "mumbai",
+    "cluster": 7
+  },
+  {
+    "id": 38,
+    "crime_type": "Burglary",
+    "latitude": 19.117179,
+    "longitude": 73.108967,
+    "timestamp": "2024-06-01 21:17:25",
+    "age_victim": 79,
+    "city": "thane",
+    "cluster": 2
+  },
+  {
+    "id": 39,
+    "crime_type": "Domestic Violence",
+    "latitude": 19.144653,
+    "longitude": 72.959967,
+    "timestamp": "2024-11-15 03:53:53",
+    "age_victim": 60,
+    "city": "thane",
+    "cluster": 15
+  },
+  {
+    "id": 40,
+    "crime_type": "Burglary",
+    "latitude": 19.29402,
+    "longitude": 73.044602,
+    "timestamp": "2024-04-19 06:04:38",
+    "age_victim": 22,
+    "city": "thane",
+    "cluster": 17
+  },
+  {
+    "id": 41,
+    "crime_type": "Assault",
+    "latitude": 19.112493,
+    "longitude": 73.206189,
+    "timestamp": "2024-05-21 06:29:29",
+    "age_victim": 61,
+    "city": "thane",
+    "cluster": 2
+  },
+  {
+    "id": 42,
+    "crime_type": "Stalking",
+    "latitude": 19.184071,
+    "longitude": 73.250628,
+    "timestamp": "2024-06-19 00:29:25",
+    "age_victim": 29,
+    "city": "thane",
+    "cluster": 6
+  },
+  {
+    "id": 43,
+    "crime_type": "Robbery",
+    "latitude": 13.18138,
+    "longitude": 77.590762,
+    "timestamp": "2024-09-17 17:19:31",
+    "age_victim": 58,
+    "city": "bengaluru",
+    "cluster": 1
+  },
+  {
+    "id": 44,
+    "crime_type": "Assault",
+    "latitude": 19.266726,
+    "longitude": 72.951115,
+    "timestamp": "2024-11-10 03:07:28",
+    "age_victim": 66,
+    "city": "thane",
+    "cluster": 4
+  },
+  {
+    "id": 45,
+    "crime_type": "Fraud",
+    "latitude": 18.95065,
+    "longitude": 72.778952,
+    "timestamp": "2024-10-07 23:23:32",
+    "age_victim": 68,
+    "city": "mumbai",
+    "cluster": 18
+  },
+  {
+    "id": 46,
+    "crime_type": "Assault",
+    "latitude": 13.179301,
+    "longitude": 77.553477,
+    "timestamp": "2024-07-15 23:52:49",
+    "age_victim": 15,
+    "city": "bengaluru",
+    "cluster": 1
+  },
+  {
+    "id": 47,
+    "crime_type": "Robbery",
+    "latitude": 19.237541,
+    "longitude": 72.921878,
+    "timestamp": "2024-10-09 07:36:49",
+    "age_victim": 49,
+    "city": "thane",
+    "cluster": 4
+  },
+  {
+    "id": 48,
+    "crime_type": "Vandalism",
+    "latitude": 20.045498,
+    "longitude": 73.837787,
+    "timestamp": "2024-01-24 22:30:11",
+    "age_victim": 71,
+    "city": "nashik",
+    "cluster": 19
+  },
+  {
+    "id": 49,
+    "crime_type": "Robbery",
+    "latitude": 18.913441,
+    "longitude": 72.818416,
+    "timestamp": "2024-09-27 08:43:56",
+    "age_victim": 31,
+    "city": "mumbai",
+    "cluster": 20
+  },
+  {
+    "id": 50,
+    "crime_type": "Burglary",
+    "latitude": 18.908608,
+    "longitude": 72.774003,
+    "timestamp": "2024-05-28 13:47:29",
+    "age_victim": 40,
+    "city": "mumbai",
+    "cluster": 18
+  },
+  {
+    "id": 51,
+    "crime_type": "Robbery",
+    "latitude": 12.990393,
+    "longitude": 77.542067,
+    "timestamp": "2024-10-05 18:35:31",
+    "age_victim": 56,
+    "city": "bengaluru",
+    "cluster": 21
+  },
+  {
+    "id": 52,
+    "crime_type": "Cybercrime",
+    "latitude": 19.122072,
+    "longitude": 73.144602,
+    "timestamp": "2024-11-22 10:38:25",
+    "age_victim": 29,
+    "city": "thane",
+    "cluster": 2
+  },
+  {
+    "id": 53,
+    "crime_type": "Vandalism",
+    "latitude": 19.138991,
+    "longitude": 72.891729,
+    "timestamp": "2024-03-26 13:21:28",
+    "age_victim": 57,
+    "city": "mumbai",
+    "cluster": 5
+  },
+  {
+    "id": 54,
+    "crime_type": "Vandalism",
+    "latitude": 12.955891,
+    "longitude": 77.650135,
+    "timestamp": "2024-07-30 01:31:49",
+    "age_victim": 43,
+    "city": "bengaluru",
+    "cluster": 0
+  },
+  {
+    "id": 55,
+    "crime_type": "Theft",
+    "latitude": 19.147989,
+    "longitude": 73.101688,
+    "timestamp": "2024-12-24 08:42:58",
+    "age_victim": 14,
+    "city": "thane",
+    "cluster": 2
+  },
+  {
+    "id": 56,
+    "crime_type": "Vandalism",
+    "latitude": 13.189834,
+    "longitude": 77.570049,
+    "timestamp": "2024-04-29 20:07:10",
+    "age_victim": 67,
+    "city": "bengaluru",
+    "cluster": 1
+  },
+  {
+    "id": 57,
+    "crime_type": "Robbery",
+    "latitude": 18.943015,
+    "longitude": 72.844561,
+    "timestamp": "2024-06-04 17:47:51",
+    "age_victim": 23,
+    "city": "mumbai",
+    "cluster": 20
+  },
+  {
+    "id": 58,
+    "crime_type": "Robbery",
+    "latitude": 12.981169,
+    "longitude": 77.681447,
+    "timestamp": "2024-01-06 17:54:05",
+    "age_victim": 57,
+    "city": "bengaluru",
+    "cluster": 0
+  },
+  {
+    "id": 59,
+    "crime_type": "Stalking",
+    "latitude": 13.117619,
+    "longitude": 77.5447,
+    "timestamp": "2024-04-04 17:54:48",
+    "age_victim": 16,
+    "city": "bengaluru",
+    "cluster": 22
+  },
+  {
+    "id": 60,
+    "crime_type": "Domestic Violence",
+    "latitude": 13.197725,
+    "longitude": 77.665581,
+    "timestamp": "2024-02-18 15:18:30",
+    "age_victim": 41,
+    "city": "bengaluru",
+    "cluster": 23
+  },
+  {
+    "id": 61,
+    "crime_type": "Domestic Violence",
+    "latitude": 13.034226,
+    "longitude": 77.508372,
+    "timestamp": "2024-03-19 17:26:50",
+    "age_victim": 48,
+    "city": "bengaluru",
+    "cluster": 21
+  },
+  {
+    "id": 62,
+    "crime_type": "Vandalism",
+    "latitude": 19.271936,
+    "longitude": 73.235959,
+    "timestamp": "2024-07-27 10:17:50",
+    "age_victim": 48,
+    "city": "thane",
+    "cluster": 3
+  },
+  {
+    "id": 63,
+    "crime_type": "Domestic Violence",
+    "latitude": 20.068983,
+    "longitude": 73.779821,
+    "timestamp": "2024-05-30 10:50:28",
+    "age_victim": 34,
+    "city": "nashik",
+    "cluster": 24
+  },
+  {
+    "id": 64,
+    "crime_type": "Theft",
+    "latitude": 18.906624,
+    "longitude": 72.778149,
+    "timestamp": "2024-09-09 11:15:20",
+    "age_victim": 47,
+    "city": "mumbai",
+    "cluster": 18
+  },
+  {
+    "id": 65,
+    "crime_type": "Theft",
+    "latitude": 20.020448,
+    "longitude": 73.890218,
+    "timestamp": "2024-12-05 09:29:44",
+    "age_victim": 72,
+    "city": "nashik",
+    "cluster": 25
+  },
+  {
+    "id": 66,
+    "crime_type": "Theft",
+    "latitude": 13.0824,
+    "longitude": 77.61604,
+    "timestamp": "2024-08-14 01:59:29",
+    "age_victim": 35,
+    "city": "bengaluru",
+    "cluster": 26
+  },
+  {
+    "id": 67,
+    "crime_type": "Fraud",
+    "latitude": 19.230168,
+    "longitude": 72.905783,
+    "timestamp": "2024-01-21 16:31:29",
+    "age_victim": 70,
+    "city": "thane",
+    "cluster": 4
+  },
+  {
+    "id": 68,
+    "crime_type": "Burglary",
+    "latitude": 19.195663,
+    "longitude": 73.177619,
+    "timestamp": "2024-03-19 23:38:16",
+    "age_victim": 61,
+    "city": "thane",
+    "cluster": 27
+  },
+  {
+    "id": 69,
+    "crime_type": "Cybercrime",
+    "latitude": 19.196423,
+    "longitude": 73.064494,
+    "timestamp": "2024-05-16 17:58:37",
+    "age_victim": 13,
+    "city": "thane",
+    "cluster": 28
+  },
+  {
+    "id": 70,
+    "crime_type": "Domestic Violence",
+    "latitude": 13.064896,
+    "longitude": 77.661434,
+    "timestamp": "2024-12-27 09:35:12",
+    "age_victim": 55,
+    "city": "bengaluru",
+    "cluster": 0
+  },
+  {
+    "id": 71,
+    "crime_type": "Robbery",
+    "latitude": 19.178192,
+    "longitude": 73.146876,
+    "timestamp": "2024-10-23 02:23:50",
+    "age_victim": 23,
+    "city": "thane",
+    "cluster": 27
+  },
+  {
+    "id": 72,
+    "crime_type": "Assault",
+    "latitude": 19.223924,
+    "longitude": 73.167468,
+    "timestamp": "2024-02-23 14:40:10",
+    "age_victim": 62,
+    "city": "thane",
+    "cluster": 27
+  },
+  {
+    "id": 73,
+    "crime_type": "Assault",
+    "latitude": 20.056633,
+    "longitude": 73.720628,
+    "timestamp": "2024-11-13 15:23:25",
+    "age_victim": 30,
+    "city": "nashik",
+    "cluster": 13
+  },
+  {
+    "id": 74,
+    "crime_type": "Robbery",
+    "latitude": 19.928199,
+    "longitude": 73.828784,
+    "timestamp": "2024-07-22 22:19:41",
+    "age_victim": 30,
+    "city": "nashik",
+    "cluster": 14
+  },
+  {
+    "id": 75,
+    "crime_type": "Cybercrime",
+    "latitude": 19.118764,
+    "longitude": 72.902396,
+    "timestamp": "2024-08-16 18:52:50",
+    "age_victim": 65,
+    "city": "thane",
+    "cluster": 5
+  },
+  {
+    "id": 76,
+    "crime_type": "Vandalism",
+    "latitude": 19.10831,
+    "longitude": 72.822193,
+    "timestamp": "2024-05-20 04:29:08",
+    "age_victim": 19,
+    "city": "mumbai",
+    "cluster": 5
+  },
+  {
+    "id": 77,
+    "crime_type": "Fraud",
+    "latitude": 12.9869,
+    "longitude": 77.64679,
+    "timestamp": "2024-03-09 03:29:18",
+    "age_victim": 23,
+    "city": "bengaluru",
+    "cluster": 0
+  },
+  {
+    "id": 78,
+    "crime_type": "Stalking",
+    "latitude": 13.003407,
+    "longitude": 77.669796,
+    "timestamp": "2024-11-25 22:12:53",
+    "age_victim": 32,
+    "city": "bengaluru",
+    "cluster": 0
+  },
+  {
+    "id": 79,
+    "crime_type": "Robbery",
+    "latitude": 20.041258,
+    "longitude": 73.730364,
+    "timestamp": "2024-03-28 18:36:19",
+    "age_victim": 35,
+    "city": "nashik",
+    "cluster": 13
+  },
+  {
+    "id": 80,
+    "crime_type": "Fraud",
+    "latitude": 19.255047,
+    "longitude": 73.001939,
+    "timestamp": "2024-04-26 15:02:32",
+    "age_victim": 14,
+    "city": "thane",
+    "cluster": 4
+  },
+  {
+    "id": 81,
+    "crime_type": "Fraud",
+    "latitude": 13.059045,
+    "longitude": 77.550333,
+    "timestamp": "2024-04-02 22:42:04",
+    "age_victim": 35,
+    "city": "bengaluru",
+    "cluster": 29
+  },
+  {
+    "id": 82,
+    "crime_type": "Theft",
+    "latitude": 19.034703,
+    "longitude": 72.84608,
+    "timestamp": "2024-01-21 20:29:18",
+    "age_victim": 39,
+    "city": "mumbai",
+    "cluster": 7
+  },
+  {
+    "id": 83,
+    "crime_type": "Robbery",
+    "latitude": 19.149698,
+    "longitude": 73.278149,
+    "timestamp": "2024-03-11 03:38:49",
+    "age_victim": 27,
+    "city": "thane",
+    "cluster": 6
+  },
+  {
+    "id": 84,
+    "crime_type": "Assault",
+    "latitude": 19.964859,
+    "longitude": 73.861683,
+    "timestamp": "2024-09-07 15:15:30",
+    "age_victim": 65,
+    "city": "nashik",
+    "cluster": 14
+  },
+  {
+    "id": 85,
+    "crime_type": "Burglary",
+    "latitude": 19.067787,
+    "longitude": 72.858269,
+    "timestamp": "2024-05-15 06:16:03",
+    "age_victim": 22,
+    "city": "mumbai",
+    "cluster": 5
+  },
+  {
+    "id": 86,
+    "crime_type": "Cybercrime",
+    "latitude": 20.092827,
+    "longitude": 73.700471,
+    "timestamp": "2024-10-26 05:02:18",
+    "age_victim": 53,
+    "city": "nashik",
+    "cluster": 13
+  },
+  {
+    "id": 87,
+    "crime_type": "Robbery",
+    "latitude": 19.2639,
+    "longitude": 73.127525,
+    "timestamp": "2024-11-22 21:56:26",
+    "age_victim": 23,
+    "city": "thane",
+    "cluster": 9
+  },
+  {
+    "id": 88,
+    "crime_type": "Stalking",
+    "latitude": 19.269393,
+    "longitude": 73.290991,
+    "timestamp": "2024-01-04 17:46:32",
+    "age_victim": 77,
+    "city": "thane",
+    "cluster": 30
+  },
+  {
+    "id": 89,
+    "crime_type": "Theft",
+    "latitude": 13.013397,
+    "longitude": 77.536095,
+    "timestamp": "2024-06-05 23:33:08",
+    "age_victim": 38,
+    "city": "bengaluru",
+    "cluster": 21
+  },
+  {
+    "id": 90,
+    "crime_type": "Domestic Violence",
+    "latitude": 13.113566,
+    "longitude": 77.617752,
+    "timestamp": "2024-05-30 19:05:08",
+    "age_victim": 20,
+    "city": "bengaluru",
+    "cluster": 26
+  },
+  {
+    "id": 91,
+    "crime_type": "Domestic Violence",
+    "latitude": 19.016779,
+    "longitude": 72.719664,
+    "timestamp": "2024-05-04 21:57:24",
+    "age_victim": 63,
+    "city": "mumbai",
+    "cluster": 7
+  },
+  {
+    "id": 92,
+    "crime_type": "Theft",
+    "latitude": 18.984438,
+    "longitude": 72.741187,
+    "timestamp": "2024-06-17 03:12:27",
+    "age_victim": 12,
+    "city": "mumbai",
+    "cluster": 7
+  },
+  {
+    "id": 93,
+    "crime_type": "Vandalism",
+    "latitude": 13.133775,
+    "longitude": 77.652202,
+    "timestamp": "2024-08-25 07:07:51",
+    "age_victim": 78,
+    "city": "bengaluru",
+    "cluster": 26
+  },
+  {
+    "id": 94,
+    "crime_type": "Vandalism",
+    "latitude": 19.176632,
+    "longitude": 72.837379,
+    "timestamp": "2024-03-13 08:21:13",
+    "age_victim": 36,
+    "city": "mumbai",
+    "cluster": 31
+  },
+  {
+    "id": 95,
+    "crime_type": "Theft",
+    "latitude": 18.965379,
+    "longitude": 72.719833,
+    "timestamp": "2024-11-05 14:00:42",
+    "age_victim": 29,
+    "city": "mumbai",
+    "cluster": 7
+  },
+  {
+    "id": 96,
+    "crime_type": "Robbery",
+    "latitude": 19.907975,
+    "longitude": 73.897913,
+    "timestamp": "2024-07-02 21:40:12",
+    "age_victim": 41,
+    "city": "nashik",
+    "cluster": 32
+  },
+  {
+    "id": 97,
+    "crime_type": "Vandalism",
+    "latitude": 19.963865,
+    "longitude": 73.83324,
+    "timestamp": "2024-02-05 21:38:55",
+    "age_victim": 48,
+    "city": "nashik",
+    "cluster": 14
+  },
+  {
+    "id": 98,
+    "crime_type": "Burglary",
+    "latitude": 19.178058,
+    "longitude": 72.840358,
+    "timestamp": "2024-01-04 18:26:22",
+    "age_victim": 45,
+    "city": "mumbai",
+    "cluster": 31
+  },
+  {
+    "id": 99,
+    "crime_type": "Cybercrime",
+    "latitude": 20.091458,
+    "longitude": 73.838972,
+    "timestamp": "2024-04-11 02:30:20",
+    "age_victim": 79,
+    "city": "nashik",
+    "cluster": 33
+  },
+  {
+    "id": 100,
+    "crime_type": "Cybercrime",
+    "latitude": 13.040243,
+    "longitude": 77.506241,
+    "timestamp": "2024-12-27 09:21:23",
+    "age_victim": 35,
+    "city": "bengaluru",
+    "cluster": 21
+  }
+]
