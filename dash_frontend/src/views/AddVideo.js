@@ -29,11 +29,15 @@ function AddVideo() {
     ws.onmessage = (event) => {
       try {
         const response = JSON.parse(event.data);
-        console.log("Message from server:", response);
+        console.log("Received response from server:", response);
+        if (response.image_data) {
+          setImages(prevImages => [...prevImages, response]);  
+        }
       } catch (e) {
         console.error("Error parsing server response:", e);
       }
     };
+    
   
     ws.onerror = (error) => console.error("WebSocket error:", error);
   
@@ -161,35 +165,35 @@ function AddVideo() {
           </Card>
         </Col>
             <Col md="4">
-                <Card>
-                        <CardHeader>
-                          <CardTitle tag="h5">Analysis Results</CardTitle>
-                        </CardHeader>
-                        <CardBody>
-                          <Row>
-                            {images.length > 0 ? (
-                              images.map((image, index) => (
-                                <Col md="3" key={index}>
-                                  <Card className="card-image">
-                                    <img
-                                      src={`data:image/png;base64,${image.image_data}`}
-                                      alt={`frame ${index}`}
-                                      style={{ width: "100%", height: "auto" }}
-                                    />
-                                    <CardBody>
-                                      <p>Timestamp: timestamp</p>
-                                      <p>Analysis Result: Safe</p>
-                                    </CardBody>
-                                  </Card>
-                                </Col>
-                              ))
-                            ) : (
-                              <p>No frames received yet.</p>
-                            )}
-                          </Row>
-                        </CardBody>
-                      </Card>
-                </Col>
+                <Card style={{maxHeight:'70vh', overflowY:"auto" }}>
+                <CardHeader>
+                    <CardTitle tag="h5">Analysis Results</CardTitle>
+                  </CardHeader>
+                  <CardBody style={{ marginLeft: '20px' }}>
+                    <Row>
+                      {images.length > 0 ? (
+                        images.map((image, index) => (
+                          <Col md="12" key={index}>
+                            <Card className="card-image">
+                              <img
+                                src={`data:image/png;base64,${image.image_data}`}
+                                alt={`frame ${index}`}
+                                style={{ width: "100%", height: "auto" }}
+                              />
+                              <CardBody>
+                                <p>Timestamp: timestamp</p>
+                                <p>Analysis Result: Safe</p>
+                              </CardBody>
+                            </Card>
+                          </Col>
+                        ))
+                      ) : (
+                        <p>No frames received yet.</p>
+                      )}
+                    </Row>
+                  </CardBody>
+                </Card>
+              </Col>
       </Row>
     
     </div>
@@ -243,6 +247,7 @@ const styles = {
     cursor: "pointer",
     display: "inline-block",
   },
+  
   //   submitButton: {
   //     backgroundColor: "#28a745",
   //     color: "#fff",
