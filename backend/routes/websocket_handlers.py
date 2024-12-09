@@ -3,19 +3,11 @@ import asyncio
 from fastapi import APIRouter, WebSocket
 from io import BytesIO
 from PIL import Image
+from helpers.videoTest import videoTest
+import json
+import asyncio
 
 router = APIRouter()
-
-# Function to convert an image file to base64 (entire image, not just the path)
-def image_to_base64(image_path):
-    try:
-        with open(image_path, "rb") as image_file:
-            # Read the image file as binary and convert to base64
-            encoded_image = base64.b64encode(image_file.read()).decode("utf-8")
-            return encoded_image
-    except Exception as e:
-        print(f"Error encoding image {image_path}: {e}")
-        return None
 
 @router.websocket("/video-analysis")
 async def video_analysis(websocket: WebSocket):
@@ -23,29 +15,32 @@ async def video_analysis(websocket: WebSocket):
     print("WebSocket connection open")
     try:
         while True:
-            message = await websocket.receive_text()  # Receive the video path
-            print(f"Received video path: {message}")
+            # Receive the video path
+            message = await websocket.receive_text()
+            data = json.loads(message)
+            video_path = data.get("path", None)
+            print(f"Received video path: {video_path}")
 
-            # Define the paths to the images you want to send
-            image_paths = [
-                "E:/SIH-SakhiSahayak/download(1).png",
-                "E:/SIH-SakhiSahayak/download.png"
-            ]
-            
-            # Send two images per second
-            while True:
-                for image_path in image_paths:
-                    # Convert image to base64 (image, not just the path)
-                    base64_image = image_to_base64(image_path)
-                    if base64_image:
-                        frame_data = {
-                            "status": "processed",
-                            "image_data": base64_image,  # The base64 encoded image data
-                            "result": f"Image from {image_path} sent successfully",
-                        }
-                        await websocket.send_json(frame_data)
-                        print(f"Sent image from {image_path}")
-                        await asyncio.sleep(1)  # Asynchronously wait for 1 second between sends
+            # Start the gender classification and violence detection tasks
+            async def gender_classification_task():
+                try:
+                    await videoTest.invokeGenderClassification(video_path, websocket)
+                except Exception as e:
+                    print(f"Error in gender classification task: {e}")
+
+            async def violence_detection_task():
+                try:
+                    await videoTest.invokeViolenceDetection(video_path, websocket)
+                except Exception as e:
+                    print(f"Error in violence detection task: {e}")
+
+            # Run both tasks concurrently
+            await asyncio.gather(
+                gender_classification_task(),
+                violence_detection_task()
+            )
+            await asyncio.sleep(0)  
+
 
     except Exception as e:
         print(f"Error in WebSocket handler: {e}")
