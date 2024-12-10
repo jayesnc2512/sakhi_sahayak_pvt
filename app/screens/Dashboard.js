@@ -22,6 +22,12 @@ export default function Dashboard({ navigation }) {
     }, 300);
   };
 
+  const handleClickSafe = () =>{
+    setTimeout(() => {
+      navigation.navigate('SafeMode');
+    }, 200);
+  }
+
   return (
     <View style={styles.container}>
       {/* <View style={[styles.dashboardContent,{ opacity: isSidebarVisible ? 0.3 : 1 }]}> */}
@@ -82,9 +88,14 @@ export default function Dashboard({ navigation }) {
         </View>
 
         <View style={styles.sosContainer}>
-          <View style={styles.sosCircleWrapper}>
+          <View style={styles.sosCircleWrapper1}>
             <TouchableOpacity style={styles.sosButton} onPress={handleClickSOS}>
               <Text style={styles.sosButtonText}>SOS</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.sosCircleWrapper}>
+            <TouchableOpacity style={styles.sosButton} onPress={handleClickSafe}>
+              <Text style={styles.sosButtonText}>Safe</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -146,11 +157,28 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 50,
         position: 'relative',
       },
+      sosCircleWrapper1: {
+        position: 'absolute',
+        top: -40, 
+        width: 120,
+        height: 120,
+        left:60,
+        backgroundColor: '#FFF',
+        borderRadius: 60, 
+        justifyContent: 'center',
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+      },
       sosCircleWrapper: {
         position: 'absolute',
         top: -40, 
         width: 120,
         height: 120,
+        right: 60,
         backgroundColor: '#FFF',
         borderRadius: 60, 
         justifyContent: 'center',

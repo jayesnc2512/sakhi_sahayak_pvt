@@ -10,6 +10,7 @@ from routes.websocket_handlers import router as video_analysis_router
 from routes.alertRoutes import router as alertRouter
 from routes.cameraRoutes import router as cameraRouter
 
+from routes.websocket_handler_app import router as safe_mode_analysis_router
 
 app = FastAPI()
 
@@ -25,10 +26,6 @@ app.add_middleware(
 # Include hotspot routes
 app.include_router(hotspot_router,prefix="/hotspot")
 app.include_router(video_analysis_router,prefix="/ws")
-app.include_router(alertRouter,prefix="/alerts")
-app.include_router(cameraRouter,prefix="/cameras")
-
-
 
 @app.on_event("startup")
 async def on_start():

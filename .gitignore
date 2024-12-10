@@ -1,3 +1,9 @@
 /backend/venv
 /dash_frontend/node_modules
 /backend/__pycache__
+/backend/ml_models/vosk-model-en-in-0.5
+/backend/received_audio
+/backend/routes/__pycache__
+/backend/workers/__pycache__
+/backend/ml_models/__pycache__
+/backend/ml_models/vmodel.h5
