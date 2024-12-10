@@ -19,4 +19,9 @@ class cameraDB:
         else:
             print(f"Failed to update camera status: {response.error_message}")
 
-
+    @staticmethod
+    def getAllCameras():
+            # Query the camera table for rows where status is 'A'
+            response =supabase.table("camera").execute()
+            print(response.data)
+            return response.data
