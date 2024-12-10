@@ -142,7 +142,12 @@ const CityWiseHotspot = () => {
                 <Col md="12">
                     <Card>
                         <CardHeader>Statistics</CardHeader>
-                        <StatsPanel hotspots={hotspots} onCitySelect={handleCitySelect} />
+                        <StatsPanel
+                            hotspots={hotspots}
+                            onCitySelect={handleCitySelect}
+                            totalCrimes={crimeAnalysis.totalCrimes}
+                            mostCommonCrime={crimeAnalysis.highestCrime} 
+                        />
                     </Card>
                 </Col>
                 <Col md="12">
@@ -182,7 +187,7 @@ const CityWiseHotspot = () => {
                                             </Col>
                                         </Row>
                                     )}
-                                        {Object.keys(centroids).length > 0 && (
+                                        {/* {Object.keys(centroids).length > 0 && (
                                             <Row>
                                                 <Col md="6">
                                                     <h5>Cluster Centroids:</h5>
@@ -193,7 +198,7 @@ const CityWiseHotspot = () => {
                                                     ))}
                                                 </Col>
                                             </Row>
-                                        )}
+                                        )} */}
                                         {highestCluster !== null && (
                                             <Row>
                                                 <Col md="6">
