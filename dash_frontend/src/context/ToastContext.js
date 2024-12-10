@@ -1,3 +1,23 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import React, { createContext, useContext, useState } from "react";
 import ToastNotify from "../components/Notification/ToastNotify";
 
@@ -6,22 +26,48 @@ const ToastContext = createContext();
 export const useToast = () => useContext(ToastContext);
 
 export const ToastProvider = ({ children }) => {
-  const [toast, setToast] = useState({ message: "", type: "", show: false });
+  const [toasts, setToasts] = useState([]);
 
   const triggerToast = (message, type) => {
-    setToast({ message, type, show: true });
-    setTimeout(() => setToast({ ...toast, show: false }), 5000);
+    const id = Date.now() + Math.random(); // Ensure unique ID for each toast
+    setToasts((prevToasts) => [...prevToasts, { id, message, type }]);
+
+    // Automatically remove the toast after 5 seconds
+    setTimeout(() => {
+      setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
+    }, 5000);
   };
 
   return (
     <ToastContext.Provider value={triggerToast}>
       {children}
-      <ToastNotify
-        message={toast.message}
-        type={toast.type}
-        show={toast.show}
-        toggle={() => setToast({ ...toast, show: false })}
-      />
+      {/* Toast container */}
+      <div
+  style={{
+    position: "fixed",
+    top: "20px",
+    right: "20px",
+    zIndex: 1050,
+    // display: "flex",
+    // flexDirection: "column", // Ensures vertical stacking
+    gap: "10px", // Space between toasts
+  }}
+>
+  {toasts.map((toast) => (
+    <ToastNotify
+      key={toast.id}
+      message={toast.message}
+      type={toast.type}
+      show={true}
+      toggle={() =>
+        setToasts((prevToasts) => prevToasts.filter((t) => t.id !== toast.id))
+      }
+    />
+  ))}
+</div>
+
     </ToastContext.Provider>
   );
 };
+
+
