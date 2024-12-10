@@ -41,6 +41,11 @@ function AddVideo() {
         }
         if (response.message) {
           setInference(infer => [response.message, ...infer])
+          let alertArray = ["lone women at night", "Woman surrounded by multiple men detected.", "Violence Detected"]
+          if (alertArray.includes(response.message)) {
+            triggerToast(response.message, "error")
+          }
+          
         }
       } catch (e) {
         console.error("Error parsing server response:", e);
@@ -62,7 +67,7 @@ function AddVideo() {
     if (file) {
       setVideoFile(file);
       setVideoURL(URL.createObjectURL(file));
-      triggerToast(`Video uploaded: ${file.name}`, "info");
+      // triggerToast(`Video uploaded: ${file.name}`, "info");
     }
   };
 
@@ -80,12 +85,12 @@ function AddVideo() {
   const handleSubmit = () => {
     if (!videoFile) {
       alert("Please upload a video first!");
-      triggerToast("Please upload a video before starting analysis.", "warning");
+      // triggerToast("Please upload a video before starting analysis.", "warning");
       return;
     }
     setInference([]);
     setImages([]);
-    triggerToast("Analysis started. Processing the video...", "info");
+    // triggerToast("Analysis started. Processing the video...", "info");
     startWebSocketConnection();
   };
 

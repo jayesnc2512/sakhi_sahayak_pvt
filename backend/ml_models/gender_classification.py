@@ -152,7 +152,7 @@ class genderClassification:
                 genderClassification.lone_woman_tracker=[t for t in genderClassification.lone_woman_tracker if (current_time - t).seconds <= 3]
                 # Trigger alert if lone woman detected continuously for 3 seconds
                 if len(genderClassification.lone_woman_tracker) >= 6:
-                    await genderClassification.trigger_alert("lone women detected",websocket)
+                    await genderClassification.trigger_alert("lone women at night",websocket)
                     # await websocket.send_json({"message":"Lone Women detected"})
                     genderClassification.lone_woman_tracker.clear()
             else:
