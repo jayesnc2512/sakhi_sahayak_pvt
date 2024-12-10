@@ -43,15 +43,22 @@ const SignInForm = () => {
     const hardemail = "user1@gmail.com";
     const hardpassword = "user1";
     
-    if (email === hardemail && password === hardpassword){
+    if (email === hardemail && password === hardpassword) {
       setSuccessMessage("You have successfully logged in");
       setError("");
-      triggerToast("You have successfully logged in", "success"); 
+    
+      triggerToast("You have successfully logged in", "success");
+      console.log("Triggered success toast.");
+    
+      triggerToast("Welcome To DashBoard", "info");
+      console.log("Triggered info toast.");
+    
       navigate("/dashboard");
-    }
-    else{
+    } else {
       setError("Invalid email or password");
       setSuccessMessage("");
+      triggerToast("Invalid email or password", "error");
+      console.log("Triggered error toast.");
     }
 
     // Clear input fields

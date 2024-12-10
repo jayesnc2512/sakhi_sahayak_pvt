@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useToast } from "../context/ToastContext";
 import {
   Button,
   Card,
@@ -13,46 +14,55 @@ function AddVideo() {
   const [videoFile, setVideoFile] = useState(null);
   const [videoURL, setVideoURL] = useState(null);
   const [images, setImages] = useState([]);
+  const [inference, setInference] = useState([]);
   const [socket, setSocket] = useState(null);
+  const [outputFrame, setOutputFrame] = useState();
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
+  const triggerToast = useToast();
 
   // Initiate WebSocket connection
   const startWebSocketConnection = () => {
     const ws = new WebSocket("ws://127.0.0.1:8000/ws/video-analysis");
-  
+
     ws.onopen = () => {
       console.log("WebSocket connected.");
+      triggerToast("WebSocket connected.", "success");
       sendVideoPath(ws); // Send the video path when the WebSocket is open
     };
-  
+
     ws.onmessage = (event) => {
       try {
         const response = JSON.parse(event.data);
         console.log("Received response from server:", response);
-        if (response.image_data) {
-          setImages(prevImages => [...prevImages, response]);  
+        if (response.image) {
+          setOutputFrame(response.image)
+          console.log(response.image)
+        }
+        if (response.message) {
+          setInference(infer => [response.message, ...infer])
         }
       } catch (e) {
         console.error("Error parsing server response:", e);
+        triggerToast("Error parsing server response.", "error");
       }
     };
-    
-  
+
     ws.onerror = (error) => console.error("WebSocket error:", error);
-  
+
     ws.onclose = () => {
       console.log("WebSocket disconnected.");
     };
-  
-    setSocket(ws); 
+
+    setSocket(ws);
   };
-  
+
   const handleVideoUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
       setVideoFile(file);
       setVideoURL(URL.createObjectURL(file));
+      triggerToast(`Video uploaded: ${file.name}`, "info");
     }
   };
 
@@ -66,23 +76,26 @@ function AddVideo() {
       alert("WebSocket is not connected.");
     }
   };
-  
+
   const handleSubmit = () => {
     if (!videoFile) {
       alert("Please upload a video first!");
+      triggerToast("Please upload a video before starting analysis.", "warning");
       return;
     }
-  
+    setInference([]);
+    setImages([]);
+    triggerToast("Analysis started. Processing the video...", "info");
     startWebSocketConnection();
   };
-  
+
   // New function to send the video path
   const sendVideoPath = (ws) => {
     if (videoFile) {
       // Sending the absolute file path to the backend || videoFile.name
-      const absolutePath = `E:/SIH-SakhiSahayak/GDSCL.mp4` ; 
+      const absolutePath = `data\\${videoFile.name}`;
       console.log("Sending video path:", absolutePath);
-  
+
       if (ws.readyState === WebSocket.OPEN) {
         ws.send(JSON.stringify({ path: absolutePath }));
         console.log('absolute path:', absolutePath);
@@ -94,9 +107,6 @@ function AddVideo() {
       console.error("No video file available.");
     }
   };
-  
-  
-  
 
   return (
     <div className="content">
@@ -107,26 +117,15 @@ function AddVideo() {
               <CardTitle tag="h5">Add Video</CardTitle>
             </CardHeader>
             <CardBody>
-              {videoURL && (
+              {outputFrame ? (
                 <>
-                  <video
-                    ref={videoRef}
-                    controls
-                    width="640"
-                    height="360"
-                    style={{ display: "block", marginBottom: "10px" }}
-                  >
-                    <source src={videoURL} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                  <canvas
-                    ref={canvasRef}
-                    width="640"
-                    height="360"
-                    style={{ display: "none" }}
+                  <img
+                    src={`data:image/jpg;base64,${outputFrame}`}
+                    alt={`frame`}
+                    style={{ width: "100%", height: "auto" }}
                   />
                 </>
-              )}
+              ) : "NO OUTPUT FRAME"}
 
               <div className="update ml-auto mr-auto">
                 <input
@@ -143,6 +142,12 @@ function AddVideo() {
                 >
                   Upload Video
                 </Button>
+
+                {videoFile && (
+                  <div style={{ marginTop: "10px", fontSize: "16px" }}>
+                    <strong>Selected Video: </strong>{videoFile.name}
+                  </div>
+                )}
 
                 <Button
                   className="btn-round"
@@ -164,98 +169,30 @@ function AddVideo() {
             </CardBody>
           </Card>
         </Col>
-            <Col md="4">
-                <Card style={{maxHeight:'70vh', overflowY:"auto" }}>
-                <CardHeader>
-                    <CardTitle tag="h5">Analysis Results</CardTitle>
-                  </CardHeader>
-                  <CardBody style={{ marginLeft: '20px' }}>
-                    <Row>
-                      {images.length > 0 ? (
-                        images.map((image, index) => (
-                          <Col md="12" key={index}>
-                            <Card className="card-image">
-                              <img
-                                src={`data:image/png;base64,${image.image_data}`}
-                                alt={`frame ${index}`}
-                                style={{ width: "100%", height: "auto" }}
-                              />
-                              <CardBody>
-                                <p>Timestamp: timestamp</p>
-                                <p>Analysis Result: Safe</p>
-                              </CardBody>
-                            </Card>
-                          </Col>
-                        ))
-                      ) : (
-                        <p>No frames received yet.</p>
-                      )}
-                    </Row>
-                  </CardBody>
-                </Card>
-              </Col>
+        <Col md="4">
+          <Card style={{ maxHeight: '70vh', overflowY: "auto" }}>
+            <CardHeader>
+              <CardTitle tag="h5">Analysis Results</CardTitle>
+            </CardHeader>
+            <CardBody style={{ marginLeft: '20px' }}>
+              <Row>
+                {inference.length > 0 ? (
+                  inference.map((item, index) => (
+                    <div key={index}>
+                      <span>{typeof (item) === String ? item : JSON.stringify(item)}</span>
+                      <br />
+                    </div>
+                  ))
+                ) : (
+                  <p>Loading...</p>
+                )}
+              </Row>
+            </CardBody>
+          </Card>
+        </Col>
       </Row>
-    
     </div>
   );
 }
-
-
-const styles = {
-  //   container: {
-  //     display: "flex",
-  //     justifyContent: "center",
-  //     alignItems: "center",
-  //     minHeight: "100vh",
-  //     backgroundColor: "#f5f5f5",
-  //   },
-  card: {
-    backgroundColor: "#fff",
-    boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-    borderRadius: "10px",
-    padding: "20px",
-    width: "400px",
-    textAlign: "center",
-  },
-  video: {
-    width: "100%",
-    height: "auto",
-    marginBottom: "15px",
-    borderRadius: "10px",
-  },
-  placeholder: {
-    width: "100%",
-    height: "200px",
-    backgroundColor: "#dcdcdc",
-    borderRadius: "10px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    fontSize: "16px",
-    color: "#888",
-    marginBottom: "15px",
-  },
-  uploadSection: {
-    alignItems: "center",
-    marginBottom: "15px",
-  },
-  uploadButton: {
-    backgroundColor: "#007bff",
-    color: "#fff",
-    padding: "10px 20px",
-    borderRadius: "5px",
-    cursor: "pointer",
-    display: "inline-block",
-  },
-  
-  //   submitButton: {
-  //     backgroundColor: "#28a745",
-  //     color: "#fff",
-  //     padding: "10px 20px",
-  //     borderRadius: "5px",
-  //     cursor: "pointer",
-  //     border:"none",
-  //   },
-};
 
 export default AddVideo;

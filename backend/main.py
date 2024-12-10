@@ -25,6 +25,12 @@ app.include_router(hotspot_router,prefix="/hotspot")
 app.include_router(video_analysis_router,prefix="/ws")
 app.include_router(safe_mode_analysis_router,prefix="/ws")
 
+@app.on_event("startup")
+async def on_start():
+    # Code to run when the application starts
+    print("The application has started!")
+
+
 @app.get("/")
 def read_root():
     return {"message": "Welcome to the Crime Hotspot API!"}

@@ -195,20 +195,20 @@
               ]}
               onPress={handleNearbyClick}
             >
-              <Text style={styles.optionButtonText}>
-                {nearbyVisible ? 'Safe Places Active' : 'Nearby Safe Places'}
+              <Text style={[styles.optionButtonText, nearbyVisible && styles.activeButtonText]}>
+               Nearby Safe Places
               </Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               style={[
                 styles.optionButton,
-                hotspotVisible && styles.activeButton, // Use a different style for active state
+                hotspotVisible && styles.activeButton, 
               ]}
               onPress={handleHotspotClick}
             >
-              <Text style={styles.optionButtonText}>
-                {hotspotVisible ? 'Hotspot Active' : 'Hotspot Areas'}
+              <Text style={[styles.optionButtonText, hotspotVisible && styles.activeButtonText]}>
+              Hotspot Areas
               </Text>
             </TouchableOpacity>
           </View>
@@ -287,14 +287,19 @@ const styles = StyleSheet.create({
   optionButton: {
     padding: 10,
     marginBottom: 10,
-    backgroundColor: '#9150E4',
     borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#9150E4',
   },
   activeButton: {
-    backgroundColor: '#C5A7EC', 
+    backgroundColor: '#9150E4', 
+
+  },
+  activeButtonText: {
+    color: '#fff',
   },
   optionButtonText: {
-    color: '#fff',
+    color: '#9150E4',
     fontSize: 14,
     fontWeight: '600',
   },

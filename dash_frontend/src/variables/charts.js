@@ -89,9 +89,9 @@ const dashboardEmailStatisticsChart = {
           label: "Emails",
           pointRadius: 0,
           pointHoverRadius: 0,
-          backgroundColor: ["#e3e3e3", "#4acccd", "#fcc468", "#ef8157"],
+          backgroundColor: ["#e3e3e3", "#4acccd", "#fcc468", "#ef8157","#51BCDA", "#6C757D"],
           borderWidth: 0,
-          data: [342, 480, 530, 120],
+          data: [342, 480, 530, 120, 240, 100],
         },
       ],
     };

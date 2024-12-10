@@ -114,7 +114,7 @@ def detectViolence(video, model_path, output_video="recordedVideo.avi"):
         print(f"[ERROR] An error occurred: {e}")
 
 # Paths for the test video and model
-V_path = "data/violence2.mp4"  # Update with your violence video file path
+V_path = "rtsp://192.168.1.8:8080/h264.sdp"  # Update with your violence video file path
 model_path = "ml_models/vmodel.h5"  # Update with your model file path
 
 detectViolence(V_path, model_path)

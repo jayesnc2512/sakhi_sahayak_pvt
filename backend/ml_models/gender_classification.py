@@ -1,138 +1,235 @@
-# Import necessary libraries
-from roboflow import Roboflow
+import time
 import cv2
-import numpy as np
+from roboflow import Roboflow
 from datetime import datetime
+import json
+import asyncio
+import base64
+import pytz
 
 # Initialize the Roboflow client and model
-rf = Roboflow(api_key="0Hh1bvT2yb5UXrNloKWV")  # Replace with your Roboflow API key
-project = rf.workspace("gender").project("gender-bkoji")  # Replace with your workspace and project name
-model = project.version("1").model  # Replace with your model version
+class genderClassification:
+    lone_woman_tracker = []
+    surrounded_woman_tracker = []
 
-# Function to draw annotations on the frame and highlight threat situations
-def annotate_frame(frame, detections, current_time):
-    men_count = 0
-    women_count = 0
-    threat_detected = False
 
-    # Separate men and women detections for threat analysis
-    men_positions = []
-    women_positions = []
+    @staticmethod
+    def initialize_roboflow():
+        try:
+            rf = Roboflow(api_key="0Hh1bvT2yb5UXrNloKWV")  # Replace with your Roboflow API key
+            project = rf.workspace("gender").project("gender-bkoji")  # Replace with your workspace and project name
+            model = project.version("1").model  # Replace with your model version
+            return model
+        except Exception as e:
+            print(f"Error initializing Roboflow model: {e}")
+            return None
 
-    # Annotate each detection
-    for detection in detections:
-        class_name = detection['class']  # Either 'man' or 'woman'
-        x = int(detection['x'])  # Center X of the bounding box
-        y = int(detection['y'])  # Center Y of the bounding box
-        width = int(detection['width'])  # Width of the bounding box
-        height = int(detection['height'])  # Height of the bounding box
-        # Calculate top left and bottom right corners of bounding box
-        top_left = (x - width // 2, y - height // 2)
-        bottom_right = (x + width // 2, y + height // 2)
-        
-        # Set color based on gender
-        if class_name == 'female':
-            color = (0, 255, 0)  # Green for woman
-            women_count += 1
-            women_positions.append((x, y, width, height))
-        else:
-            color = (0, 0, 255)  # Red for man
-            men_count += 1
-            men_positions.append((x, y, width, height))
-        
-        # Draw rectangle and label
-        cv2.rectangle(frame, top_left, bottom_right, color, 2)
-        cv2.putText(frame, class_name, (top_left[0], top_left[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, color, 2)
+    @staticmethod
+    def process_video_input(input_source, fps,websocket):
+        try:
+            if input_source == 0 or input_source == 1:  # System camera
+                camera_index = int(input_source)
+                cap = cv2.VideoCapture(camera_index)  # Open the system camera
+            elif input_source.startswith("rtsp"):  # RTSP camera stream
+                cap = cv2.VideoCapture(input_source)  # Open the RTSP stream
+            else:  # Path to video file
+                cap = cv2.VideoCapture(input_source)  # Open the video file
+            
+            if not cap.isOpened():
+                print("Error: Cannot open the video stream or file.")
+                return None, None
+            
+            frame_rate = cap.get(cv2.CAP_PROP_FPS)  # Get the FPS of the video stream or file
+            frame_interval = int(round(frame_rate / fps))  # Calculate interval between frames to achieve desired FPS
+            
+            return cap, frame_interval
+        except Exception as e:
+            print(f"Error processing video input: {e}")
+            return None, None
 
-    # Check for "Woman Surrounded by Men" threat
-    for woman in women_positions:
-        men_nearby = 0
-        woman_x, woman_y, woman_width, woman_height = woman
+    @staticmethod
+    def annotate_frame(frame, predictions):
+        try:
+            male_count = 0
+            female_count = 0
 
-        for man in men_positions:
-            man_x, man_y, man_width, man_height = man
-            # Check distance between man and woman
-            distance = np.sqrt((man_x - woman_x) ** 2 + (man_y - woman_y) ** 2)
-            if distance < 100:  # Example proximity threshold
-                men_nearby += 1
+            for pred in predictions:
+                x, y, w, h = int(pred['x']), int(pred['y']), int(pred['width']), int(pred['height'])
+                label = pred['class']
+                confidence = pred['confidence']
 
-        if men_nearby >= 3:  # If surrounded by 3 or more men
-            threat_detected = True
-            # Highlight this woman with a red bounding box
-            cv2.rectangle(frame, 
-                          (woman_x - woman_width // 2, woman_y - woman_height // 2),
-                          (woman_x + woman_width // 2, woman_y + woman_height // 2),
-                          (0, 0, 255), 4)  # Red border for threat
-            cv2.putText(frame, "THREAT: Woman Surrounded by Men", 
-                        (10, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+                if label == 'male':
+                    male_count += 1
+                elif label == 'female':
+                    female_count += 1
 
-    # Check for "Lone Woman at Night" threat
-    if women_count == 1 and men_count == 0 and current_time.hour >= 20:  # After 8 PM
-        threat_detected = True
-        lone_woman = women_positions[0]
-        woman_x, woman_y, woman_width, woman_height = lone_woman
-        # Highlight the lone woman
-        cv2.rectangle(frame, 
-                      (woman_x - woman_width // 2, woman_y - woman_height // 2),
-                      (woman_x + woman_width // 2, woman_y + woman_height // 2),
-                      (0, 0, 255), 4)  # Red border for threat
-        cv2.putText(frame, "THREAT: Lone Woman at Night", 
-                    (10, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+                cv2.rectangle(frame, (x-int(w/2), y-int(h/2)), 
+                              (x + int(w/2), y + int(h/2)), (0, 255, 0), 2)
+                cv2.putText(frame, f"{label}: {confidence:.2f}", 
+                            (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+            
+            return frame, male_count, female_count
+        except Exception as e:
+            print(f"Error annotating frame: {e}")
+            return frame, 0, 0
 
-    # Display the count of men and women on the top-left corner of the frame
-    text = f"Men: {men_count}  Women: {women_count}"
-    cv2.putText(frame, text, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
     
-    return frame
+    @staticmethod
+    async def process_video_feed(model, cap, fps, websocket):
+        try:
+            frame_count = 0
+            original_fps = cap.get(cv2.CAP_PROP_FPS)
+            frame_interval = int(original_fps / fps) if original_fps > 0 else 15
 
-# Function to process the video and display annotated output with threat detection
-def process_video_display(input_video_path, frame_skip=5):
-    # Open video file
-    video = cv2.VideoCapture(input_video_path)
-    
-    frame_count = 0
-    processed_frame_count = 0
-    while video.isOpened():
-        ret, frame = video.read()
-        if not ret:
-            break
-        
-        frame_count += 1
-        
-        # Skip frames based on the frame_skip parameter
-        if frame_count % frame_skip != 0:
-            continue
-        
-        processed_frame_count += 1
-        print(f"Processing frame {frame_count} (processed frame count: {processed_frame_count})")
-        
-        # Save frame temporarily to perform inference
-        temp_image_path = 'temp_frame.jpg'
-        cv2.imwrite(temp_image_path, frame)
-        
-        # Perform inference on the frame
-        result = model.predict(temp_image_path)
-        detections = result.json()['predictions']
-        
-        # Get current time for night-time check
-        current_time = datetime.now()
-        
-        # Annotate frame with detections and check for threats
-        annotated_frame = annotate_frame(frame, detections, current_time)
-        
-        # Display the annotated frame
-        cv2.imshow('Threat Detection', annotated_frame)
-        
-        # Break loop if 'q' key is pressed
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-    
-    # Release the video object and close display window
-    video.release()
-    cv2.destroyAllWindows()
+            while cap.isOpened():
+                ret, frame = cap.read()
+                if not ret:
+                    break
 
-# Use the function to process a video and display annotated frames
-input_video_path = 0
+                frame_count += 1
 
-# Process only every 5th frame
-process_video_display(input_video_path, frame_skip=5)
+                if frame_count % frame_interval == 0:
+                    try:
+                        inference = model.predict(frame, confidence=40, overlap=70)
+                        predictions = inference.json()['predictions']
+
+                        frame, male_count, female_count = genderClassification.annotate_frame(frame, predictions)
+                        
+                        # Resize the frame for display
+                        small_frame = cv2.resize(frame, (320, 240))
+                        cv2.imshow("Video Feed", small_frame)
+
+                        # Encode the frame to Base64
+                        _, buffer = cv2.imencode('.jpg', frame)
+                        encoded_frame = base64.b64encode(buffer).decode('utf-8')
+
+                        # Create the output JSON
+                        timestamp = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(time.time() + 5*3600 + 30*60))
+                        output = {
+                            "timestamp": timestamp,
+                            "male_count": male_count,
+                            "female_count": female_count,
+                            
+                        }
+                        print(output)
+
+                        # Send WebSocket message
+                        await websocket.send_json({"message": output,"image": encoded_frame})
+
+                        # Process lone woman detection and woman surrounded detection
+                        await genderClassification.detect_woman_surrounded(female_count, male_count, predictions, websocket)
+                        await genderClassification.detect_lone_woman(female_count, male_count, websocket)
+
+                    except Exception as e:
+                        print(f"Error during inference: {e}")
+
+                # Allow event loop to process other tasks
+                await asyncio.sleep(0)
+
+                if cv2.waitKey(1) & 0xFF == ord('q'):
+                    break
+
+            cap.release()
+            cv2.destroyAllWindows()
+
+        except Exception as e:
+            print(f"Error processing video feed: {e}")
+
+
+    @staticmethod
+    async def detect_lone_woman(female_count, male_count,websocket):
+        # Get the current time in UTC and convert it to IST
+        ist = pytz.timezone('Asia/Kolkata')
+        current_time = datetime.now(ist)
+        current_hour = current_time.hour
+        print("current_hour",current_hour)
+
+        # Check if time is between 20:00 (8 PM) and 06:00 (6 AM)
+        if current_hour >= 20 or current_hour < 6:
+            if female_count == 1:
+                genderClassification.lone_woman_tracker.append(current_time)
+                # Retain only the last 6 timestamps (last 3 seconds at 2 FPS)
+                genderClassification.lone_woman_tracker=[t for t in genderClassification.lone_woman_tracker if (current_time - t).seconds <= 3]
+                # Trigger alert if lone woman detected continuously for 3 seconds
+                if len(genderClassification.lone_woman_tracker) >= 6:
+                    await genderClassification.trigger_alert("lone women detected",websocket)
+                    # await websocket.send_json({"message":"Lone Women detected"})
+                    genderClassification.lone_woman_tracker.clear()
+            else:
+                genderClassification.lone_woman_tracker.clear()
+
+    @staticmethod
+    async def detect_woman_surrounded(female_count, male_count, predictions,websocket ):
+        try:
+            proximity_threshold=1000
+            current_time = datetime.now()
+            woman_positions = []
+            man_positions = []
+
+            # Extract bounding box centers for all females and males
+            for pred in predictions:
+                x, y, w, h = int(pred['x']), int(pred['y']), int(pred['width']), int(pred['height'])
+                label = pred['class']
+
+                if label == 'female':
+                    woman_positions.append((x, y))
+                elif label == 'male':
+                    man_positions.append((x, y))
+
+            # Check if exactly one woman is detected
+            if len(woman_positions) == 1:
+                woman_x, woman_y = woman_positions[0]  # Position of the lone woman
+                men_within_proximity = 0
+
+                # Count the number of men within the proximity threshold
+                for man_x, man_y in man_positions:
+                    distance = ((man_x - woman_x) ** 2 + (man_y - woman_y) ** 2) ** 0.5
+                    if distance <= proximity_threshold:
+                        men_within_proximity += 1
+
+                # If the woman is surrounded by 3 or more men within the proximity
+                if men_within_proximity >= 2:
+                    genderClassification.surrounded_woman_tracker.append(current_time)
+                    # Retain only the last 6 timestamps (last 3 seconds at 2 FPS)
+                    genderClassification.surrounded_woman_tracker = [
+                        t for t in genderClassification.surrounded_woman_tracker if (current_time - t).seconds <= 3
+                    ]
+
+                    # Trigger alert if this condition persists for 3 seconds
+                    if len(genderClassification.surrounded_woman_tracker) >= 6:
+                        print("Woman surrounded by multiple men detected.")
+                        await genderClassification.trigger_alert("Woman surrounded by multiple men detected.",websocket)
+                        genderClassification.surrounded_woman_tracker.clear()
+                else:
+                    genderClassification.surrounded_woman_tracker.clear()
+            else:
+                genderClassification.surrounded_woman_tracker.clear()
+        except Exception as e:
+            print(f"Error in detect_woman_surrounded: {e}")
+
+
+    @staticmethod
+    async def trigger_alert(message,websocket):
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        await websocket.send_json({"message":message})
+        print(f"{timestamp} - ALERT: {message}")
+
+    @staticmethod
+    async def gender_classification_main(input_source,websocket):
+        try:
+            fps = 2  # Set frames per second to process
+
+            model = genderClassification.initialize_roboflow()
+            if model is None:
+                return
+
+            cap, frame_interval = genderClassification.process_video_input(input_source, fps,websocket)
+            if cap:
+               await genderClassification.process_video_feed(model, cap, fps,websocket)
+            else:
+                print("Error: Could not initialize video feed.")
+        except Exception as e:
+            print(f"Error in main function: {e}")
+
+
+# genderClassification.gender_classification_main("data\genderC.mp4")

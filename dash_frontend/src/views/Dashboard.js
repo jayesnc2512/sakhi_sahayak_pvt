@@ -115,12 +115,12 @@ function Dashboard() {
                 <Row>
                   <Col md="4" xs="5">
                     <div className="icon-big text-center icon-warning">
-                      <i className="nc-icon nc-money-coins text-success" />
+                    <i className="fa fa-bell text-danger" />
                     </div>
                   </Col>
                   <Col md="8" xs="7">
                     <div className="numbers">
-                      <p className="card-category">Anamoly Detections</p>
+                      <p className="card-category">Alerts Generated</p>
                       <CardTitle tag="p">{alerts.length}</CardTitle>
                       <p />
                     </div>
@@ -141,7 +141,7 @@ function Dashboard() {
                 <Row>
                   <Col md="4" xs="5">
                     <div className="icon-big text-center icon-warning">
-                      <i className="nc-icon nc-vector text-danger" />
+                      <i className="fa fa-exclamation-triangle text-danger" />
                     </div>
                   </Col>
                   <Col md="8" xs="7">
@@ -167,12 +167,12 @@ function Dashboard() {
                 <Row>
                   <Col md="4" xs="5">
                     <div className="icon-big text-center icon-warning">
-                      <i className="nc-icon nc-favourite-28 text-primary" />
+                      <i className="fa fa-map-marker-alt text-primary" />
                     </div>
                   </Col>
                   <Col md="8" xs="7">
                     <div className="numbers">
-                      <p className="card-category">Users Onboard GeoGuard</p>
+                      <p className="card-category">Total Hotspots in India</p>
                       <CardTitle tag="p">1000</CardTitle>
                       <p />
                     </div>
@@ -216,7 +216,7 @@ function Dashboard() {
           <Col md="4">
             <Card>
               <CardHeader>
-                <CardTitle tag="h5">Detection</CardTitle>
+                <CardTitle tag="h5">Alerts Summary</CardTitle>
                 <p className="card-category"></p>
               </CardHeader>
               <CardBody style={{ height: "266px" }}>
@@ -228,10 +228,23 @@ function Dashboard() {
               <CardFooter>
                 <div className="legend">
                   <div>
-                  <i className="fa fa-circle text-primary" /> Tampering{"  "}
-                  <i className="fa fa-circle text-warning" /> Crowd Congestion </div>
-                  <div><i className="fa fa-circle text-danger" /> Camera Shutdown{"  "}
-                  <i className="fa fa-circle text-gray" /> Vehicle Congestion</div>
+                  <i className="fa fa-circle text-primary" /> Lone women at night
+                  </div>
+                  <div>
+                  <i className="fa fa-circle text-warning" /> Women surrounded by mens
+                  </div>
+                  <div>
+                  <i className="fa fa-circle text-danger" /> SOS Alerts
+                  </div>
+                  <div>
+                  <i className="fa fa-circle text-gray" /> Violence Detected
+                  </div>
+                  <div>
+                  <i className="fa fa-circle text-info" /> Distress alerts through safe mode
+                  </div>
+                  <div>
+                  <i className="fa fa-circle text-secondary" /> Gestures based alerts
+                  </div>
                 </div>
                 <hr />
                 <div className="stats">
@@ -256,8 +269,10 @@ function Dashboard() {
               </CardBody>
               <CardFooter>
                 <div className="chart-legend">
-                  <i className="fa fa-circle text-info" /> Number of Users{" "}
-                  <i className="fa fa-circle text-warning" /> Number of Cameras Registered
+                  <i className="fa fa-circle text-info" /> Number of Users
+                </div>
+                <div>
+                <i className="fa fa-circle text-warning" /> Number of Cameras Registered
                 </div>
                 <hr />
                 <div className="card-stats">
