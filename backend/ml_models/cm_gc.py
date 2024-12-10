@@ -6,6 +6,7 @@ import json
 import asyncio
 import base64
 import pytz
+from workers.alerts_DB import alertsDB
 
 # Initialize the Roboflow client and model
 class continuousGenderClassification:
@@ -150,8 +151,8 @@ class continuousGenderClassification:
                 # Retain only the last 6 timestamps (last 3 seconds at 2 FPS)
                 continuousGenderClassification.lone_woman_tracker=[t for t in continuousGenderClassification.lone_woman_tracker if (current_time - t).seconds <= 3]
                 # Trigger alert if lone woman detected continuously for 3 seconds
-                if len(continuousGenderClassification.lone_woman_tracker) >= 6:
-                    await continuousGenderClassification.trigger_alert("lone women detected",websocket,input_source)
+                if len(continuousGenderClassification.lone_woman_tracker) >= 4:
+                    await continuousGenderClassification.trigger_alert("lone women at night detected",websocket,input_source)
                     # await websocket.send_json({"message":"Lone Women detected"})
                     continuousGenderClassification.lone_woman_tracker.clear()
             else:
@@ -211,6 +212,14 @@ class continuousGenderClassification:
     async def trigger_alert(message,websocket,input_source):
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         await websocket.send_json({"message":message,"input_source":input_source})
+        alert_data={
+            "source":0,
+            "source_id":input_source["id"],
+            "lat":input_source["lat"],
+            "lon":input_source["lon"],
+            "alert_message":message,
+        }
+        await alertsDB.insertAlerts(alert_data)
         print(f"{timestamp} - ALERT: {message}")
 
     @staticmethod

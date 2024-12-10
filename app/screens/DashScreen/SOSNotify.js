@@ -8,28 +8,12 @@ import { useNavigation } from '@react-navigation/native';
 import * as Sharing from 'expo-sharing';
 
 
-let recordingAudio = new Audio.Recording();
-
 export default function SOSNotify() {
-  const cameraRef = useRef(null); 
-  const [hasCameraPermission, setHasCameraPermission] = useState(null);
-  const [hasMicrophonePermission, setHasMicrophonePermission] = useState(null);
-  const [isRecording, setIsRecording] = useState(false);
-
   const navigation = useNavigation();
   const sharedOpacities = Array.from({ length: 4 }, () => useSharedValue(0));
 
   useEffect(() => {
-    const requestPermissions = async () => {
-      const { status: cameraStatus } = await Camera.requestCameraPermissionsAsync();
-      const { status: audioStatus } = await Audio.requestPermissionsAsync();
-
-      setHasCameraPermission(cameraStatus === 'granted');
-      setHasMicrophonePermission(audioStatus === 'granted');
-    };
-
-    requestPermissions();
-
+    // Animate the circles
     sharedOpacities.forEach((opacity, index) => {
       opacity.value = withRepeat(
         withTiming(index === 0 ? 1 : 0.8 - index * 0.2, {
@@ -42,15 +26,65 @@ export default function SOSNotify() {
       );
     });
 
-    return () => {
-      if (recordingAudio) {
-        stopRecordingAudio();
-      }
-      if (cameraRef.current) {
-        stopCameraRecording();
+    const sendEmergencySMS = async () => {
+      try {
+        const response = await fetch('https://b797-205-254-166-67.ngrok-free.app/tw/send-sms', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            message: "This is an emergency alert! Guest user is in danger",
+            phone_numbers: ["+918104782543", "+919067374010"],
+          }),
+        });
+    
+        const data = await response.json();
+        if (response.ok) {
+          console.log('Emergency SMS sent successfully:', data);
+        } else {
+          console.error('Failed to send SMS:', data);
+        }
+      } catch (error) {
+        console.error('Error sending SMS:', error);
       }
     };
-  }, []);
+    
+
+    // Make a POST request to initiate SOS calls
+    const initiateSOSCalls = async () => {
+      try {
+        const response = await fetch('https://b797-205-254-166-67.ngrok-free.app/tw/call-emergency-contacts', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            priority: 'high',
+            phone_numbers: ["+918104782543", "+919067374010"], 
+          }),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+          console.log('SOS calls initiated successfully:', data);
+        } else {
+          console.error('Failed to initiate SOS calls:', data);
+        }
+      } catch (error) {
+        console.error('Error initiating SOS calls:', error);
+      }
+    };
+
+    initiateSOSCalls();
+    sendEmergencySMS();
+  }, []); 
+
+  const handleCancelSOS = async () => {
+    setTimeout(() => {
+      navigation.navigate('Dash');  
+    }, 200);
+  };
 
   const animatedCircleStyles = sharedOpacities.map((opacity) =>
     useAnimatedStyle(() => ({
@@ -58,154 +92,7 @@ export default function SOSNotify() {
     }))
   );
 
-  const handleCancelSOS = async () => {
-    const filepath= await stopRecordingAudio(); 
-    await shareFile(filepath);
-    await uploadToCloudinary(filepath);
-    stopCameraRecording();
-    setTimeout(() => {
-      navigation.navigate('Dash');  
-    }, 200);
-  };
-
-
-
-const uploadToCloudinary = async (localFileUri) => {
-  const CLOUD_NAME = 'dqabgjv3y'; 
-  const UPLOAD_PRESET = 'ml_default'; 
-
-  try {
-    console.log('in the function of upload to cloudinary')
-    // Read file as base64
-    const fileBase64 = await FileSystem.readAsStringAsync(localFileUri, {
-      encoding: FileSystem.EncodingType.Base64,
-    });
-
-    // Upload to Cloudinary
-    const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/upload`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        file: `data:audio/wav;base64,${fileBase64}`, // Ensure the correct MIME type (e.g., audio/wav, audio/mpeg)
-        upload_preset: UPLOAD_PRESET,
-      }),
-    });
-
-    const result = await response.json();
-    console.log('result:', result);
-    console.log('File uploaded to Cloudinary:', result.secure_url);
-    return result.secure_url; 
-  } catch (error) {
-    console.error('Failed to upload file to Cloudinary:', error);
-  }
-};
-
-
-  const startRecordingAudio = async () => {
-    if (hasMicrophonePermission && !isRecording) {
-      try {
-        console.log("Starting audio recording...");
-        await recordingAudio.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY);
-        await recordingAudio.startAsync();
-        setIsRecording(true);
-        console.log("Audio recording started successfully!");
-      } catch (error) {
-        console.error('Failed to start audio recording', error);
-      }
-    }
-  };
-
-  const stopRecordingAudio = async () => {
-    if (isRecording && recordingAudio) {
-      try {
-        console.log("Stopping audio recording...");
-        await recordingAudio.stopAndUnloadAsync();
-        const uri = recordingAudio.getURI();
-
-        const fileName = `audio-${Date.now()}.caf`;
-        const filePath = FileSystem.documentDirectory + 'recordings/' + fileName;
-
-        await FileSystem.makeDirectoryAsync(FileSystem.documentDirectory + 'recordings/', { intermediates: true });
-        await FileSystem.moveAsync({
-          from: uri,
-          to: filePath,
-        });
-
-        setIsRecording(false);
-        recordingAudio = null; 
-        console.log("Audio recording stopped and saved at", filePath);
-        return filePath;
-      } catch (error) {
-        console.error('Failed to stop audio recording', error);
-      }
-    }
-  };
-
-  const shareFile = async (filePath) => {
-    try {
-      if (await Sharing.isAvailableAsync()) {
-        await Sharing.shareAsync(filePath);
-        console.log('File shared successfully:', filePath);
-      } else {
-        alert('Sharing is not available on this device.');
-      }
-    } catch (error) {
-      console.error('Error sharing file:', error);
-    }
-  };
-
-  const startCameraRecording = async () => {
-    if (hasCameraPermission && hasMicrophonePermission && !isRecording) {
-      try {
-        console.log("Starting video recording...");
-        if (cameraRef.current) {
-          const videoRecordPromise = cameraRef.current.recordAsync();
-          setIsRecording(true);
-
-          videoRecordPromise.then(async (data) => {
-            const videoUri = data.uri;
-
-            const fileName = `video-${Date.now()}.mp4`;
-            const filePath = FileSystem.documentDirectory + 'recordings/' + fileName;
-
-            await FileSystem.makeDirectoryAsync(FileSystem.documentDirectory + 'recordings/', { intermediates: true });
-            await FileSystem.moveAsync({
-              from: videoUri,
-              to: filePath,
-            });
-
-            console.log("Video recording saved at", filePath);
-            setIsRecording(false);
-          }).catch((error) => {
-            console.error('Failed to record video', error);
-            setIsRecording(false);
-          });
-        }
-      } catch (error) {
-        console.error('Failed to start video recording', error);
-      }
-    }
-  };
-
-  const stopCameraRecording = async () => {
-    if (cameraRef.current && isRecording) {
-      try {
-        console.log("Stopping video recording...");
-        await cameraRef.current.stopRecording();
-      } catch (error) {
-        console.error('Failed to stop video recording', error);
-      }
-    }
-  };
-
-  useEffect(() => {
-    if (hasCameraPermission && hasMicrophonePermission && !isRecording) {
-      startRecordingAudio();
-      startCameraRecording();  
-    }
-  }, [hasCameraPermission, hasMicrophonePermission]);
+ 
 
   return (
     <View style={styles.container}>

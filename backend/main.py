@@ -7,7 +7,12 @@ from typing import List, Dict
 # Import routes for hotspots
 from routes.hotspotRoutes import router as hotspot_router
 from routes.websocket_handlers import router as video_analysis_router
-from routes.websocket_handler_app import router as safe_mode_analysis_router
+# from routes.websocket_handler_app import router as safe_mode_analysis_router
+from routes.twiliocallRoutes import router as twiliocaller
+from routes.twiliosmsRoutes import router as twiliosms
+# from routes.websocket_handler_app import router as safe_mode_analysis_router
+from routes.alertRoutes import router as alertRouter
+from routes.cameraRoutes import router as cameraRouter
 
 app = FastAPI()
 
@@ -23,7 +28,13 @@ app.add_middleware(
 # Include hotspot routes
 app.include_router(hotspot_router,prefix="/hotspot")
 app.include_router(video_analysis_router,prefix="/ws")
-app.include_router(safe_mode_analysis_router,prefix="/ws")
+# app.include_router(safe_mode_analysis_router,prefix="/ws")
+app.include_router(twiliocaller,prefix="/tw")
+app.include_router(twiliosms,prefix="/tw")
+# app.include_router(safe_mode_analysis_router,prefix="/ws")
+app.include_router(alertRouter,prefix="/alerts")
+app.include_router(cameraRouter,prefix="/cameras")
+
 
 @app.on_event("startup")
 async def on_start():

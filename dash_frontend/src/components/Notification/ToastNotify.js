@@ -65,7 +65,7 @@
 import React from "react";
 import { Toast, ToastBody, ToastHeader } from "reactstrap";
 
-const ToastNotify = ({ message, type, show, toggle }) => {
+const ToastNotify = ({ message, type, show, toggle,name,lat,lon }) => {
   const backgroundColors = {
     success: "#d4edda", // Light green for success
     error: "#f8d7da",   // Light red for error
@@ -110,7 +110,14 @@ const ToastNotify = ({ message, type, show, toggle }) => {
       <ToastHeader toggle={toggle} style={styles.header}>
         Notification
       </ToastHeader>
-      <ToastBody style={styles.body}>{message}</ToastBody>
+      <ToastBody style={styles.body}>
+        <p>{message}</p>
+        {name && (<>on Camera<strong>{name}</strong><br /></>)}
+        {lat && (<><strong>Lat:</strong>{lat} </>)}
+        {lon && (<><strong>Lon:</strong>{lon} </>)}
+        <br />
+        
+      </ToastBody>
     </Toast>
   );
 };
