@@ -35,6 +35,8 @@ import "semantic-ui-css/semantic.min.css";
 
 const Alerts = () => {
   const [alerts, setAlerts] = useState([]);
+  const [readAlerts, setReadAlerts] = useState([]);
+  const [unReadAlerts, setUnReadAlerts] = useState([]);
   const [uid, setUid] = useState(1);
   const [selectedAlert, setSelectedAlert] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
@@ -48,24 +50,20 @@ const Alerts = () => {
     { id: "3", message: "Something", read: true, created: 1690834587, uid: "123", color:'info' },
   ];
 
+  const fetchAlerts = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/alerts/');
+      const json = await response.json();
+      // console.log(data);
+      // setAlerts(data);
+      setUnReadAlerts(json?.data.filter((it) => it.read_status === 0))
+      setReadAlerts(json?.data.filter((it) => it.read_status === 1))
 
+    } catch (err) {
+      console.error("Error fetching alerts:", err);
+    }
+  };
   useEffect(() => {
-    const fetchAlerts = async () => {
-      try {
-        //Simulate an API call using dummy data
-        const response = await new Promise((resolve) =>
-          setTimeout(() => resolve({ data: DUMMY_ALERTS }), 1000)
-        );
-        setAlerts(response.data);
-
-        // const response= await fetch('http://localhost:127.0.0.1');
-        // const data= await response.json();
-        // console.log(data);
-      } catch (err) {
-        console.error("Error fetching alerts:", err);
-      }
-    };
-
     fetchAlerts();
   }, []);
 
@@ -154,40 +152,33 @@ const Alerts = () => {
   };
 
 
-  const unReadAlerts = alerts.filter((ale) => !ale.read);
-  const readAlerts = alerts.filter((ale) => ale.read);
+  // const unReadAlerts = alerts.filter((ale) => ale.read_status);
+  // const readAlerts = alerts.filter((ale) => ale.read);
 
   console.log(selectedAlert);
   const handleMarkAsViewed = async () => {
     if (selectedAlert) {
       try {
-     
-        // const response = await fetch(`/api/alerts/mark-as-viewed`, {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify({ id: selectedAlert.id }),
-        // });
-  
-        // if (!response.ok) {
-        //   throw new Error("Failed to mark the alert as viewed");
-        // }
-  
-   
-        setAlerts((prevAlerts) =>
-          prevAlerts.map((alert) =>
-            alert.id === selectedAlert.id ? { ...alert, read: true} : alert
-          )
-        );
-  
-        setSelectedAlert(null); 
-        toggleModal();
-      } catch (err) {
-        console.error("Error marking alert as viewed:", err);
+        // Sending POST request to update the read status of the alert
+        const response = await fetch("http://127.0.0.1:8000/alerts/read", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id: selectedAlert.id }),
+        });
+        fetchAlerts();
+
+        if (!response.ok) {
+          throw new Error("Failed to update read status");
+        }
+      } catch {
+        console.log("Error updating read status");
       }
     }
-  };
+  }
+
+
   
   const handleMarkAsUnviewed = async () => {
     if (selectedAlert) {
@@ -257,14 +248,14 @@ const Alerts = () => {
                       <CardBody>
                         {unReadAlerts.map((ele) => (
                           <Alert
-                            color={ele.color}
+                            color="danger"
                             key={ele.id}
                             onClick={() => {
                               setSelectedAlert(ele);
                               toggleModal();
                             }}
                           >
-                            <span>Unread: {ele.message}</span>
+                            <span>{ele.alert_message} : {ele.timestamp}</span>
                           </Alert>
                         ))}
                         {/* <Modal isOpen={modalOpen} toggle={toggleModal}>
@@ -274,7 +265,17 @@ const Alerts = () => {
                           <ModalBody>
                             {selectedAlert && (
                               <>
-                                <div>{selectedAlert.message}</div>
+                              <div>{selectedAlert.alert_message}</div>
+                              <table>
+                                <thead>
+                                  <tr>Latitude</tr>
+                                  <tr>Longitude</tr>
+                                </thead>
+                                <tbody>
+                                  <tr>selectedAlert.lat</tr>
+                                  <tr>selectedAlert.lon</tr>
+                                </tbody>
+                              </table>
                               </>
                             )}
                           </ModalBody>
@@ -310,7 +311,7 @@ const Alerts = () => {
                               toggleModal();
                             }}
                           >
-                            <span>Viewed: {ele.message}</span>
+                            <span>{ele.message}</span>
                           </Alert>
                         ))}
                         
@@ -321,19 +322,31 @@ const Alerts = () => {
                           <ModalBody>
                             {selectedAlert && (
                               <>
-                                <div>{selectedAlert.message}</div>
-                                {/*give href below for a tag*/}
+                                <div>{selectedAlert.alert_message}</div>
+                              {/*give href below for a tag*/}
+                              <table>
+                                <thead>
+                                  <th style={{padding:"10px",paddingBottom:"2px"}}>Latitude</th>
+                                  <th style={{ padding: "10px", paddingBottom: "2px" }}>Longitude</th>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>{selectedAlert.lat}</td>
+                                    <td>{selectedAlert.lon}</td>
+                                    </tr>
+                                </tbody>
+                              </table>
                                 <a>Url: </a>
                               </>
                             )}
                           </ModalBody>
                           <ModalFooter>
-                            {selectedAlert && !selectedAlert.read && (
+                            {selectedAlert && selectedAlert.read_status===0 && (
                               <Button color="primary" onClick={handleMarkAsViewed}>
                                 Mark as Viewed
                               </Button>
                             )}
-                            {selectedAlert && selectedAlert.read && (
+                            {selectedAlert && selectedAlert.read_status===1 && (
                               <>
                                 <Button color="primary" onClick={handleMarkAsUnviewed}>
                                   Mark as Unviewed
@@ -390,9 +403,8 @@ const Alerts = () => {
                                   <input
                                     type="text"
                                     name="date"
-                                    value={formattedTime(
-                                      selectedAlert.created.seconds
-                                    )}
+                                    value={
+                                      selectedAlert.timestamp}
                                     readOnly
                                   />
                                   <br />
