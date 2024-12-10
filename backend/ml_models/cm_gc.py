@@ -8,10 +8,9 @@ import base64
 import pytz
 
 # Initialize the Roboflow client and model
-class genderClassification:
+class continuousGenderClassification:
     lone_woman_tracker = []
     surrounded_woman_tracker = []
-
 
     @staticmethod
     def initialize_roboflow():
@@ -75,7 +74,7 @@ class genderClassification:
 
     
     @staticmethod
-    async def process_video_feed(model, cap, fps, websocket):
+    async def process_video_feed(model, cap, fps, websocket,input_source):
         try:
             frame_count = 0
             original_fps = cap.get(cv2.CAP_PROP_FPS)
@@ -93,7 +92,7 @@ class genderClassification:
                         inference = model.predict(frame, confidence=40, overlap=70)
                         predictions = inference.json()['predictions']
 
-                        frame, male_count, female_count = genderClassification.annotate_frame(frame, predictions)
+                        frame, male_count, female_count = continuousGenderClassification.annotate_frame(frame, predictions)
                         
                         # Resize the frame for display
                         small_frame = cv2.resize(frame, (320, 240))
@@ -114,11 +113,11 @@ class genderClassification:
                         print(output)
 
                         # Send WebSocket message
-                        await websocket.send_json({"message": output,"image": encoded_frame})
+                        # await websocket.send_json({"message": output,"image": encoded_frame})
 
                         # Process lone woman detection and woman surrounded detection
-                        await genderClassification.detect_woman_surrounded(female_count, male_count, predictions, websocket)
-                        await genderClassification.detect_lone_woman(female_count, male_count, websocket)
+                        await continuousGenderClassification.detect_woman_surrounded(female_count, male_count, predictions, websocket,input_source)
+                        await continuousGenderClassification.detect_lone_woman(female_count, male_count, websocket,input_source)
 
                     except Exception as e:
                         print(f"Error during inference: {e}")
@@ -137,7 +136,7 @@ class genderClassification:
 
 
     @staticmethod
-    async def detect_lone_woman(female_count, male_count,websocket):
+    async def detect_lone_woman(female_count, male_count,websocket,input_source):
         # Get the current time in UTC and convert it to IST
         ist = pytz.timezone('Asia/Kolkata')
         current_time = datetime.now(ist)
@@ -147,25 +146,25 @@ class genderClassification:
         # Check if time is between 20:00 (8 PM) and 06:00 (6 AM)
         if current_hour >= 20 or current_hour < 6:
             if female_count == 1:
-                genderClassification.lone_woman_tracker.append(current_time)
+                continuousGenderClassification.lone_woman_tracker.append(current_time)
                 # Retain only the last 6 timestamps (last 3 seconds at 2 FPS)
-                genderClassification.lone_woman_tracker=[t for t in genderClassification.lone_woman_tracker if (current_time - t).seconds <= 3]
+                continuousGenderClassification.lone_woman_tracker=[t for t in continuousGenderClassification.lone_woman_tracker if (current_time - t).seconds <= 3]
                 # Trigger alert if lone woman detected continuously for 3 seconds
-                if len(genderClassification.lone_woman_tracker) >= 6:
-                    await genderClassification.trigger_alert("lone women detected",websocket)
+                if len(continuousGenderClassification.lone_woman_tracker) >= 6:
+                    await continuousGenderClassification.trigger_alert("lone women detected",websocket,input_source)
                     # await websocket.send_json({"message":"Lone Women detected"})
-                    genderClassification.lone_woman_tracker.clear()
+                    continuousGenderClassification.lone_woman_tracker.clear()
             else:
-                genderClassification.lone_woman_tracker.clear()
+                continuousGenderClassification.lone_woman_tracker.clear()
 
     @staticmethod
-    async def detect_woman_surrounded(female_count, male_count, predictions,websocket ):
+    async def detect_woman_surrounded(female_count, male_count, predictions,websocket ,input_source):
         try:
             proximity_threshold=1000
             current_time = datetime.now()
             woman_positions = []
             man_positions = []
-
+            print("women surrounded cheching")
             # Extract bounding box centers for all females and males
             for pred in predictions:
                 x, y, w, h = int(pred['x']), int(pred['y']), int(pred['width']), int(pred['height'])
@@ -189,29 +188,29 @@ class genderClassification:
 
                 # If the woman is surrounded by 3 or more men within the proximity
                 if men_within_proximity >= 2:
-                    genderClassification.surrounded_woman_tracker.append(current_time)
+                    continuousGenderClassification.surrounded_woman_tracker.append(current_time)
                     # Retain only the last 6 timestamps (last 3 seconds at 2 FPS)
-                    genderClassification.surrounded_woman_tracker = [
-                        t for t in genderClassification.surrounded_woman_tracker if (current_time - t).seconds <= 3
+                    continuousGenderClassification.surrounded_woman_tracker = [
+                        t for t in continuousGenderClassification.surrounded_woman_tracker if (current_time - t).seconds <= 3
                     ]
 
                     # Trigger alert if this condition persists for 3 seconds
-                    if len(genderClassification.surrounded_woman_tracker) >= 6:
+                    if len(continuousGenderClassification.surrounded_woman_tracker) >= 3:
                         print("Woman surrounded by multiple men detected.")
-                        await genderClassification.trigger_alert("Woman surrounded by multiple men detected.",websocket)
-                        genderClassification.surrounded_woman_tracker.clear()
+                        await continuousGenderClassification.trigger_alert("Woman surrounded by multiple men detected.",websocket,input_source)
+                        continuousGenderClassification.surrounded_woman_tracker.clear()
                 else:
-                    genderClassification.surrounded_woman_tracker.clear()
+                    continuousGenderClassification.surrounded_woman_tracker.clear()
             else:
-                genderClassification.surrounded_woman_tracker.clear()
+                continuousGenderClassification.surrounded_woman_tracker.clear()
         except Exception as e:
             print(f"Error in detect_woman_surrounded: {e}")
 
 
     @staticmethod
-    async def trigger_alert(message,websocket):
+    async def trigger_alert(message,websocket,input_source):
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        await websocket.send_json({"message":message})
+        await websocket.send_json({"message":message,"input_source":input_source})
         print(f"{timestamp} - ALERT: {message}")
 
     @staticmethod
@@ -219,13 +218,16 @@ class genderClassification:
         try:
             fps = 2  # Set frames per second to process
 
-            model = genderClassification.initialize_roboflow()
+            model = continuousGenderClassification.initialize_roboflow()
             if model is None:
                 return
-
-            cap, frame_interval = genderClassification.process_video_input(input_source, fps,websocket)
+            input_video=input_source['link']
+            print(input_video)
+            if(input_video=='0'):
+                input_video=int(input_video)
+            cap, frame_interval = continuousGenderClassification.process_video_input(input_video, fps,websocket)
             if cap:
-               await genderClassification.process_video_feed(model, cap, fps,websocket)
+               await continuousGenderClassification.process_video_feed(model, cap, fps,websocket,input_source)
             else:
                 print("Error: Could not initialize video feed.")
         except Exception as e:

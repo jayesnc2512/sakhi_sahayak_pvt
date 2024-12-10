@@ -1,4 +1,4 @@
-from database import supabase
+from workers.database import supabase
 
 class usersDB:
     @staticmethod

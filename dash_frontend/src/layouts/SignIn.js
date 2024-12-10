@@ -46,7 +46,9 @@ const SignInForm = () => {
     if (email === hardemail && password === hardpassword){
       setSuccessMessage("You have successfully logged in");
       setError("");
-      triggerToast("You have successfully logged in", "success"); 
+      triggerToast("You have successfully logged in", "error"); 
+      setError("");
+      triggerToast("nikal laude", "warning"); 
       navigate("/dashboard");
     }
     else{
