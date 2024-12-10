@@ -5,6 +5,7 @@ import { Camera } from 'expo-camera';
 import { Audio } from 'expo-av';
 import * as FileSystem from 'expo-file-system'; 
 import { useNavigation } from '@react-navigation/native';
+import * as Sharing from 'expo-sharing';
 
 
 let recordingAudio = new Audio.Recording();
@@ -57,13 +58,50 @@ export default function SOSNotify() {
     }))
   );
 
-  const handleCancelSOS = () => {
-    stopRecordingAudio(); 
+  const handleCancelSOS = async () => {
+    const filepath= await stopRecordingAudio(); 
+    await shareFile(filepath);
+    await uploadToCloudinary(filepath);
     stopCameraRecording();
     setTimeout(() => {
       navigation.navigate('Dash');  
     }, 200);
   };
+
+
+
+const uploadToCloudinary = async (localFileUri) => {
+  const CLOUD_NAME = 'dqabgjv3y'; 
+  const UPLOAD_PRESET = 'ml_default'; 
+
+  try {
+    console.log('in the function of upload to cloudinary')
+    // Read file as base64
+    const fileBase64 = await FileSystem.readAsStringAsync(localFileUri, {
+      encoding: FileSystem.EncodingType.Base64,
+    });
+
+    // Upload to Cloudinary
+    const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/upload`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        file: `data:audio/wav;base64,${fileBase64}`, // Ensure the correct MIME type (e.g., audio/wav, audio/mpeg)
+        upload_preset: UPLOAD_PRESET,
+      }),
+    });
+
+    const result = await response.json();
+    console.log('result:', result);
+    console.log('File uploaded to Cloudinary:', result.secure_url);
+    return result.secure_url; 
+  } catch (error) {
+    console.error('Failed to upload file to Cloudinary:', error);
+  }
+};
+
 
   const startRecordingAudio = async () => {
     if (hasMicrophonePermission && !isRecording) {
@@ -98,9 +136,23 @@ export default function SOSNotify() {
         setIsRecording(false);
         recordingAudio = null; 
         console.log("Audio recording stopped and saved at", filePath);
+        return filePath;
       } catch (error) {
         console.error('Failed to stop audio recording', error);
       }
+    }
+  };
+
+  const shareFile = async (filePath) => {
+    try {
+      if (await Sharing.isAvailableAsync()) {
+        await Sharing.shareAsync(filePath);
+        console.log('File shared successfully:', filePath);
+      } else {
+        alert('Sharing is not available on this device.');
+      }
+    } catch (error) {
+      console.error('Error sharing file:', error);
     }
   };
 

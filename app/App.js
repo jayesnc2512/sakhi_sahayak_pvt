@@ -8,6 +8,7 @@ import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
 import Dashboard from './screens/Dashboard';
 import SOSNotify from './screens/DashScreen/SOSNotify';
+import SafeMode from './screens/DashScreen/SafeMode';
 import MapScreen from './screens/DashScreen/mapScreen';
 import NavigationProfile from './screens/NavigationProfile';
 import Profile from './screens/profile';
@@ -76,6 +77,7 @@ options={{
 }}
     />
         <Stack.Screen name="Map" component={MapScreen} />
+        <Stack.Screen name="SafeMode" component={SafeMode}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

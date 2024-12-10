@@ -1,178 +1,178 @@
-import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Alert, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
-import { ExpoLeaflet } from 'expo-leaflet';
-import * as Location from 'expo-location';
-import Constants from 'expo-constants';
+  import React, { useEffect, useState } from 'react';
+  import { ActivityIndicator, Alert, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
+  import { ExpoLeaflet } from 'expo-leaflet';
+  import * as Location from 'expo-location';
+  import Constants from 'expo-constants';
 
-const mapLayers = [
-  {
-    attribution: '&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-    baseLayerIsChecked: true,
-    baseLayerName: 'OpenStreetMap',
-    layerType: 'TileLayer',
-    url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-  },
-];
+  const mapLayers = [
+    {
+      attribution: '&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      baseLayerIsChecked: true,
+      baseLayerName: 'OpenStreetMap',
+      layerType: 'TileLayer',
+      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    },
+  ];
 
-const mapOptions = {
-  attributionControl: false,
-  zoomControl: false,
-};
-
-const initialPosition = {
-  lat: 51.4545,
-  lng: 2.5879,
-};
-
-const MapScreen = ({ navigation }) => {
-  const [zoom, setZoom] = useState(7);
-  const [mapCenterPosition, setMapCenterPosition] = useState(initialPosition);
-  const [ownPosition, setOwnPosition] = useState(null);
-  const [userHeading, setUserHeading] = useState(0);
-  const [showOptionButtons, setShowOptionButtons] = useState(false);
-  const [markers, setMarkers] = useState([]);  
-  const [nearbyVisible, setNearbyVisible] = useState(false);
-  const [hotspotVisible, setHotspotVisible] = useState(false); 
-  const [mapShapes, setMapShapes] = useState([]);
-  const OPENROUTE_API_KEY = process.env.EXPO_PUBLIC_API_URL;
-
-  useEffect(() => {
-    if (hotspotVisible) {
-      setMapShapes([
-        {
-          shapeType: 'circle',
-          color: '#EB3223',
-          id: 'hotspot-1',
-          center: { lat: 18.9977445, lng: 73.1228996 },
-          radius: 500,
-        },
-        {
-          shapeType: 'circle',
-          color: '#EB3223',
-          id: 'hotspot-2',
-          center: { lat: 18.9977445, lng: 73.1228996 },
-          radius: 250,
-        },
-        {
-          shapeType: 'circle',
-          color: '#EB3223',
-          id: 'hotspot-3',
-          center: { lat: 18.9977445, lng: 73.1228996 },
-          radius: 1000,
-        },
-      ]);
-    } else {
-      setMapShapes([]);
-    }
-  }, [hotspotVisible]);
-  
-
-  useEffect(() => {
-    const getLocationAsync = async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        console.warn('Permission to access location was denied');
-        return;
-      }
-
-      let location = await Location.getCurrentPositionAsync({});
-      if (location.coords) {
-        const { latitude, longitude } = location.coords;
-        setOwnPosition([
-          {
-            id: '1',
-            position: { 
-              lat: latitude, lng: longitude 
-            },
-            icon: '📍',
-            size: [32, 32],        
-          }
-        ]);
-        setMapCenterPosition({ lat: latitude, lng: longitude });
-      }
-    };
-
-    getLocationAsync().catch((error) => {
-      console.error(error);
-    });
-
-    const watchHeading = async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        console.warn('Permission to access location was denied');
-        return;
-      }
-
-      Location.watchHeadingAsync((heading) => {
-        setUserHeading(heading.trueHeading);
-      });
-    };
-
-    watchHeading();
-  }, []);
-
-  const toggleOptions = () => {
-    setShowOptionButtons(!showOptionButtons);
+  const mapOptions = {
+    attributionControl: false,
+    zoomControl: false,
   };
-  const fetchRoute = async (destination) => {
-    if (!ownPosition) return;
-  
-    const start = ownPosition[0].position;
-    const end = destination;
 
-    const apiKey = OPENROUTE_API_KEY;
-    const url = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${apiKey}&start=${start.lng},${start.lat}&end=${end.lng},${end.lat}`;
-  
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-  
-      if (data?.features?.[0]?.geometry?.coordinates) {
-        const coordinates = data.features[0].geometry.coordinates;
-        const polyline = coordinates.map(([lng, lat]) => ({ lat, lng }));
-  
-        setMapShapes((prevShapes) => [
-          ...prevShapes,
+  const initialPosition = {
+    lat: 51.4545,
+    lng: 2.5879,
+  };
+
+  const MapScreen = ({ navigation }) => {
+    const [zoom, setZoom] = useState(7);
+    const [mapCenterPosition, setMapCenterPosition] = useState(initialPosition);
+    const [ownPosition, setOwnPosition] = useState(null);
+    const [userHeading, setUserHeading] = useState(0);
+    const [showOptionButtons, setShowOptionButtons] = useState(false);
+    const [markers, setMarkers] = useState([]);  
+    const [nearbyVisible, setNearbyVisible] = useState(false);
+    const [hotspotVisible, setHotspotVisible] = useState(false); 
+    const [mapShapes, setMapShapes] = useState([]);
+    const OPENROUTE_API_KEY = process.env.EXPO_PUBLIC_API_URL;
+
+    useEffect(() => {
+      if (hotspotVisible) {
+        setMapShapes([
           {
-            shapeType: 'polyline',
-            color: '#3388FF',
-            id: 'route',
-            positions: polyline,
+            shapeType: 'circle',
+            color: '#EB3223',
+            id: 'hotspot-1',
+            center: { lat: 18.9977445, lng: 73.1228996 },
+            radius: 500,
+          },
+          {
+            shapeType: 'circle',
+            color: '#EB3223',
+            id: 'hotspot-2',
+            center: { lat: 18.9977445, lng: 73.1228996 },
+            radius: 250,
+          },
+          {
+            shapeType: 'circle',
+            color: '#EB3223',
+            id: 'hotspot-3',
+            center: { lat: 18.9977445, lng: 73.1228996 },
+            radius: 1000,
           },
         ]);
+      } else {
+        setMapShapes([]);
       }
-    } catch (error) {
-      console.error('Error fetching route:', error);
-    }
-  };
-  
-  const handleNearbyClick = () => {
-    setTimeout(() => {
-    setNearbyVisible(!nearbyVisible);
-    const safePlace = { lat: 18.9977445 + 0.001, lng: 73.1228996 + 0.001 };
-    if (!nearbyVisible) {
-      const newMarker = {
-        id: 'safe-place',
-        position: safePlace,
-        icon: '🔹',
-        size: [32, 32],
-      };
-      setMarkers((prev) => [...prev, newMarker]);
-      fetchRoute(safePlace);
-    } else {
-      setMapShapes((prevShapes) => prevShapes.filter((shape) => shape.id !== 'route'));
-      setMarkers((prev) => prev.filter((marker) => marker.id !== 'safe-place'));
-    }
-  }, 500); 
-  };
-  
-  const handleHotspotClick = () => {
-    setTimeout(() => {
-    setHotspotVisible(!hotspotVisible);
-  }, 500); 
-  };
+    }, [hotspotVisible]);
+    
 
-  const mapMarkers = ownPosition ? [...ownPosition, ...markers] : markers;
+    useEffect(() => {
+      const getLocationAsync = async () => {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+          console.warn('Permission to access location was denied');
+          return;
+        }
+
+        let location = await Location.getCurrentPositionAsync({});
+        if (location.coords) {
+          const { latitude, longitude } = location.coords;
+          setOwnPosition([
+            {
+              id: '1',
+              position: { 
+                lat: latitude, lng: longitude 
+              },
+              icon: '📍',
+              size: [32, 32],        
+            }
+          ]);
+          setMapCenterPosition({ lat: latitude, lng: longitude });
+        }
+      };
+
+      getLocationAsync().catch((error) => {
+        console.error(error);
+      });
+
+      const watchHeading = async () => {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+          console.warn('Permission to access location was denied');
+          return;
+        }
+
+        Location.watchHeadingAsync((heading) => {
+          setUserHeading(heading.trueHeading);
+        });
+      };
+
+      watchHeading();
+    }, []);
+
+    const toggleOptions = () => {
+      setShowOptionButtons(!showOptionButtons);
+    };
+    const fetchRoute = async (destination) => {
+      if (!ownPosition) return;
+    
+      const start = ownPosition[0].position;
+      const end = destination;
+
+      const apiKey = OPENROUTE_API_KEY;
+      const url = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${apiKey}&start=${start.lng},${start.lat}&end=${end.lng},${end.lat}`;
+    
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+    
+        if (data?.features?.[0]?.geometry?.coordinates) {
+          const coordinates = data.features[0].geometry.coordinates;
+          const polyline = coordinates.map(([lng, lat]) => ({ lat, lng }));
+    
+          setMapShapes((prevShapes) => [
+            ...prevShapes,
+            {
+              shapeType: 'polyline',
+              color: '#3388FF',
+              id: 'route',
+              positions: polyline,
+            },
+          ]);
+        }
+      } catch (error) {
+        console.error('Error fetching route:', error);
+      }
+    };
+    
+    const handleNearbyClick = () => {
+      setTimeout(() => {
+      setNearbyVisible(!nearbyVisible);
+      const safePlace = { lat: 18.9977445 + 0.001, lng: 73.1228996 + 0.001 };
+      if (!nearbyVisible) {
+        const newMarker = {
+          id: 'safe-place',
+          position: safePlace,
+          icon: '🔹',
+          size: [32, 32],
+        };
+        setMarkers((prev) => [...prev, newMarker]);
+        fetchRoute(safePlace);
+      } else {
+        setMapShapes((prevShapes) => prevShapes.filter((shape) => shape.id !== 'route'));
+        setMarkers((prev) => prev.filter((marker) => marker.id !== 'safe-place'));
+      }
+    }, 500); 
+    };
+    
+    const handleHotspotClick = () => {
+      setTimeout(() => {
+      setHotspotVisible(!hotspotVisible);
+    }, 500); 
+    };
+
+    const mapMarkers = ownPosition ? [...ownPosition, ...markers] : markers;
 
 
   return (
