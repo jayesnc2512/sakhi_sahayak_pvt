@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import { useToast } from '../context/ToastContext';
 
 import {
     Button,
@@ -41,6 +42,7 @@ const AddCamera = () => {
     const Navigate = useNavigate();
 
     const [uid, setUid] = useState(null);
+    const triggerToast = useToast();
 
     // useEffect(() => {
     //     const getUserUid = async () => {
@@ -67,6 +69,7 @@ const AddCamera = () => {
     // }, []);
     const alertsubmit = () => {
         alert("Camera added successfully!");
+        
     }
     const handleSubmit = async (e) => {
         e.preventDefault();

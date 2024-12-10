@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useToast } from "../context/ToastContext";
 import {
   Button,
   Card,
@@ -18,6 +19,7 @@ function AddVideo() {
   const [outputFrame, setOutputFrame] = useState();
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
+  const triggerToast = useToast();
 
   // Initiate WebSocket connection
   const startWebSocketConnection = () => {
@@ -25,6 +27,7 @@ function AddVideo() {
 
     ws.onopen = () => {
       console.log("WebSocket connected.");
+      triggerToast("WebSocket connected.", "success");
       sendVideoPath(ws); // Send the video path when the WebSocket is open
     };
 
@@ -41,6 +44,7 @@ function AddVideo() {
         }
       } catch (e) {
         console.error("Error parsing server response:", e);
+        triggerToast("Error parsing server response.", "error");
       }
     };
 
@@ -58,6 +62,7 @@ function AddVideo() {
     if (file) {
       setVideoFile(file);
       setVideoURL(URL.createObjectURL(file));
+      triggerToast(`Video uploaded: ${file.name}`, "info");
     }
   };
 
@@ -75,10 +80,12 @@ function AddVideo() {
   const handleSubmit = () => {
     if (!videoFile) {
       alert("Please upload a video first!");
+      triggerToast("Please upload a video before starting analysis.", "warning");
       return;
     }
     setInference([]);
     setImages([]);
+    triggerToast("Analysis started. Processing the video...", "info");
     startWebSocketConnection();
   };
 
