@@ -1,28 +1,15 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 // reactstrap components
 import { Card, CardHeader, CardBody, Row, Col } from "reactstrap";
 import GeotagPage from "../components/Geotagging/GeotagPage";
 import GoogleMap from "../components/Geotagging/GooogleMap";
 
-// const GeotagPageWrapper = styled.div`
-//   .leaflet-container {
-//     margin: 30px auto;
-//     height: 500px;
-//     z-index: 0;
-//     border: 2px solid #333;
-//     overflow: hidden;
-//   }
-//   .geotag {
-//     margin:10px;
-//     padding:10px;
-//   }
-// `;
+
 
 const MapWrapper = () => {
-  // const mapRef = React.useRef(null);  
- 
+  
 
   return (
     <>

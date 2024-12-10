@@ -82,38 +82,22 @@ const Cameras = () => {
   const [selectedCameras, setSelectedCameras] = useState({});
   const [gridSize, setGridSize] = useState(2);
 
-  // useEffect(() => {
-  //   const getUserUid = async () => {
-  //     const user = auth.currentUser;
-  //     if (user) {
-  //       setUid(user.uid);
-  //     } else {
-  //       console.log("No user is currently signed in.");
-  //     }
-  //   };
-
-  //   getUserUid();
-  // }, []);
-
-  useEffect(() => {
-    const getLocations = async () => {
-      if (!uid) return;
-
-      try {
-        const camerasRef = collection(db, "cameras");
-        const q = query(camerasRef, where("uid", "==", uid));
-        const querySnapshot = await getDocs(q);
-        const camerasList = querySnapshot.docs.map((doc) => {
-          return doc.data();
-        });
-        setCameras(camerasList);
-      } catch (err) {
-        console.warn("getCameras failed", err);
-      }
-    };
-
-    getLocations();
-  }, [uid]);
+  
+  const fetchCameras = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/cameras/getCameras');
+      const json = await response.json();  // Read response as text
+      console.log("Response text:",json.data);  // Log the response body
+      setCameras(json.data);
+      
+     
+    } catch (e) {
+      console.error('Error fetching camera details:', e);
+    }
+  };
+  useEffect(() => { 
+      fetchCameras();
+  }, []);
 
   const handlePlayButtonClick = (nickname) => {
     setSelectedCameras((prevSelectedCameras) => ({
@@ -184,20 +168,20 @@ const Cameras = () => {
                     <tr>
                       <th>Name</th>
                       <th>Model</th>
-                      <th>Ip-address</th>
+                      <th>link</th>
                       <th>latitude</th>
                       <th>longitude</th>
                       <th>Stream</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {cameras.map((ele) => (
+                    {cameras?.map((ele) => (
                       <tr key={ele.nickName}>
-                        <td>{ele.nickName}</td>
+                        <td>{ele.Name}</td>
                         <td>{ele.modelNo}</td>
-                        <td>{ele.ipAddress}</td>
-                        <td>{ele.latitude}</td>
-                        <td>{ele.longitude}</td>
+                        <td>{ele.link}</td>
+                        <td>{ele.lat}</td>
+                        <td>{ele.lon}</td>
                         <td>
                           {!selectedCameras[ele.nickName] && (
                             <PlayButton

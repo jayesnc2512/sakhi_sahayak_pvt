@@ -6,7 +6,12 @@ from workers.camera_DB import cameraDB
 
 router = APIRouter()
 
-@router.get("/")
+@router.get("/getCameras")
 async def getAllCameras():
-    cameras= cameraDB.getAllCameras()
-    return JSONResponse(content={"data": cameras})
+    try:
+    # Await the asynchronous method call
+        cameras = cameraDB.getAllCameras()
+        return JSONResponse(content={"data": cameras})
+    except Exception as e:
+        print("error in getAllcameras",e)
+

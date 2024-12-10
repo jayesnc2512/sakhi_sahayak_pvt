@@ -21,7 +21,7 @@ class cameraDB:
 
     @staticmethod
     def getAllCameras():
-            # Query the camera table for rows where status is 'A'
-            response =supabase.table("camera").execute()
-            print(response.data)
-            return response.data
+        # Query the camera table asynchronously
+        response = supabase.table("camera").select("*").execute()
+        print(response.data)
+        return response.data

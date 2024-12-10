@@ -10,7 +10,7 @@ from routes.websocket_handlers import router as video_analysis_router
 # from routes.websocket_handler_app import router as safe_mode_analysis_router
 from routes.twiliocallRoutes import router as twiliocaller
 from routes.twiliosmsRoutes import router as twiliosms
-from routes.websocket_handler_app import router as safe_mode_analysis_router
+# from routes.websocket_handler_app import router as safe_mode_analysis_router
 from routes.alertRoutes import router as alertRouter
 from routes.cameraRoutes import router as cameraRouter
 
@@ -31,7 +31,7 @@ app.include_router(video_analysis_router,prefix="/ws")
 # app.include_router(safe_mode_analysis_router,prefix="/ws")
 app.include_router(twiliocaller,prefix="/tw")
 app.include_router(twiliosms,prefix="/tw")
-app.include_router(safe_mode_analysis_router,prefix="/ws")
+# app.include_router(safe_mode_analysis_router,prefix="/ws")
 app.include_router(alertRouter,prefix="/alerts")
 app.include_router(cameraRouter,prefix="/cameras")
 
