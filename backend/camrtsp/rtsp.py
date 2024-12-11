@@ -3,7 +3,7 @@ import websockets
 
 async def stream_handler(websocket, path):
     from urllib.parse import urlparse, parse_qs
-
+    print(path)
     query = urlparse(path).query
     params = parse_qs(query)
     rtsp_url = params.get("url", [None])[0]  # Default to None if not provided

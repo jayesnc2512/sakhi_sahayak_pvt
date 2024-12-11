@@ -145,13 +145,13 @@ class genderClassification:
         print("current_hour",current_hour)
 
         # Check if time is between 20:00 (8 PM) and 06:00 (6 AM)
-        if current_hour >= 20 or current_hour < 6:
+        if current_hour >= 19 or current_hour < 6:
             if female_count == 1:
                 genderClassification.lone_woman_tracker.append(current_time)
                 # Retain only the last 6 timestamps (last 3 seconds at 2 FPS)
-                genderClassification.lone_woman_tracker=[t for t in genderClassification.lone_woman_tracker if (current_time - t).seconds <= 3]
+                genderClassification.lone_woman_tracker=[t for t in genderClassification.lone_woman_tracker if (current_time - t).seconds <= 10]
                 # Trigger alert if lone woman detected continuously for 3 seconds
-                if len(genderClassification.lone_woman_tracker) >= 6:
+                if len(genderClassification.lone_woman_tracker) >= 3:
                     await genderClassification.trigger_alert("lone women at night",websocket)
                     # await websocket.send_json({"message":"Lone Women detected"})
                     genderClassification.lone_woman_tracker.clear()
@@ -192,11 +192,11 @@ class genderClassification:
                     genderClassification.surrounded_woman_tracker.append(current_time)
                     # Retain only the last 6 timestamps (last 3 seconds at 2 FPS)
                     genderClassification.surrounded_woman_tracker = [
-                        t for t in genderClassification.surrounded_woman_tracker if (current_time - t).seconds <= 3
+                        t for t in genderClassification.surrounded_woman_tracker if (current_time - t).seconds <= 10
                     ]
 
                     # Trigger alert if this condition persists for 3 seconds
-                    if len(genderClassification.surrounded_woman_tracker) >= 6:
+                    if len(genderClassification.surrounded_woman_tracker) >= 3:
                         print("Woman surrounded by multiple men detected.")
                         await genderClassification.trigger_alert("Woman surrounded by multiple men detected.",websocket)
                         genderClassification.surrounded_woman_tracker.clear()

@@ -311,7 +311,7 @@ const Alerts = () => {
                               toggleModal();
                             }}
                           >
-                            <span>{ele.message}</span>
+                            <span>{ele.alert_message}</span>
                           </Alert>
                         ))}
                         

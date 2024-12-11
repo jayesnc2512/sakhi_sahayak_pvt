@@ -81,35 +81,35 @@ const Cameras = () => {
   const [uid, setUid] = useState(1);
   const [selectedCameras, setSelectedCameras] = useState({});
   const [gridSize, setGridSize] = useState(2);
-//rtsp://admin:L23F18C4@192.168.173.191:554/cam/realmonitor?channel=1&subtype=0
-  
+  //rtsp://admin:L23F18C4@192.168.173.191:554/cam/realmonitor?channel=1&subtype=0
+
   const fetchCameras = async () => {
     try {
-     const response = await fetch('http://127.0.0.1:8000/cameras/getCameras');
-     const json = await response.json();  // Read response as text
-      console.log("Response text:",json.data);  // Log the response body
+      const response = await fetch('http://127.0.0.1:8000/cameras/getCameras');
+      const json = await response.json();  // Read response as text
+      console.log("Response text:", json.data);  // Log the response body
       setCameras(json.data);
-      
-     
+
+
     } catch (e) {
       console.error('Error fetching camera details:', e);
     }
   };
-  useEffect(() => { 
-      fetchCameras();
+  useEffect(() => {
+    fetchCameras();
   }, []);
 
-  const handlePlayButtonClick = (nickname) => {
+  const handlePlayButtonClick = (id) => {
     setSelectedCameras((prevSelectedCameras) => ({
       ...prevSelectedCameras,
-      [nickname]: true,
+      [id]: true,
     }));
   };
 
-  const handleStopButtonClick = (nickname) => {
+  const handleStopButtonClick = (id) => {
     setSelectedCameras((prevSelectedCameras) => ({
       ...prevSelectedCameras,
-      [nickname]: false,
+      [id]: false,
     }));
   };
 
@@ -121,16 +121,16 @@ const Cameras = () => {
       for (let j = 0; j < gridSize; j++) {
         const index = i * gridSize + j;
         const camera = cameras[index];
-  
+
         if (camera) {
-          const isPlaying = selectedCameras[camera.nickName];
+          const isPlaying = selectedCameras[camera.id];
           row.push(
-            <Col key={camera.nickName}>
+            <Col key={camera.id}>
               <CameraCell>
                 {isPlaying ? (
                   <Player videoUrl={`ws://localhost:9999/stream?url=${encodeURIComponent(camera.link)}`} />
                 ) : (
-                  <div className="placeholder">{camera.nickName}</div>
+                  <div className="placeholder">{camera.id}</div>
                 )}
               </CameraCell>
             </Col>
@@ -149,7 +149,7 @@ const Cameras = () => {
     }
     return cameraGrid;
   };
-  
+
 
 
   return (
