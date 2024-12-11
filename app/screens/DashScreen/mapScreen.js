@@ -1,155 +1,192 @@
-  import React, { useEffect, useState } from 'react';
-  import { ActivityIndicator, Alert, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
-  import { ExpoLeaflet } from 'expo-leaflet';
-  import * as Location from 'expo-location';
-  import Constants from 'expo-constants';
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, Alert, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, Image, Vibration } from 'react-native';
+import { ExpoLeaflet } from 'expo-leaflet';
+import * as Location from 'expo-location';
+import * as Notifications from 'expo-notifications';
+import Constants from 'expo-constants';
 
-  const mapLayers = [
-    {
-      attribution: '&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      baseLayerIsChecked: true,
-      baseLayerName: 'OpenStreetMap',
-      layerType: 'TileLayer',
-      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    },
+const mapLayers = [
+  {
+    attribution: '&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+    baseLayerIsChecked: true,
+    baseLayerName: 'OpenStreetMap',
+    layerType: 'TileLayer',
+    url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  },
+];
+
+const mapOptions = {
+  attributionControl: false,
+  zoomControl: false,
+};
+
+const initialPosition = {
+  lat: 51.4545,
+  lng: 2.5879,
+};
+
+const MapScreen = ({ navigation }) => {
+  const [zoom, setZoom] = useState(7);
+  const [mapCenterPosition, setMapCenterPosition] = useState(initialPosition);
+  const [ownPosition, setOwnPosition] = useState(null);
+  const [userHeading, setUserHeading] = useState(0);
+  const [showOptionButtons, setShowOptionButtons] = useState(false);
+  const [markers, setMarkers] = useState([]);
+  const [nearbyVisible, setNearbyVisible] = useState(false);
+  const [hotspotVisible, setHotspotVisible] = useState(false);
+  const [mapShapes, setMapShapes] = useState([]);
+  const OPENROUTE_API_KEY = '';
+
+  const hotspots = [
+    { center: { lat: 19.0295559 + 0.04, lng: 72.8506955 + 0.04 }, radius: 500 },
+    { center: { lat: 19.0295559, lng: 72.8506955 }, radius: 700 },//700
   ];
 
-  const mapOptions = {
-    attributionControl: false,
-    zoomControl: false,
+  useEffect(() => {
+    // Request notification permissions
+    const requestNotificationPermissions = async () => {
+      const { status } = await Notifications.getPermissionsAsync();
+      if (status !== 'granted') {
+        await Notifications.requestPermissionsAsync();
+      }
+    };
+
+    requestNotificationPermissions();
+  }, []);
+
+  useEffect(() => {
+    if (hotspotVisible) {
+      setMapShapes(hotspots.map((hotspot, index) => ({
+        shapeType: 'circle',
+        color: '#EB3223',
+        id: `hotspot-${index + 1}`,
+        center: hotspot.center,
+        radius: hotspot.radius,
+      })));
+    } else {
+      setMapShapes([]);
+    }
+  }, [hotspotVisible]);
+
+  useEffect(() => {
+    const getLocationAsync = async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        console.warn('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      if (location.coords) {
+        const { latitude, longitude } = location.coords;
+        setOwnPosition([
+          {
+            id: '1',
+            position: { lat: latitude, lng: longitude },
+            icon: '📍',
+            size: [32, 32],
+          }
+        ]);
+        setMapCenterPosition({ lat: latitude, lng: longitude });
+
+        checkIfInHotspot(latitude, longitude);
+      }
+    };
+
+    getLocationAsync().catch((error) => {
+      console.error(error);
+    });
+
+    const watchHeading = async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        console.warn('Permission to access location was denied return');
+      }
+
+      Location.watchHeadingAsync((heading) => {
+        setUserHeading(heading.trueHeading);
+      });
+    };
+
+    watchHeading();
+  }, []);
+
+  const checkIfInHotspot = (latitude, longitude) => {
+    hotspots.forEach((hotspot) => {
+      const distance = getDistance(
+        { lat: latitude, lng: longitude },
+        hotspot.center
+      );
+      if (distance <= hotspot.radius) {
+        sendNotification();
+        Vibration.vibrate(3000);
+      }
+    });
   };
 
-  const initialPosition = {
-    lat: 51.4545,
-    lng: 2.5879,
+  const getDistance = (point1, point2) => {
+    const toRad = (value) => (value * Math.PI) / 180;
+    const R = 6371; 
+    const dLat = toRad(point2.lat - point1.lat);
+    const dLon = toRad(point2.lng - point1.lng);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(toRad(point1.lat)) * Math.cos(toRad(point2.lat)) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c * 1000; 
   };
 
-  const MapScreen = ({ navigation }) => {
-    const [zoom, setZoom] = useState(7);
-    const [mapCenterPosition, setMapCenterPosition] = useState(initialPosition);
-    const [ownPosition, setOwnPosition] = useState(null);
-    const [userHeading, setUserHeading] = useState(0);
-    const [showOptionButtons, setShowOptionButtons] = useState(false);
-    const [markers, setMarkers] = useState([]);  
-    const [nearbyVisible, setNearbyVisible] = useState(false);
-    const [hotspotVisible, setHotspotVisible] = useState(false); 
-    const [mapShapes, setMapShapes] = useState([]);
-    const OPENROUTE_API_KEY = process.env.EXPO_PUBLIC_API_URL;
+  const sendNotification = async () => {
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title: "Hotspot Alert",
+        body: "You are entering a hotspot location!",
+      },
+      trigger: null,
+    });
+  };
 
-    useEffect(() => {
-      if (hotspotVisible) {
-        setMapShapes([
+  const toggleOptions = () => {
+    setShowOptionButtons(!showOptionButtons);
+  };
+
+  const fetchRoute = async (destination) => {
+    if (!ownPosition) return;
+
+    const start = ownPosition[0].position;
+    const end = destination;
+
+    const apiKey = OPENROUTE_API_KEY;
+    const url = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${apiKey}&start=${start.lng},${start.lat}&end=${end.lng},${end.lat}`;
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+
+      if (data?.features?.[0]?.geometry?.coordinates) {
+        const coordinates = data.features[0].geometry.coordinates;
+        const polyline = coordinates.map(([lng, lat]) => ({ lat, lng }));
+
+        setMapShapes((prevShapes) => [
+          ...prevShapes,
           {
-            shapeType: 'circle',
-            color: '#EB3223',
-            id: 'hotspot-1',
-            center: { lat: 18.9977445, lng: 73.1228996 },
-            radius: 500,
-          },
-          {
-            shapeType: 'circle',
-            color: '#EB3223',
-            id: 'hotspot-2',
-            center: { lat: 18.9977445, lng: 73.1228996 },
-            radius: 250,
-          },
-          {
-            shapeType: 'circle',
-            color: '#EB3223',
-            id: 'hotspot-3',
-            center: { lat: 18.9977445, lng: 73.1228996 },
-            radius: 1000,
+            shapeType: 'polyline',
+            color: '#3388FF',
+            id: 'route',
+            positions: polyline,
           },
         ]);
-      } else {
-        setMapShapes([]);
       }
-    }, [hotspotVisible]);
-    
+    } catch (error) {
+      console.error('Error fetching route:', error);
+    }
+  };
 
-    useEffect(() => {
-      const getLocationAsync = async () => {
-        let { status } = await Location.requestForegroundPermissionsAsync();
-        if (status !== 'granted') {
-          console.warn('Permission to access location was denied');
-          return;
-        }
-
-        let location = await Location.getCurrentPositionAsync({});
-        if (location.coords) {
-          const { latitude, longitude } = location.coords;
-          setOwnPosition([
-            {
-              id: '1',
-              position: { 
-                lat: latitude, lng: longitude 
-              },
-              icon: '📍',
-              size: [32, 32],        
-            }
-          ]);
-          setMapCenterPosition({ lat: latitude, lng: longitude });
-        }
-      };
-
-      getLocationAsync().catch((error) => {
-        console.error(error);
-      });
-
-      const watchHeading = async () => {
-        let { status } = await Location.requestForegroundPermissionsAsync();
-        if (status !== 'granted') {
-          console.warn('Permission to access location was denied');
-          return;
-        }
-
-        Location.watchHeadingAsync((heading) => {
-          setUserHeading(heading.trueHeading);
-        });
-      };
-
-      watchHeading();
-    }, []);
-
-    const toggleOptions = () => {
-      setShowOptionButtons(!showOptionButtons);
-    };
-    const fetchRoute = async (destination) => {
-      if (!ownPosition) return;
-    
-      const start = ownPosition[0].position;
-      const end = destination;
-
-      const apiKey = OPENROUTE_API_KEY;
-      const url = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${apiKey}&start=${start.lng},${start.lat}&end=${end.lng},${end.lat}`;
-    
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-    
-        if (data?.features?.[0]?.geometry?.coordinates) {
-          const coordinates = data.features[0].geometry.coordinates;
-          const polyline = coordinates.map(([lng, lat]) => ({ lat, lng }));
-    
-          setMapShapes((prevShapes) => [
-            ...prevShapes,
-            {
-              shapeType: 'polyline',
-              color: '#3388FF',
-              id: 'route',
-              positions: polyline,
-            },
-          ]);
-        }
-      } catch (error) {
-        console.error('Error fetching route:', error);
-      }
-    };
-    
-    const handleNearbyClick = () => {
-      setTimeout(() => {
+  const handleNearbyClick = () => {
+    setTimeout(() => {
       setNearbyVisible(!nearbyVisible);
-      const safePlace = { lat: 18.9977445 + 0.001, lng: 73.1228996 + 0.001 };
+      const safePlace = { lat: 19.0295559 + 0.001, lng: 72.8506955 + 0.001 };
       if (!nearbyVisible) {
         const newMarker = {
           id: 'safe-place',
@@ -163,17 +200,16 @@
         setMapShapes((prevShapes) => prevShapes.filter((shape) => shape.id !== 'route'));
         setMarkers((prev) => prev.filter((marker) => marker.id !== 'safe-place'));
       }
-    }, 500); 
-    };
-    
-    const handleHotspotClick = () => {
-      setTimeout(() => {
+    }, 500);
+  };
+
+  const handleHotspotClick = () => {
+    setTimeout(() => {
       setHotspotVisible(!hotspotVisible);
-    }, 500); 
-    };
+    }, 500);
+  };
 
-    const mapMarkers = ownPosition ? [...ownPosition, ...markers] : markers;
-
+  const mapMarkers = ownPosition ? [...ownPosition, ...markers] : markers;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -191,24 +227,23 @@
             <TouchableOpacity
               style={[
                 styles.optionButton,
-                nearbyVisible && styles.activeButton, 
+                nearbyVisible && styles.activeButton,
               ]}
               onPress={handleNearbyClick}
             >
               <Text style={[styles.optionButtonText, nearbyVisible && styles.activeButtonText]}>
-               Nearby Safe Places
+                Nearby Safe Places
               </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity
-              style={[
+            <TouchableOpacity style={[
                 styles.optionButton,
-                hotspotVisible && styles.activeButton, 
+                hotspotVisible && styles.activeButton,
               ]}
               onPress={handleHotspotClick}
             >
               <Text style={[styles.optionButtonText, hotspotVisible && styles.activeButtonText]}>
-              Hotspot Areas
+                Hotspot Areas
               </Text>
             </TouchableOpacity>
           </View>
@@ -220,7 +255,7 @@
           loadingIndicator={() => <ActivityIndicator />}
           mapCenterPosition={mapCenterPosition}
           mapLayers={mapLayers}
-          mapMarkers={mapMarkers}  
+          mapMarkers={mapMarkers}
           mapShapes={mapShapes}
           mapOptions={mapOptions}
           zoom={zoom}
@@ -242,7 +277,7 @@
           <Text style={styles.bottomButtonText}>Medical</Text>
         </TouchableOpacity>
       </View>
-     </SafeAreaView>
+    </SafeAreaView>
   );
 };
 
@@ -292,8 +327,7 @@ const styles = StyleSheet.create({
     borderColor: '#9150E4',
   },
   activeButton: {
-    backgroundColor: '#9150E4', 
-
+    backgroundColor: '#9150E4',
   },
   activeButtonText: {
     color: '#fff',

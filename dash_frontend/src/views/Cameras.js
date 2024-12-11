@@ -86,10 +86,10 @@ const Cameras = () => {
 
   const fetchCameras = async () => {
     try {
-     const response = await fetch('http://127.0.0.1:8000/cameras/getCameras');
-     const json = await response.json();  // Read response as text
-      console.log("Response text:",json.data);  // Log the response body
-      setCameras(json.data);
+    //  const response = await fetch('http://127.0.0.1:8000/cameras/getCameras');
+    //  const json = await response.json();  // Read response as text
+      console.log("Response text:",json1.data);  // Log the response body
+      setCameras(json1.data);
       
      
     } catch (e) {
