@@ -175,26 +175,26 @@ const Cameras = () => {
                   </thead>
                   <tbody>
                     {cameras?.map((ele) => (
-                      <tr key={ele.nickName}>
+                      <tr key={ele.id}>
                         <td>{ele.Name}</td>
                         <td>{ele.modelNo}</td>
                         <td>{ele.link}</td>
                         <td>{ele.lat}</td>
                         <td>{ele.lon}</td>
                         <td>
-                          {!selectedCameras[ele.nickName] && (
+                          {!selectedCameras[ele.id] && (
                             <PlayButton
                               onClick={() =>
-                                handlePlayButtonClick(ele.nickName)
+                                handlePlayButtonClick(ele.id)
                               }
                             >
                               ▶️ Play
                             </PlayButton>
                           )}
-                          {selectedCameras[ele.nickName] && (
+                          {selectedCameras[ele.id] && (
                             <StopButton
                               onClick={() =>
-                                handleStopButtonClick(ele.nickName)
+                                handleStopButtonClick(ele.id)
                               }
                             >
                               ⏹️ Stop

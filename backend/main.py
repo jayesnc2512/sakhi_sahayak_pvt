@@ -3,7 +3,9 @@ from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 import numpy as np
 from typing import List, Dict
+import asyncio
 
+# from camrtsp.rtsp import camrtsp
 # Import routes for hotspots
 from routes.hotspotRoutes import router as hotspot_router
 from routes.websocket_handlers import router as video_analysis_router
@@ -40,6 +42,7 @@ app.include_router(cameraRouter,prefix="/cameras")
 async def on_start():
     # Code to run when the application starts
     print("The application has started!")
+    # asyncio.run(camrtsp.main())
 
 
 @app.get("/")
