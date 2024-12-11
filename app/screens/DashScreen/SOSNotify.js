@@ -26,15 +26,33 @@ export default function SOSNotify() {
       );
     });
 
+    const fetchLiveLocationLink = async () => {
+      try {
+        const response = await fetch(' https://7339-2409-40c0-1070-6544-493e-44a9-e6a0-1259.ngrok-free.app/ws/live-loc');  // Replace with your actual FastAPI URL
+        const data = await response.json();
+        const liveLocationLink = data.live_location_link;  // Assuming the backend sends this in the response
+        if (response.ok) {
+          console.log('Live location link:', liveLocationLink);
+
+          //Call the function to send SMS with the live location link
+          
+        } else {
+          console.error('Failed to fetch live location link:', data);
+        }
+      } catch (error) {
+        console.error('Error fetching live location link:', error);
+      }
+    };
+
     const sendEmergencySMS = async () => {
       try {
-        const response = await fetch('https://b797-205-254-166-67.ngrok-free.app/tw/send-sms', {
+        const response = await fetch('https://7339-2409-40c0-1070-6544-493e-44a9-e6a0-1259.ngrok-free.app/tw/send-sms', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            message: "This is an emergency alert! Guest user is in danger",
+            message: "This is an emergency alert! Guest user is in danger.",
             phone_numbers: ["+918104782543", "+919067374010"],
           }),
         });
@@ -49,12 +67,14 @@ export default function SOSNotify() {
         console.error('Error sending SMS:', error);
       }
     };
+
+    // fetchLiveLocationLink();
     
 
     // Make a POST request to initiate SOS calls
     const initiateSOSCalls = async () => {
       try {
-        const response = await fetch('https://b797-205-254-166-67.ngrok-free.app/tw/call-emergency-contacts', {
+        const response = await fetch('https://7339-2409-40c0-1070-6544-493e-44a9-e6a0-1259.ngrok-free.app/tw/call-emergency-contacts', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -76,8 +96,11 @@ export default function SOSNotify() {
       }
     };
 
+    
+
     initiateSOSCalls();
     sendEmergencySMS();
+ 
   }, []); 
 
   const handleCancelSOS = async () => {
