@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Map from './Map';
 import StatsPanel from './StatsPanel';
 import Charts from './Charts';
-import { Collapse, Row, Col, Card, CardBody, CardHeader } from "reactstrap";
+import { Collapse, Row, Col, Card, CardBody, CardHeader,Button } from "reactstrap";
 import TransparentButton from './TransparentButton';
 import cityHotspotData from './easy_coordinates.json';
 import "./index.css";
@@ -168,54 +168,76 @@ const CityWiseHotspot = () => {
                                     <h3 style={{ color: '#007bff' }}>{selectedCrime ? selectedCrime.crime_type : cityData.name}</h3>
                                 </CardHeader>
                                 <CardBody style={{ backgroundColor: '#ffffff', borderRadius: '5px' }}>
-                                    {selectedCrime ? (
-                                        <Row>
-                                            <Col md="6">
-                                                <h5>Crime ID: {selectedCrime.id}</h5>
-                                                <h5>Crime Type: {selectedCrime.crime_type}</h5>
-                                                <h5>Timestamp: {selectedCrime.timestamp}</h5>
-                                                <h5>Age of Victim: {selectedCrime.age_victim}</h5>
-                                                <img src={selectedCrime.image_url} alt="Crime" style={{ width: '100%', height: 'auto', borderRadius: '5px' }} />
-                                            </Col>
-                                        </Row>
-                                    ) : (
-                                        <Row>
-                                            <Col md="6">
-                                                Total Crimes: <h5>{crimeAnalysis.totalCrimes}</h5>
-                                                Most Common Crime: <h5>{crimeAnalysis.highestCrime}</h5>
-                                                <br />
-                                            </Col>
-                                        </Row>
-                                    )}
-                                        {/* {Object.keys(centroids).length > 0 && (
-                                            <Row>
-                                                <Col md="6">
-                                                    <h5>Cluster Centroids:</h5>
-                                                    {Object.keys(centroids).map(cluster => (
-                                                        <p key={cluster}>
-                                                            Cluster {cluster}: ({centroids[cluster].latitude}, {centroids[cluster].longitude})
-                                                        </p>
-                                                    ))}
-                                                </Col>
-                                            </Row>
-                                        )} */}
-                                        {highestCluster !== null && (
-                                            <Row>
-                                                <Col md="6">
-                                                    <h5>Cluster with the highest number of crimes:</h5>
-                                                    <p>
-                                                        Cluster {highestCluster}: ({centroids[highestCluster].latitude}, {centroids[highestCluster].longitude})
-                                                    </p>
-                                                    {highestClusterAddress && (
-                                                        <p>Address: {highestClusterAddress}</p>
-                                                    )}
-                                                </Col>
-                                            </Row>
-                                        )}
-                                        <p style={{ fontSize: "10px" }}>
-                                            *hover over each section to get the counts
-                                        </p>
- </CardBody>
+            {selectedCrime ? (
+                <Row>
+                    <Col md="12">
+                        <h5>Crime Details</h5>
+                        <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #ddd' }}>
+                            <tbody>
+                                <tr style={{ borderBottom: '1px solid #ddd' }}>
+                                    <td><strong>Crime ID:</strong></td>
+                                    <td>{selectedCrime.id}</td>
+                                </tr>
+                                <tr style={{ borderBottom: '1px solid #ddd' }}>
+                                    <td><strong>Crime Type:</strong></td>
+                                    <td>{selectedCrime.crime_type}</td>
+                                </tr>
+                                <tr style={{ borderBottom: '1px solid #ddd' }}>
+                                    <td><strong>Timestamp:</strong></td>
+                                    <td>{selectedCrime.timestamp}</td>
+                                </tr>
+                                <tr style={{ borderBottom: '1px solid #ddd' }}>
+                                    <td><strong>Age of Victim:</strong></td>
+                                    <td>{selectedCrime.age_victim}</td>
+                                </tr>
+                                {/* <tr>
+                                    <td colSpan="2">
+                                        <img src={selectedCrime.image_url} alt="Crime" style={{ width: '100%', height: 'auto', borderRadius: '5px' }} />
+                                    </td>
+                                </tr> */}
+                            </tbody>
+                        </table>
+                    </Col>
+                </Row>
+            ) : (
+                <Row>
+                    <Col md="12">
+                        <h5>Crime Analysis Summary</h5>
+                        <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #ddd' }}>
+                            <tbody>
+                                <tr style={{ borderBottom: '1px solid #ddd' }}>
+                                    <td><strong>Total Crimes:</strong></td>
+                                    <td>{crimeAnalysis.totalCrimes}</td>
+                                </tr>
+                                <tr style={{ borderBottom: '1px solid #ddd' }}>
+                                    <td><strong>Most Common Crime:</strong></td>
+                                    <td>{crimeAnalysis.highestCrime}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </Col>
+                </Row>
+            )}
+            {highestCluster !== null && (
+                <Row>
+                    <Col md="12">
+                    <br/>
+
+                        <h5>Cluster with the Highest Number of Crimes:</h5>
+                        {highestClusterAddress && (
+                            <p><strong>Address:</strong> {highestClusterAddress}</p>
+                        )}
+                        <p>
+                            Cluster {highestCluster}: ({centroids[highestCluster].latitude}, {centroids[highestCluster].longitude})
+                        </p>
+                    </Col>
+                </Row>
+            )}
+            {/* <p style={{ fontSize: "10px" }}>
+                *hover over each section to get the counts
+            </p> */}
+        </CardBody>
+
                                 </div>
                             </Collapse>
                         </CardBody>
