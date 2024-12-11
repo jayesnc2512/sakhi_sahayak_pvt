@@ -81,7 +81,7 @@ const Cameras = () => {
   const [uid, setUid] = useState(1);
   const [selectedCameras, setSelectedCameras] = useState({});
   const [gridSize, setGridSize] = useState(2);
-
+//rtsp://admin:L23F18C4@192.168.173.191:554/cam/realmonitor?channel=1&subtype=0
   
   const fetchCameras = async () => {
     try {

@@ -6,7 +6,7 @@ import { Collapse, Row, Col, Card, CardBody, CardHeader } from "reactstrap";
 import TransparentButton from './TransparentButton';
 import cityHotspotData from './easy_coordinates.json';
 import "./index.css";
-import crimeData from './updated_crime_data.json'; 
+import crimeData from './updated_crime_data1.json'; 
 import { LatLngBounds } from 'leaflet'; 
 
 const CityWiseHotspot = () => {

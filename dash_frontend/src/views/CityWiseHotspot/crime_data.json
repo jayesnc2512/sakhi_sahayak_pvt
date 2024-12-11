@@ -1,2489 +1,5 @@
 [
   {
-    "id": 494,
-    "crime_type": "Theft",
-    "latitude": 19.255599,
-    "longitude": 72.945399,
-    "timestamp": "2024-01-21 13:00:00",
-    "age_victim": 34,
-    "city": "thane"
-  },
-  {
-    "id": 495,
-    "crime_type": "Robbery",
-    "latitude": 19.255499,
-    "longitude": 72.945499,
-    "timestamp": "2024-01-22 14:30:00",
-    "age_victim": 28,
-    "city": "thane"
-  },
-  {
-    "id": 496,
-    "crime_type": "Assault",
-    "latitude": 19.255299,
-    "longitude": 72.945799,
-    "timestamp": "2024-01-23 15:45:00",
-    "age_victim": 45,
-    "city": "thane"
-  },
-  {
-    "id": 497,
-    "crime_type": "Burglary",
-    "latitude": 19.255199,
-    "longitude": 72.945399,
-    "timestamp": "2024-01-24 16:00:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 498,
-    "crime_type": "Vandalism",
-    "latitude": 19.255299,
-    "longitude": 72.945099,
-    "timestamp": "2024-01-25 17:15:00",
-    "age_victim": 22,
-    "city": "thane"
-  },
-  {
-    "id": 499,
-    "crime_type": "Theft",
-    "latitude": 19.285599,
-    "longitude": 72.915399,
-    "timestamp": "2024-01-26 18:30:00",
-    "age_victim": 31,
-    "city": "thane"
-  },
-  {
-    "id": 500,
-    "crime_type": "Robbery",
-    "latitude": 19.230316,
-    "longitude": 72.98319,
-    "timestamp": "2024-01-27 19:00:00",
-    "age_victim": 40,
-    "city": "thane"
-  },
-  {
-    "id": 501,
-    "crime_type": "Assault",
-    "latitude": 19.231316,
-    "longitude": 72.98119,
-    "timestamp": "2024-01-28 20:15:00",
-    "age_victim": 36,
-    "city": "thane"
-  },
-  {
-    "id": 502,
-    "crime_type": "Burglary",
-    "latitude": 19.234316,
-    "longitude": 72.98219,
-    "timestamp": "2024-01-29 21:30:00",
-    "age_victim": 27,
-    "city": "thane"
-  },
-  {
-    "id": 503,
-    "crime_type": "Vandalism",
-    "latitude": 19.236316,
-    "longitude": 72.98519,
-    "timestamp": "2024-01-30 22:45:00",
-    "age_victim": 33,
-    "city": "thane"
-  },
-  {
-    "id": 504,
-    "crime_type": "Theft",
-    "latitude": 19.232316,
-    "longitude": 72.98219,
-    "timestamp": "2024-01-31 23:00:00",
-    "age_victim": 38,
-    "city": "thane"
-  },
-  {
-    "id": 505,
-    "crime_type": "Robbery",
-    "latitude": 19.195951,
-    "longitude": 73.016858,
-    "timestamp": "2024-02-01 00:15:00",
-    "age_victim": 30,
-    "city": "thane"
-  },
-  {
-    "id": 506,
-    "crime_type": "Assault",
-    "latitude": 19.193951,
-    "longitude": 73.015858,
-    "timestamp": "2024-02-02 01:30:00",
-    "age_victim": 25,
-    "city": "thane"
-  },
-  {
-    "id": 507,
-    "crime_type": "Burglary",
-    "latitude": 19.191951,
-    "longitude": 73.014858,
-    "timestamp": "2024-02-03 02:45:00",
-    "age_victim": 42,
-    "city": "thane"
-  },
-  {
-    "id": 508,
-    "crime_type": "Vandalism",
-    "latitude": 19.1912951,
-    "longitude": 73.011858,
-    "timestamp": "2024-02-04 03:00:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 509,
-    "crime_type": "Theft",
-    "latitude": 19.1932351,
-    "longitude": 73.012858,
-    "timestamp": "2024-02-05 04:15:00",
-    "age_victim": 34,
-    "city": "thane"
-  },
-  {
-    "id": 510,
-    "crime_type": "Robbery",
-    "latitude": 19.138227,
-    "longitude": 72.992993,
-    "timestamp": "2024-02-06 05:30:00",
-    "age_victim": 27,
-    "city": "thane"
-  },
-  {
-    "id": 511,
-    "crime_type": "Assault",
-    "latitude": 19.139227,
-    "longitude": 72.999993,
-    "timestamp": "2024-02-07 06:45:00",
-    "age_victim": 32,
-    "city": "thane"
-  },
-  {
-    "id": 512,
-    "crime_type": "Burglary",
-    "latitude": 19.133227,
-    "longitude": 72.998993,
-    "timestamp": "2024-02-08 07:00:00",
-    "age_victim": 41,
-    "city": "thane"
-  },
-  {
-    "id": 513,
-    "crime_type": "Vandalism",
-    "latitude": 19.132227,
-    "longitude": 72.997993,
-    "timestamp": "2024-02-09 08:15:00",
-    "age_victim": 26,
-    "city": "thane"
-  },
-  {
-    "id": 514,
-    "crime_type": "Theft",
-    "latitude": 19.131227,
-    "longitude": 72.997993,
-    "timestamp": "2024-02-10 09:30:00",
-    "age_victim": 35,
-    "city": "thane"
-  },
-  {
-    "id": 515,
-    "crime_type": "Robbery",
-    "latitude": 19.091942,
-    "longitude": 73.012173,
-    "timestamp": "2024-02-11 10:45:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 516,
-    "crime_type": "Assault",
-    "latitude": 19.094942,
-    "longitude": 73.012573,
-    "timestamp": "2024-02-12 11:00:00",
-    "age_victim": 38,
-    "city": "thane"
-  },
-  {
-    "id": 517,
-    "crime_type": "Burglary",
-    "latitude": 19.0912942,
-    "longitude": 73.012073,
-    "timestamp": "2024-02-13 12:15:00",
-    "age_victim": 24,
-    "city": "thane"
-  },
-  {
-    "id": 518,
-    "crime_type": "Vandalism",
-    "latitude": 19.0922342,
-    "longitude": 73.012173,
-    "timestamp": "2024-02-14 13:30:00",
-    "age_victim": 30,
-    "city": "thane"
-  },
-  {
-    "id": 519,
-    "crime_type": "Theft",
-    "latitude": 19.0923242,
-    "longitude": 73.012173,
-    "timestamp": "2024-02-15 14:45:00",
-    "age_victim": 33,
-    "city": "thane"
-  },
-  {
-    "id": 520,
-    "crime_type": "Robbery",
-    "latitude": 19.0923242,
-    "longitude": 73.012273,
-    "timestamp": "2024-02-16 15:00:00",
-    "age_victim": 28,
-    "city": "thane"
-  },
-  {
-    "id": 521,
-    "crime_type": "Assault",
-    "latitude": 19.092942,
-    "longitude": 73.012873,
-    "timestamp": "2024-02-17 16:15:00",
-    "age_victim": 37,
-    "city": "thane"
-  },
-  {
-    "id": 522,
-    "crime_type": "Burglary",
-    "latitude": 19.071528,
-    "longitude": 73.04154,
-    "timestamp": "2024-02-18 17:30:00",
-    "age_victim": 40,
-    "city": "thane"
-  },
-  {
-    "id": 523,
-    "crime_type": "Vandalism",
-    "latitude": 19.071128,
-    "longitude": 73.045654,
-    "timestamp": "202 4-02-19 18:45:00",
-    "age_victim": 31,
-    "city": "thane"
-  },
-  {
-    "id": 524,
-    "crime_type": "Theft",
-    "latitude": 19.071228,
-    "longitude": 73.04654,
-    "timestamp": "2024-02-20 19:00:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 525,
-    "crime_type": "Robbery",
-    "latitude": 19.0711328,
-    "longitude": 73.042854,
-    "timestamp": "2024-02-21 20:15:00",
-    "age_victim": 36,
-    "city": "thane"
-  },
-  {
-    "id": 526,
-    "crime_type": "Assault",
-    "latitude": 19.071128,
-    "longitude": 73.041854,
-    "timestamp": "2024-02-22 21:30:00",
-    "age_victim": 27,
-    "city": "thane"
-  },
-  {
-    "id": 527,
-    "crime_type": "Burglary",
-    "latitude": 19.071228,
-    "longitude": 73.042854,
-    "timestamp": "2024-02-23 22:45:00",
-    "age_victim": 34,
-    "city": "thane"
-  },
-  {
-    "id": 528,
-    "crime_type": "Vandalism",
-    "latitude": 19.071998,
-    "longitude": 73.049854,
-    "timestamp": "2024-02-24 23:00:00",
-    "age_victim": 32,
-    "city": "thane"
-  },
-  {
-    "id": 529,
-    "crime_type": "Theft",
-    "latitude": 19.071528,
-    "longitude": 73.045854,
-    "timestamp": "2024-02-25 00:15:00",
-    "age_victim": 30,
-    "city": "thane"
-  },
-  {
-    "id": 530,
-    "crime_type": "Robbery",
-    "latitude": 19.255599,
-    "longitude": 72.945399,
-    "timestamp": "2024-02-26 01:30:00",
-    "age_victim": 28,
-    "city": "thane"
-  },
-  {
-    "id": 531,
-    "crime_type": "Assault",
-    "latitude": 19.255499,
-    "longitude": 72.945499,
-    "timestamp": "2024-02-27 02:45:00",
-    "age_victim": 45,
-    "city": "thane"
-  },
-  {
-    "id": 532,
-    "crime_type": "Burglary",
-    "latitude": 19.255299,
-    "longitude": 72.945799,
-    "timestamp": "2024-02-28 03:00:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 533,
-    "crime_type": "Vandalism",
-    "latitude": 19.255199,
-    "longitude": 72.945399,
-    "timestamp": "2024-02-29 04:15:00",
-    "age_victim": 22,
-    "city": "thane"
-  },
-  {
-    "id": 534,
-    "crime_type": "Theft",
-    "latitude": 19.255299,
-    "longitude": 72.945099,
-    "timestamp": "2024-03-01 05:30:00",
-    "age_victim": 31,
-    "city": "thane"
-  },
-  {
-    "id": 535,
-    "crime_type": "Robbery",
-    "latitude": 19.285599,
-    "longitude": 72.915399,
-    "timestamp": "2024-03-02 06:45:00",
-    "age_victim": 40,
-    "city": "thane"
-  },
-  {
-    "id": 536,
-    "crime_type": "Assault",
-    "latitude": 19.230316,
-    "longitude": 72.98319,
-    "timestamp": "2024-03-03 07:00:00",
-    "age_victim": 36,
-    "city": "thane"
-  },
-  {
-    "id": 537,
-    "crime_type": "Burglary",
-    "latitude": 19.231316,
-    "longitude": 72.98119,
-    "timestamp": "2024-03-04 08:15:00",
-    "age_victim": 27,
-    "city": "thane"
-  },
-  {
-    "id": 538,
-    "crime_type": "Vandalism",
-    "latitude": 19.234316,
-    "longitude": 72.98219,
-    "timestamp": "2024-03-05 09:30:00",
-    "age_victim": 33,
-    "city": "thane"
-  },
-  {
-    "id": 539,
-    "crime_type": "Theft",
-    "latitude": 19.236316,
-    "longitude": 72.98519,
-    "timestamp": "2024-03-06 10:45:00",
-    "age_victim": 38,
-    "city": "thane"
-  },
-  {
-    "id": 540,
-    "crime_type": "Robbery",
-    "latitude": 19.232316,
-    "longitude": 72.98219,
-    "timestamp": "2024-03-07 11:00:00",
-    "age_victim": 30,
-    "city": "thane"
-  },
-  {
-    "id": 541,
-    "crime_type": "Assault",
-    "latitude": 19.195951,
-    "longitude": 73.016858,
-    "timestamp": "2024-03-08 12:15:00",
-    "age_victim": 25,
-    "city": "thane"
-  },
-  {
-    "id": 542,
-    "crime_type": "Burglary",
-    "latitude": 19.193951,
-    "longitude": 73.015858,
-    "timestamp": "2024-03-09 13:30:00",
-    "age_victim": 42,
-    "city": "thane"
-  },
-  {
-    "id": 543,
-    "crime_type": "Vandalism",
-    "latitude": 19.191951,
-    "longitude": 73.014858,
-    "timestamp": "2024-03-10 14:45:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 544,
-    "crime_type": "Theft",
-    "latitude": 19.1912951,
-    "longitude": 73.011858,
-    "timestamp": "2024-03-11 15:00:00",
-    "age_victim": 34,
-    "city": "thane"
-  },
-  {
-    "id": 545,
-    "crime_type": "Robbery",
-    "latitude": 19.1932351,
-    "longitude": 73.012858,
-    "timestamp": "2024-03-12 16:15:00",
-    "age_victim": 27,
-    "city": "thane"
-  },
-  {
-    "id": 546,
-    "crime_type": "Assault",
-    "latitude": 19.138227,
-    "longitude": 72.992993,
-    "timestamp": "2024-03-13 17:30:00",
-    "age_victim": 31,
-    "city": "thane"
-  },
-  {
-    "id": 547,
-    "crime_type": "Burglary",
-    "latitude": 19.139227,
-    "longitude": 72.999993,
-    "timestamp": "2024-03-14 18:45:00",
-    "age_victim": 28,
-    "city": "thane"
-  },
-  {
-    "id": 548,
-    "crime_type": "Vandalism",
-    "latitude": 19.133227,
-    "longitude": 72.998993,
-    "timestamp": "2024-03-15 19:00:00",
-    "age_victim": 41,
-    "city": "thane"
-  },
-  {
-    "id": 549,
-    "crime_type": "Theft",
-    "latitude": 19.132227,
-    "longitude": 72.997993,
-    "timestamp": "2024-03-16 20:15:00",
-    "age_victim": 35,
-    "city": "thane"
-  },
-  {
-    "id": 550,
-    "crime_type": "Robbery",
-    "latitude": 19.131227,
-    "longitude": 72.997993,
-    "timestamp": "2024-03-17 21:30:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 551,
-    "crime_type": "Assault",
-    "latitude": 19.091942,
-    "longitude": 73.012173,
-    "timestamp": "2024-03-18 22:45:00",
-    "age_victim": 38,
-    "city": "thane"
-  },
-  {
-    "id": 552,
-    "crime_type": "Burglary",
-    "latitude": 19.094942,
-    "longitude": 73.012573,
-    "timestamp": "2024-03-19 23:00:00",
-    "age_victim": 24,
-    "city": "thane"
-  },
-  {
-    "id": 553,
-    "crime_type": "Vandalism",
-    "latitude": 19.0912942,
-    "longitude": 73.012073,
-    "timestamp": "2024-03-20 00:15:00",
-    "age_victim": 30,
-    "city": "thane"
-  },
-  {
-    "id": 554,
-    "crime_type": "Theft",
-    "latitude": 19.0922342,
-    "longitude": 73.012173,
-    "timestamp": "2024-03-21 01:30:00",
-    "age_victim": 33,
-    "city": "thane"
-  },
-  {
-    "id": 555,
-    "crime_type": "Robbery",
-    "latitude": 19.0923242,
-    "longitude": 73.012173,
-    "timestamp": "2024-03-22 02:45:00",
-    "age_victim": 28,
-    "city": "thane"
-  },
-  {
-    "id": 556,
-    "crime_type": "Assault",
-    "latitude": 19.0923242,
-    "longitude": 73.012273,
-    "timestamp": "2024-03-23 03:00:00",
-    "age_victim": 37,
-    "city": "thane"
-  },
-  {
-    "id": 557,
-    "crime_type": "Burglary",
-    "latitude": 19.092942,
-    "longitude": 73.012873,
-    "timestamp": "2024-03-24 04:15:00",
-    "age_victim": 40,
-    "city": "thane"
-  },
-  {
-    "id": 558,
-    "crime_type": "Vandalism",
-    "latitude": 19.071528,
-    "longitude": 73.04154,
-    "timestamp": "2024-03-25 05:30:00",
-    "age_victim": 31,
-    "city": "thane"
-  },
-  {
-    "id": 559,
-    "crime_type": "Theft",
-    "latitude": 19.071128,
-    "longitude": 73.045654,
-    "timestamp": "2024-03-26 06:45:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 560,
-    "crime_type": "Robbery",
-    "latitude": 19.071228,
-    "longitude": 73.04654,
-    "timestamp": "2024-03-27 07:00:00",
-    "age_victim": 36,
-    "city": "thane"
-  },
-  {
-    "id": 561,
-    "crime_type": "Assault",
-    "latitude": 19.0711328,
-    "longitude": 73.042854,
-    "timestamp": "2024-03-28 08:15:00",
-    "age_victim": 27,
-    "city": "thane"
-  },
-  {
-    "id": 562,
-    "crime_type": "Burglary",
-    "latitude": 19.071128,
-    "longitude": 73.041854,
-    "timestamp": "2024-03-29 09:30:00",
-    "age_victim": 34,
-    "city": "thane"
-  },
-  {
-    "id": 563,
-    "crime_type": "Vandalism",
-    "latitude": 19.071228,
-    "longitude": 73.042854,
-    "timestamp": "2024-03-30 10:45:00",
-    "age_victim": 30,
-    "city": "thane"
-  },
-  {
-    "id": 564,
-    "crime_type": "Theft",
-    "latitude": 19.071998,
-    "longitude": 73.049854,
-    "timestamp": "2024-03-31 11:00:00",
-    "age_victim": 28,
-    "city": "thane"
-  },
-  {
-    "id": 565,
-    "crime_type": "Robbery",
-    "latitude": 19.071528,
-    "longitude": 73.045854,
-    "timestamp": "2024-04-01 12:15:00",
-    "age_victim": 40,
-    "city": "thane"
-  },
-  {
-    "id": 566,
-    "crime_type": "Assault",
-    "latitude": 19.255599,
-    "longitude": 72.945399,
-    "timestamp": "2024-04-02 13:30:00",
-    "age_victim": 28,
-    "city": "thane"
-  },
-  {
-    "id": 567,
-    "crime_type": "Burglary",
-    "latitude": 19.255499,
-    "longitude": 72.945499,
-    "timestamp": "2024-04-03 14:45:00",
-    "age_victim": 45,
-    "city": "thane"
-  },
-  {
-    "id": 568,
-    "crime_type": "Vandalism",
-    "latitude": 19.255299,
-    "longitude": 72.945799,
-    "timestamp": "2024-04-04 15:00:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 569,
-    "crime_type": "Theft",
-    "latitude": 19.255199,
-    "longitude": 72.945399,
-    "timestamp": "2024-04-05 16:15:00",
-    "age_victim": 22,
-    "city": "thane"
-  },
-  {
-    "id": 570,
-    "crime_type": "Robbery",
-    "latitude": 19.255299,
-    "longitude": 72.945099,
-    "timestamp": "2024-04-06 17:30:00",
-    "age_victim": 31,
-    "city": "thane"
-  },
-  {
-    "id": 571,
-    "crime_type": "Assault",
-    "latitude": 19.285599,
-    "longitude": 72.915399,
-    "timestamp": "2024-04-07 18:45:00",
-    "age_victim": 40,
-    "city": "thane"
-  },
-  {
-    "id": 572,
-    "crime_type": "Burglary",
-    "latitude": 19.230316,
-    "longitude": 72.98319,
-    "timestamp": "2024-04-08 19:00:00",
-    "age_victim": 36,
-    "city": "thane"
-  },
-  {
-    "id": 573,
-    "crime_type": "Vandalism",
-    "latitude": 19.231316,
-    "longitude": 72.98119,
-    "timestamp": "2024-04-09 20:15:00",
-    "age_victim": 27,
-    "city": "thane"
-  },
-  {
-    "id": 574,
-    "crime_type": "Theft",
-    "latitude": 19.234316,
-    "longitude": 72.98219,
-    "timestamp": "2024-04-10 21:30:00",
-    "age_victim": 33,
-    "city": "thane"
-  },
-  {
-    "id": 575,
-    "crime_type": "Robbery",
-    "latitude": 19.236316,
-    "longitude": 72.98519,
-    "timestamp": "2024-04-11 22:45:00",
-    "age_victim": 38,
-    "city": "thane"
-  },
-  {
-    "id": 576,
-    "crime_type": "Assault",
-    "latitude": 19.232316,
-    "longitude": 72.98219,
-    "timestamp": "2024-04-12 23:00:00",
-    "age_victim": 30,
-    "city": "thane"
-  },
-  {
-    "id": 577,
-    "crime_type": "Burglary",
-    "latitude": 19.195951,
-    "longitude": 73.016858,
-    "timestamp": "2024-04-13 00:15:00",
-    "age_victim": 25,
-    "city": "thane"
-  },
-  {
-    "id": 578,
-    "crime_type": "Vandalism",
-    "latitude": 19.193951,
-    "longitude": 73.015858,
-    "timestamp": "2024-04-14 01:30:00",
-    "age_victim": 42,
-    "city": "thane"
-  },
-  {
-    "id": 579,
-    "crime_type": "Theft",
-    "latitude": 19.191951,
-    "longitude": 73.014858,
-    "timestamp": "2024-04-15 02:45:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 580,
-    "crime_type": "Robbery",
-    "latitude": 19.1912951,
-    "longitude": 73.011858,
-    "timestamp": "2024-04-16 03:00:00",
-    "age_victim": 34,
-    "city": "thane"
-  },
-  {
-    "id": 581,
-    "crime_type": "Assault",
-    "latitude": 19.1932351,
-    "longitude": 73.012858,
-    "timestamp": "2024-04-17 04:15:00",
-    "age_victim": 27,
-    "city": "thane"
-  },
-  {
-    "id": 582,
-    "crime_type": "Burglary",
-    "latitude": 19.138227,
-    "longitude": 72.992993,
-    "timestamp": "2024-04-18 05:30:00",
-    "age_victim": 31,
-    "city": "thane"
-  },
-  {
-    "id": 583,
-    "crime_type": "Vandalism",
-    "latitude": 19.139227,
-    "longitude": 72.999993,
-    "timestamp": "2024-04-19 06:45:00",
-    "age_victim": 28,
-    "city": "thane"
-  },
-  {
-    "id": 584,
-    "crime_type": "Theft",
-    "latitude": 19.133227,
-    "longitude": 72.998993,
-    "timestamp": "2024-04-20 07:00:00",
-    "age_victim": 41,
-    "city": "thane"
-  },
-  {
-    "id": 585,
-    "crime_type": "Robbery",
-    "latitude": 19.13227,
-    "longitude": 72.997993,
-    "timestamp": "2024-04-21 08:15:00",
-    "age_victim": 35,
-    "city": "thane"
-  },
-  {
-    "id": 586,
-    "crime_type": "Assault",
-    "latitude": 19.131227,
-    "longitude": 72.997993,
-    "timestamp": "2024-04-22 09:30:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 587,
-    "crime_type": "Burglary",
-    "latitude": 19.091942,
-    "longitude": 73.012173,
-    "timestamp": "2024-04-23 10:45:00",
-    "age_victim": 38,
-    "city": "thane"
-  },
-  {
-    "id": 588,
-    "crime_type": "Vandalism",
-    "latitude": 19.094942,
-    "longitude": 73.012573,
-    "timestamp": "2024-04-24 11:00:00",
-    "age_victim": 24,
-    "city": "thane"
-  },
-  {
-    "id": 589,
-    "crime_type": "Theft",
-    "latitude": 19.0912942,
-    "longitude": 73.012073,
-    "timestamp": "2024-04-25 12:15:00",
-    "age_victim": 30,
-    "city": "thane"
-  },
-  {
-    "id": 590,
-    "crime_type": "Robbery",
-    "latitude": 19.0922342,
-    "longitude": 73.012173,
-    "timestamp": "2024-04-26 13:30:00",
-    "age_victim": 33,
-    "city": "thane"
-  },
-  {
-    "id": 591,
-    "crime_type": "Assault",
-    "latitude": 19.0923242,
-    "longitude": 73.012173,
-    "timestamp": "2024-04-27 14:45:00",
-    "age_victim": 28,
-    "city": "thane"
-  },
-  {
-    "id": 592,
-    "crime_type": "Burglary",
-    "latitude": 19.0923242,
-    "longitude": 73.012273,
-    "timestamp": "2024-04-28 15:00:00",
-    "age_victim": 37,
-    "city": "thane"
-  },
-  {
-    "id": 593,
-    "crime_type": "Vandalism",
-    "latitude": 19.092942,
-    "longitude": 73.012873,
-    "timestamp": "2024-04-29 16:15:00",
-    "age_victim": 40,
-    "city": "thane"
-  },
-  {
-    "id": 594,
-    "crime_type": "Theft",
-    "latitude": 19.071528,
-    "longitude": 73.04154,
-    "timestamp": "2024-04-30 17:30:00",
-    "age_victim": 31,
-    "city": "thane"
-  },
-  {
-    "id": 595,
-    "crime_type": "Robbery",
-    "latitude": 19.071128,
-    "longitude": 73.045654,
-    "timestamp": "2024-05-01 18:45:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 596,
-    "crime_type": "Assault",
-    "latitude": 19.071228,
-    "longitude": 73.04654,
-    "timestamp": "2024-05-02 19:00:00",
-    "age_victim": 36,
-    "city": "thane"
-  },
-  {
-    "id": 597,
-    "crime_type": "Burglary",
-    "latitude": 19.0711328,
-    "longitude": 73.042854,
-    "timestamp": "2024-05-03 20:15:00",
-    "age_victim": 27,
-    "city": "thane"
-  },
-  {
-    "id": 598,
-    "crime_type": "Vandalism",
-    "latitude": 19.071128,
-    "longitude": 73.041854,
-    "timestamp": "2024-05-04 21:30:00",
-    "age_victim": 34,
-    "city": "thane"
-  },
-  {
-    "id": 599,
-    "crime_type": "Theft",
-    "latitude": 19.071228,
-    "longitude": 73.042854,
-    "timestamp": "2024-05-05 22:45:00",
-    "age_victim": 30,
-    "city": "thane"
-  },
-  {
-    "id": 600,
-    "crime_type": "Robbery",
-    "latitude": 19.071998,
-    "longitude": 73.049854,
-    "timestamp": "2024-05-06 23:00:00",
-    "age_victim": 28,
-    "city": "thane"
-  },
-  {
-    "id": 601,
-    "crime_type": "Assault",
-    "latitude": 19.071528,
-    "longitude": 73.045854,
-    "timestamp": "2024-05-07 00:15:00",
-    "age_victim": 40,
-    "city": "thane"
-  },
-  {
-    "id": 602,
-    "crime_type": "Burglary",
-    "latitude": 19.255599,
-    "longitude": 72.945399,
-    "timestamp": "2024-05-08 01:30:00",
-    "age_victim": 28,
-    "city": "thane"
-  },
-  {
-    "id": 603,
-    "crime_type": "Vandalism",
-    "latitude": 19.255499,
-    "longitude": 72.945499,
-    "timestamp": "2024-05-09 02:45:00",
-    "age_victim": 45,
-    "city": "thane"
-  },
-  {
-    "id": 604,
-    "crime_type": "Theft",
-    "latitude": 19.255299,
-    "longitude": 72.945799,
-    "timestamp": "2024-05-10 03:00:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 605,
-    "crime_type": "Robbery",
-    "latitude": 19.255199,
-    "longitude": 72.945399,
-    "timestamp": "2024-05-11 04:15:00",
-    "age_victim": 22,
-    "city": "thane"
-  },
-  {
-    "id": 606,
-    "crime_type": "Assault",
-    "latitude": 19.255299,
-    "longitude": 72.945099,
-    "timestamp": "2024-05-12 05:30:00",
-    "age_victim": 31,
-    "city": "thane"
-  },
-  {
-    "id": 607,
-    "crime_type": "Burglary",
-    "latitude": 19.285599,
-    "longitude": 72.915399,
-    "timestamp": "2024-05-13 06:45:00",
-    "age_victim": 40,
-    "city": "thane"
-  },
-  {
-    "id": 608,
-    "crime_type": "Vandalism",
-    "latitude": 19.230316,
-    "longitude": 72.98319,
-    "timestamp": "2024-05-14 07:00:00",
-    "age_victim": 36,
-    "city": "thane"
-  },
-  {
-    "id": 609,
-    "crime_type": "Theft",
-    "latitude": 19.231316,
-    "longitude": 72.98119,
-    "timestamp": "2024-05-15 08:15:00",
-    "age_victim": 27,
-    "city": "thane"
-  },
-  {
-    "id": 610,
-    "crime_type": "Robbery",
-    "latitude": 19.234316,
-    "longitude": 72.98219,
-    "timestamp": "2024-05-16 09:30:00",
-    "age_victim": 33,
-    "city": "thane"
-  },
-  {
-    "id": 611,
-    "crime_type": "Assault",
-    "latitude": 19.236316,
-    "longitude": 72.98519,
-    "timestamp": "2024-05-17 10:45:00",
-    "age_victim": 38,
-    "city": "thane"
-  },
-  {
-    "id": 612,
-    "crime_type": "Burglary",
-    "latitude": 19.232316,
-    "longitude": 72.98219,
-    "timestamp": "2024-05-18 11:00:00",
-    "age_victim": 30,
-    "city": "thane"
-  },
-  {
-    "id": 613,
-    "crime_type": "Vandalism",
-    "latitude": 19.195951,
-    "longitude": 73.016858,
-    "timestamp": "2024-05-19 12:15:00",
-    "age_victim": 25,
-    "city": "thane"
-  },
-  {
-    "id": 614,
-    "crime_type": "Theft",
-    "latitude": 19.193951,
-    "longitude": 73.015858,
-    "timestamp": "2024-05-20 13:30:00",
-    "age_victim": 42,
-    "city": "thane"
-  },
-  {
-    "id": 615,
-    "crime_type": "Robbery",
-    "latitude": 19.191951,
-    "longitude": 73.014858,
-    "timestamp": "2024-05-21 14:45:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 616,
-    "crime_type": "Theft",
-    "latitude": 19.1912951,
-    "longitude": 73.011858,
-    "timestamp": "2024-05-22 15:00:00",
-    "age_victim": 34,
-    "city": "thane"
-  },
-  {
-    "id": 617,
-    "crime_type": "Robbery",
-    "latitude": 19.1932351,
-    "longitude": 73.012858,
-    "timestamp": "2024-05-23 16:15:00",
-    "age_victim": 27,
-    "city": "thane"
-  },
-  {
-    "id": 618,
-    "crime_type": "Assault",
-    "latitude": 19.138227,
-    "longitude": 72.992993,
-    "timestamp": "2024-05-24 17:30:00",
-    "age_victim": 31,
-    "city": "thane"
-  },
-  {
-    "id": 619,
-    "crime_type": "Burglary",
-    "latitude": 19.139227,
-    "longitude": 72.999993,
-    "timestamp": "2024-05-25 18:45:00",
-    "age_victim": 28,
-    "city": "thane"
-  },
-  {
-    "id": 620,
-    "crime_type": "Vandalism",
-    "latitude": 19.133227,
-    "longitude": 72.998993,
-    "timestamp": "2024-05-26 19:00:00",
-    "age_victim": 41,
-    "city": "thane"
-  },
-  {
-    "id": 621,
-    "crime_type": "Theft",
-    "latitude": 19.132227,
-    "longitude": 72.997993,
-    "timestamp": "2024-05-27 20:15:00",
-    "age_victim": 35,
-    "city": "thane"
-  },
-  {
-    "id": 622,
-    "crime_type": "Robbery",
-    "latitude": 19.131227,
-    "longitude": 72.997993,
-    "timestamp": "2024-05-28 21:30:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 623,
-    "crime_type": "Assault",
-    "latitude": 19.091942,
-    "longitude": 73.012173,
-    "timestamp": "2024-05-29 22:45:00",
-    "age_victim": 38,
-    "city": "thane"
-  },
-  {
-    "id": 624,
-    "crime_type": "Burglary",
-    "latitude": 19.094942,
-    "longitude": 73.012573,
-    "timestamp": "2024-05-30 23:00:00",
-    "age_victim": 24,
-    "city": "thane"
-  },
-  {
-    "id": 625,
-    "crime_type": "Vandalism",
-    "latitude": 19.0912942,
-    "longitude": 73.012073,
-    "timestamp": "2024-05-31 00:15:00",
-    "age_victim": 30,
-    "city": "thane"
-  },
-  {
-    "id": 626,
-    "crime_type": "Theft",
-    "latitude": 19.0922342,
-    "longitude": 73.012173,
-    "timestamp": "2024-06-01 01:30:00",
-    "age_victim": 33,
-    "city": "thane"
-  },
-  {
-    "id": 627,
-    "crime_type": "Robbery",
-    "latitude": 19.0923242,
-    "longitude": 73.012173,
-    "timestamp": "2024-06-02 02:45:00",
-    "age_victim": 28,
-    "city": "thane"
-  },
-  {
-    "id": 628,
-    "crime_type": "Assault",
-    "latitude": 19.0923242,
-    "longitude": 73.012273,
-    "timestamp": "2024-06-03 03:00:00",
-    "age_victim": 37,
-    "city": "thane"
-  },
-  {
-    "id": 629,
-    "crime_type": "Burglary",
-    "latitude": 19.092942,
-    "longitude": 73.012873,
-    "timestamp": "2024-06-04 04:15:00",
-    "age_victim": 40,
-    "city": "thane"
-  },
-  {
-    "id": 630,
-    "crime_type": "Vandalism",
-    "latitude": 19.071528,
-    "longitude": 73.04154,
-    "timestamp": "2024-06-05 05:30:00",
-    "age_victim": 31,
-    "city": "thane"
-  },
-  {
-    "id": 631,
-    "crime_type": "Theft",
-    "latitude": 19.071128,
-    "longitude": 73.045654,
-    "timestamp": "2024-06-06 06:45:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 632,
-    "crime_type": "Robbery",
-    "latitude": 19.071228,
-    "longitude": 73.04654,
-    "timestamp": "2024-06-07 07:00:00",
-    "age_victim": 36,
-    "city": "thane"
-  },
-  {
-    "id": 633,
-    "crime_type": "Assault",
-    "latitude": 19.0711328,
-    "longitude": 73.042854,
-    "timestamp": "2024-06-08 08:15:00",
-    "age_victim": 27,
-    "city": "thane"
-  },
-  {
-    "id": 634,
-    "crime_type": "Burglary",
-    "latitude": 19.071128,
-    "longitude": 73.041854,
-    "timestamp": "2024-06-09 09:30:00",
-    "age_victim": 34,
-    "city": "thane"
-  },
-  {
-    "id": 635,
-    "crime_type": "Vandalism",
-    "latitude": 19.071228,
-    "longitude": 73.042854,
-    "timestamp": "2024-06-10 10:45:00",
-    "age_victim": 30,
-    "city": "thane"
-  },
-  {
-    "id": 636,
-    "crime_type": "Theft",
-    "latitude": 19.071998,
-    "longitude": 73.049854,
-    "timestamp": "2024-06-11 11:00:00",
-    "age_victim": 28,
-    "city": "thane"
-  },
-  {
-    "id": 637,
-    "crime_type": "Robbery",
-    "latitude": 19.071528,
-    "longitude": 73.045854,
-    "timestamp": "2024-06-12 12:15:00",
-    "age_victim": 40,
-    "city": "thane"
-  },
-  {
-    "id": 638,
-    "crime_type": "Assault",
-    "latitude": 19.255599,
-    "longitude": 72.945399,
-    "timestamp": "2024-06-13 13:30:00",
-    "age_victim": 28,
-    "city": "thane"
-  },
-  {
-    "id": 639,
-    "crime_type": "Burglary",
-    "latitude": 19.255499,
-    "longitude": 72.945499,
-    "timestamp": "2024-06-14 14:45:00",
-    "age_victim": 45,
-    "city": "thane"
-  },
-  {
-    "id": 640,
-    "crime_type": "Vandalism",
-    "latitude": 19.255299,
-    "longitude": 72.945799,
-    "timestamp": "2024-06-15 15:00:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 641,
-    "crime_type": "Theft",
-    "latitude": 19.255199,
-    "longitude": 72.945399,
-    "timestamp": "2024-06-16 16:15:00",
-    "age_victim": 22,
-    "city": "thane"
-  },
-  {
-    "id": 642,
-    "crime_type": "Robbery",
-    "latitude": 19.255299,
-    "longitude": 72.945099,
-    "timestamp": "2024-06-17 17:30:00",
-    "age_victim": 31,
-    "city": "thane"
-  },
-  {
-    "id": 643,
-    "crime_type": "Assault",
-    "latitude": 19.285599,
-    "longitude": 72.915399,
-    "timestamp": "2024-06-18 18:45:00",
-    "age_victim": 40,
-    "city": "thane"
-  },
-  {
-    "id": 644,
-    "crime_type": "Burglary",
-    "latitude": 19.230316,
-    "longitude": 72.98319,
-    "timestamp": "2024-06-19 19:00:00",
-    "age_victim": 36,
-    "city": "thane"
-  },
-  {
-    "id": 645,
-    "crime_type": "Vandalism",
-    "latitude": 19.231316,
-    "longitude": 72.98119,
-    "timestamp": "2024-06-20 20:15:00",
-    "age_victim": 27,
-    "city": "thane"
-  },
-  {
-    "id": 646,
-    "crime_type": "Theft",
-    "latitude": 19.234316,
-    "longitude": 72.98219,
-    "timestamp": "2024-06-21 21:30:00",
-    "age_victim": 33,
-    "city": "thane"
-  },
-  {
-    "id": 647,
-    "crime_type": "Robbery",
-    "latitude": 19.236316,
-    "longitude": 72.98519,
-    "timestamp": "2024-06-22 22:45:00",
-    "age_victim": 38,
-    "city": "thane"
-  },
-  {
-    "id": 648,
-    "crime_type": "Assault",
-    "latitude": 19.232316,
-    "longitude": 72.98219,
-    "timestamp": "2024-06-23 23:00:00",
-    "age_victim": 30,
-    "city": "thane"
-  },
-  {
-    "id": 649,
-    "crime_type": "Burglary",
-    "latitude": 19.195951,
-    "longitude": 73.016858,
-    "timestamp": "2024-06-24 00:15:00",
-    "age_victim": 25,
-    "city": "thane"
-  },
-  {
-    "id": 650,
-    "crime_type": "Vandalism",
-    "latitude": 19.193951,
-    "longitude": 73.015858,
-    "timestamp": "2024-06-25 01:30:00",
-    "age_victim": 42,
-    "city": "thane"
-  },
-  {
-    "id": 651,
-    "crime_type": "Theft",
-    "latitude": 19.191951,
-    "longitude": 73.014858,
-    "timestamp": "2024-06-26 02:45:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 652,
-    "crime_type": "Robbery",
-    "latitude": 19.1912951,
-    "longitude": 73.011858,
-    "timestamp": "2024-06-27 03:00:00",
-    "age_victim": 34,
-    "city": "thane"
-  },
-  {
-    "id": 653,
-    "crime_type": "Assault",
-    "latitude": 19.1932351,
-    "longitude": 73.012858,
-    "timestamp": "2024-06-28 04:15:00",
-    "age_victim": 27,
-    "city": "thane"
-  },
-  {
-    "id": 654,
-    "crime_type": "Burglary",
-    "latitude": 19.138227,
-    "longitude": 72.992993,
-    "timestamp": "2024-06-29 05:30:00",
-    "age_victim": 31,
-    "city": "thane"
-  },
-  {
-    "id": 655,
-    "crime_type": "Vandalism",
-    "latitude": 19.139227,
-    "longitude": 72.999993,
-    "timestamp": "2024-06-30 06:45:00",
-    "age_victim": 28,
-    "city": "thane"
-  },
-  {
-    "id": 656,
-    "crime_type": "Theft",
-    "latitude": 19.133227,
-    "longitude": 72.998993,
-    "timestamp": "2024-07-01 07:00:00",
-    "age_victim": 41,
-    "city": "thane"
-  },
-  {
-    "id": 657,
-    "crime_type": "Robbery",
-    "latitude": 19.132227,
-    "longitude": 72.997993,
-    "timestamp": "2024-07-02 08:15:00",
-    "age_victim": 35,
-    "city": "thane"
-  },
-  {
-    "id": 658,
-    "crime_type": "Assault",
-    "latitude": 19.131227,
-    "longitude": 72.997993,
-    "timestamp": "2024-07-03 09:30:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 659,
-    "crime_type": "Burglary",
-    "latitude": 19.091942,
-    "longitude": 73.012173,
-    "timestamp": "2024-07-04 10:45:00",
-    "age_victim": 38,
-    "city": "thane"
-  },
-  {
-    "id": 660,
-    "crime_type": "Vandalism",
-    "latitude": 19.094942,
-    "longitude": 73.012573,
-    "timestamp": "2024-07-05 11:00:00",
-    "age_victim": 24,
-    "city": "thane"
-  },
-  {
-    "id": 661,
-    "crime_type": "Theft",
-    "latitude": 19.0912942,
-    "longitude": 73.012073,
-    "timestamp": "2024-07-06 12:15:00",
-    "age_victim": 30,
-    "city": "thane"
-  },
-  {
-    "id": 662,
-    "crime_type": "Robbery",
-    "latitude": 19.0922342,
-    "longitude": 73.012173,
-    "timestamp": "2024-07-07 13:30:00",
-    "age_victim": 33,
-    "city": "thane"
-  },
-  {
-    "id": 663,
-    "crime_type": "Assault",
-    "latitude": 19.0923242,
-    "longitude": 73.012173,
-    "timestamp": "2024-07-08 14:45:00",
-    "age_victim": 28,
-    "city": "thane"
-  },
-  {
-    "id": 664,
-    "crime_type": "Burglary",
-    "latitude": 19.0923242,
-    "longitude": 73.012273,
-    "timestamp": "2024-07-09 15:00:00",
-    "age_victim": 37,
-    "city": "thane"
-  },
-  {
-    "id": 665,
-    "crime_type": "Vandalism",
-    "latitude": 19.092942,
-    "longitude": 73.012873,
-    "timestamp": "2024-07-10 16:15:00",
-    "age_victim": 40,
-    "city": "thane"
-  },
-  {
-    "id": 666,
-    "crime_type": "Theft",
-    "latitude": 19.071528,
-    "longitude": 73.04154,
-    "timestamp": "2024-07-11 17:30:00",
-    "age_victim": 31,
-    "city": "thane"
-  },
-  {
-    "id": 667,
-    "crime_type": "Robbery",
-    "latitude": 19.071128,
-    "longitude": 73.045654,
-    "timestamp": "2024-07-12 18:45:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 668,
-    "crime_type": "Assault",
-    "latitude": 19.071228,
-    "longitude": 73.04654,
-    "timestamp": "2024-07-13 19:00:00",
-    "age_victim": 36,
-    "city": "thane"
-  },
-  {
-    "id": 669,
-    "crime_type": "Burglary",
-    "latitude": 19.0711328,
-    "longitude": 73.042854,
-    "timestamp": "2024-07-14 20:15:00",
-    "age_victim": 27,
-    "city": "thane"
-  },
-  {
-    "id": 670,
-    "crime_type": "Vandalism",
-    "latitude": 19.071128,
-    "longitude": 73.041854,
-    "timestamp": "2024-07-15 21:30:00",
-    "age_victim": 34,
-    "city": "thane"
-  },
-  {
-    "id": 671,
-    "crime_type": "Theft",
-    "latitude": 19.071228,
-    "longitude": 73.042854,
-    "timestamp": "2024-07-16 22:45:00",
-    "age_victim": 30,
-    "city": "thane"
-  },
-  {
-    "id": 672,
-    "crime_type": "Robbery",
-    "latitude": 19.071998,
-    "longitude": 73.049854,
-    "timestamp": "2024-07-17 23:00:00",
-    "age_victim": 28,
-    "city": "thane"
-  },
-  {
-    "id": 673,
-    "crime_type": "Assault",
-    "latitude": 19.071528,
-    "longitude": 73.045854,
-    "timestamp": "2024-07-18 00:15:00",
-    "age_victim": 40,
-    "city": "thane"
-  },
-  {
-    "id": 674,
-    "crime_type": "Burglary",
-    "latitude": 19.255599,
-    "longitude": 72.945399,
-    "timestamp": "2024-07-19 01:30:00",
-    "age_victim": 28,
-    "city": "thane"
-  },
-  {
-    "id": 675,
-    "crime_type": "Vandalism",
-    "latitude": 19.255499,
-    "longitude": 72.945499,
-    "timestamp": "2024-07-20 02:45:00",
-    "age_victim": 45,
-    "city": "thane"
-  },
-  {
-    "id": 676,
-    "crime_type": "Theft",
-    "latitude": 19.255299,
-    "longitude": 72.945799,
-    "timestamp": "2024-07-21 03:00:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 677,
-    "crime_type": "Robbery",
-    "latitude": 19.255199,
-    "longitude": 72.945399,
-    "timestamp": "2024-07-22 04:15:00",
-    "age_victim": 22,
-    "city": "thane"
-  },
-  {
-    "id": 678,
-    "crime_type": "Assault",
-    "latitude": 19.255299,
-    "longitude": 72.945099,
-    "timestamp": "2024-07-23 05:30:00",
-    "age_victim": 31,
-    "city": "thane"
-  },
-  {
-    "id": 679,
-    "crime_type": "Burglary",
-    "latitude": 19.285599,
-    "longitude": 72.915399,
-    "timestamp": "2024-07-24 06:45:00",
-    "age_victim": 40,
-    "city": "thane"
-  },
-  {
-    "id": 680,
-    "crime_type": "Vandalism",
-    "latitude": 19.230316,
-    "longitude": 72.98319,
-    "timestamp": "2024-07-25 07:00:00",
-    "age_victim": 36,
-    "city": "thane"
-  },
-  {
-    "id": 681,
-    "crime_type": "Theft",
-    "latitude": 19.231316,
-    "longitude": 72.98119,
-    "timestamp": "2024-07-26 08:15:00",
-    "age_victim": 27,
-    "city": "thane"
-  },
-  {
-    "id": 682,
-    "crime_type": "Robbery",
-    "latitude": 19.234316,
-    "longitude": 72.98219,
-    "timestamp": "2024-07-27 09:30:00",
-    "age_victim": 33,
-    "city": "thane"
-  },
-  {
-    "id": 683,
-    "crime_type": "Assault",
-    "latitude": 19.236316,
-    "longitude": 72.98519,
-    "timestamp": "2024-07-28 10:45:00",
-    "age_victim": 38,
-    "city": "thane"
-  },
-  {
-    "id": 684,
-    "crime_type": "Burglary",
-    "latitude": 19.232316,
-    "longitude": 72.98219,
-    "timestamp": "2024-07-29 11:00:00",
-    "age_victim": 30,
-    "city": "thane"
-  },
-  {
-    "id": 685,
-    "crime_type": "Vandalism",
-    "latitude": 19.195951,
-    "longitude": 73.016858,
-    "timestamp": "2024-07-30 12:15:00",
-    "age_victim": 25,
-    "city": "thane"
-  },
-  {
-    "id": 686,
-    "crime_type": "Theft",
-    "latitude": 19.193951,
-    "longitude": 73.015858,
-    "timestamp": "2024-07-31 13:30:00",
-    "age_victim": 42,
-    "city": "thane"
-  },
-  {
-    "id": 687,
-    "crime_type": "Robbery",
-    "latitude": 19.191951,
-    "longitude": 73.014858,
-    "timestamp": "2024-08-01 14:45:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 688,
-    "crime_type": "Assault",
-    "latitude": 19.1912951,
-    "longitude": 73.011858,
-    "timestamp": "2024-08-02 15:00:00",
-    "age_victim": 34,
-    "city": "thane"
-  },
-  {
-    "id": 689,
-    "crime_type": "Burglary",
-    "latitude": 19.1932351,
-    "longitude": 73.012858,
-    "timestamp": "2024-08-03 16:15:00",
-    "age_victim": 27,
-    "city": "thane"
-  },
-  {
-    "id": 690,
-    "crime_type": "Vandalism",
-    "latitude": 19.138227,
-    "longitude": 72.992993,
-    "timestamp": "2024-08-04 17:30:00",
-    "age_victim": 31,
-    "city": "thane"
-  },
-  {
-    "id": 691,
-    "crime_type": "Theft",
-    "latitude": 19.139227,
-    "longitude": 72.999993,
-    "timestamp": "2024-08-05 18:45:00",
-    "age_victim": 28,
-    "city": "thane"
-  },
-  {
-    "id": 692,
-    "crime_type": "Robbery",
-    "latitude": 19.133227,
-    "longitude": 72.998993,
-    "timestamp": "2024-08-06 19:00:00",
-    "age_victim": 41,
-    "city": "thane"
-  },
-  {
-    "id": 693,
-    "crime_type": "Assault",
-    "latitude": 19.132227,
-    "longitude": 72.997993,
-    "timestamp": "2024-08-07 20:15:00",
-    "age_victim": 35,
-    "city": "thane"
-  },
-  {
-    "id": 694,
-    "crime_type": "Burglary",
-    "latitude": 19.131227,
-    "longitude": 72.997993,
-    "timestamp": "2024-08-08 21:30:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 695,
-    "crime_type": "Vandalism",
-    "latitude": 19.091942,
-    "longitude": 73.012173,
-    "timestamp": "2024-08-09 22:45:00",
-    "age_victim": 38,
-    "city": "thane"
-  },
-  {
-    "id": 696,
-    "crime_type": "Theft",
-    "latitude": 19.094942,
-    "longitude": 73.012573,
-    "timestamp": "2024-08-10 23:00:00",
-    "age_victim": 24,
-    "city": "thane"
-  },
-  {
-    "id": 697,
-    "crime_type": "Robbery",
-    "latitude": 19.0912942,
-    "longitude": 73.012073,
-    "timestamp": "2024-08-11 00:15:00",
-    "age_victim": 30,
-    "city": "thane"
-  },
-  {
-    "id": 698,
-    "crime_type": "Assault",
-    "latitude": 19.0922342,
-    "longitude": 73.012173,
-    "timestamp": "2024-08-12 01:30:00",
-    "age_victim": 33,
-    "city": "thane"
-  },
-  {
-    "id": 699,
-    "crime_type": "Burglary",
-    "latitude": 19.0923242,
-    "longitude": 73.012173,
-    "timestamp": "2024-08-13 02:45:00",
-    "age_victim": 28,
-    "city": "thane"
-  },
-  {
-    "id": 700,
-    "crime_type": "Vandalism",
-    "latitude": 19.0923242,
-    "longitude": 73.012273,
-    "timestamp": "2024-08-14 03:00:00",
-    "age_victim": 37,
-    "city": "thane"
-  },
-  {
-    "id": 701,
-    "crime_type": "Theft",
-    "latitude": 19.092942,
-    "longitude": 73.012873,
-    "timestamp": "2024-08-15 04:15:00",
-    "age_victim": 40,
-    "city": "thane"
-  },
-  {
-    "id": 702,
-    "crime_type": "Robbery",
-    "latitude": 19.071528,
-    "longitude": 73.04154,
-    "timestamp": "2024-08-16 05:30:00",
-    "age_victim": 31,
-    "city": "thane"
-  },
-  {
-    "id": 703,
-    "crime_type": "Assault",
-    "latitude": 19.071128,
-    "longitude": 73.045654,
-    "timestamp": "2024-08-17 06:45:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 704,
-    "crime_type": "Burglary",
-    "latitude": 19.071228,
-    "longitude": 73.04654,
-    "timestamp": "2024-08-18 07:00:00",
-    "age_victim": 36,
-    "city": "thane"
-  },
-  {
-    "id": 705,
-    "crime_type": "Vandalism",
-    "latitude": 19.0711328,
-    "longitude": 73.042854,
-    "timestamp": "2024-08-19 08:15:00",
-    "age_victim": 27,
-    "city": "thane"
-  },
-  {
-    "id": 706,
-    "crime_type": "Theft",
-    "latitude": 19.071128,
-    "longitude": 73.041854,
-    "timestamp": "2024-08-20 09:30:00",
-    "age_victim": 34,
-    "city": "thane"
-  },
-  {
-    "id": 707,
-    "crime_type": "Robbery",
-    "latitude": 19.071228,
-    "longitude": 73.042854,
-    "timestamp": "2024-08-21 10:45:00",
-    "age_victim": 30,
-    "city": "thane"
-  },
-  {
-    "id": 708,
-    "crime_type": "Assault",
-    "latitude": 19.071998,
-    "longitude": 73.049854,
-    "timestamp": "2024-08-22 11:00:00",
-    "age_victim": 28,
-    "city": "thane  "
-  },
-  {
-    "id": 709,
-    "crime_type": "Burglary",
-    "latitude": 19.071528,
-    "longitude": 73.045854,
-    "timestamp": "2024-08-23 12:15:00",
-    "age_victim": 40,
-    "city": "thane  "
-  },
-  {
-    "id": 710,
-    "crime_type": "Vandalism",
-    "latitude": 19.255599,
-    "longitude": 72.945399,
-    "timestamp": "2024-08-24 13:30:00",
-    "age_victim": 28,
-    "city": "thane  "
-  },
-  {
-    "id": 711,
-    "crime_type": "Theft",
-    "latitude": 19.255499,
-    "longitude": 72.945499,
-    "timestamp": "2024-08-25 14:45:00",
-    "age_victim": 45,
-    "city": "thane  "
-  },
-  {
-    "id": 712,
-    "crime_type": "Robbery",
-    "latitude": 19.255299,
-    "longitude": 72.945799,
-    "timestamp": "2024-08-26 15:00:00",
-    "age_victim": 29,
-    "city": "thane  "
-  },
-  {
-    "id": 713,
-    "crime_type": "Assault",
-    "latitude": 19.255199,
-    "longitude": 72.945399,
-    "timestamp": "2024-08-27 16:15:00",
-    "age_victim": 22,
-    "city": "thane  "
-  },
-  {
-    "id": 714,
-    "crime_type": "Burglary",
-    "latitude": 19.255299,
-    "longitude": 72.945099,
-    "timestamp": "2024-08-28 17:30:00",
-    "age_victim": 31,
-    "city": "thane  "
-  },
-  {
-    "id": 715,
-    "crime_type": "Vandalism",
-    "latitude": 19.285599,
-    "longitude": 72.915399,
-    "timestamp": "2024-08-29 18:45:00",
-    "age_victim": 40,
-    "city": "thane  "
-  },
-  {
-    "id": 716,
-    "crime_type": "Theft",
-    "latitude": 19.230316,
-    "longitude": 72.98319,
-    "timestamp": "2024-08-30 19:00:00",
-    "age_victim": 36,
-    "city": "thane  "
-  },
-  {
-    "id": 717,
-    "crime_type": "Robbery",
-    "latitude": 19.231316,
-    "longitude": 72.98119,
-    "timestamp": "2024-08-31 20:15:00",
-    "age_victim": 27,
-    "city": "thane  "
-  },
-  {
-    "id": 718,
-    "crime_type": "Assault",
-    "latitude": 19.234316,
-    "longitude": 72.98219,
-    "timestamp": "2024-09-01 21:30:00",
-    "age_victim": 33,
-    "city": "thane  "
-  },
-  {
-    "id": 719,
-    "crime_type": "Burglary",
-    "latitude": 19.236316,
-    "longitude": 72.98519,
-    "timestamp": "2024-09-02 22:45:00",
-    "age_victim": 38,
-    "city": "thane  "
-  },
-  {
-    "id": 720,
-    "crime_type": "Vandalism",
-    "latitude": 19.232316,
-    "longitude": 72.98219,
-    "timestamp": "2024-09-03 23:00:00",
-    "age_victim": 30,
-    "city": "thane  "
-  },
-  {
-    "id": 721,
-    "crime_type": "Theft",
-    "latitude": 19.195951,
-    "longitude": 73.016858,
-    "timestamp": "2024-09-04 00:15:00",
-    "age_victim": 25,
-    "city": "thane  "
-  },
-  {
-    "id": 722,
-    "crime_type": "Robbery",
-    "latitude": 19.193951,
-    "longitude": 73.015858,
-    "timestamp": "2024-09-05 01:30:00",
-    "age_victim": 42,
-    "city": "thane  "
-  },
-  {
-    "id": 723,
-    "crime_type": "Assault",
-    "latitude": 19.191951,
-    "longitude": 73.014858,
-    "timestamp": "2024-09-06 02:45:00",
-    "age_victim": 29,
-    "city": "thane  "
-  },
-  {
-    "id": 724,
-    "crime_type": "Burglary",
-    "latitude": 19.1912951,
-    "longitude": 73.011858,
-    "timestamp": "2024-09-07 03:00:00",
-    "age_victim": 34,
-    "city": "thane  "
-  },
-  {
-    "id": 725,
-    "crime_type": "Vandalism",
-    "latitude": 19.1932351,
-    "longitude": 73.012858,
-    "timestamp": "2024-09-08 04:15:00",
-    "age_victim": 27,
-    "city": "thane  "
-  },
-  {
-    "id": 726,
-    "crime_type": "Theft",
-    "latitude": 19.138227,
-    "longitude": 72.992993,
-    "timestamp": "2024-09-09 05:30:00",
-    "age_victim": 31,
-    "city": "thane  "
-  },
-  {
-    "id": 727,
-    "crime_type": "Robbery",
-    "latitude": 19.139227,
-    "longitude": 72.999993,
-    "timestamp": "2024-09-10 06:45:00",
-    "age_victim": 28,
-    "city": "thane  "
-  },
-  {
-    "id": 728,
-    "crime_type": "Assault",
-    "latitude": 19.133227,
-    "longitude": 72.998993,
-    "timestamp": "2024-09-11 07:00:00",
-    "age_victim": 41,
-    "city": "thane  "
-  },
-  {
-    "id": 729,
-    "crime_type": "Burglary",
-    "latitude": 19.132227,
-    "longitude": 72.997993,
-    "timestamp": "2024-09-12 08:15:00",
-    "age_victim": 35,
-    "city": "thane  "
-  },
-  {
-    "id": 730,
-    "crime_type": "Vandalism",
-    "latitude": 19.131227,
-    "longitude": 72.997993,
-    "timestamp": "2024-09-13 09:30:00",
-    "age_victim": 29,
-    "city": "thane  "
-  },
-  {
-    "id": 731,
-    "crime_type": "Theft",
-    "latitude": 19.091942,
-    "longitude": 73.012173,
-    "timestamp": "2024-09-14 10:45:00",
-    "age_victim": 38,
-    "city": "thane  "
-  },
-  {
-    "id": 732,
-    "crime_type": "Robbery",
-    "latitude": 19.094942,
-    "longitude": 73.012573,
-    "timestamp": "2024-09-15 11:00:00",
-    "age_victim": 24,
-    "city": "thane  "
-  },
-  {
-    "id": 733,
-    "crime_type": "Assault",
-    "latitude": 19.0912942,
-    "longitude": 73.012073,
-    "timestamp": "2024-09-16 12:15:00",
-    "age_victim": 30,
-    "city": "thane  "
-  },
-  {
-    "id": 734,
-    "crime_type": "Burglary",
-    "latitude": 19.0922342,
-    "longitude": 73.012173,
-    "timestamp": "2024-09-17 13:30:00",
-    "age_victim": 33,
-    "city": "thane  "
-  },
-  {
-    "id": 735,
-    "crime_type": "Vandalism",
-    "latitude": 19.0923242,
-    "longitude": 73.012173,
-    "timestamp": "2024-09-18 14:45:00",
-    "age_victim": 28,
-    "city": "thane  "
-  },
-  {
-    "id": 736,
-    "crime_type": "Theft",
-    "latitude": 19.0923242,
-    "longitude": 73.012273,
-    "timestamp": "2024-09-19 15:00:00",
-    "age_victim": 37,
-    "city": "thane  "
-  },
-  {
-    "id": 737,
-    "crime_type": "Robbery",
-    "latitude": 19.092942,
-    "longitude": 73.012873,
-    "timestamp": "2024-09-20 16:15:00",
-    "age_victim": 40,
-    "city": "thane  "
-  },
-  {
-    "id": 738,
-    "crime_type": "Assault",
-    "latitude": 19.071528,
-    "longitude": 73.04154,
-    "timestamp": "2024-09-21 17:30:00",
-    "age_victim": 31,
-    "city": "thane  "
-  },
-  {
-    "id": 739,
-    "crime_type": "Burglary",
-    "latitude": 19.071128,
-    "longitude": 73.045654,
-    "timestamp": "2024-09-22 18:45:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 740,
-    "crime_type": "Vandalism",
-    "latitude": 19.071228,
-    "longitude": 73.04654,
-    "timestamp": "2024-09-23 19:00:00",
-    "age_victim": 36,
-    "city": "thane"
-  },
-  {
-    "id": 741,
-    "crime_type": "Theft",
-    "latitude": 19.0711328,
-    "longitude": 73.042854,
-    "timestamp": "2024-09-24 20:15:00",
-    "age_victim": 27,
-    "city": "thane"
-  },
-  {
-    "id": 742,
-    "crime_type": "Robbery",
-    "latitude": 19.071128,
-    "longitude": 73.041854,
-    "timestamp": "2024-09-25 21:30:00",
-    "age_victim": 34,
-    "city": "thane"
-  },
-  {
-    "id": 743,
-    "crime_type": "Assault",
-    "latitude": 19.071228,
-    "longitude": 73.042854,
-    "timestamp": "2024-09-26 22:45:00",
-    "age_victim": 30,
-    "city": "thane"
-  },
-  {
-    "id": 744,
-    "crime_type": "Burglary",
-    "latitude": 19.071998,
-    "longitude": 73.049854,
-    "timestamp": "2024-09-27 23:00:00",
-    "age_victim": 28,
-    "city": "thane"
-  },
-  {
-    "id": 745,
-    "crime_type": "Vandalism",
-    "latitude": 19.071528,
-    "longitude": 73.045854,
-    "timestamp": "2024-09-28 00:15:00",
-    "age_victim": 40,
-    "city": "thane"
-  },
-  {
-    "id": 746,
-    "crime_type": "Theft",
-    "latitude": 19.255599,
-    "longitude": 72.945399,
-    "timestamp": "2024-09-29 01:30:00",
-    "age_victim": 28,
-    "city": "thane"
-  },
-  {
-    "id": 747,
-    "crime_type": "Robbery",
-    "latitude": 19.255499,
-    "longitude": 72.945499,
-    "timestamp": "2024-09-30 02:45:00",
-    "age_victim": 45,
-    "city": "thane"
-  },
-  {
-    "id": 748,
-    "crime_type": "Assault",
-    "latitude": 19.255299,
-    "longitude": 72.945799,
-    "timestamp": "2024-10-01 03:00:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 749,
-    "crime_type": "Burglary",
-    "latitude": 19.255199,
-    "longitude": 72.945399,
-    "timestamp": "2024-10-02 04:15:00",
-    "age_victim": 22,
-    "city": "thane"
-  },
-  {
-    "id": 750,
-    "crime_type": "Vandalism",
-    "latitude": 19.255299,
-    "longitude": 72.945099,
-    "timestamp": "2024-10-03 05:30:00",
-    "age_victim": 31,
-    "city": "thane"
-  },
-  {
-    "id": 751,
-    "crime_type": "Theft",
-    "latitude": 19.285599,
-    "longitude": 72.915399,
-    "timestamp": "2024-10-04 06:45:00",
-    "age_victim": 40,
-    "city": "thane"
-  },
-  {
-    "id": 752,
-    "crime_type": "Robbery",
-    "latitude": 19.230316,
-    "longitude": 72.98319,
-    "timestamp": "2024-10-05 07:00:00",
-    "age_victim": 36,
-    "city": "thane"
-  },
-  {
-    "id": 753,
-    "crime_type": "Assault",
-    "latitude": 19.231316,
-    "longitude": 72.98119,
-    "timestamp": "2024-10-06 08:15:00",
-    "age_victim": 27,
-    "city": "thane"
-  },
-  {
-    "id": 754,
-    "crime_type": "Burglary",
-    "latitude": 19.234316,
-    "longitude": 72.98219,
-    "timestamp": "2024-10-07 09:30:00",
-    "age_victim": 33,
-    "city": "thane"
-  },
-  {
-    "id": 755,
-    "crime_type": "Vandalism",
-    "latitude": 19.236316,
-    "longitude": 72.98519,
-    "timestamp": "2024-10-08 10:45:00",
-    "age_victim": 38,
-    "city": "thane"
-  },
-  {
-    "id": 756,
-    "crime_type": "Theft",
-    "latitude": 19.232316,
-    "longitude": 72.98219,
-    "timestamp": "2024-10-09 11:00:00",
-    "age_victim": 30,
-    "city": "thane"
-  },
-  {
-    "id": 757,
-    "crime_type": "Robbery",
-    "latitude": 19.195951,
-    "longitude": 73.016858,
-    "timestamp": "2024-10-10 12:15:00",
-    "age_victim": 25,
-    "city": "thane"
-  },
-  {
-    "id": 758,
-    "crime_type": "Assault",
-    "latitude": 19.193951,
-    "longitude": 73.015858,
-    "timestamp": "2024-10-11 13:30:00",
-    "age_victim": 42,
-    "city": "thane"
-  },
-  {
-    "id": 759,
-    "crime_type": "Burglary",
-    "latitude": 19.191951,
-    "longitude": 73.014858,
-    "timestamp": "2024-10-12 14:45:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 760,
-    "crime_type": "Vandalism",
-    "latitude": 19.1912951,
-    "longitude": 73.011858,
-    "timestamp": "2024-10-13 15:00:00",
-    "age_victim": 34,
-    "city": "thane"
-  },
-  {
-    "id": 761,
-    "crime_type": "Theft",
-    "latitude": 19.1932351,
-    "longitude": 73.012858,
-    "timestamp": "2024-10-14 16:15:00",
-    "age_victim": 27,
-    "city": "thane"
-  },
-  {
-    "id": 762,
-    "crime_type": "Robbery",
-    "latitude": 19.138227,
-    "longitude": 72.992993,
-    "timestamp": "2024-10-15 17:30:00",
-    "age_victim": 31,
-    "city": "thane"
-  },
-  {
-    "id": 763,
-    "crime_type": "Assault",
-    "latitude": 19.139227,
-    "longitude": 72.999993,
-    "timestamp": "2024-10-16 18:45:00",
-    "age_victim": 28,
-    "city": "thane"
-  },
-  {
-    "id": 764,
-    "crime_type": "Burglary",
-    "latitude": 19.133227,
-    "longitude": 72.998993,
-    "timestamp": "2024-10-17 19:00:00",
-    "age_victim": 41,
-    "city": "thane"
-  },
-  {
-    "id": 765,
-    "crime_type": "Vandalism",
-    "latitude": 19.132227,
-    "longitude": 72.997993,
-    "timestamp": "2024-10-18 20:15:00",
-    "age_victim": 35,
-    "city": "thane"
-  },
-  {
-    "id": 766,
-    "crime_type": "Theft",
-    "latitude": 19.131227,
-    "longitude": 72.997993,
-    "timestamp": "2024-10-19 21:30:00",
-    "age_victim": 29,
-    "city": "thane"
-  },
-  {
-    "id": 767,
-    "crime_type": "Robbery",
-    "latitude": 19.091942,
-    "longitude": 73.012173,
-    "timestamp": "2024-10-20 22:45:00",
-    "age_victim": 38,
-    "city": "thane"
-  },
-  {
-    "id": 768,
-    "crime_type": "Assault",
-    "latitude": 19.094942,
-    "longitude": 73.012573,
-    "timestamp": "2024-10-21 23:00:00",
-    "age_victim": 24,
-    "city": "thane"
-  },
-  {
-    "id": 769,
-    "crime_type": "Burglary",
-    "latitude": 19.0912942,
-    "longitude": 73.012073,
-    "timestamp": "2024-10-22 00:15:00",
-    "age_victim": 30,
-    "city": "thane"
-  },
-  {
     "id": 1,
     "crime_type": "Theft",
     "latitude": 18.970685,
@@ -4282,5 +1798,2840 @@
   "timestamp": "2024-11-30 00:23:57",
   "age_victim": 37,
   "city": "Bangalore"
+},
+{
+  "id": 401,
+  "crime_type": "Robbery",
+  "latitude": 19.1806,
+  "longitude": 72.995178,
+  "timestamp": "2024-11-29 11:25:30",
+  "age_victim": 34,
+  "city": "thane"
+},
+{
+  "id": 402,
+  "crime_type": "Robbery",
+  "latitude": 19.156516,
+  "longitude": 72.986817,
+  "timestamp": "2024-11-25 11:25:30",
+  "age_victim": 41,
+  "city": "thane"
+},
+{
+  "id": 403,
+  "crime_type": "Robbery",
+  "latitude": 19.153482,
+  "longitude": 72.991209,
+  "timestamp": "2024-11-12 11:25:30",
+  "age_victim": 58,
+  "city": "thane"
+},
+{
+  "id": 404,
+  "crime_type": "Assault",
+  "latitude": 19.266489,
+  "longitude": 72.972614,
+  "timestamp": "2024-12-04 11:25:30",
+  "age_victim": 28,
+  "city": "thane"
+},
+{
+  "id": 405,
+  "crime_type": "Robbery",
+  "latitude": 19.154249,
+  "longitude": 73.022964,
+  "timestamp": "2024-12-08 11:25:30",
+  "age_victim": 43,
+  "city": "thane"
+},
+{
+  "id": 406,
+  "crime_type": "Assault",
+  "latitude": 19.223921,
+  "longitude": 72.971438,
+  "timestamp": "2024-11-17 11:25:30",
+  "age_victim": 59,
+  "city": "thane"
+},
+{
+  "id": 407,
+  "crime_type": "Vandalism",
+  "latitude": 19.184024,
+  "longitude": 72.985796,
+  "timestamp": "2024-12-08 11:25:30",
+  "age_victim": 28,
+  "city": "thane"
+},
+{
+  "id": 408,
+  "crime_type": "Vandalism",
+  "latitude": 19.235682,
+  "longitude": 72.999188,
+  "timestamp": "2024-11-14 11:25:30",
+  "age_victim": 62,
+  "city": "thane"
+},
+{
+  "id": 409,
+  "crime_type": "Vandalism",
+  "latitude": 19.185431,
+  "longitude": 73.018509,
+  "timestamp": "2024-11-19 11:25:30",
+  "age_victim": 60,
+  "city": "thane"
+},
+{
+  "id": 410,
+  "crime_type": "Robbery",
+  "latitude": 19.158152,
+  "longitude": 73.029701,
+  "timestamp": "2024-11-18 11:25:30",
+  "age_victim": 24,
+  "city": "thane"
+},
+{
+  "id": 411,
+  "crime_type": "Vandalism",
+  "latitude": 19.22757,
+  "longitude": 72.968198,
+  "timestamp": "2024-11-30 11:25:30",
+  "age_victim": 29,
+  "city": "thane"
+},
+{
+  "id": 412,
+  "crime_type": "Assault",
+  "latitude": 19.189014,
+  "longitude": 73.013277,
+  "timestamp": "2024-12-08 11:25:30",
+  "age_victim": 27,
+  "city": "thane"
+},
+{
+  "id": 413,
+  "crime_type": "Assault",
+  "latitude": 19.17988,
+  "longitude": 73.004473,
+  "timestamp": "2024-11-28 11:25:30",
+  "age_victim": 45,
+  "city": "thane"
+},
+{
+  "id": 414,
+  "crime_type": "Robbery",
+  "latitude": 19.259681,
+  "longitude": 72.963746,
+  "timestamp": "2024-11-30 11:25:30",
+  "age_victim": 20,
+  "city": "thane"
+},
+{
+  "id": 415,
+  "crime_type": "Robbery",
+  "latitude": 19.160595,
+  "longitude": 73.015549,
+  "timestamp": "2024-11-13 11:25:30",
+  "age_victim": 51,
+  "city": "thane"
+},
+{
+  "id": 416,
+  "crime_type": "Burglary",
+  "latitude": 19.154014,
+  "longitude": 73.027369,
+  "timestamp": "2024-12-06 11:25:30",
+  "age_victim": 57,
+  "city": "thane"
+},
+{
+  "id": 417,
+  "crime_type": "Theft",
+  "latitude": 19.190972,
+  "longitude": 73.018947,
+  "timestamp": "2024-12-02 11:25:30",
+  "age_victim": 59,
+  "city": "thane"
+},
+{
+  "id": 418,
+  "crime_type": "Vandalism",
+  "latitude": 19.193612,
+  "longitude": 72.996283,
+  "timestamp": "2024-12-09 11:25:30",
+  "age_victim": 47,
+  "city": "thane"
+},
+{
+  "id": 419,
+  "crime_type": "Theft",
+  "latitude": 19.193649,
+  "longitude": 73.000548,
+  "timestamp": "2024-12-07 11:25:30",
+  "age_victim": 26,
+  "city": "thane"
+},
+{
+  "id": 420,
+  "crime_type": "Theft",
+  "latitude": 19.192957,
+  "longitude": 73.015259,
+  "timestamp": "2024-12-07 11:25:30",
+  "age_victim": 63,
+  "city": "thane"
+},
+{
+  "id": 421,
+  "crime_type": "Robbery",
+  "latitude": 19.177562,
+  "longitude": 73.009577,
+  "timestamp": "2024-11-14 11:25:30",
+  "age_victim": 55,
+  "city": "thane"
+},
+{
+  "id": 422,
+  "crime_type": "Burglary",
+  "latitude": 19.275379,
+  "longitude": 72.964078,
+  "timestamp": "2024-11-20 11:25:30",
+  "age_victim": 62,
+  "city": "thane"
+},
+{
+  "id": 423,
+  "crime_type": "Robbery",
+  "latitude": 19.232227,
+  "longitude": 72.995569,
+  "timestamp": "2024-12-09 11:25:30",
+  "age_victim": 64,
+  "city": "thane"
+},
+{
+  "id": 424,
+  "crime_type": "Vandalism",
+  "latitude": 19.157264,
+  "longitude": 72.987335,
+  "timestamp": "2024-12-03 11:25:30",
+  "age_victim": 37,
+  "city": "thane"
+},
+{
+  "id": 425,
+  "crime_type": "Vandalism",
+  "latitude": 19.159312,
+  "longitude": 73.016311,
+  "timestamp": "2024-12-02 11:25:30",
+  "age_victim": 64,
+  "city": "thane"
+},
+{
+  "id": 426,
+  "crime_type": "Theft",
+  "latitude": 19.265545,
+  "longitude": 72.962307,
+  "timestamp": "2024-11-15 11:25:30",
+  "age_victim": 60,
+  "city": "thane"
+},
+{
+  "id": 427,
+  "crime_type": "Burglary",
+  "latitude": 19.23524,
+  "longitude": 72.96988,
+  "timestamp": "2024-12-03 11:25:30",
+  "age_victim": 62,
+  "city": "thane"
+},
+{
+  "id": 428,
+  "crime_type": "Assault",
+  "latitude": 19.26841,
+  "longitude": 72.96261,
+  "timestamp": "2024-12-06 11:25:30",
+  "age_victim": 25,
+  "city": "thane"
+},
+{
+  "id": 429,
+  "crime_type": "Burglary",
+  "latitude": 19.179123,
+  "longitude": 73.012276,
+  "timestamp": "2024-11-20 11:25:30",
+  "age_victim": 44,
+  "city": "thane"
+},
+{
+  "id": 430,
+  "crime_type": "Burglary",
+  "latitude": 19.194384,
+  "longitude": 72.987514,
+  "timestamp": "2024-12-07 11:25:30",
+  "age_victim": 60,
+  "city": "thane"
+},
+{
+  "id": 431,
+  "crime_type": "Vandalism",
+  "latitude": 19.243,
+  "longitude": 72.991788,
+  "timestamp": "2024-11-11 11:25:30",
+  "age_victim": 25,
+  "city": "thane"
+},
+{
+  "id": 432,
+  "crime_type": "Theft",
+  "latitude": 19.182271,
+  "longitude": 72.997299,
+  "timestamp": "2024-11-16 11:25:30",
+  "age_victim": 28,
+  "city": "thane"
+},
+{
+  "id": 433,
+  "crime_type": "Assault",
+  "latitude": 19.187908,
+  "longitude": 73.011989,
+  "timestamp": "2024-11-15 11:25:30",
+  "age_victim": 65,
+  "city": "thane"
+},
+{
+  "id": 434,
+  "crime_type": "Burglary",
+  "latitude": 19.14709,
+  "longitude": 72.987673,
+  "timestamp": "2024-11-26 11:25:30",
+  "age_victim": 36,
+  "city": "thane"
+},
+{
+  "id": 435,
+  "crime_type": "Robbery",
+  "latitude": 19.185038,
+  "longitude": 72.992334,
+  "timestamp": "2024-12-09 11:25:30",
+  "age_victim": 43,
+  "city": "thane"
+},
+{
+  "id": 436,
+  "crime_type": "Vandalism",
+  "latitude": 19.16431,
+  "longitude": 73.025654,
+  "timestamp": "2024-11-13 11:25:30",
+  "age_victim": 27,
+  "city": "thane"
+},
+{
+  "id": 437,
+  "crime_type": "Burglary",
+  "latitude": 19.176981,
+  "longitude": 73.010237,
+  "timestamp": "2024-11-30 11:25:30",
+  "age_victim": 32,
+  "city": "thane"
+},
+{
+  "id": 438,
+  "crime_type": "Robbery",
+  "latitude": 19.14227,
+  "longitude": 73.00116,
+  "timestamp": "2024-12-03 11:25:30",
+  "age_victim": 32,
+  "city": "thane"
+},
+{
+  "id": 439,
+  "crime_type": "Theft",
+  "latitude": 19.175022,
+  "longitude": 73.006938,
+  "timestamp": "2024-11-15 11:25:30",
+  "age_victim": 31,
+  "city": "thane"
+},
+{
+  "id": 440,
+  "crime_type": "Theft",
+  "latitude": 19.233191,
+  "longitude": 72.973907,
+  "timestamp": "2024-11-17 11:25:30",
+  "age_victim": 25,
+  "city": "thane"
+},
+{
+  "id": 441,
+  "crime_type": "Burglary",
+  "latitude": 19.244545,
+  "longitude": 72.993063,
+  "timestamp": "2024-11-29 11:25:30",
+  "age_victim": 57,
+  "city": "thane"
+},
+{
+  "id": 442,
+  "crime_type": "Assault",
+  "latitude": 19.26441,
+  "longitude": 72.964546,
+  "timestamp": "2024-12-10 11:25:30",
+  "age_victim": 18,
+  "city": "thane"
+},
+{
+  "id": 443,
+  "crime_type": "Vandalism",
+  "latitude": 19.158721,
+  "longitude": 73.024503,
+  "timestamp": "2024-11-11 11:25:30",
+  "age_victim": 50,
+  "city": "thane"
+},
+{
+  "id": 444,
+  "crime_type": "Theft",
+  "latitude": 19.272969,
+  "longitude": 72.973321,
+  "timestamp": "2024-11-23 11:25:30",
+  "age_victim": 46,
+  "city": "thane"
+},
+{
+  "id": 445,
+  "crime_type": "Robbery",
+  "latitude": 19.238371,
+  "longitude": 72.960951,
+  "timestamp": "2024-11-15 11:25:30",
+  "age_victim": 23,
+  "city": "thane"
+},
+{
+  "id": 446,
+  "crime_type": "Theft",
+  "latitude": 19.235875,
+  "longitude": 72.966871,
+  "timestamp": "2024-11-16 11:25:30",
+  "age_victim": 58,
+  "city": "thane"
+},
+{
+  "id": 447,
+  "crime_type": "Vandalism",
+  "latitude": 19.237415,
+  "longitude": 72.985972,
+  "timestamp": "2024-12-04 11:25:30",
+  "age_victim": 20,
+  "city": "thane"
+},
+{
+  "id": 448,
+  "crime_type": "Assault",
+  "latitude": 19.159982,
+  "longitude": 73.028852,
+  "timestamp": "2024-12-10 11:25:30",
+  "age_victim": 37,
+  "city": "thane"
+},
+{
+  "id": 449,
+  "crime_type": "Theft",
+  "latitude": 19.221712,
+  "longitude": 72.960952,
+  "timestamp": "2024-11-25 11:25:30",
+  "age_victim": 24,
+  "city": "thane"
+},
+{
+  "id": 450,
+  "crime_type": "Theft",
+  "latitude": 19.151567,
+  "longitude": 73.001105,
+  "timestamp": "2024-11-22 11:25:30",
+  "age_victim": 52,
+  "city": "thane"
+},
+{
+  "id": 451,
+  "crime_type": "Theft",
+  "latitude": 19.23747,
+  "longitude": 72.966132,
+  "timestamp": "2024-11-19 11:25:30",
+  "age_victim": 34,
+  "city": "thane"
+},
+{
+  "id": 452,
+  "crime_type": "Theft",
+  "latitude": 19.27426,
+  "longitude": 72.973793,
+  "timestamp": "2024-11-21 11:25:30",
+  "age_victim": 51,
+  "city": "thane"
+},
+{
+  "id": 453,
+  "crime_type": "Vandalism",
+  "latitude": 19.179422,
+  "longitude": 73.010623,
+  "timestamp": "2024-11-19 11:25:30",
+  "age_victim": 18,
+  "city": "thane"
+},
+{
+  "id": 454,
+  "crime_type": "Theft",
+  "latitude": 19.267236,
+  "longitude": 72.962129,
+  "timestamp": "2024-11-27 11:25:30",
+  "age_victim": 64,
+  "city": "thane"
+},
+{
+  "id": 455,
+  "crime_type": "Vandalism",
+  "latitude": 19.189399,
+  "longitude": 73.003476,
+  "timestamp": "2024-11-26 11:25:30",
+  "age_victim": 46,
+  "city": "thane"
+},
+{
+  "id": 456,
+  "crime_type": "Assault",
+  "latitude": 19.232679,
+  "longitude": 72.991107,
+  "timestamp": "2024-12-02 11:25:30",
+  "age_victim": 29,
+  "city": "thane"
+},
+{
+  "id": 457,
+  "crime_type": "Burglary",
+  "latitude": 19.239581,
+  "longitude": 72.964579,
+  "timestamp": "2024-11-30 11:25:30",
+  "age_victim": 64,
+  "city": "thane"
+},
+{
+  "id": 458,
+  "crime_type": "Robbery",
+  "latitude": 19.178983,
+  "longitude": 73.007928,
+  "timestamp": "2024-11-13 11:25:30",
+  "age_victim": 25,
+  "city": "thane"
+},
+{
+  "id": 459,
+  "crime_type": "Burglary",
+  "latitude": 19.232365,
+  "longitude": 72.992331,
+  "timestamp": "2024-11-25 11:25:30",
+  "age_victim": 50,
+  "city": "thane"
+},
+{
+  "id": 460,
+  "crime_type": "Burglary",
+  "latitude": 19.164357,
+  "longitude": 73.032313,
+  "timestamp": "2024-12-04 11:25:30",
+  "age_victim": 20,
+  "city": "thane"
+},
+{
+  "id": 461,
+  "crime_type": "Assault",
+  "latitude": 19.221333,
+  "longitude": 72.975044,
+  "timestamp": "2024-11-24 11:25:30",
+  "age_victim": 64,
+  "city": "thane"
+},
+{
+  "id": 462,
+  "crime_type": "Burglary",
+  "latitude": 19.160074,
+  "longitude": 73.028779,
+  "timestamp": "2024-12-02 11:25:30",
+  "age_victim": 19,
+  "city": "thane"
+},
+{
+  "id": 463,
+  "crime_type": "Assault",
+  "latitude": 19.144132,
+  "longitude": 72.991363,
+  "timestamp": "2024-11-20 11:25:30",
+  "age_victim": 29,
+  "city": "thane"
+},
+{
+  "id": 464,
+  "crime_type": "Burglary",
+  "latitude": 19.240331,
+  "longitude": 72.996536,
+  "timestamp": "2024-12-05 11:25:30",
+  "age_victim": 63,
+  "city": "thane"
+},
+{
+  "id": 465,
+  "crime_type": "Robbery",
+  "latitude": 19.163813,
+  "longitude": 73.023873,
+  "timestamp": "2024-12-07 11:25:30",
+  "age_victim": 60,
+  "city": "thane"
+},
+{
+  "id": 466,
+  "crime_type": "Vandalism",
+  "latitude": 19.229587,
+  "longitude": 73.000449,
+  "timestamp": "2024-11-20 11:25:30",
+  "age_victim": 60,
+  "city": "thane"
+},
+{
+  "id": 467,
+  "crime_type": "Assault",
+  "latitude": 19.179105,
+  "longitude": 72.993109,
+  "timestamp": "2024-11-13 11:25:30",
+  "age_victim": 34,
+  "city": "thane"
+},
+{
+  "id": 468,
+  "crime_type": "Vandalism",
+  "latitude": 19.191899,
+  "longitude": 72.998458,
+  "timestamp": "2024-11-25 11:25:30",
+  "age_victim": 41,
+  "city": "thane"
+},
+{
+  "id": 469,
+  "crime_type": "Burglary",
+  "latitude": 19.191945,
+  "longitude": 73.007235,
+  "timestamp": "2024-11-18 11:25:30",
+  "age_victim": 54,
+  "city": "thane"
+},
+{
+  "id": 470,
+  "crime_type": "Theft",
+  "latitude": 19.152472,
+  "longitude": 72.994552,
+  "timestamp": "2024-11-18 11:25:30",
+  "age_victim": 43,
+  "city": "thane"
+},
+{
+  "id": 471,
+  "crime_type": "Burglary",
+  "latitude": 19.171145,
+  "longitude": 73.019694,
+  "timestamp": "2024-11-25 11:25:30",
+  "age_victim": 51,
+  "city": "thane"
+},
+{
+  "id": 472,
+  "crime_type": "Burglary",
+  "latitude": 19.140439,
+  "longitude": 72.996944,
+  "timestamp": "2024-11-25 11:25:30",
+  "age_victim": 28,
+  "city": "thane"
+},
+{
+  "id": 473,
+  "crime_type": "Robbery",
+  "latitude": 19.27023,
+  "longitude": 72.958276,
+  "timestamp": "2024-12-02 11:25:30",
+  "age_victim": 49,
+  "city": "thane"
+},
+{
+  "id": 474,
+  "crime_type": "Robbery",
+  "latitude": 19.188449,
+  "longitude": 72.993425,
+  "timestamp": "2024-11-14 11:25:30",
+  "age_victim": 28,
+  "city": "thane"
+},
+{
+  "id": 475,
+  "crime_type": "Vandalism",
+  "latitude": 19.159023,
+  "longitude": 73.017518,
+  "timestamp": "2024-12-07 11:25:30",
+  "age_victim": 39,
+  "city": "thane"
+},
+{
+  "id": 476,
+  "crime_type": "Robbery",
+  "latitude": 19.240067,
+  "longitude": 72.975666,
+  "timestamp": "2024-11-12 11:25:30",
+  "age_victim": 45,
+  "city": "thane"
+},
+{
+  "id": 477,
+  "crime_type": "Burglary",
+  "latitude": 19.177025,
+  "longitude": 72.998681,
+  "timestamp": "2024-11-14 11:25:30",
+  "age_victim": 43,
+  "city": "thane"
+},
+{
+  "id": 478,
+  "crime_type": "Robbery",
+  "latitude": 19.153509,
+  "longitude": 72.98828,
+  "timestamp": "2024-11-23 11:25:30",
+  "age_victim": 59,
+  "city": "thane"
+},
+{
+  "id": 479,
+  "crime_type": "Robbery",
+  "latitude": 19.223537,
+  "longitude": 72.956852,
+  "timestamp": "2024-11-18 11:25:30",
+  "age_victim": 31,
+  "city": "thane"
+},
+{
+  "id": 480,
+  "crime_type": "Assault",
+  "latitude": 19.232738,
+  "longitude": 72.964414,
+  "timestamp": "2024-11-20 11:25:30",
+  "age_victim": 31,
+  "city": "thane"
+},
+{
+  "id": 481,
+  "crime_type": "Robbery",
+  "latitude": 19.192696,
+  "longitude": 73.016135,
+  "timestamp": "2024-11-17 11:25:30",
+  "age_victim": 54,
+  "city": "thane"
+},
+{
+  "id": 482,
+  "crime_type": "Assault",
+  "latitude": 19.157721,
+  "longitude": 73.030069,
+  "timestamp": "2024-12-11 11:25:30",
+  "age_victim": 51,
+  "city": "thane"
+},
+{
+  "id": 483,
+  "crime_type": "Burglary",
+  "latitude": 19.1879,
+  "longitude": 73.016903,
+  "timestamp": "2024-11-30 11:25:30",
+  "age_victim": 20,
+  "city": "thane"
+},
+{
+  "id": 484,
+  "crime_type": "Robbery",
+  "latitude": 19.150235,
+  "longitude": 72.992277,
+  "timestamp": "2024-11-23 11:25:30",
+  "age_victim": 61,
+  "city": "thane"
+},
+{
+  "id": 485,
+  "crime_type": "Assault",
+  "latitude": 19.261967,
+  "longitude": 72.966614,
+  "timestamp": "2024-11-19 11:25:30",
+  "age_victim": 48,
+  "city": "thane"
+},
+{
+  "id": 486,
+  "crime_type": "Vandalism",
+  "latitude": 19.236196,
+  "longitude": 72.98346,
+  "timestamp": "2024-11-12 11:25:30",
+  "age_victim": 61,
+  "city": "thane"
+},
+{
+  "id": 487,
+  "crime_type": "Assault",
+  "latitude": 19.184901,
+  "longitude": 73.008466,
+  "timestamp": "2024-11-18 11:25:30",
+  "age_victim": 30,
+  "city": "thane"
+},
+{
+  "id": 488,
+  "crime_type": "Vandalism",
+  "latitude": 19.227178,
+  "longitude": 72.996315,
+  "timestamp": "2024-11-19 11:25:30",
+  "age_victim": 46,
+  "city": "thane"
+},
+{
+  "id": 489,
+  "crime_type": "Robbery",
+  "latitude": 19.147509,
+  "longitude": 72.996842,
+  "timestamp": "2024-11-29 11:25:30",
+  "age_victim": 61,
+  "city": "thane"
+},
+{
+  "id": 490,
+  "crime_type": "Burglary",
+  "latitude": 19.192747,
+  "longitude": 73.010806,
+  "timestamp": "2024-11-14 11:25:30",
+  "age_victim": 58,
+  "city": "thane"
+},
+{
+  "id": 491,
+  "crime_type": "Theft",
+  "latitude": 19.262371,
+  "longitude": 72.963585,
+  "timestamp": "2024-11-12 11:25:30",
+  "age_victim": 39,
+  "city": "thane"
+},
+{
+  "id": 492,
+  "crime_type": "Theft",
+  "latitude": 19.158586,
+  "longitude": 73.024771,
+  "timestamp": "2024-11-19 11:25:30",
+  "age_victim": 48,
+  "city": "thane"
+},
+{
+  "id": 493,
+  "crime_type": "Burglary",
+  "latitude": 19.158394,
+  "longitude": 72.983591,
+  "timestamp": "2024-11-13 11:25:30",
+  "age_victim": 59,
+  "city": "thane"
+},
+{
+  "id": 494,
+  "crime_type": "Theft",
+  "latitude": 19.142266,
+  "longitude": 72.995692,
+  "timestamp": "2024-11-29 11:25:30",
+  "age_victim": 34,
+  "city": "thane"
+},
+{
+  "id": 495,
+  "crime_type": "Robbery",
+  "latitude": 19.190959,
+  "longitude": 73.00614,
+  "timestamp": "2024-11-26 11:25:30",
+  "age_victim": 32,
+  "city": "thane"
+},
+{
+  "id": 496,
+  "crime_type": "Vandalism",
+  "latitude": 19.193205,
+  "longitude": 73.010846,
+  "timestamp": "2024-11-13 11:25:30",
+  "age_victim": 59,
+  "city": "thane"
+},
+{
+  "id": 497,
+  "crime_type": "Vandalism",
+  "latitude": 19.149261,
+  "longitude": 72.987381,
+  "timestamp": "2024-11-23 11:25:30",
+  "age_victim": 23,
+  "city": "thane"
+},
+{
+  "id": 498,
+  "crime_type": "Assault",
+  "latitude": 19.229925,
+  "longitude": 72.968246,
+  "timestamp": "2024-12-08 11:25:30",
+  "age_victim": 65,
+  "city": "thane"
+},
+{
+  "id": 499,
+  "crime_type": "Vandalism",
+  "latitude": 19.153563,
+  "longitude": 72.99867,
+  "timestamp": "2024-12-07 11:25:30",
+  "age_victim": 50,
+  "city": "thane"
+},
+{
+  "id": 500,
+  "crime_type": "Vandalism",
+  "latitude": 19.177424,
+  "longitude": 73.003316,
+  "timestamp": "2024-11-14 11:25:30",
+  "age_victim": 41,
+  "city": "thane"
+},
+{
+  "id": 501,
+  "crime_type": "Assault",
+  "latitude": 19.188509,
+  "longitude": 73.008884,
+  "timestamp": "2024-12-02 11:25:30",
+  "age_victim": 28,
+  "city": "thane"
+},
+{
+  "id": 502,
+  "crime_type": "Assault",
+  "latitude": 19.230341,
+  "longitude": 72.987443,
+  "timestamp": "2024-12-09 11:25:30",
+  "age_victim": 61,
+  "city": "thane"
+},
+{
+  "id": 503,
+  "crime_type": "Assault",
+  "latitude": 19.226512,
+  "longitude": 72.991131,
+  "timestamp": "2024-12-05 11:25:30",
+  "age_victim": 34,
+  "city": "thane"
+},
+{
+  "id": 504,
+  "crime_type": "Vandalism",
+  "latitude": 19.181686,
+  "longitude": 73.004771,
+  "timestamp": "2024-11-26 11:25:30",
+  "age_victim": 43,
+  "city": "thane"
+},
+{
+  "id": 505,
+  "crime_type": "Assault",
+  "latitude": 19.271145,
+  "longitude": 72.968603,
+  "timestamp": "2024-12-07 11:25:30",
+  "age_victim": 22,
+  "city": "thane"
+},
+{
+  "id": 506,
+  "crime_type": "Assault",
+  "latitude": 19.221404,
+  "longitude": 72.956583,
+  "timestamp": "2024-12-09 11:25:30",
+  "age_victim": 51,
+  "city": "thane"
+},
+{
+  "id": 507,
+  "crime_type": "Assault",
+  "latitude": 19.185407,
+  "longitude": 72.988995,
+  "timestamp": "2024-11-26 11:25:30",
+  "age_victim": 24,
+  "city": "thane"
+},
+{
+  "id": 508,
+  "crime_type": "Robbery",
+  "latitude": 19.259402,
+  "longitude": 72.959067,
+  "timestamp": "2024-11-24 11:25:30",
+  "age_victim": 50,
+  "city": "thane"
+},
+{
+  "id": 509,
+  "crime_type": "Vandalism",
+  "latitude": 19.164347,
+  "longitude": 73.033784,
+  "timestamp": "2024-11-17 11:25:30",
+  "age_victim": 33,
+  "city": "thane"
+},
+{
+  "id": 510,
+  "crime_type": "Vandalism",
+  "latitude": 19.141446,
+  "longitude": 72.988541,
+  "timestamp": "2024-11-22 11:25:30",
+  "age_victim": 40,
+  "city": "thane"
+},
+{
+  "id": 511,
+  "crime_type": "Robbery",
+  "latitude": 19.266608,
+  "longitude": 72.965601,
+  "timestamp": "2024-11-22 11:25:30",
+  "age_victim": 57,
+  "city": "thane"
+},
+{
+  "id": 512,
+  "crime_type": "Assault",
+  "latitude": 19.193807,
+  "longitude": 73.012208,
+  "timestamp": "2024-11-26 11:25:30",
+  "age_victim": 28,
+  "city": "thane"
+},
+{
+  "id": 513,
+  "crime_type": "Robbery",
+  "latitude": 19.176765,
+  "longitude": 73.015714,
+  "timestamp": "2024-11-23 11:25:30",
+  "age_victim": 35,
+  "city": "thane"
+},
+{
+  "id": 514,
+  "crime_type": "Vandalism",
+  "latitude": 19.189453,
+  "longitude": 72.985058,
+  "timestamp": "2024-11-19 11:25:30",
+  "age_victim": 54,
+  "city": "thane"
+},
+{
+  "id": 515,
+  "crime_type": "Vandalism",
+  "latitude": 19.15623,
+  "longitude": 72.987402,
+  "timestamp": "2024-12-11 11:25:30",
+  "age_victim": 53,
+  "city": "thane"
+},
+{
+  "id": 516,
+  "crime_type": "Theft",
+  "latitude": 19.17423,
+  "longitude": 73.003698,
+  "timestamp": "2024-11-22 11:25:30",
+  "age_victim": 36,
+  "city": "thane"
+},
+{
+  "id": 517,
+  "crime_type": "Vandalism",
+  "latitude": 19.155458,
+  "longitude": 72.998282,
+  "timestamp": "2024-11-12 11:25:30",
+  "age_victim": 26,
+  "city": "thane"
+},
+{
+  "id": 518,
+  "crime_type": "Theft",
+  "latitude": 19.141265,
+  "longitude": 72.983429,
+  "timestamp": "2024-11-28 11:25:30",
+  "age_victim": 40,
+  "city": "thane"
+},
+{
+  "id": 519,
+  "crime_type": "Vandalism",
+  "latitude": 19.267476,
+  "longitude": 72.956815,
+  "timestamp": "2024-11-11 11:25:30",
+  "age_victim": 62,
+  "city": "thane"
+},
+{
+  "id": 520,
+  "crime_type": "Robbery",
+  "latitude": 19.142378,
+  "longitude": 73.000735,
+  "timestamp": "2024-11-30 11:25:30",
+  "age_victim": 55,
+  "city": "thane"
+},
+{
+  "id": 521,
+  "crime_type": "Vandalism",
+  "latitude": 19.265431,
+  "longitude": 72.957989,
+  "timestamp": "2024-11-16 11:25:30",
+  "age_victim": 30,
+  "city": "thane"
+},
+{
+  "id": 522,
+  "crime_type": "Assault",
+  "latitude": 19.143253,
+  "longitude": 72.985995,
+  "timestamp": "2024-11-21 11:25:30",
+  "age_victim": 19,
+  "city": "thane"
+},
+{
+  "id": 523,
+  "crime_type": "Burglary",
+  "latitude": 19.222272,
+  "longitude": 72.956424,
+  "timestamp": "2024-11-13 11:25:30",
+  "age_victim": 44,
+  "city": "thane"
+},
+{
+  "id": 524,
+  "crime_type": "Robbery",
+  "latitude": 19.181734,
+  "longitude": 72.98513,
+  "timestamp": "2024-11-19 11:25:30",
+  "age_victim": 29,
+  "city": "thane"
+},
+{
+  "id": 525,
+  "crime_type": "Theft",
+  "latitude": 19.236319,
+  "longitude": 72.997424,
+  "timestamp": "2024-11-15 11:25:30",
+  "age_victim": 35,
+  "city": "thane"
+},
+{
+  "id": 526,
+  "crime_type": "Vandalism",
+  "latitude": 19.270203,
+  "longitude": 72.974671,
+  "timestamp": "2024-12-03 11:25:30",
+  "age_victim": 42,
+  "city": "thane"
+},
+{
+  "id": 527,
+  "crime_type": "Robbery",
+  "latitude": 19.157898,
+  "longitude": 73.028987,
+  "timestamp": "2024-12-06 11:25:30",
+  "age_victim": 20,
+  "city": "thane"
+},
+{
+  "id": 528,
+  "crime_type": "Theft",
+  "latitude": 19.178619,
+  "longitude": 73.017863,
+  "timestamp": "2024-12-04 11:25:30",
+  "age_victim": 63,
+  "city": "thane"
+},
+{
+  "id": 529,
+  "crime_type": "Assault",
+  "latitude": 19.170547,
+  "longitude": 73.031838,
+  "timestamp": "2024-11-16 11:25:30",
+  "age_victim": 52,
+  "city": "thane"
+},
+{
+  "id": 530,
+  "crime_type": "Assault",
+  "latitude": 19.152705,
+  "longitude": 73.028131,
+  "timestamp": "2024-11-14 11:25:30",
+  "age_victim": 33,
+  "city": "thane"
+},
+{
+  "id": 531,
+  "crime_type": "Vandalism",
+  "latitude": 19.157014,
+  "longitude": 73.024492,
+  "timestamp": "2024-12-11 11:25:30",
+  "age_victim": 29,
+  "city": "thane"
+},
+{
+  "id": 532,
+  "crime_type": "Assault",
+  "latitude": 19.276014,
+  "longitude": 72.96092,
+  "timestamp": "2024-12-07 11:25:30",
+  "age_victim": 32,
+  "city": "thane"
+},
+{
+  "id": 533,
+  "crime_type": "Robbery",
+  "latitude": 19.143411,
+  "longitude": 73.002594,
+  "timestamp": "2024-11-23 11:25:30",
+  "age_victim": 55,
+  "city": "thane"
+},
+{
+  "id": 534,
+  "crime_type": "Robbery",
+  "latitude": 19.187644,
+  "longitude": 72.987202,
+  "timestamp": "2024-12-08 11:25:30",
+  "age_victim": 48,
+  "city": "thane"
+},
+{
+  "id": 535,
+  "crime_type": "Robbery",
+  "latitude": 19.267176,
+  "longitude": 72.959856,
+  "timestamp": "2024-11-28 11:25:30",
+  "age_victim": 57,
+  "city": "thane"
+},
+{
+  "id": 536,
+  "crime_type": "Vandalism",
+  "latitude": 19.178317,
+  "longitude": 73.010911,
+  "timestamp": "2024-11-12 11:25:30",
+  "age_victim": 55,
+  "city": "thane"
+},
+{
+  "id": 537,
+  "crime_type": "Assault",
+  "latitude": 19.142585,
+  "longitude": 72.997604,
+  "timestamp": "2024-12-06 11:25:30",
+  "age_victim": 63,
+  "city": "thane"
+},
+{
+  "id": 538,
+  "crime_type": "Robbery",
+  "latitude": 19.185829,
+  "longitude": 73.001745,
+  "timestamp": "2024-12-03 11:25:30",
+  "age_victim": 46,
+  "city": "thane"
+},
+{
+  "id": 539,
+  "crime_type": "Vandalism",
+  "latitude": 19.234141,
+  "longitude": 72.972264,
+  "timestamp": "2024-12-01 11:25:30",
+  "age_victim": 33,
+  "city": "thane"
+},
+{
+  "id": 540,
+  "crime_type": "Vandalism",
+  "latitude": 19.189572,
+  "longitude": 73.001505,
+  "timestamp": "2024-12-02 11:25:30",
+  "age_victim": 47,
+  "city": "thane"
+},
+{
+  "id": 541,
+  "crime_type": "Burglary",
+  "latitude": 19.224444,
+  "longitude": 72.969987,
+  "timestamp": "2024-11-20 11:25:30",
+  "age_victim": 50,
+  "city": "thane"
+},
+{
+  "id": 542,
+  "crime_type": "Vandalism",
+  "latitude": 19.139476,
+  "longitude": 72.997087,
+  "timestamp": "2024-11-18 11:25:30",
+  "age_victim": 63,
+  "city": "thane"
+},
+{
+  "id": 543,
+  "crime_type": "Burglary",
+  "latitude": 19.238735,
+  "longitude": 72.989834,
+  "timestamp": "2024-11-16 11:25:30",
+  "age_victim": 54,
+  "city": "thane"
+},
+{
+  "id": 544,
+  "crime_type": "Assault",
+  "latitude": 19.237806,
+  "longitude": 72.997514,
+  "timestamp": "2024-12-10 11:25:30",
+  "age_victim": 26,
+  "city": "thane"
+},
+{
+  "id": 545,
+  "crime_type": "Burglary",
+  "latitude": 19.168977,
+  "longitude": 73.014597,
+  "timestamp": "2024-11-13 11:25:30",
+  "age_victim": 61,
+  "city": "thane"
+},
+{
+  "id": 546,
+  "crime_type": "Assault",
+  "latitude": 19.166234,
+  "longitude": 73.015084,
+  "timestamp": "2024-11-18 11:25:30",
+  "age_victim": 24,
+  "city": "thane"
+},
+{
+  "id": 547,
+  "crime_type": "Vandalism",
+  "latitude": 19.243896,
+  "longitude": 72.984092,
+  "timestamp": "2024-11-27 11:25:30",
+  "age_victim": 38,
+  "city": "thane"
+},
+{
+  "id": 548,
+  "crime_type": "Robbery",
+  "latitude": 19.171708,
+  "longitude": 73.027536,
+  "timestamp": "2024-11-11 11:25:30",
+  "age_victim": 54,
+  "city": "thane"
+},
+{
+  "id": 549,
+  "crime_type": "Vandalism",
+  "latitude": 19.259196,
+  "longitude": 72.955533,
+  "timestamp": "2024-11-21 11:25:30",
+  "age_victim": 35,
+  "city": "thane"
+},
+{
+  "id": 550,
+  "crime_type": "Theft",
+  "latitude": 19.240995,
+  "longitude": 73.002091,
+  "timestamp": "2024-12-09 11:25:30",
+  "age_victim": 36,
+  "city": "thane"
+},
+{
+  "id": 551,
+  "crime_type": "Robbery",
+  "latitude": 19.233882,
+  "longitude": 72.998518,
+  "timestamp": "2024-11-29 11:25:30",
+  "age_victim": 20,
+  "city": "thane"
+},
+{
+  "id": 552,
+  "crime_type": "Burglary",
+  "latitude": 19.232788,
+  "longitude": 72.973079,
+  "timestamp": "2024-11-14 11:25:30",
+  "age_victim": 25,
+  "city": "thane"
+},
+{
+  "id": 553,
+  "crime_type": "Robbery",
+  "latitude": 19.147174,
+  "longitude": 72.987816,
+  "timestamp": "2024-12-06 11:25:30",
+  "age_victim": 21,
+  "city": "thane"
+},
+{
+  "id": 554,
+  "crime_type": "Burglary",
+  "latitude": 19.260894,
+  "longitude": 72.958804,
+  "timestamp": "2024-12-02 11:25:30",
+  "age_victim": 56,
+  "city": "thane"
+},
+{
+  "id": 555,
+  "crime_type": "Robbery",
+  "latitude": 19.226119,
+  "longitude": 72.995223,
+  "timestamp": "2024-12-01 11:25:30",
+  "age_victim": 61,
+  "city": "thane"
+},
+{
+  "id": 556,
+  "crime_type": "Vandalism",
+  "latitude": 19.183452,
+  "longitude": 72.999688,
+  "timestamp": "2024-11-11 11:25:30",
+  "age_victim": 52,
+  "city": "thane"
+},
+{
+  "id": 557,
+  "crime_type": "Vandalism",
+  "latitude": 19.194656,
+  "longitude": 72.999105,
+  "timestamp": "2024-11-23 11:25:30",
+  "age_victim": 52,
+  "city": "thane"
+},
+{
+  "id": 558,
+  "crime_type": "Vandalism",
+  "latitude": 19.240739,
+  "longitude": 72.99644,
+  "timestamp": "2024-12-10 11:25:30",
+  "age_victim": 18,
+  "city": "thane"
+},
+{
+  "id": 559,
+  "crime_type": "Burglary",
+  "latitude": 19.258335,
+  "longitude": 72.959071,
+  "timestamp": "2024-11-29 11:25:30",
+  "age_victim": 52,
+  "city": "thane"
+},
+{
+  "id": 560,
+  "crime_type": "Vandalism",
+  "latitude": 19.153587,
+  "longitude": 72.987295,
+  "timestamp": "2024-11-14 11:25:30",
+  "age_victim": 60,
+  "city": "thane"
+},
+{
+  "id": 561,
+  "crime_type": "Theft",
+  "latitude": 19.230079,
+  "longitude": 72.96914,
+  "timestamp": "2024-11-19 11:25:30",
+  "age_victim": 25,
+  "city": "thane"
+},
+{
+  "id": 562,
+  "crime_type": "Theft",
+  "latitude": 19.261405,
+  "longitude": 72.961628,
+  "timestamp": "2024-11-11 11:25:30",
+  "age_victim": 27,
+  "city": "thane"
+},
+{
+  "id": 563,
+  "crime_type": "Vandalism",
+  "latitude": 19.180076,
+  "longitude": 72.992948,
+  "timestamp": "2024-11-25 11:25:30",
+  "age_victim": 32,
+  "city": "thane"
+},
+{
+  "id": 564,
+  "crime_type": "Burglary",
+  "latitude": 19.188804,
+  "longitude": 72.984935,
+  "timestamp": "2024-12-10 11:25:30",
+  "age_victim": 36,
+  "city": "thane"
+},
+{
+  "id": 565,
+  "crime_type": "Burglary",
+  "latitude": 19.158925,
+  "longitude": 73.000344,
+  "timestamp": "2024-11-24 11:25:30",
+  "age_victim": 43,
+  "city": "thane"
+},
+{
+  "id": 566,
+  "crime_type": "Burglary",
+  "latitude": 19.180109,
+  "longitude": 73.000693,
+  "timestamp": "2024-11-29 11:25:30",
+  "age_victim": 40,
+  "city": "thane"
+},
+{
+  "id": 567,
+  "crime_type": "Burglary",
+  "latitude": 19.175029,
+  "longitude": 73.015467,
+  "timestamp": "2024-11-26 11:25:30",
+  "age_victim": 31,
+  "city": "thane"
+},
+{
+  "id": 568,
+  "crime_type": "Robbery",
+  "latitude": 19.181785,
+  "longitude": 73.018469,
+  "timestamp": "2024-11-19 11:25:30",
+  "age_victim": 48,
+  "city": "thane"
+},
+{
+  "id": 569,
+  "crime_type": "Burglary",
+  "latitude": 19.228474,
+  "longitude": 72.989583,
+  "timestamp": "2024-11-11 11:25:30",
+  "age_victim": 61,
+  "city": "thane"
+},
+{
+  "id": 570,
+  "crime_type": "Theft",
+  "latitude": 19.228015,
+  "longitude": 72.99183,
+  "timestamp": "2024-11-30 11:25:30",
+  "age_victim": 47,
+  "city": "thane"
+},
+{
+  "id": 571,
+  "crime_type": "Theft",
+  "latitude": 19.181132,
+  "longitude": 73.017134,
+  "timestamp": "2024-12-11 11:25:30",
+  "age_victim": 41,
+  "city": "thane"
+},
+{
+  "id": 572,
+  "crime_type": "Burglary",
+  "latitude": 19.188263,
+  "longitude": 73.002091,
+  "timestamp": "2024-11-22 11:25:30",
+  "age_victim": 40,
+  "city": "thane"
+},
+{
+  "id": 573,
+  "crime_type": "Burglary",
+  "latitude": 19.260826,
+  "longitude": 72.970587,
+  "timestamp": "2024-11-29 11:25:30",
+  "age_victim": 46,
+  "city": "thane"
+},
+{
+  "id": 574,
+  "crime_type": "Theft",
+  "latitude": 19.157044,
+  "longitude": 73.024977,
+  "timestamp": "2024-11-20 11:25:30",
+  "age_victim": 21,
+  "city": "thane"
+},
+{
+  "id": 575,
+  "crime_type": "Vandalism",
+  "latitude": 19.24083,
+  "longitude": 73.001407,
+  "timestamp": "2024-12-04 11:25:30",
+  "age_victim": 33,
+  "city": "thane"
+},
+{
+  "id": 576,
+  "crime_type": "Theft",
+  "latitude": 19.185412,
+  "longitude": 73.004476,
+  "timestamp": "2024-11-13 11:25:30",
+  "age_victim": 40,
+  "city": "thane"
+},
+{
+  "id": 577,
+  "crime_type": "Robbery",
+  "latitude": 19.170272,
+  "longitude": 73.014243,
+  "timestamp": "2024-11-23 11:25:30",
+  "age_victim": 20,
+  "city": "thane"
+},
+{
+  "id": 578,
+  "crime_type": "Assault",
+  "latitude": 19.177333,
+  "longitude": 73.006707,
+  "timestamp": "2024-11-20 11:25:30",
+  "age_victim": 20,
+  "city": "thane"
+},
+{
+  "id": 579,
+  "crime_type": "Assault",
+  "latitude": 19.158489,
+  "longitude": 73.027165,
+  "timestamp": "2024-11-11 11:25:30",
+  "age_victim": 42,
+  "city": "thane"
+},
+{
+  "id": 580,
+  "crime_type": "Vandalism",
+  "latitude": 19.158291,
+  "longitude": 73.030685,
+  "timestamp": "2024-12-02 11:25:30",
+  "age_victim": 41,
+  "city": "thane"
+},
+{
+  "id": 581,
+  "crime_type": "Assault",
+  "latitude": 19.155294,
+  "longitude": 73.025031,
+  "timestamp": "2024-11-22 11:25:30",
+  "age_victim": 55,
+  "city": "thane"
+},
+{
+  "id": 582,
+  "crime_type": "Theft",
+  "latitude": 19.238548,
+  "longitude": 72.969066,
+  "timestamp": "2024-11-11 11:25:30",
+  "age_victim": 32,
+  "city": "thane"
+},
+{
+  "id": 583,
+  "crime_type": "Assault",
+  "latitude": 19.263225,
+  "longitude": 72.959626,
+  "timestamp": "2024-11-20 11:25:30",
+  "age_victim": 39,
+  "city": "thane"
+},
+{
+  "id": 584,
+  "crime_type": "Vandalism",
+  "latitude": 19.184413,
+  "longitude": 73.013946,
+  "timestamp": "2024-12-10 11:25:30",
+  "age_victim": 60,
+  "city": "thane"
+},
+{
+  "id": 585,
+  "crime_type": "Theft",
+  "latitude": 19.185429,
+  "longitude": 72.994942,
+  "timestamp": "2024-12-03 11:25:30",
+  "age_victim": 46,
+  "city": "thane"
+},
+{
+  "id": 586,
+  "crime_type": "Theft",
+  "latitude": 19.190696,
+  "longitude": 73.013141,
+  "timestamp": "2024-11-18 11:25:30",
+  "age_victim": 36,
+  "city": "thane"
+},
+{
+  "id": 587,
+  "crime_type": "Robbery",
+  "latitude": 19.190065,
+  "longitude": 73.018655,
+  "timestamp": "2024-12-10 11:25:30",
+  "age_victim": 27,
+  "city": "thane"
+},
+{
+  "id": 588,
+  "crime_type": "Assault",
+  "latitude": 19.268101,
+  "longitude": 72.960378,
+  "timestamp": "2024-12-08 11:25:30",
+  "age_victim": 24,
+  "city": "thane"
+},
+{
+  "id": 589,
+  "crime_type": "Theft",
+  "latitude": 19.177228,
+  "longitude": 72.999747,
+  "timestamp": "2024-11-24 11:25:30",
+  "age_victim": 57,
+  "city": "thane"
+},
+{
+  "id": 590,
+  "crime_type": "Robbery",
+  "latitude": 19.190621,
+  "longitude": 73.015372,
+  "timestamp": "2024-12-08 11:25:30",
+  "age_victim": 64,
+  "city": "thane"
+},
+{
+  "id": 591,
+  "crime_type": "Theft",
+  "latitude": 19.181613,
+  "longitude": 73.013239,
+  "timestamp": "2024-11-24 11:25:30",
+  "age_victim": 27,
+  "city": "thane"
+},
+{
+  "id": 592,
+  "crime_type": "Vandalism",
+  "latitude": 19.234193,
+  "longitude": 73.001202,
+  "timestamp": "2024-12-03 11:25:30",
+  "age_victim": 34,
+  "city": "thane"
+},
+{
+  "id": 593,
+  "crime_type": "Vandalism",
+  "latitude": 19.195073,
+  "longitude": 72.999712,
+  "timestamp": "2024-11-18 11:25:30",
+  "age_victim": 57,
+  "city": "thane"
+},
+{
+  "id": 594,
+  "crime_type": "Robbery",
+  "latitude": 19.169043,
+  "longitude": 73.020816,
+  "timestamp": "2024-12-11 11:25:30",
+  "age_victim": 31,
+  "city": "thane"
+},
+{
+  "id": 595,
+  "crime_type": "Robbery",
+  "latitude": 19.270139,
+  "longitude": 72.967908,
+  "timestamp": "2024-11-24 11:25:30",
+  "age_victim": 38,
+  "city": "thane"
+},
+{
+  "id": 596,
+  "crime_type": "Robbery",
+  "latitude": 19.183287,
+  "longitude": 73.014146,
+  "timestamp": "2024-11-29 11:25:30",
+  "age_victim": 36,
+  "city": "thane"
+},
+{
+  "id": 597,
+  "crime_type": "Burglary",
+  "latitude": 19.23927,
+  "longitude": 72.991829,
+  "timestamp": "2024-11-12 11:25:30",
+  "age_victim": 46,
+  "city": "thane"
+},
+{
+  "id": 598,
+  "crime_type": "Assault",
+  "latitude": 19.187411,
+  "longitude": 73.003373,
+  "timestamp": "2024-12-10 11:25:30",
+  "age_victim": 46,
+  "city": "thane"
+},
+{
+  "id": 599,
+  "crime_type": "Assault",
+  "latitude": 19.180283,
+  "longitude": 72.999784,
+  "timestamp": "2024-11-19 11:25:30",
+  "age_victim": 56,
+  "city": "thane"
+},
+{
+  "id": 600,
+  "crime_type": "Assault",
+  "latitude": 19.180313,
+  "longitude": 73.003814,
+  "timestamp": "2024-12-03 11:25:30",
+  "age_victim": 35,
+  "city": "thane"
+},
+{
+  "id": 601,
+  "crime_type": "Robbery",
+  "latitude": 19.231316,
+  "longitude": 72.961319,
+  "timestamp": "2024-11-27 11:25:30",
+  "age_victim": 26,
+  "city": "thane"
+},
+{
+  "id": 602,
+  "crime_type": "Vandalism",
+  "latitude": 19.18617,
+  "longitude": 72.991569,
+  "timestamp": "2024-11-27 11:25:30",
+  "age_victim": 42,
+  "city": "thane"
+},
+{
+  "id": 603,
+  "crime_type": "Assault",
+  "latitude": 19.22895,
+  "longitude": 72.997604,
+  "timestamp": "2024-12-08 11:25:30",
+  "age_victim": 31,
+  "city": "thane"
+},
+{
+  "id": 604,
+  "crime_type": "Burglary",
+  "latitude": 19.158674,
+  "longitude": 72.99553,
+  "timestamp": "2024-12-03 11:25:30",
+  "age_victim": 25,
+  "city": "thane"
+},
+{
+  "id": 605,
+  "crime_type": "Theft",
+  "latitude": 19.264523,
+  "longitude": 72.969316,
+  "timestamp": "2024-11-29 11:25:30",
+  "age_victim": 52,
+  "city": "thane"
+},
+{
+  "id": 606,
+  "crime_type": "Vandalism",
+  "latitude": 19.186404,
+  "longitude": 73.004036,
+  "timestamp": "2024-12-02 11:25:30",
+  "age_victim": 54,
+  "city": "thane"
+},
+{
+  "id": 607,
+  "crime_type": "Robbery",
+  "latitude": 19.15457,
+  "longitude": 72.987737,
+  "timestamp": "2024-12-05 11:25:30",
+  "age_victim": 20,
+  "city": "thane"
+},
+{
+  "id": 608,
+  "crime_type": "Burglary",
+  "latitude": 19.233076,
+  "longitude": 72.9878,
+  "timestamp": "2024-11-11 11:25:30",
+  "age_victim": 61,
+  "city": "thane"
+},
+{
+  "id": 609,
+  "crime_type": "Vandalism",
+  "latitude": 19.186561,
+  "longitude": 72.996459,
+  "timestamp": "2024-11-11 11:25:30",
+  "age_victim": 48,
+  "city": "thane"
+},
+{
+  "id": 610,
+  "crime_type": "Assault",
+  "latitude": 19.154165,
+  "longitude": 73.023233,
+  "timestamp": "2024-11-19 11:25:30",
+  "age_victim": 33,
+  "city": "thane"
+},
+{
+  "id": 611,
+  "crime_type": "Burglary",
+  "latitude": 19.150347,
+  "longitude": 72.996937,
+  "timestamp": "2024-11-28 11:25:30",
+  "age_victim": 20,
+  "city": "thane"
+},
+{
+  "id": 612,
+  "crime_type": "Burglary",
+  "latitude": 19.269284,
+  "longitude": 72.958487,
+  "timestamp": "2024-11-24 11:25:30",
+  "age_victim": 61,
+  "city": "thane"
+},
+{
+  "id": 613,
+  "crime_type": "Assault",
+  "latitude": 19.232753,
+  "longitude": 72.98944,
+  "timestamp": "2024-11-17 11:25:30",
+  "age_victim": 42,
+  "city": "thane"
+},
+{
+  "id": 614,
+  "crime_type": "Robbery",
+  "latitude": 19.159099,
+  "longitude": 72.990201,
+  "timestamp": "2024-11-11 11:25:30",
+  "age_victim": 37,
+  "city": "thane"
+},
+{
+  "id": 615,
+  "crime_type": "Burglary",
+  "latitude": 19.159875,
+  "longitude": 73.025312,
+  "timestamp": "2024-11-13 11:25:30",
+  "age_victim": 54,
+  "city": "thane"
+},
+{
+  "id": 616,
+  "crime_type": "Burglary",
+  "latitude": 19.23642,
+  "longitude": 72.993712,
+  "timestamp": "2024-11-11 11:25:30",
+  "age_victim": 53,
+  "city": "thane"
+},
+{
+  "id": 617,
+  "crime_type": "Assault",
+  "latitude": 19.181967,
+  "longitude": 73.012225,
+  "timestamp": "2024-12-11 11:25:30",
+  "age_victim": 20,
+  "city": "thane"
+},
+{
+  "id": 618,
+  "crime_type": "Burglary",
+  "latitude": 19.193555,
+  "longitude": 73.011581,
+  "timestamp": "2024-11-11 11:25:30",
+  "age_victim": 40,
+  "city": "thane"
+},
+{
+  "id": 619,
+  "crime_type": "Vandalism",
+  "latitude": 19.188376,
+  "longitude": 73.004683,
+  "timestamp": "2024-11-30 11:25:30",
+  "age_victim": 23,
+  "city": "thane"
+},
+{
+  "id": 620,
+  "crime_type": "Theft",
+  "latitude": 19.222333,
+  "longitude": 72.957477,
+  "timestamp": "2024-12-07 11:25:30",
+  "age_victim": 58,
+  "city": "thane"
+},
+{
+  "id": 621,
+  "crime_type": "Theft",
+  "latitude": 19.156992,
+  "longitude": 73.033546,
+  "timestamp": "2024-11-25 11:25:30",
+  "age_victim": 56,
+  "city": "thane"
+},
+{
+  "id": 622,
+  "crime_type": "Vandalism",
+  "latitude": 19.266349,
+  "longitude": 72.967305,
+  "timestamp": "2024-12-10 11:25:30",
+  "age_victim": 55,
+  "city": "thane"
+},
+{
+  "id": 623,
+  "crime_type": "Robbery",
+  "latitude": 19.151699,
+  "longitude": 73.002701,
+  "timestamp": "2024-12-05 11:25:30",
+  "age_victim": 23,
+  "city": "thane"
+},
+{
+  "id": 624,
+  "crime_type": "Assault",
+  "latitude": 19.178158,
+  "longitude": 72.990354,
+  "timestamp": "2024-12-10 11:25:30",
+  "age_victim": 35,
+  "city": "thane"
+},
+{
+  "id": 625,
+  "crime_type": "Assault",
+  "latitude": 19.192815,
+  "longitude": 72.989939,
+  "timestamp": "2024-12-09 11:25:30",
+  "age_victim": 28,
+  "city": "thane"
+},
+{
+  "id": 626,
+  "crime_type": "Assault",
+  "latitude": 19.165194,
+  "longitude": 73.029769,
+  "timestamp": "2024-11-12 11:25:30",
+  "age_victim": 42,
+  "city": "thane"
+},
+{
+  "id": 627,
+  "crime_type": "Vandalism",
+  "latitude": 19.243263,
+  "longitude": 72.989902,
+  "timestamp": "2024-12-09 11:25:30",
+  "age_victim": 34,
+  "city": "thane"
+},
+{
+  "id": 628,
+  "crime_type": "Theft",
+  "latitude": 19.224442,
+  "longitude": 72.975871,
+  "timestamp": "2024-11-20 11:25:30",
+  "age_victim": 24,
+  "city": "thane"
+},
+{
+  "id": 629,
+  "crime_type": "Assault",
+  "latitude": 19.23622,
+  "longitude": 72.990418,
+  "timestamp": "2024-12-06 11:25:30",
+  "age_victim": 19,
+  "city": "thane"
+},
+{
+  "id": 630,
+  "crime_type": "Burglary",
+  "latitude": 19.275138,
+  "longitude": 72.973617,
+  "timestamp": "2024-11-28 11:25:30",
+  "age_victim": 31,
+  "city": "thane"
+},
+{
+  "id": 631,
+  "crime_type": "Burglary",
+  "latitude": 19.230008,
+  "longitude": 72.993839,
+  "timestamp": "2024-11-12 11:25:30",
+  "age_victim": 32,
+  "city": "thane"
+},
+{
+  "id": 632,
+  "crime_type": "Theft",
+  "latitude": 19.165661,
+  "longitude": 73.033383,
+  "timestamp": "2024-12-01 11:25:30",
+  "age_victim": 31,
+  "city": "thane"
+},
+{
+  "id": 633,
+  "crime_type": "Burglary",
+  "latitude": 19.178195,
+  "longitude": 72.985915,
+  "timestamp": "2024-11-24 11:25:30",
+  "age_victim": 53,
+  "city": "thane"
+},
+{
+  "id": 634,
+  "crime_type": "Theft",
+  "latitude": 19.227391,
+  "longitude": 72.968665,
+  "timestamp": "2024-11-24 11:25:30",
+  "age_victim": 24,
+  "city": "thane"
+},
+{
+  "id": 635,
+  "crime_type": "Burglary",
+  "latitude": 19.269364,
+  "longitude": 72.955152,
+  "timestamp": "2024-12-02 11:25:30",
+  "age_victim": 56,
+  "city": "thane"
+},
+{
+  "id": 636,
+  "crime_type": "Robbery",
+  "latitude": 19.261566,
+  "longitude": 72.974449,
+  "timestamp": "2024-11-26 11:25:30",
+  "age_victim": 22,
+  "city": "thane"
+},
+{
+  "id": 637,
+  "crime_type": "Vandalism",
+  "latitude": 19.232963,
+  "longitude": 73.000946,
+  "timestamp": "2024-11-17 11:25:30",
+  "age_victim": 19,
+  "city": "thane"
+},
+{
+  "id": 638,
+  "crime_type": "Robbery",
+  "latitude": 19.23328,
+  "longitude": 72.997851,
+  "timestamp": "2024-11-22 11:25:30",
+  "age_victim": 45,
+  "city": "thane"
+},
+{
+  "id": 639,
+  "crime_type": "Theft",
+  "latitude": 19.234667,
+  "longitude": 72.997738,
+  "timestamp": "2024-11-28 11:25:30",
+  "age_victim": 51,
+  "city": "thane"
+},
+{
+  "id": 640,
+  "crime_type": "Assault",
+  "latitude": 19.23824,
+  "longitude": 72.989111,
+  "timestamp": "2024-11-21 11:25:30",
+  "age_victim": 51,
+  "city": "thane"
+},
+{
+  "id": 641,
+  "crime_type": "Robbery",
+  "latitude": 19.156775,
+  "longitude": 73.03257,
+  "timestamp": "2024-11-29 11:25:30",
+  "age_victim": 48,
+  "city": "thane"
+},
+{
+  "id": 642,
+  "crime_type": "Theft",
+  "latitude": 19.263667,
+  "longitude": 72.963926,
+  "timestamp": "2024-11-30 11:25:30",
+  "age_victim": 43,
+  "city": "thane"
+},
+{
+  "id": 643,
+  "crime_type": "Robbery",
+  "latitude": 19.182201,
+  "longitude": 72.994956,
+  "timestamp": "2024-12-06 11:25:30",
+  "age_victim": 51,
+  "city": "thane"
+},
+{
+  "id": 644,
+  "crime_type": "Theft",
+  "latitude": 19.235846,
+  "longitude": 72.986112,
+  "timestamp": "2024-12-03 11:25:30",
+  "age_victim": 52,
+  "city": "thane"
+},
+{
+  "id": 645,
+  "crime_type": "Assault",
+  "latitude": 19.242238,
+  "longitude": 72.983746,
+  "timestamp": "2024-11-11 11:25:30",
+  "age_victim": 62,
+  "city": "thane"
+},
+{
+  "id": 646,
+  "crime_type": "Robbery",
+  "latitude": 19.168142,
+  "longitude": 73.016837,
+  "timestamp": "2024-11-28 11:25:30",
+  "age_victim": 43,
+  "city": "thane"
+},
+{
+  "id": 647,
+  "crime_type": "Robbery",
+  "latitude": 19.175084,
+  "longitude": 73.009141,
+  "timestamp": "2024-11-13 11:25:30",
+  "age_victim": 63,
+  "city": "thane"
+},
+{
+  "id": 648,
+  "crime_type": "Vandalism",
+  "latitude": 19.182821,
+  "longitude": 73.012984,
+  "timestamp": "2024-12-06 11:25:30",
+  "age_victim": 43,
+  "city": "thane"
+},
+{
+  "id": 649,
+  "crime_type": "Assault",
+  "latitude": 19.229779,
+  "longitude": 72.989569,
+  "timestamp": "2024-11-28 11:25:30",
+  "age_victim": 24,
+  "city": "thane"
+},
+{
+  "id": 650,
+  "crime_type": "Vandalism",
+  "latitude": 19.174054,
+  "longitude": 73.003156,
+  "timestamp": "2024-11-14 11:25:30",
+  "age_victim": 57,
+  "city": "thane"
+},
+{
+  "id": 651,
+  "crime_type": "Assault",
+  "latitude": 19.143523,
+  "longitude": 72.997743,
+  "timestamp": "2024-11-28 11:25:30",
+  "age_victim": 36,
+  "city": "thane"
+},
+{
+  "id": 652,
+  "crime_type": "Theft",
+  "latitude": 19.183295,
+  "longitude": 73.016539,
+  "timestamp": "2024-11-16 11:25:30",
+  "age_victim": 50,
+  "city": "thane"
+},
+{
+  "id": 653,
+  "crime_type": "Theft",
+  "latitude": 19.154687,
+  "longitude": 73.000161,
+  "timestamp": "2024-11-13 11:25:30",
+  "age_victim": 63,
+  "city": "thane"
+},
+{
+  "id": 654,
+  "crime_type": "Vandalism",
+  "latitude": 19.274749,
+  "longitude": 72.968827,
+  "timestamp": "2024-11-25 11:25:30",
+  "age_victim": 43,
+  "city": "thane"
+},
+{
+  "id": 655,
+  "crime_type": "Assault",
+  "latitude": 19.162662,
+  "longitude": 73.029388,
+  "timestamp": "2024-12-08 11:25:30",
+  "age_victim": 52,
+  "city": "thane"
+},
+{
+  "id": 656,
+  "crime_type": "Robbery",
+  "latitude": 19.17988,
+  "longitude": 73.018906,
+  "timestamp": "2024-11-15 11:25:30",
+  "age_victim": 38,
+  "city": "thane"
+},
+{
+  "id": 657,
+  "crime_type": "Robbery",
+  "latitude": 19.178594,
+  "longitude": 72.987011,
+  "timestamp": "2024-11-14 11:25:30",
+  "age_victim": 35,
+  "city": "thane"
+},
+{
+  "id": 658,
+  "crime_type": "Burglary",
+  "latitude": 19.230067,
+  "longitude": 72.987639,
+  "timestamp": "2024-11-16 11:25:30",
+  "age_victim": 19,
+  "city": "thane"
+},
+{
+  "id": 659,
+  "crime_type": "Robbery",
+  "latitude": 19.240032,
+  "longitude": 72.958129,
+  "timestamp": "2024-11-23 11:25:30",
+  "age_victim": 22,
+  "city": "thane"
+},
+{
+  "id": 660,
+  "crime_type": "Robbery",
+  "latitude": 19.168789,
+  "longitude": 73.024457,
+  "timestamp": "2024-11-29 11:25:30",
+  "age_victim": 33,
+  "city": "thane"
+},
+{
+  "id": 661,
+  "crime_type": "Vandalism",
+  "latitude": 19.155311,
+  "longitude": 72.984676,
+  "timestamp": "2024-11-28 11:25:30",
+  "age_victim": 51,
+  "city": "thane"
+},
+{
+  "id": 662,
+  "crime_type": "Vandalism",
+  "latitude": 19.166644,
+  "longitude": 73.031588,
+  "timestamp": "2024-11-29 11:25:30",
+  "age_victim": 36,
+  "city": "thane"
+},
+{
+  "id": 663,
+  "crime_type": "Assault",
+  "latitude": 19.157297,
+  "longitude": 72.995964,
+  "timestamp": "2024-11-16 11:25:30",
+  "age_victim": 37,
+  "city": "thane"
+},
+{
+  "id": 664,
+  "crime_type": "Theft",
+  "latitude": 19.184404,
+  "longitude": 73.001708,
+  "timestamp": "2024-11-27 11:25:30",
+  "age_victim": 28,
+  "city": "thane"
+},
+{
+  "id": 665,
+  "crime_type": "Theft",
+  "latitude": 19.225674,
+  "longitude": 72.968533,
+  "timestamp": "2024-11-17 11:25:30",
+  "age_victim": 25,
+  "city": "thane"
+},
+{
+  "id": 666,
+  "crime_type": "Vandalism",
+  "latitude": 19.177833,
+  "longitude": 72.997152,
+  "timestamp": "2024-11-14 11:25:30",
+  "age_victim": 34,
+  "city": "thane"
+},
+{
+  "id": 667,
+  "crime_type": "Vandalism",
+  "latitude": 19.189999,
+  "longitude": 73.00511,
+  "timestamp": "2024-12-08 11:25:30",
+  "age_victim": 58,
+  "city": "thane"
+},
+{
+  "id": 668,
+  "crime_type": "Assault",
+  "latitude": 19.185421,
+  "longitude": 73.010099,
+  "timestamp": "2024-11-20 11:25:30",
+  "age_victim": 58,
+  "city": "thane"
+},
+{
+  "id": 669,
+  "crime_type": "Robbery",
+  "latitude": 19.18568,
+  "longitude": 73.014436,
+  "timestamp": "2024-12-05 11:25:30",
+  "age_victim": 43,
+  "city": "thane"
+},
+{
+  "id": 670,
+  "crime_type": "Vandalism",
+  "latitude": 19.150667,
+  "longitude": 72.984248,
+  "timestamp": "2024-12-05 11:25:30",
+  "age_victim": 38,
+  "city": "thane"
+},
+{
+  "id": 671,
+  "crime_type": "Assault",
+  "latitude": 19.147916,
+  "longitude": 72.999668,
+  "timestamp": "2024-11-13 11:25:30",
+  "age_victim": 55,
+  "city": "thane"
+},
+{
+  "id": 672,
+  "crime_type": "Vandalism",
+  "latitude": 19.271032,
+  "longitude": 72.969752,
+  "timestamp": "2024-11-28 11:25:30",
+  "age_victim": 65,
+  "city": "thane"
+},
+{
+  "id": 673,
+  "crime_type": "Burglary",
+  "latitude": 19.153993,
+  "longitude": 72.992698,
+  "timestamp": "2024-11-11 11:25:30",
+  "age_victim": 36,
+  "city": "thane"
+},
+{
+  "id": 674,
+  "crime_type": "Assault",
+  "latitude": 19.15544,
+  "longitude": 72.991738,
+  "timestamp": "2024-12-11 11:25:30",
+  "age_victim": 21,
+  "city": "thane"
+},
+{
+  "id": 675,
+  "crime_type": "Vandalism",
+  "latitude": 19.187508,
+  "longitude": 72.990303,
+  "timestamp": "2024-11-16 11:25:30",
+  "age_victim": 41,
+  "city": "thane"
+},
+{
+  "id": 676,
+  "crime_type": "Vandalism",
+  "latitude": 19.264398,
+  "longitude": 72.957588,
+  "timestamp": "2024-12-01 11:25:30",
+  "age_victim": 22,
+  "city": "thane"
+},
+{
+  "id": 677,
+  "crime_type": "Assault",
+  "latitude": 19.258104,
+  "longitude": 72.966293,
+  "timestamp": "2024-11-17 11:25:30",
+  "age_victim": 23,
+  "city": "thane"
+},
+{
+  "id": 678,
+  "crime_type": "Robbery",
+  "latitude": 19.235607,
+  "longitude": 72.99672,
+  "timestamp": "2024-11-26 11:25:30",
+  "age_victim": 35,
+  "city": "thane"
+},
+{
+  "id": 679,
+  "crime_type": "Assault",
+  "latitude": 19.190471,
+  "longitude": 73.012989,
+  "timestamp": "2024-12-04 11:25:30",
+  "age_victim": 47,
+  "city": "thane"
+},
+{
+  "id": 680,
+  "crime_type": "Vandalism",
+  "latitude": 19.244565,
+  "longitude": 72.98877,
+  "timestamp": "2024-11-16 11:25:30",
+  "age_victim": 53,
+  "city": "thane"
+},
+{
+  "id": 681,
+  "crime_type": "Assault",
+  "latitude": 19.232099,
+  "longitude": 72.958067,
+  "timestamp": "2024-11-17 11:25:30",
+  "age_victim": 45,
+  "city": "thane"
+},
+{
+  "id": 682,
+  "crime_type": "Burglary",
+  "latitude": 19.230632,
+  "longitude": 72.987392,
+  "timestamp": "2024-12-03 11:25:30",
+  "age_victim": 65,
+  "city": "thane"
+},
+{
+  "id": 683,
+  "crime_type": "Vandalism",
+  "latitude": 19.220907,
+  "longitude": 72.971237,
+  "timestamp": "2024-12-07 11:25:30",
+  "age_victim": 23,
+  "city": "thane"
+},
+{
+  "id": 684,
+  "crime_type": "Robbery",
+  "latitude": 19.166774,
+  "longitude": 73.026455,
+  "timestamp": "2024-11-22 11:25:30",
+  "age_victim": 64,
+  "city": "thane"
+},
+{
+  "id": 685,
+  "crime_type": "Theft",
+  "latitude": 19.220246,
+  "longitude": 72.971812,
+  "timestamp": "2024-12-03 11:25:30",
+  "age_victim": 22,
+  "city": "thane"
+},
+{
+  "id": 686,
+  "crime_type": "Robbery",
+  "latitude": 19.172157,
+  "longitude": 73.030939,
+  "timestamp": "2024-11-11 11:25:30",
+  "age_victim": 22,
+  "city": "thane"
+},
+{
+  "id": 687,
+  "crime_type": "Burglary",
+  "latitude": 19.234332,
+  "longitude": 72.985062,
+  "timestamp": "2024-11-17 11:25:30",
+  "age_victim": 50,
+  "city": "thane"
+},
+{
+  "id": 688,
+  "crime_type": "Assault",
+  "latitude": 19.196689,
+  "longitude": 72.99601,
+  "timestamp": "2024-11-26 11:25:30",
+  "age_victim": 32,
+  "city": "thane"
+},
+{
+  "id": 689,
+  "crime_type": "Assault",
+  "latitude": 19.224122,
+  "longitude": 72.974169,
+  "timestamp": "2024-12-06 11:25:30",
+  "age_victim": 52,
+  "city": "thane"
+},
+{
+  "id": 690,
+  "crime_type": "Assault",
+  "latitude": 19.232765,
+  "longitude": 72.968621,
+  "timestamp": "2024-11-26 11:25:30",
+  "age_victim": 44,
+  "city": "thane"
+},
+{
+  "id": 691,
+  "crime_type": "Assault",
+  "latitude": 19.244289,
+  "longitude": 72.991701,
+  "timestamp": "2024-11-13 11:25:30",
+  "age_victim": 50,
+  "city": "thane"
+},
+{
+  "id": 692,
+  "crime_type": "Vandalism",
+  "latitude": 19.15792,
+  "longitude": 72.984529,
+  "timestamp": "2024-12-08 11:25:30",
+  "age_victim": 35,
+  "city": "thane"
+},
+{
+  "id": 693,
+  "crime_type": "Robbery",
+  "latitude": 19.156018,
+  "longitude": 73.016299,
+  "timestamp": "2024-11-16 11:25:30",
+  "age_victim": 53,
+  "city": "thane"
+},
+{
+  "id": 694,
+  "crime_type": "Theft",
+  "latitude": 19.142666,
+  "longitude": 72.996596,
+  "timestamp": "2024-11-19 11:25:30",
+  "age_victim": 35,
+  "city": "thane"
+},
+{
+  "id": 695,
+  "crime_type": "Burglary",
+  "latitude": 19.190917,
+  "longitude": 72.995158,
+  "timestamp": "2024-11-16 11:25:30",
+  "age_victim": 20,
+  "city": "thane"
+},
+{
+  "id": 696,
+  "crime_type": "Assault",
+  "latitude": 19.196563,
+  "longitude": 72.995524,
+  "timestamp": "2024-11-17 11:25:30",
+  "age_victim": 40,
+  "city": "thane"
+},
+{
+  "id": 697,
+  "crime_type": "Assault",
+  "latitude": 19.269433,
+  "longitude": 72.964972,
+  "timestamp": "2024-11-18 11:25:30",
+  "age_victim": 48,
+  "city": "thane"
+},
+{
+  "id": 698,
+  "crime_type": "Burglary",
+  "latitude": 19.267154,
+  "longitude": 72.962669,
+  "timestamp": "2024-12-06 11:25:30",
+  "age_victim": 64,
+  "city": "thane"
+},
+{
+  "id": 699,
+  "crime_type": "Theft",
+  "latitude": 19.223618,
+  "longitude": 72.965175,
+  "timestamp": "2024-11-19 11:25:30",
+  "age_victim": 60,
+  "city": "thane"
+},
+{
+  "id": 700,
+  "crime_type": "Vandalism",
+  "latitude": 19.182381,
+  "longitude": 72.986109,
+  "timestamp": "2024-11-29 11:25:30",
+  "age_victim": 42,
+  "city": "thane"
+},
+{
+  "id": 701,
+  "crime_type": "Theft",
+  "latitude": 19.175839,
+  "longitude": 72.99945,
+  "timestamp": "2024-11-14 11:25:30",
+  "age_victim": 53,
+  "city": "thane"
+},
+{
+  "id": 702,
+  "crime_type": "Assault",
+  "latitude": 19.266962,
+  "longitude": 72.963459,
+  "timestamp": "2024-11-20 11:25:30",
+  "age_victim": 32,
+  "city": "thane"
+},
+{
+  "id": 703,
+  "crime_type": "Assault",
+  "latitude": 19.272736,
+  "longitude": 72.968041,
+  "timestamp": "2024-11-19 11:25:30",
+  "age_victim": 53,
+  "city": "thane"
+},
+{
+  "id": 704,
+  "crime_type": "Vandalism",
+  "latitude": 19.180961,
+  "longitude": 73.002142,
+  "timestamp": "2024-11-26 11:25:30",
+  "age_victim": 19,
+  "city": "thane"
+},
+{
+  "id": 705,
+  "crime_type": "Theft",
+  "latitude": 19.230663,
+  "longitude": 72.961209,
+  "timestamp": "2024-11-19 11:25:30",
+  "age_victim": 20,
+  "city": "thane"
+},
+{
+  "id": 706,
+  "crime_type": "Robbery",
+  "latitude": 19.167251,
+  "longitude": 73.020968,
+  "timestamp": "2024-11-23 11:25:30",
+  "age_victim": 35,
+  "city": "thane"
+},
+{
+  "id": 707,
+  "crime_type": "Robbery",
+  "latitude": 19.182527,
+  "longitude": 72.985265,
+  "timestamp": "2024-12-05 11:25:30",
+  "age_victim": 23,
+  "city": "thane"
+},
+{
+  "id": 708,
+  "crime_type": "Burglary",
+  "latitude": 19.163253,
+  "longitude": 73.01703,
+  "timestamp": "2024-12-08 11:25:30",
+  "age_victim": 37,
+  "city": "thane"
+},
+{
+  "id": 709,
+  "crime_type": "Theft",
+  "latitude": 19.146928,
+  "longitude": 72.997452,
+  "timestamp": "2024-12-02 11:25:30",
+  "age_victim": 32,
+  "city": "thane"
+},
+{
+  "id": 710,
+  "crime_type": "Burglary",
+  "latitude": 19.167492,
+  "longitude": 73.02038,
+  "timestamp": "2024-12-01 11:25:30",
+  "age_victim": 54,
+  "city": "thane"
+},
+{
+  "id": 711,
+  "crime_type": "Burglary",
+  "latitude": 19.231308,
+  "longitude": 73.001331,
+  "timestamp": "2024-12-09 11:25:30",
+  "age_victim": 35,
+  "city": "thane"
+},
+{
+  "id": 712,
+  "crime_type": "Vandalism",
+  "latitude": 19.172539,
+  "longitude": 73.028182,
+  "timestamp": "2024-11-27 11:25:30",
+  "age_victim": 58,
+  "city": "thane"
+},
+{
+  "id": 713,
+  "crime_type": "Assault",
+  "latitude": 19.266813,
+  "longitude": 72.960888,
+  "timestamp": "2024-12-11 11:25:30",
+  "age_victim": 51,
+  "city": "thane"
+},
+{
+  "id": 714,
+  "crime_type": "Vandalism",
+  "latitude": 19.164428,
+  "longitude": 73.032622,
+  "timestamp": "2024-11-13 11:25:30",
+  "age_victim": 24,
+  "city": "thane"
+},
+{
+  "id": 715,
+  "crime_type": "Vandalism",
+  "latitude": 19.160543,
+  "longitude": 73.023097,
+  "timestamp": "2024-12-11 11:25:30",
+  "age_victim": 44,
+  "city": "thane"
 }
  ]
