@@ -34,8 +34,8 @@
     const [nearbyVisible, setNearbyVisible] = useState(false);
     const [hotspotVisible, setHotspotVisible] = useState(false); 
     const [mapShapes, setMapShapes] = useState([]);
-    const OPENROUTE_API_KEY = process.env.EXPO_PUBLIC_API_URL;
-
+    const OPENROUTE_API_KEY = '5b3ce3597851110001cf6248d441e502ecae4e58832a077c03f07dfd';
+////19.0295559, 72.8506955
     useEffect(() => {
       if (hotspotVisible) {
         setMapShapes([
@@ -43,23 +43,30 @@
             shapeType: 'circle',
             color: '#EB3223',
             id: 'hotspot-1',
-            center: { lat: 18.9977445, lng: 73.1228996 },
+            center: { lat: 19.0295559 + 0.04, lng: 72.8506955 + 0.04},
             radius: 500,
           },
           {
             shapeType: 'circle',
             color: '#EB3223',
             id: 'hotspot-2',
-            center: { lat: 18.9977445, lng: 73.1228996 },
-            radius: 250,
+            center: { lat: 19.0295559 , lng: 72.8506955},
+            radius: 600,
           },
-          {
-            shapeType: 'circle',
-            color: '#EB3223',
-            id: 'hotspot-3',
-            center: { lat: 18.9977445, lng: 73.1228996 },
-            radius: 1000,
-          },
+          // {
+          //   shapeType: 'circle',
+          //   color: '#EB3223',
+          //   id: 'hotspot-2',
+          //   center: { lat: 18.9977445, lng: 73.1228996 },
+          //   radius: 250,
+          // },
+          // {
+          //   shapeType: 'circle',
+          //   color: '#EB3223',
+          //   id: 'hotspot-3',
+          //   center: { lat: 18.9977445, lng: 73.1228996 },
+          //   radius: 1000,
+          // },
         ]);
       } else {
         setMapShapes([]);
@@ -146,10 +153,11 @@
       }
     };
     
+    
     const handleNearbyClick = () => {
       setTimeout(() => {
       setNearbyVisible(!nearbyVisible);
-      const safePlace = { lat: 18.9977445 + 0.001, lng: 73.1228996 + 0.001 };
+      const safePlace = { lat: 19.0295559 + 0.001, lng: 72.8506955 + 0.001 };
       if (!nearbyVisible) {
         const newMarker = {
           id: 'safe-place',

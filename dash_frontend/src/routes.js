@@ -16,6 +16,7 @@ import CityWiseHotspot from "./views/CityWiseHotspot/index.js";
 import Video from './assets/img/Video.png'
 import Complaint from './assets/img/complaint.png'
 import Complaints from "./views/Complaints.js";
+import LiveLocation from "./components/LiveLocation/LiveLocation.jsx"
 
 var routes = [
   // {
@@ -86,6 +87,13 @@ var routes = [
     name:"Lodged Complaints",
     icon: Complaint,
     component:<Complaints />,
+    layout:"",
+  },
+  {
+    path:"/LiveLocation",
+    name:"LiveLocation",
+    icon: Complaint,
+    component:<LiveLocation />,
     layout:"",
   }
   // {
