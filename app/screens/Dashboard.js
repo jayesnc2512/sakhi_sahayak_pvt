@@ -77,7 +77,7 @@ export default function Dashboard({ navigation }) {
           <View style={styles.optionsRow}>
             <TouchableOpacity style={styles.optionsButton} onPress={handleClickSOS}>
               <Image source={require('../assets/emergency.png')} style={styles.optionsImage} />
-              <Text style={styles.optionsText}>Emergency Contact</Text>
+              <Text style={styles.optionsText}>Emergency SOS</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.optionsButton} onPress={() => navigation.navigate('Map')}>
               <Image source={require('../assets/location.png')} style={styles.optionsImage} />
@@ -87,16 +87,16 @@ export default function Dashboard({ navigation }) {
         </View>
 
         <View style={styles.sosContainer}>
-          <View style={styles.sosCircleWrapper1}>
+          {/* <View style={styles.sosCircleWrapper1}>
             <TouchableOpacity style={styles.sosButton} >
               <Text style={styles.sosButtonText}>SOS</Text>
             </TouchableOpacity>
-          </View>
-          {/* <View style={styles.sosCircleWrapper}>
-            <TouchableOpacity style={styles.sosButton} onPress={handleClickSafe}>
-              <Text style={styles.sosButtonText}>Safe</Text>
-            </TouchableOpacity>
           </View> */}
+          <View style={styles.sosCircleWrapper}>
+            <TouchableOpacity style={styles.sosButton} onPress={handleClickSafe}>
+              <Text style={styles.sosButtonText}>Safe Mode</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       {/* </View> */}
 
@@ -175,11 +175,10 @@ const styles = StyleSheet.create({
       sosCircleWrapper: {
         position: 'absolute',
         top: -40, 
-        width: 120,
-        height: 120,
-        right: 60,
+        width: 130,
+        height: 130,
         backgroundColor: '#FFF',
-        borderRadius: 60, 
+        borderRadius: 65, 
         justifyContent: 'center',
         alignItems: 'center',
         shadowColor: '#000',
@@ -189,10 +188,10 @@ const styles = StyleSheet.create({
         elevation: 5,
       },
       sosButton: {
-        width: 100,
-        height: 100,
+        width: 110,
+        height: 110,
         backgroundColor: '#9150E4', 
-        borderRadius: 50, 
+        borderRadius: 55, 
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 4,
@@ -200,7 +199,8 @@ const styles = StyleSheet.create({
       },
       sosButtonText: {
         color: '#FFF',
-        fontSize: 24,
-        fontFamily:'PoppinsSemiBold'
+        fontSize: 22,
+        fontFamily:'PoppinsSemiBold',
+        textAlign:'center'
       },
 }); 

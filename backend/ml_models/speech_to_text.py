@@ -94,16 +94,19 @@ class EmotionDetector:
         self.model_name = model_name
         self.emotion_classifier = None
 
-    async def load_model(self):
-        """Async method to load pre-trained emotion detection model."""
+    def load_model(self):
+        """Load pre-trained emotion detection model synchronously."""
         print("Loading emotion detection model...")
-        # Use asyncio to prevent blocking
-        await asyncio.to_thread(self._load_classifier)
-        print("Model loaded.")
-
-    def _load_classifier(self):
-        """Internal method to load the classifier"""
-        self.emotion_classifier = pipeline("text-classification", model=self.model_name, return_all_scores=True)
+        try:
+            self.emotion_classifier = pipeline(
+                "text-classification", 
+                model=self.model_name, 
+                return_all_scores=True
+            )
+            print("Emotion detection model loaded successfully.")
+        except Exception as e:
+            print(f"Error loading emotion detection model: {e}")
+            self.emotion_classifier = None
 
     async def detect_emotions(self, text):
         """Async method to detect emotions from the given text."""
@@ -186,8 +189,10 @@ class SituationClassifier:
 
         if combined_danger_score > 0.5:  # Danger threshold
             situation = "Danger"
+            print('situation: danger', )
         else:
             situation = "Safe"
+            print('situation: safe')
         
         print(f"Situation classified as: {situation}")
         return situation

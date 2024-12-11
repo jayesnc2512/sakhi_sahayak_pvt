@@ -8,10 +8,11 @@ import { useNavigation } from '@react-navigation/native';
 import * as Sharing from 'expo-sharing';
 import * as SecureStore from 'expo-secure-store';
 import * as Contacts from 'expo-contacts';
-
-
+import * as Location from 'expo-location';
 export default function SOSNotify() {
   const navigation = useNavigation();
+  const hasCalled = useRef(false); // Ensure API calls happen only once
+  const locationRef = useRef(null);
   const sharedOpacities = Array.from({ length: 4 }, () => useSharedValue(0));
   const [favoriteContacts, setFavoriteContacts] = useState([]);
 
@@ -31,96 +32,119 @@ export default function SOSNotify() {
 
     fetchFavoriteContacts();
   }, []);
+  const [apiCalled, setApiCalled] = useState(false);
+
+  const sendEmergencySMS = async (location) => {
+    try {
+      console.log('location', location);
+      const response = await fetch('https://7339-2409-40c0-1070-6544-493e-44a9-e6a0-1259.ngrok-free.app/tw/send-sms', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: `This is an emergency alert! Guest user is in danger. location during danger: ${location.lat}, ${location.lng}`,
+          phone_numbers: ["+918104782543", "+919067374010"],
+        }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        console.log('Emergency SMS sent successfully:', data);
+        return true;
+      } else {
+        console.error('Failed to send SMS:', data);
+        return false;
+      }
+    } catch (error) {
+      console.error('Error sending SMS:', error);
+      return false;
+    }
+  };
+
+  // Make a POST request to initiate SOS calls
+  const initiateSOSCalls = async () => {
+    try {
+      const response = await fetch('https://7339-2409-40c0-1070-6544-493e-44a9-e6a0-1259.ngrok-free.app/tw/call-emergency-contacts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          priority: 'high',
+          phone_numbers: ["+918104782543", "+919067374010"], 
+        }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        console.log('SOS calls initiated successfully:', data);
+        return true;
+      } else {
+        console.error('Failed to initiate SOS calls:', data);
+        return false;
+      }
+    } catch (error) {
+      console.error('Error initiating SOS calls:', error);
+      return false;
+    }
+  };
+
+  const fetchLocation = async () => {
+    try {
+      const { status: locationStatus } = await Location.requestForegroundPermissionsAsync();
+  
+      if (locationStatus !== 'granted') {
+        Alert.alert(
+          'Permissions Required',
+          'Location permissions are needed for Safe Mode.',
+          [{ text: 'OK', onPress: () => navigation.goBack() }]
+        );
+        return;
+      }
+  
+      // Use getCurrentPositionAsync for a one-time location fetch
+      const location = await Location.getCurrentPositionAsync({
+        accuracy: Location.Accuracy.High, // Set the accuracy you want
+      });
+  
+      if (location && location.coords) {
+        console.log('Current location:', location.coords);
+        locationRef.current = location.coords; // Save location in ref
+        return {
+          lat: location.coords.latitude,
+          lng: location.coords.longitude,
+        };
+      } else {
+        console.warn('Location update received, but no coordinates');
+      }
+    } catch (e) {
+      console.log('Error in fetching current location', e);
+    }
+  };
 
   useEffect(() => {
-    // Animate the circles
-    sharedOpacities.forEach((opacity, index) => {
-      opacity.value = withRepeat(
-        withTiming(index === 0 ? 1 : 0.8 - index * 0.2, {
-          duration: 1000,
-          easing: Easing.inOut(Easing.ease),
-          delay: index * 3000,
-        }),
-        -1,
-        true
-      );
-    });
+    const callAPI = async () => {
+      if (!hasCalled.current && !apiCalled) {
+        hasCalled.current = true;
+        setApiCalled(true); 
 
-    const fetchLiveLocationLink = async () => {
-      try {
-        const response = await fetch(' https://7339-2409-40c0-1070-6544-493e-44a9-e6a0-1259.ngrok-free.app/ws/live-loc');  // Replace with your actual FastAPI URL
-        const data = await response.json();
-        const liveLocationLink = data.live_location_link;  // Assuming the backend sends this in the response
-        if (response.ok) {
-          console.log('Live location link:', liveLocationLink);
+        const location = await fetchLocation();
+        if (location) {
+          console.log('calling sms and call functions')
+          const smsSent = await sendEmergencySMS(location);
+          const sosCallsInitiated = await initiateSOSCalls();
 
-          //Call the function to send SMS with the live location link
-          
-        } else {
-          console.error('Failed to fetch live location link:', data);
+          if (smsSent && sosCallsInitiated) {
+            setTimeout(() => {
+              navigation.navigate('Dash'); 
+            }, 200);
+          }
         }
-      } catch (error) {
-        console.error('Error fetching live location link:', error);
       }
     };
 
-    const sendEmergencySMS = async () => {
-      try {
-        const response = await fetch('https://7339-2409-40c0-1070-6544-493e-44a9-e6a0-1259.ngrok-free.app/tw/send-sms', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            message: "This is an emergency alert! Guest user is in danger.",
-            phone_numbers: ["+918104782543", "+919067374010"],
-          }),
-        });
-    
-        const data = await response.json();
-        if (response.ok) {
-          console.log('Emergency SMS sent successfully:', data);
-        } else {
-          console.error('Failed to send SMS:', data);
-        }
-      } catch (error) {
-        console.error('Error sending SMS:', error);
-      }
-    };
-
-    // fetchLiveLocationLink();
-    
-
-    // Make a POST request to initiate SOS calls
-    const initiateSOSCalls = async () => {
-      try {
-        const response = await fetch('https://7339-2409-40c0-1070-6544-493e-44a9-e6a0-1259.ngrok-free.app/tw/call-emergency-contacts', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            priority: 'high',
-            phone_numbers: ["+918104782543", "+919067374010"], 
-          }),
-        });
-
-        const data = await response.json();
-        if (response.ok) {
-          console.log('SOS calls initiated successfully:', data);
-        } else {
-          console.error('Failed to initiate SOS calls:', data);
-        }
-      } catch (error) {
-        console.error('Error initiating SOS calls:', error);
-      }
-    };
-
-    
-
-    initiateSOSCalls();
-    sendEmergencySMS();
- 
+    callAPI(); 
   }, []); 
 
   const handleCancelSOS = async () => {
@@ -134,6 +158,21 @@ export default function SOSNotify() {
       opacity: opacity.value,
     }))
   );
+
+  useEffect(()=>{
+    sharedOpacities.forEach((opacity, index) => {
+      opacity.value = withRepeat(
+        withTiming(index === 0 ? 1 : 0.8 - index * 0.2, {
+          duration: 1000,
+          easing: Easing.inOut(Easing.ease),
+          delay: index * 3000,
+        }),
+        -1,
+        true
+      );
+    });
+
+  }, []);
 
  
 

@@ -1,3 +1,4 @@
+
 from workers.database import supabase
 
 class usersDB:
