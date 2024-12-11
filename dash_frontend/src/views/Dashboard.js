@@ -248,7 +248,7 @@ function Dashboard() {
                 </div>
                 <hr />
                 <div className="stats">
-                  <i className="fa fa-calendar" /> Number of Complaints Lodged: 12
+                  <i className="fa fa-calendar" /> Total Number of Alerts : 52
                 </div>
               </CardFooter>
             </Card>
@@ -256,7 +256,7 @@ function Dashboard() {
           <Col md="8">
             <Card className="card-chart">
               <CardHeader>
-                <CardTitle tag="h5">Registered User</CardTitle>
+                <CardTitle tag="h5">Hotspots Analysis</CardTitle>
                 <p className="card-category"></p>
               </CardHeader>
               <CardBody>

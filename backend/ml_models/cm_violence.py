@@ -94,7 +94,7 @@ class continuousViolenceDetector:
                             "lon":input_source["lon"],
                             "alert_message":"Violence Detected",
                         }
-                    await alertsDB.insertAlerts(alert_data)
+                    alertsDB.insertAlerts(alert_data)
                     continuousViolenceDetector.log_alert()
                     consecutive_violence_frames, last_alert_time = continuousViolenceDetector.reset_alert()
 
