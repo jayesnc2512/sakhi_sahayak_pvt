@@ -14,6 +14,8 @@ from routes.twiliosmsRoutes import router as twiliosms
 from routes.alertRoutes import router as alertRouter
 from routes.cameraRoutes import router as cameraRouter
 
+from routes.gesture_handler import router as gesture_analysis_router
+
 app = FastAPI()
 
 # Enable CORS for frontend React app
@@ -34,6 +36,9 @@ app.include_router(twiliosms,prefix="/tw")
 # app.include_router(safe_mode_analysis_router,prefix="/ws")
 app.include_router(alertRouter,prefix="/alerts")
 app.include_router(cameraRouter,prefix="/cameras")
+
+
+app.include_router(gesture_analysis_router, prefix="/ws")
 
 
 @app.on_event("startup")
