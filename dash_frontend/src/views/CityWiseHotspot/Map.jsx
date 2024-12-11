@@ -1,11 +1,11 @@
 import React from 'react';
-import { MapContainer, TileLayer, Polygon, Popup, CircleMarker } from 'react-leaflet';
+import { MapContainer, TileLayer, Polygon, Popup, CircleMarker, Circle } from 'react-leaflet';
 import { LatLngBounds } from 'leaflet'; 
 import MarkerClusterGroup from 'react-leaflet-markercluster'; 
 import 'leaflet/dist/leaflet.css';
 import './reactleaf.css'; 
 
-const Map = ({ onCityClick, hotspots, crimeData, onCrimeClick }) => {
+const Map = ({ onCityClick, hotspots, crimeData, onCrimeClick, filteredCentroids }) => {
     const isCrimeInsideCity = (crime, city) => {
         if (!city || !city.coordinates || city.coordinates.length === 0) return false;
 
@@ -42,7 +42,7 @@ const Map = ({ onCityClick, hotspots, crimeData, onCrimeClick }) => {
                         <Popup>
                             <strong>{hotspot.name}</strong>
                             <br />
-                            Total Crimes: {hotspot.totalCount || 'N/A'}
+                            Total Crimes: {hotspot .totalCount || 'N/A'}
                             <br />
                             Crime Rate: {hotspot.crime_rate?.toFixed(2) || 'N/A'}
                         </Popup>
@@ -84,6 +84,18 @@ const Map = ({ onCityClick, hotspots, crimeData, onCrimeClick }) => {
                     ) : null;
                 })}
             </MarkerClusterGroup>
+
+            {/* Render circles for filtered centroids */}
+            {filteredCentroids.map(({ cluster, coordinates }) => (
+                <Circle
+                    key={cluster}
+                    center={[coordinates.latitude, coordinates.longitude]}
+                    radius={500} 
+                    color="blue"
+                    fillColor="blue"
+                    fillOpacity={0.3}
+                />
+            ))}
         </MapContainer>
     );
 };

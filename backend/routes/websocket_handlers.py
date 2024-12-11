@@ -8,6 +8,7 @@ from helpers.continuous_monitoring import continuousMonitoring
 import json
 import asyncio
 
+
 router = APIRouter()
 
 @router.websocket("/video-analysis")

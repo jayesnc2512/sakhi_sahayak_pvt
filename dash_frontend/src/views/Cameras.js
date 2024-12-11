@@ -81,7 +81,8 @@ const Cameras = () => {
   const [uid, setUid] = useState(1);
   const [selectedCameras, setSelectedCameras] = useState({});
   const [gridSize, setGridSize] = useState(2);
-  //rtsp://admin:L23F18C4@192.168.173.191:554/cam/realmonitor?channel=1&subtype=0
+//rtsp://admin:L23F18C4@192.168.173.191:554/cam/realmonitor?channel=1&subtype=0
+//camera.link='https://192.168.173.179:8080/video';
 
   const fetchCameras = async () => {
     try {
@@ -110,6 +111,7 @@ const Cameras = () => {
     setSelectedCameras((prevSelectedCameras) => ({
       ...prevSelectedCameras,
       [id]: false,
+      [id]: false,
     }));
   };
 
@@ -126,10 +128,12 @@ const Cameras = () => {
           const isPlaying = selectedCameras[camera.id];
           row.push(
             <Col key={camera.id}>
+            <Col key={camera.id}>
               <CameraCell>
                 {isPlaying ? (
                   <Player videoUrl={`ws://localhost:9999/stream?url=${encodeURIComponent(camera.link)}`} />
                 ) : (
+                  <div className="placeholder">{camera.id}</div>
                   <div className="placeholder">{camera.id}</div>
                 )}
               </CameraCell>
@@ -176,6 +180,7 @@ const Cameras = () => {
                   <tbody>
                     {cameras?.map((ele) => (
                       <tr key={ele.id}>
+                      <tr key={ele.id}>
                         <td>{ele.Name}</td>
                         <td>{ele.modelNo}</td>
                         <td>{ele.link}</td>
@@ -183,8 +188,10 @@ const Cameras = () => {
                         <td>{ele.lon}</td>
                         <td>
                           {!selectedCameras[ele.id] && (
+                          {!selectedCameras[ele.id] && (
                             <PlayButton
                               onClick={() =>
+                                handlePlayButtonClick(ele.id)
                                 handlePlayButtonClick(ele.id)
                               }
                             >
@@ -192,8 +199,10 @@ const Cameras = () => {
                             </PlayButton>
                           )}
                           {selectedCameras[ele.id] && (
+                          {selectedCameras[ele.id] && (
                             <StopButton
                               onClick={() =>
+                                handleStopButtonClick(ele.id)
                                 handleStopButtonClick(ele.id)
                               }
                             >

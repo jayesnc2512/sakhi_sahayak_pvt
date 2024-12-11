@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, Modal, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import * as Progress from 'react-native-progress';
 import SidebarNavigation from './NavigationProfile';
-
 export default function Dashboard({ navigation }) {
   const [isProfileInComplete, setProfileComplete] = useState(true);
   const [isSidebarVisible, setSidebarVisible] = useState(false);
@@ -76,7 +75,7 @@ export default function Dashboard({ navigation }) {
             </TouchableOpacity>
           </View>
           <View style={styles.optionsRow}>
-            <TouchableOpacity style={styles.optionsButton}>
+            <TouchableOpacity style={styles.optionsButton} onPress={handleClickSOS}>
               <Image source={require('../assets/emergency.png')} style={styles.optionsImage} />
               <Text style={styles.optionsText}>Emergency Contact</Text>
             </TouchableOpacity>
@@ -89,15 +88,15 @@ export default function Dashboard({ navigation }) {
 
         <View style={styles.sosContainer}>
           <View style={styles.sosCircleWrapper1}>
-            <TouchableOpacity style={styles.sosButton} onPress={handleClickSOS}>
+            <TouchableOpacity style={styles.sosButton} >
               <Text style={styles.sosButtonText}>SOS</Text>
             </TouchableOpacity>
           </View>
-          <View style={styles.sosCircleWrapper}>
+          {/* <View style={styles.sosCircleWrapper}>
             <TouchableOpacity style={styles.sosButton} onPress={handleClickSafe}>
               <Text style={styles.sosButtonText}>Safe</Text>
             </TouchableOpacity>
-          </View>
+          </View> */}
         </View>
       {/* </View> */}
 
