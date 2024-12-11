@@ -4,12 +4,13 @@ from datetime import datetime, timedelta
 
 # Define the base coordinates for Mumbai
 base_coordinates = [
-    (12.991511,77.578194),
-    (12.976791,77.545213),
-    (12.988166,77.484748),
-    (13.051285,77.521701),
-    (13.089711,77.582177),
-    (13.111112,77.602773)
+        (19.230089, 72.966235),
+        (19.186970, 72.994888),
+        (19.184051, 73.009317),
+        (19.149352, 72.992826),
+        (19.162649, 73.024090),
+        (19.266781, 72.965067),
+        (19.235989, 72.992208)
 ]
 
 # Function to generate random crime data
@@ -36,13 +37,13 @@ def generate_crime_data(num_records):
         
         # Create a crime record
         crime_record = {
-            "id": i + 101,
+            "id": i + 401,
             "crime_type": random.choice(crime_types),
             "latitude": latitude,
             "longitude": longitude,
             "timestamp": timestamp,
             "age_victim": age_victim,
-            "city": "Bangalore"
+            "city": "thane"
         }
         
         crime_data.append(crime_record)
@@ -50,7 +51,7 @@ def generate_crime_data(num_records):
     return crime_data
 
 # Generate 100 records of crime data
-crime_records = generate_crime_data(100)
+crime_records = generate_crime_data(315)
 
 # Save the data to a JSON file
 with open('mumbai_crime_data.json', 'w') as json_file:
