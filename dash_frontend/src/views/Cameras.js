@@ -82,13 +82,14 @@ const Cameras = () => {
   const [selectedCameras, setSelectedCameras] = useState({});
   const [gridSize, setGridSize] = useState(2);
 //rtsp://admin:L23F18C4@192.168.173.191:554/cam/realmonitor?channel=1&subtype=0
-  
+//camera.link='https://192.168.173.179:8080/video';
+
   const fetchCameras = async () => {
     try {
-     const response = await fetch('http://127.0.0.1:8000/cameras/getCameras');
-     const json = await response.json();  // Read response as text
-      console.log("Response text:",json.data);  // Log the response body
-      setCameras(json.data);
+    //  const response = await fetch('http://127.0.0.1:8000/cameras/getCameras');
+    //  const json = await response.json();  // Read response as text
+      console.log("Response text:",json1.data);  // Log the response body
+      setCameras(json1.data);
       
      
     } catch (e) {
@@ -99,17 +100,17 @@ const Cameras = () => {
       fetchCameras();
   }, []);
 
-  const handlePlayButtonClick = (nickname) => {
+  const handlePlayButtonClick = (id) => {
     setSelectedCameras((prevSelectedCameras) => ({
       ...prevSelectedCameras,
-      [nickname]: true,
+      [id]: true,
     }));
   };
 
-  const handleStopButtonClick = (nickname) => {
+  const handleStopButtonClick = (id) => {
     setSelectedCameras((prevSelectedCameras) => ({
       ...prevSelectedCameras,
-      [nickname]: false,
+      [id]: false,
     }));
   };
 
@@ -123,14 +124,14 @@ const Cameras = () => {
         const camera = cameras[index];
   
         if (camera) {
-          const isPlaying = selectedCameras[camera.nickName];
+          const isPlaying = selectedCameras[camera.id];
           row.push(
-            <Col key={camera.nickName}>
+            <Col key={camera.id}>
               <CameraCell>
                 {isPlaying ? (
                   <Player videoUrl={`ws://localhost:9999/stream?url=${encodeURIComponent(camera.link)}`} />
                 ) : (
-                  <div className="placeholder">{camera.nickName}</div>
+                  <div className="placeholder">{camera.id}</div>
                 )}
               </CameraCell>
             </Col>
@@ -175,26 +176,26 @@ const Cameras = () => {
                   </thead>
                   <tbody>
                     {cameras?.map((ele) => (
-                      <tr key={ele.nickName}>
+                      <tr key={ele.id}>
                         <td>{ele.Name}</td>
                         <td>{ele.modelNo}</td>
                         <td>{ele.link}</td>
                         <td>{ele.lat}</td>
                         <td>{ele.lon}</td>
                         <td>
-                          {!selectedCameras[ele.nickName] && (
+                          {!selectedCameras[ele.id] && (
                             <PlayButton
                               onClick={() =>
-                                handlePlayButtonClick(ele.nickName)
+                                handlePlayButtonClick(ele.id)
                               }
                             >
                               ▶️ Play
                             </PlayButton>
                           )}
-                          {selectedCameras[ele.nickName] && (
+                          {selectedCameras[ele.id] && (
                             <StopButton
                               onClick={() =>
-                                handleStopButtonClick(ele.nickName)
+                                handleStopButtonClick(ele.id)
                               }
                             >
                               ⏹️ Stop

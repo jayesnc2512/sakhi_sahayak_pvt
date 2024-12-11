@@ -16,6 +16,8 @@ from routes.cameraRoutes import router as cameraRouter
 from routes.websocket_livelocation import router as liveLocation
 from routes.websocket_hotspotdetection import router as hotspotDetector
 
+from routes.gesture_handler import router as gesture_analysis_router
+
 app = FastAPI()
 
 # Enable CORS for frontend React app
@@ -38,6 +40,9 @@ app.include_router(alertRouter,prefix="/alerts")
 app.include_router(cameraRouter,prefix="/cameras")
 app.include_router(liveLocation, prefix='/ws')
 app.include_router(hotspotDetector, prefix='/ws')
+
+
+app.include_router(gesture_analysis_router, prefix="/gesture")
 
 
 
