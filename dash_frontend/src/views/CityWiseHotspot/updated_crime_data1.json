@@ -1980,6 +1980,26 @@
     "cluster": 28
   },
   {
+    "id": 199,
+    "crime_type": "Theft",
+    "latitude": 13.049703,
+    "longitude": 77.512447,
+    "timestamp": "2024-11-16 00:23:57",
+    "age_victim": 43,
+    "city": "Bangalore",
+    "cluster": 40
+  },
+  {
+    "id": 200,
+    "crime_type": "Robbery",
+    "latitude": 12.989608,
+    "longitude": 77.577968,
+    "timestamp": "2024-11-30 00:23:57",
+    "age_victim": 37,
+    "city": "Bangalore",
+    "cluster": 33
+  },
+  {
     "id": 401,
     "crime_type": "Robbery",
     "latitude": 19.1806,
