@@ -17,7 +17,7 @@ import {
 } from "firebase/firestore";
 import Player from "../components/CamPlay/player";
 import styled from "styled-components";
-
+import json1 from '../views/json1.json';
 const PlayButton = styled.button`
   font-size: 1rem;
   cursor: pointer;
@@ -85,8 +85,8 @@ const Cameras = () => {
   
   const fetchCameras = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/cameras/getCameras');
-      const json = await response.json();  // Read response as text
+     const response = await fetch('http://127.0.0.1:8000/cameras/getCameras');
+     const json = await response.json();  // Read response as text
       console.log("Response text:",json.data);  // Log the response body
       setCameras(json.data);
       
@@ -121,15 +121,14 @@ const Cameras = () => {
       for (let j = 0; j < gridSize; j++) {
         const index = i * gridSize + j;
         const camera = cameras[index];
-
+  
         if (camera) {
           const isPlaying = selectedCameras[camera.nickName];
           row.push(
             <Col key={camera.nickName}>
               <CameraCell>
-                
                 {isPlaying ? (
-                  <Player />
+                  <Player videoUrl={`ws://localhost:9999/stream?url=${encodeURIComponent(camera.link)}`} />
                 ) : (
                   <div className="placeholder">{camera.nickName}</div>
                 )}
@@ -140,9 +139,8 @@ const Cameras = () => {
           row.push(
             <Col key={`empty-${i}-${j}`}>
               <EmptyCell>
-              <div className="placeholder">Camera Not Found</div>
+                <div className="placeholder">Camera Not Found</div>
               </EmptyCell>
-
             </Col>
           );
         }
@@ -151,6 +149,7 @@ const Cameras = () => {
     }
     return cameraGrid;
   };
+  
 
 
   return (
