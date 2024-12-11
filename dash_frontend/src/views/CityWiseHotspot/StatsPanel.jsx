@@ -4,7 +4,7 @@ import SmallCard from "../../components/SmallCard.js";
 import { PiBuildingOffice } from "react-icons/pi";
 import { FaPeopleGroup } from "react-icons/fa6";
 
-const StatsPanel = ({ hotspots, onCitySelect }) => {
+const StatsPanel = ({ hotspots, onCitySelect, totalCrimes, mostCommonCrime }) => {
     const [city, setCity] = useState("");
 
     const handleCityChange = (e) => {
@@ -32,16 +32,16 @@ const StatsPanel = ({ hotspots, onCitySelect }) => {
                         ))}
                     </select>
                 </Col>
-                {/* <SmallCard
-                    head={"State"}
-                    number={city ? hotspots.find(h => h.name === city)?.admin_name : "...."}
-                    Icon={<PiBuildingOffice color="orange" />}
+                <SmallCard
+                    head={"Total Crimes"}
+                    number={totalCrimes || "..." }
+                    Icon={<FaPeopleGroup />}
                 />
                 <SmallCard
-                    head={"Population"}
-                    number={city ? hotspots.find(h => h.name === city)?.population : "..."}
+                    head={"Most Common Crime"}
+                    number={mostCommonCrime || "..." }
                     Icon={<FaPeopleGroup />}
-                /> */}
+                />
             </Row>
         </>
     );

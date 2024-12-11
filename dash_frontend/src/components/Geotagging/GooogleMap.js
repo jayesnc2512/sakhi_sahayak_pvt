@@ -2,23 +2,35 @@ import React, { useState, useEffect } from "react";
 import L from "leaflet";
 import styled from "styled-components";
 import "leaflet/dist/leaflet.css";
-import { Circle } from "./circle";
-import markerIcon from "../../../node_modules/leaflet/dist/images/marker-icon.png";
-import markerShadow from "leaflet/dist/images/marker-shadow.png";
-
-L.Marker.prototype.setIcon(
-  L.icon({
-    iconUrl: markerIcon,
-  //  shadowUrl: markerShadow,
-  iconSize: [18, 30], // New icon size (width, height)
-  iconAnchor: [9, 30], // Anchor point at the bottom center of the icon
-  popupAnchor: [1, -28], // Adjust popup anchor accordingly
-  tooltipAnchor: [16, -28], // Adjust tooltip anchor accordingly
-  //shadowSize: [41, 41] // Size of the shadow
-  })
-);
+import { useAlerts } from "../../context/AlertContext"; // Import the custom hook
 
 
+// Import custom icons
+import markerIconUrl from "../../../node_modules/leaflet/dist/images/marker-icon.png"; // Default marker icon for user location
+import cameraIconUrl from "./camera-icon.png"; // Camera icon
+import alertIconUrl from "./alert-icon.png"; // Alert icon
+
+// Create icons
+const userMarkerIcon = L.icon({
+  iconUrl: markerIconUrl,
+  iconSize: [25, 41], // Default size
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+});
+
+const cameraIcon = L.icon({
+  iconUrl: cameraIconUrl,
+  iconSize: [30, 30], // Adjust size for cameras
+  iconAnchor: [15, 30],
+  popupAnchor: [0, -30],
+});
+
+const alertIcon = L.divIcon({
+  className: "blinking-icon", // Use CSS for blinking effect
+  iconSize: [30, 30],
+  iconAnchor: [15, 30],
+  popupAnchor: [0, -30],
+});
 
 const GmapsWrap = styled.div`
   position: relative;
@@ -60,6 +72,21 @@ const GmapsWrap = styled.div`
     height: 75vh; /* Ensure the map container has a visible height */
     width: 100%; /* Full width for the map container */
   }
+
+    .blinking-icon {
+    background-image: url(${alertIconUrl});
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    animation: blink 1s infinite;
+    z-index:10000;
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 0.5;
+    }
+  }
 `;
 
 const Gmaps = ({ cameras }) => {
@@ -69,6 +96,9 @@ const Gmaps = ({ cameras }) => {
   const [map, setMap] = useState(null);
   const [circleLayer, setCircleLayer] = useState(null);
   const [tileLayer, setTileLayer] = useState(null);
+  const [alertMarkers, setAlertMarkers] = useState([]);
+  const { alerts } = useAlerts(); // Consume alerts from context
+
 
   useEffect(() => {
     // Get user location
@@ -101,7 +131,8 @@ const Gmaps = ({ cameras }) => {
 
       setTileLayer(defaultTileLayer);
 
-      L.marker(userLocation)
+      // Add user location marker with the user icon
+      L.marker(userLocation, { icon: userMarkerIcon })
         .addTo(mapInstance)
         .bindPopup("Your Location")
         .openPopup();
@@ -109,6 +140,51 @@ const Gmaps = ({ cameras }) => {
       setMap(mapInstance);
     }
   }, [userLocation, map]);
+
+  useEffect(() => {
+    // Add camera markers once the map is initialized and cameras data is available
+    if (map && cameras) {
+      cameras.forEach((camera) => {
+        const cameraLatLng = [camera.lat, camera.lon];
+        L.marker(cameraLatLng, { icon: cameraIcon }) // Use the camera icon here
+          .addTo(map)
+          .bindPopup(`
+            <div>
+              <h4>${camera.Name}</h4>
+              <p>Status: ${camera.status}</p>
+              <p>Latitude: ${camera.lat || "No information available"}</p>
+              <p>Longitude: ${camera.lon || "No information available"}</p>
+              <p>Link: <a href="${camera.link}" target="_blank">${camera.link || "No link"}</a></p>
+            </div>
+          `);
+      });
+    }
+  }, [map, cameras]);
+
+
+  useEffect(() => {
+    if (map && alerts) {
+      // Clear existing alert markers
+      alertMarkers.forEach((marker) => map.removeLayer(marker));
+
+      // Add new alert markers
+      const newMarkers = alerts.map((alert) => {
+        const marker = L.marker([alert.lat, alert.lon], { icon: alertIcon })
+          .addTo(map)
+          .bindPopup(`
+            <div>
+              <h4>${alert.sourceName}</h4>
+              <p>${alert.message}</p>
+              <p>Latitude: ${alert.lat}</p>
+              <p>Latitude: ${alert.lon}</p>
+            </div>
+          `);
+        return marker;
+      });
+
+      setAlertMarkers(newMarkers);
+    }
+  }, [map, alerts]);
 
   const handleRadiusChange = (event) => {
     const newRadius = Number(event.target.value);

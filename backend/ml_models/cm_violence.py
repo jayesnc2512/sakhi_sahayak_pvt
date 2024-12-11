@@ -5,6 +5,7 @@ from collections import deque
 from datetime import datetime
 import time
 import asyncio
+from workers.alerts_DB import alertsDB
 
 class continuousViolenceDetector:
     @staticmethod
@@ -86,6 +87,14 @@ class continuousViolenceDetector:
                 # Check if enough time has passed since the last alert
                 if current_time - last_alert_time >= alert_duration:
                     await websocket.send_json({"message":"Violence Detected","input_source":input_source})
+                    alert_data={
+                            "source":0,
+                            "source_id":input_source["id"],
+                            "lat":input_source["lat"],
+                            "lon":input_source["lon"],
+                            "alert_message":"Violence Detected",
+                        }
+                    alertsDB.insertAlerts(alert_data)
                     continuousViolenceDetector.log_alert()
                     consecutive_violence_frames, last_alert_time = continuousViolenceDetector.reset_alert()
 

@@ -28,14 +28,14 @@ export const useToast = () => useContext(ToastContext);
 export const ToastProvider = ({ children }) => {
   const [toasts, setToasts] = useState([]);
 
-  const triggerToast = (message, type) => {
+  const triggerToast = (message, type,lat,lon,name) => {
     const id = Date.now() + Math.random(); // Ensure unique ID for each toast
-    setToasts((prevToasts) => [...prevToasts, { id, message, type }]);
+    setToasts((prevToasts) => [...prevToasts, { id, message, type,lat, lon, name }]);
 
     // Automatically remove the toast after 5 seconds
     setTimeout(() => {
       setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
-    }, 5000);
+    }, 10000);
   };
 
   return (
@@ -57,6 +57,9 @@ export const ToastProvider = ({ children }) => {
     <ToastNotify
       key={toast.id}
       message={toast.message}
+      lat={toast.lat}
+      lon={toast.lon}
+      name={toast.name}
       type={toast.type}
       show={true}
       toggle={() =>

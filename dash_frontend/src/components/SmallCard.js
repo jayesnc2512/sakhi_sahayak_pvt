@@ -21,7 +21,7 @@ function Dashboard(props) {
     
 
     return (
-        <Col lg="3" md="6" sm="6" >
+        <Col lg="4" md="6" sm="6" >
             <Card className={`card-stats  `} style={props.style}>
                 <CardBody>
                     <Row>
