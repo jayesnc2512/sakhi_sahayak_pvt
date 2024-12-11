@@ -1,0 +1,12 @@
+ALERT: Violence detected at 2024-12-11 11:51:32.
+ALERT: Violence detected at 2024-12-11 11:52:13.
+ALERT: Violence detected at 2024-12-11 12:00:03.
+ALERT: Violence detected at 2024-12-11 12:00:38.
+ALERT: Violence detected at 2024-12-11 12:03:41.
+ALERT: Violence detected at 2024-12-11 12:04:15.
+ALERT: Violence detected at 2024-12-11 12:11:37.
+ALERT: Violence detected at 2024-12-11 12:12:32.
+ALERT: Violence detected at 2024-12-11 12:15:42.
+ALERT: Violence detected at 2024-12-11 12:28:20.
+ALERT: Violence detected at 2024-12-11 12:28:56.
+ALERT: Violence detected at 2024-12-11 12:49:41.

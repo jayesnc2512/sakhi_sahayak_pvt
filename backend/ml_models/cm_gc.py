@@ -96,8 +96,8 @@ class continuousGenderClassification:
                         frame, male_count, female_count = continuousGenderClassification.annotate_frame(frame, predictions)
                         
                         # Resize the frame for display
-                        small_frame = cv2.resize(frame, (320, 240))
-                        cv2.imshow("Video Feed", small_frame)
+                        # small_frame = cv2.resize(frame, (320, 240))
+                        cv2.imshow("Video Feed", frame)
 
                         # Encode the frame to Base64
                         _, buffer = cv2.imencode('.jpg', frame)
@@ -149,10 +149,10 @@ class continuousGenderClassification:
             if female_count == 1:
                 continuousGenderClassification.lone_woman_tracker.append(current_time)
                 # Retain only the last 6 timestamps (last 3 seconds at 2 FPS)
-                continuousGenderClassification.lone_woman_tracker=[t for t in continuousGenderClassification.lone_woman_tracker if (current_time - t).seconds <= 3]
+                continuousGenderClassification.lone_woman_tracker=[t for t in continuousGenderClassification.lone_woman_tracker if (current_time - t).seconds <= 10]
                 # Trigger alert if lone woman detected continuously for 3 seconds
                 if len(continuousGenderClassification.lone_woman_tracker) >= 4:
-                    await continuousGenderClassification.trigger_alert("lone women at night detected",websocket,input_source)
+                    continuousGenderClassification.trigger_alert("lone women at night detected",websocket,input_source)
                     # await websocket.send_json({"message":"Lone Women detected"})
                     continuousGenderClassification.lone_woman_tracker.clear()
             else:
@@ -165,7 +165,7 @@ class continuousGenderClassification:
             current_time = datetime.now()
             woman_positions = []
             man_positions = []
-            print("women surrounded cheching")
+            print("women surrounded checking")
             # Extract bounding box centers for all females and males
             for pred in predictions:
                 x, y, w, h = int(pred['x']), int(pred['y']), int(pred['width']), int(pred['height'])
@@ -184,21 +184,23 @@ class continuousGenderClassification:
                 # Count the number of men within the proximity threshold
                 for man_x, man_y in man_positions:
                     distance = ((man_x - woman_x) ** 2 + (man_y - woman_y) ** 2) ** 0.5
+                    print(f"dstance",distance)
                     if distance <= proximity_threshold:
                         men_within_proximity += 1
+                print(f"men_within_proximity{men_within_proximity}")
 
                 # If the woman is surrounded by 3 or more men within the proximity
                 if men_within_proximity >= 2:
                     continuousGenderClassification.surrounded_woman_tracker.append(current_time)
                     # Retain only the last 6 timestamps (last 3 seconds at 2 FPS)
                     continuousGenderClassification.surrounded_woman_tracker = [
-                        t for t in continuousGenderClassification.surrounded_woman_tracker if (current_time - t).seconds <= 3
+                        t for t in continuousGenderClassification.surrounded_woman_tracker if (current_time - t).seconds <= 10
                     ]
 
                     # Trigger alert if this condition persists for 3 seconds
                     if len(continuousGenderClassification.surrounded_woman_tracker) >= 3:
                         print("Woman surrounded by multiple men detected.")
-                        await continuousGenderClassification.trigger_alert("Woman surrounded by multiple men detected.",websocket,input_source)
+                        continuousGenderClassification.trigger_alert("Woman surrounded by multiple men detected.",websocket,input_source)
                         continuousGenderClassification.surrounded_woman_tracker.clear()
                 else:
                     continuousGenderClassification.surrounded_woman_tracker.clear()

@@ -10,7 +10,7 @@ def load_json_data(file_path):
 def haversine_distance(lat1, lon1, lat2, lon2):
     return geopy.distance.geodesic((lat1, lon1), (lat2, lon2)).meters
 
-def cluster_data(input_data, eps=5000):
+def cluster_data(input_data, eps=500):
     coordinates = [(entry['latitude'], entry['longitude']) for entry in input_data]
 
     coordinates_array = np.array(coordinates)
@@ -37,6 +37,6 @@ def main(input_file, output_file):
     print(f"Updated data saved to {output_file}")
 
 input_file = 'crime_data.json' 
-output_file = 'updated_crime_data.json'  
+output_file = 'updated_crime_data1.json'  
 
 main(input_file, output_file)
