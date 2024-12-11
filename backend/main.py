@@ -38,7 +38,7 @@ app.include_router(alertRouter,prefix="/alerts")
 app.include_router(cameraRouter,prefix="/cameras")
 
 
-app.include_router(gesture_analysis_router, prefix="/ws")
+app.include_router(gesture_analysis_router, prefix="/gesture")
 
 
 @app.on_event("startup")

@@ -16,31 +16,17 @@ const PlayButton = styled.button`
   cursor: pointer;
 `;
 
-const Player = () => {
-  const [showCanvas, setShowCanvas] = useState(false);
+const Player = ({ videoUrl }) => {
   const videoCanvasRef = useRef(null);
 
   useEffect(() => {
-    if (  videoCanvasRef.current) {
-      const videoUrl = 'ws://localhost:9999/';
+    if (videoCanvasRef.current) {
       new JSMpeg.VideoElement(videoCanvasRef.current, videoUrl, { autoplay: true });
     }
-  }, []);
-
-  const handleButtonClick = () => {
-    setShowCanvas(!showCanvas);
-  };
+  }, [videoUrl]);
 
   return (
-    <div>
-      {/* {showCanvas ? ( */}
-        <StyledVideoContainer ref={videoCanvasRef}>
-          {/* JSMpeg player will be initialized here when the canvas is visible */}
-        </StyledVideoContainer>
-      {/* ) : (
-        <PlayButton onClick={handleButtonClick}>▶️ Play</PlayButton>
-      )} */}
-    </div>
+    <StyledVideoContainer ref={videoCanvasRef}></StyledVideoContainer>
   );
 };
 

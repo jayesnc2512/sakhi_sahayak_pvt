@@ -46,7 +46,7 @@ function AddVideoGesture() {
 
   // Start the WebSocket connection
   const startWebSocket = () => {
-    websocketRef.current = new WebSocket("ws://127.0.0.1:8000/gesture-analysis");
+    websocketRef.current = new WebSocket("ws://127.0.0.1:8000/gesture/gesture-analysis");
 
     websocketRef.current.onopen = () => {
       console.log("WebSocket connection established.");
@@ -114,7 +114,9 @@ function AddVideoGesture() {
               <CardTitle tag="h5">Camera Analysis</CardTitle>
             </CardHeader>
             <CardBody>
-              <div style={{ display: "flex", justifyContent: "center" }}>
+                <Row>
+                    <Col md="6">
+                    <div style={{ display: "flex", justifyContent: "center" }}>
                 <video
                   ref={videoRef}
                   autoPlay
@@ -124,17 +126,23 @@ function AddVideoGesture() {
                 ></video>
                 <canvas ref={canvasRef} style={{ display: "none" }}></canvas>
               </div>
+                    </Col>
+                    <Col md="6">
+                            {processedFrame ? (
+                        <img
+                        src={`data:image/jpeg;base64,${processedFrame}`}
+                        alt="Processed Frame"
+                        style={{ width: "100%", height: "auto", marginTop: "20px" }}
+                        />
+                    ) : (
+                        <p style={{ marginTop: "20px" }}>No processed frame available.</p>
+                    )}
 
-              {processedFrame ? (
-                <img
-                  src={`data:image/jpeg;base64,${processedFrame}`}
-                  alt="Processed Frame"
-                  style={{ width: "100%", height: "auto", marginTop: "20px" }}
-                />
-              ) : (
-                <p style={{ marginTop: "20px" }}>No processed frame available.</p>
-              )}
+                    </Col>
+                </Row>
+             
 
+           
               <div className="update ml-auto mr-auto" style={{ marginTop: "20px" }}>
                 {!isAnalyzing ? (
                   <Button onClick={startCamera} className="btn-round" color="primary">

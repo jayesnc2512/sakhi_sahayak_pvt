@@ -20,6 +20,7 @@ async def gesture_analysis(websocket: WebSocket):
 
             # Extract the base64-encoded frame from the received data
             base64_frame = data.get("frame", None)
+            # print(f"base64_frame {base64_frame}")
             if not base64_frame:
                 await websocket.send_json({"error": "No frame data provided"})
                 continue

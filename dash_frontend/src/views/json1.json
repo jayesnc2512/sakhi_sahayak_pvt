@@ -1,0 +1,29 @@
+{
+    "data": [
+      {
+        "nickName": "Camera 1",
+        "Name": "Camera 1",
+        "modelNo": "XYZ123",
+        "link": "rtsp://admin:L23F18C4@192.168.173.191:554/cam/realmonitor?channel=1&subtype=0",
+        "lat": "12.34",
+        "lon": "56.78"
+      },
+      {
+        "nickName": "Camera 2",
+        "Name": "Camera 2",
+        "modelNo": "ABC456",
+        "link": "http://192.168.173.97:8080/video",
+        "lat": "34.56",
+        "lon": "78.90"
+      },
+      {
+        "nickName": "Camera 3",
+        "Name": "Camera 2",
+        "modelNo": "ABC456",
+        "link": null,
+        "lat": "34.56",
+        "lon": "78.90"
+      }
+    ]
+  }
+  

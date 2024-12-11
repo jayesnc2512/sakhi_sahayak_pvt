@@ -7,3 +7,4 @@
 /backend/workers/__pycache__
 /backend/ml_models/__pycache__
 /backend/ml_models/vmodel.h5
+/backend/helpers/__pycache__
