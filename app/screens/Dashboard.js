@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, Modal, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import * as Progress from 'react-native-progress';
 import SidebarNavigation from './NavigationProfile';
-import Notification from './notification';
 export default function Dashboard({ navigation }) {
   const [isProfileInComplete, setProfileComplete] = useState(true);
   const [isSidebarVisible, setSidebarVisible] = useState(false);
@@ -42,7 +41,6 @@ export default function Dashboard({ navigation }) {
         </View>
 
         <Text style={styles.welcome}>Welcome to Sakhi Sahayak!!</Text>
-        <Notification/>
 
         {isProfileInComplete && (
           <View style={styles.inCompleteProfileContainer}>
