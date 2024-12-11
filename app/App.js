@@ -12,6 +12,7 @@ import SafeMode from './screens/DashScreen/SafeMode';
 import MapScreen from './screens/DashScreen/mapScreen';
 import NavigationProfile from './screens/NavigationProfile';
 import Profile from './screens/profile';
+import Contact from './screens/Contacts';
 import { Vibration } from 'react-native';
 import * as Location from 'expo-location'; 
 import * as Device from 'expo-device';
@@ -381,6 +382,7 @@ export default function App() {
         <Stack.Screen name="Dash" component={Dashboard} />
         <Stack.Screen name="NavP" component={NavigationProfile} />
         <Stack.Screen name="Profile" component={Profile}/>
+        <Stack.Screen name="Contacts" component={Contact} />
         <Stack.Screen name="SOSN" component={SOSNotify} 
           options={{
             cardStyleInterpolator: ({ current, next, layouts }) => {

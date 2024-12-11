@@ -6,11 +6,31 @@ import { Audio } from 'expo-av';
 import * as FileSystem from 'expo-file-system'; 
 import { useNavigation } from '@react-navigation/native';
 import * as Sharing from 'expo-sharing';
+import * as SecureStore from 'expo-secure-store';
+import * as Contacts from 'expo-contacts';
 
 
 export default function SOSNotify() {
   const navigation = useNavigation();
   const sharedOpacities = Array.from({ length: 4 }, () => useSharedValue(0));
+  const [favoriteContacts, setFavoriteContacts] = useState([]);
+
+  useEffect(() => {
+    const fetchFavoriteContacts = async () => {
+      const storedFavoriteContacts = await SecureStore.getItemAsync('favoriteContacts');
+      if (storedFavoriteContacts) {
+        const favoriteContactsIds = JSON.parse(storedFavoriteContacts);
+        const { status } = await Contacts.requestPermissionsAsync();
+        if (status === 'granted') {
+          const { data } = await Contacts.getContactsAsync();
+          const favoriteContactsList = favoriteContactsIds.map(id => data.find(contact => contact.id === id)).filter(Boolean);
+          setFavoriteContacts(favoriteContactsList);
+        }
+      }
+    };
+
+    fetchFavoriteContacts();
+  }, []);
 
   useEffect(() => {
     // Animate the circles
@@ -130,6 +150,11 @@ export default function SOSNotify() {
         </View>
       </View>
       <Text style={styles.notifyText}>Notifying SOS Contacts</Text>
+      <View style={styles.favoriteContactsContainer}>
+        {favoriteContacts.map((contact, index) => (
+          <Text key={index} style={styles.favoriteContactText}>{contact.name}</Text>
+        ))}
+      </View>
       <TouchableOpacity style={styles.cancelSOSButton} onPress={handleCancelSOS}>
         <Text style={styles.cancelText}>Cancel SOS</Text>
         <Image source={require('../../assets/cancel.png')} style={styles.cancelIcon} />
@@ -221,4 +246,13 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
   },
+  favoriteContactsContainer: {
+    marginVertical: 20,
+  },
+  favoriteContactText: {
+    fontSize: 16,
+    color: '#FFF',
+    marginBottom: 10,
+  },
+
 });
