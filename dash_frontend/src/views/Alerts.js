@@ -129,7 +129,7 @@ const Alerts = () => {
               <th>URL</th>
               <th>Type of Alert</th>
               <th>Timestamp</th>
-              <th>Lodge Complaint</th>
+              <th>Register Complaint</th>
             </tr>
           </thead>
           <tbody>
@@ -147,7 +147,7 @@ const Alerts = () => {
                 <td>{data.timestamp}</td>
                 <td>
                   <Button color="primary" size="sm" onClick={() => handleLodgeComplaint(data)}>
-                    Lodge Complaint
+                    Register Complaint
                   </Button>
                 </td>
               </tr>

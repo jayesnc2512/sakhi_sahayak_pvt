@@ -184,9 +184,9 @@ const Cameras = () => {
                       <th>Latitude</th>
                       <th>Longitude</th>
                       <th>Link</th>
-                      <th>Latitude</th>
+                      {/* <th>Latitude</th>
                       <th>Longitude</th>
-                      <th>Stream</th>
+                      <th>Stream</th> */}
                     </tr>
                   </thead>
                   <tbody>
