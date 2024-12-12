@@ -166,39 +166,54 @@ class AudioProcessor:
                     print(f"Situation classified as: {situation}")
 
                     # Save or delete audio based on situation
-                if situation == "Danger":
-                    try:
-                        # Ensure the "danger" directory exists
-                        danger_directory = os.path.join('received_audio', 'danger')
-                        os.makedirs(danger_directory, exist_ok=True)
+                    if situation == "Danger":
+                        try:
+                            # Ensure the "danger" directory exists
+                            danger_directory = os.path.join('received_audio', 'danger')
+                            os.makedirs(danger_directory, exist_ok=True)
 
-                        # Convert the audio file to MP3 using pydub
-                        danger_path_mp3 = os.path.join(danger_directory, f"{os.path.splitext(filename)[0]}.mp3")
-                        audio = AudioSegment.from_file(original_file_path)
-                        audio.export(danger_path_mp3, format="mp3")
-                        print(f"Audio file fully converted to MP3 and saved: {danger_path_mp3}")
+                            # Convert the audio file to MP3 using pydub
+                            danger_path_mp3 = os.path.join(danger_directory, f"{os.path.splitext(filename)[0]}.mp3")
+                            audio = AudioSegment.from_file(original_file_path)
+                            audio.export(danger_path_mp3, format="mp3")
+                            print(f"Audio file fully converted to MP3 and saved: {danger_path_mp3}")
 
-                        # Upload the MP3 file to Cloudinary
-                        cloudinary_url = AudioProcessor.upload_to_cloudinary(danger_path_mp3)
-                        if cloudinary_url:
-                            print(f"File uploaded to Cloudinary: {cloudinary_url}")
-                            
-                            # Construct and send the SMS with location and Cloudinary link
-                            sms_message = (
-                                f"!!!EMERGENCY!!! Guest is in a danger situation.\n"
-                                f"Location: Latitude {latitude}, Longitude {longitude}\n"
-                                f"Audio evidence: {cloudinary_url}"
-                            )
-                            send_sms(sms_message, ["+918104782543", "+919067374010"])
-                        else:
-                            print("Failed to upload file to Cloudinary.")
+                            # Upload the MP3 file to Cloudinary
+                            cloudinary_url = AudioProcessor.upload_to_cloudinary(danger_path_mp3)
+                            if cloudinary_url:
+                                print(f"File uploaded to Cloudinary: {cloudinary_url}")
+                                
+                                # Construct and send the SMS with location and Cloudinary link
+                                sms_message = (
+                                    f"!!!EMERGENCY!!! Guest is in a danger situation.\n"
+                                    f"Location: Latitude {latitude}, Longitude {longitude}\n"
+                                    f"Audio evidence: {cloudinary_url}"
+                                )
+                                send_sms(sms_message, ["+918104782543", "+919067374010"])
+                                # Send alert to appCallsListenerRoutes
+                                alert_data = {
+                                    "location": {"latitude": latitude, "longitude": longitude},
+                                    "audio_link": cloudinary_url
+                                }
+                                try:
+                                    response = requests.post(
+                                        "https://7339-2409-40c0-1070-6544-493e-44a9-e6a0-1259.ngrok-free.app/ws/app-emergency-listener", json=alert_data
+                                    )
+                                    if response.status_code == 200:
+                                        print(f"Alert sent to appCallsListenerRoutes successfully: {response.json()}")
+                                    else:
+                                        print(f"Failed to send alert to appCallsListenerRoutes: {response.status_code}, {response.text}")
+                                except Exception as e:
+                                    print(f"Error sending alert to appCallsListenerRoutes: {e}")
+                            else:
+                                print("Failed to upload file to Cloudinary.")
 
-                        # Delete the local danger file after uploading
-                        os.remove(danger_path_mp3)
-                        print(f"Local danger file deleted: {danger_path_mp3}")
+                            # Delete the local danger file after uploading
+                            os.remove(danger_path_mp3)
+                            print(f"Local danger file deleted: {danger_path_mp3}")
 
-                    except Exception as e:
-                        print(f"Error handling Danger file: {e}")
+                        except Exception as e:
+                            print(f"Error handling Danger file: {e}")
 
                 else:
                     # Remove the file if classified as "Safe"

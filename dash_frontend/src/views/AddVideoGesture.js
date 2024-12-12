@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useToast } from "../context/ToastContext";
+
 import {
   Button,
   Card,
@@ -16,6 +18,8 @@ function AddVideoGesture() {
   const [inference, setInference] = useState([]);
   const [processedFrame, setProcessedFrame] = useState(null);
   const websocketRef = useRef(null);
+  const triggerToast = useToast();
+
 
   // Start the camera
   const startCamera = async () => {
@@ -58,7 +62,14 @@ function AddVideoGesture() {
       if (data.error) {
         console.error("WebSocket error:", data.error);
       } else {
-        setInference(data.inference);
+        // console.log(data.inference);
+        if (data.inference[0] === "Wrist Formed Detected") {
+          triggerToast(data.inference[0], "error")
+
+        }
+        if (data.inference?.length !== 0) {
+          setInference(prev => [data.inference[0], ...prev]);
+        }
         setProcessedFrame(data.processed_frame);
       }
     };

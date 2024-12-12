@@ -40,6 +40,21 @@ export default function SafeMode({ navigation }) {
       console.error('Error in handleCancelSafe:', error);
     }
   };
+  const latlongtolocation = async(lat, lng) => {
+    try {
+      const headers = {
+        'User -Agent': 'YourAppName/1.0 (your.email@example.com)', // Replace with your app name and contact email
+        'Accept': 'application/json',
+      };
+
+      const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`;
+      const response = await axios.get(url, { headers });
+      const data = response.data;
+      return data;
+    } catch (error) {
+      console.error('Error fetching address:', error);
+    }
+  }
 
   const startRecordingAudio = async () => {
     try {
@@ -144,6 +159,7 @@ export default function SafeMode({ navigation }) {
       console.error('Error sending audio and location to backend:', error);
     }
   };
+
 
   useEffect(() => {
     const setupSafeMode = async () => {

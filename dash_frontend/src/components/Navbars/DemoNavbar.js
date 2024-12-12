@@ -121,6 +121,9 @@ function Header(props) {
               </InputGroupAddon>
             </InputGroup>
           </form> */}
+          {/* <button style={{border: '1px solid black'}}>
+            click me
+          </button> */}
           <Nav navbar>
             <NavItem>
               <Link to="#pablo" className="nav-link btn-magnify">

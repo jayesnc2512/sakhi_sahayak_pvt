@@ -25,6 +25,7 @@ const StopButton = styled.button`
   cursor: pointer;
 `;
 
+
 const CameraCell = styled.div`
   border: 1px solid #ddd;
   padding: 10px;
@@ -35,6 +36,18 @@ const CameraCell = styled.div`
   overflow: hidden;
   width: 100%;
 
+  .placeholder {
+    background-color: #121212;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .placeholder {
     background-color: #121212;
     color: #fff;
@@ -81,6 +94,9 @@ const Cameras = () => {
 
   useEffect(() => {
     fetchCameras();
+
+  useEffect(() => {
+    fetchCameras();
   }, []);
 
   const handlePlayButtonClick = (id) => {
@@ -104,6 +120,7 @@ const Cameras = () => {
       for (let j = 0; j < gridSize; j++) {
         const index = i * gridSize + j;
         const camera = cameras[index];
+
 
         if (camera) {
           const isPlaying = selectedCameras[camera.id];
@@ -167,11 +184,14 @@ const Cameras = () => {
                       <th>Link</th>
                       <th>Latitude</th>
                       <th>Longitude</th>
+                      <th>Link</th>
+                      <th>Latitude</th>
+                      <th>Longitude</th>
                       <th>Stream</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {cameras?.map((ele) => (
+                    {cameras.map((ele) => (
                       <tr key={ele.id}>
                         <td>{ele.Name}</td>
                         <td>{ele.modelNo}</td>

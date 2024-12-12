@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@cycjimmy/jsmpeg-player": "^6.0.5",
+    "@emailjs/browser": "^4.4.1",
     "@googlemaps/markerclusterer": "^2.5.3",
     "@material-ui/icons": "^4.11.3",
     "@react-google-maps/api": "^2.19.3",
@@ -16,6 +17,7 @@
     "crypto-js": "^4.2.0",
     "date-fns": "^3.3.1",
     "date-fns-tz": "^2.0.0",
+    "emailjs": "^4.0.3",
     "emailjs-com": "^3.2.0",
     "firebase": "^10.8.0",
     "firebase-admin": "^12.0.0",

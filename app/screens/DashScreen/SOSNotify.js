@@ -141,6 +141,26 @@ export default function SOSNotify() {
     }
   };
 
+  const sendEmergencyAlert = async (location) => {
+    try {
+      const response = await fetch("https://7339-2409-40c0-1070-6544-493e-44a9-e6a0-1259.ngrok-free.app/ws/app-emergency-listener", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          location: location,
+        }),
+      });
+  
+      const data = await response.json();
+      console.log("Alert sent successfully:", data);
+    } catch (error) {
+      console.error("Failed to send alert:", error);
+    }
+  };
+  
+
   useEffect(() => {
     const callAPI = async () => {
       if (!hasCalled.current && !apiCalled) {
@@ -152,6 +172,7 @@ export default function SOSNotify() {
           console.log('calling sms and call functions')
           const smsSent = await sendEmergencySMS(location);
           const sosCallsInitiated = await initiateSOSCalls();
+          const sendAlertToDashboard= await sendEmergencyAlert(location);
 
           if (smsSent && sosCallsInitiated) {
             setTimeout(() => {
