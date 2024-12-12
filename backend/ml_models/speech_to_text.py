@@ -142,13 +142,13 @@ class KeywordDetector:
     def __init__(self):
         # Comprehensive list of keywords and phrases
         self.keywords_and_phrases = {
-            "help": 0.9, "stop": 0.7, "no": 0.5, "please": 0.4, "stop it": 0.8,
-            "please stop": 0.9, "help me": 1.0, "leave me alone": 0.8, 
+            "help": 1.0, "stop": 1.0, "no": 0.9, "please": 0.8, "stop it": 1.0,
+            "please stop": 0.9, "help me": 1.0, "leave me": 1.0, 
             "don't touch me": 1.0, "stop it now": 0.9, "I need help": 1.0, 
-            "call the police": 1.0, "please save me": 1.0, "I'm scared": 0.9,
+            "call police": 1.0, "save me": 1.0, "I'm scared": 0.9,
             "don't hurt me": 0.9, "you're scaring me": 0.8, "it hurts": 0.9,
-            "bachao": 1.0, "mujhe chhodo": 1.0, "police bulao": 1.0, 
-            "kaapathunga": 1.0, "vidunga": 1.0, "stay away": 0.8
+            "bachao": 1.0, "chhodo": 1.0, "police": 1.0, 
+            "kaapathunga": 1.0, "vidunga": 1.0, "stay away": 0.8, 
         }
 
     async def detect_keywords_and_phrases(self, text):

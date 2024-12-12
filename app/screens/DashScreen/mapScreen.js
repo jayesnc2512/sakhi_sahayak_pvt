@@ -36,11 +36,11 @@ const MapScreen = ({ navigation }) => {
   const [hotspotVisible, setHotspotVisible] = useState(false);
   const [mapShapes, setMapShapes] = useState([]);
   const [modalVisible, setModalVisible] = useState(false); 
-  const OPENROUTE_API_KEY = '';
+  const OPENROUTE_API_KEY = '5b3ce3597851110001cf6248d441e502ecae4e58832a077c03f07dfd';
 
   const hotspots = [
     { center: { lat: 19.0295559 + 0.04, lng: 72.8506955 + 0.04 }, radius: 500 },
-    { center: { lat: 19.0295559, lng: 72.8506955 }, radius: 400 },
+    { center: { lat: 19.0295559, lng: 72.8506955 }, radius: 700 },
     { center: { lat: 19.085559, lng: 72.8606955 }, radius: 500 },
     { center: { lat: 19.0495559, lng: 72.8906955 }, radius: 500 },
 
@@ -58,20 +58,20 @@ const MapScreen = ({ navigation }) => {
       color: "#EB3223",
     },
   ];
-  useEffect(() => {
-    if (hotspotVisible) {
-      setMapShapes(
-        polygonHotspots.map((polygon) => ({
-          shapeType: "polygon",
-          id: polygon.id,
-          positions: polygon.coordinates,
-          color: polygon.color,
-        }))
-      );
-    } else {
-      setMapShapes([]);
-    }
-  }, [hotspotVisible]);
+  // useEffect(() => {
+  //   if (hotspotVisible) {
+  //     setMapShapes(
+  //       polygonHotspots.map((polygon) => ({
+  //         shapeType: "polygon",
+  //         id: polygon.id,
+  //         positions: polygon.coordinates,
+  //         color: polygon.color,
+  //       }))
+  //     );
+  //   } else {
+  //     setMapShapes([]);
+  //   }
+  // }, [hotspotVisible]);
     
   useEffect(() => {
     const requestNotificationPermissions = async () => {
@@ -84,19 +84,19 @@ const MapScreen = ({ navigation }) => {
     requestNotificationPermissions();
   }, []);
 
-  // useEffect(() => {
-  //   if (hotspotVisible) {
-  //     setMapShapes(hotspots.map((hotspot, index) => ({
-  //       shapeType: 'circle',
-  //       color: '#EB3223',
-  //       id: `hotspot-${index + 1}`,
-  //       center: hotspot.center,
-  //       radius: hotspot.radius,
-  //     })));
-  //   } else {
-  //     setMapShapes([]);
-  //   }
-  // }, [hotspotVisible]);
+  useEffect(() => {
+    if (hotspotVisible) {
+      setMapShapes(hotspots.map((hotspot, index) => ({
+        shapeType: 'circle',
+        color: '#EB3223',
+        id: `hotspot-${index + 1}`,
+        center: hotspot.center,
+        radius: hotspot.radius,
+      })));
+    } else {
+      setMapShapes([]);
+    }
+  }, [hotspotVisible]);
 
   useEffect(() => {
     const getLocationAsync = async () => {

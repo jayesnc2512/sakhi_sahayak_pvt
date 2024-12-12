@@ -174,7 +174,7 @@ export default function SOSNotify() {
           const sosCallsInitiated = await initiateSOSCalls();
           const sendAlertToDashboard= await sendEmergencyAlert(location);
 
-          if (smsSent && sosCallsInitiated && sendAlertToDashboard) {
+          if (smsSent && sosCallsInitiated) {
             setTimeout(() => {
               navigation.navigate('Dash'); 
             }, 200);
