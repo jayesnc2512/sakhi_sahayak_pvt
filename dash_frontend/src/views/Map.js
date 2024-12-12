@@ -27,7 +27,7 @@ function Map() {
         <Row>
           <Col md="12" >
             <Card>
-              <CardHeader>Google Maps</CardHeader>
+              <CardHeader>Maps</CardHeader>
               <CardBody>
                 <div
                   id="map"

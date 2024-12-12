@@ -7,6 +7,7 @@ import cityHotspotData from './easy_coordinates.json';
 import "./index.css";
 import crimeData from './updated_crime_data1.json'; 
 import { LatLngBounds } from 'leaflet'; 
+import { useAlerts } from '../../context/AlertContext'; // Import AlertProvider and useAlerts
 
 const CityWiseHotspot = () => {
     const [cityData, setCityData] = useState({});
@@ -21,7 +22,67 @@ const CityWiseHotspot = () => {
     const [highestClusterAddress, setHighestClusterAddress] = useState(null); // To store the address of the cluster with the highest points
     const [minCrimes, setMinCrimes] = useState(''); // State for minimum crimes input
     const [filteredCentroids, setFilteredCentroids] = useState([]); // State for filtered centroids
+    const [cameras, setCameras] = useState([]);
+    // const [uid, setUid] = useState(1);
+    const [userLocation, setUserLocation] = useState({ lat: '19.025288', lon: '72.853416' });
+    const [error, setError] = useState(null);
 
+
+
+    
+    const handleAlertTriggered = () => {
+        // This is where the alert would be triggered
+       // addAlert("Alert triggered!", "danger", 40.7128, -74.0060, "Camera1");
+    };
+    
+    // const mapRef = React.useRef(null);  
+    const useUserLocation = () => {
+      
+        useEffect(() => {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+              (position) => {
+                const { latitude, longitude } = position.coords;
+                setUserLocation({ lat: latitude, lon: longitude });
+              },
+              (err) => {
+                setError(err.message);
+              }
+            );
+          } else {
+            setError("Geolocation is not supported by this browser.");
+          }
+        }, []);
+    };
+    
+    const fetchCameras = async () => {
+      try {
+        // const response = await fetch('http://127.0.0.1:8000/cameras/getCameras');
+        // const json = await response.json();  // Read response as text
+        const json = {
+            "data": [
+              {
+                "nickName": "Camera 1",
+                "Name": "Camera 1",
+                "modelNo": "XYZ123",
+                "link": "rtsp://admin:L23F18C4@192.168.173.191:554/cam/realmonitor?channel=1&subtype=0",
+                "lat": "19.84",
+                "lon": "72.84"
+              }
+            ]}        
+        console.log("Response text:",json.data);  // Log the response body
+        setCameras(json.data);
+        
+       
+      } catch (e) {
+        console.error('Error fetching camera details:', e);
+      }
+    };
+    
+    useEffect(() => { 
+        fetchCameras();
+    }, []);
+  
     useEffect(() => {
         const formattedHotspots = Object.keys(cityHotspotData).map(cityName => ({
             name: cityName,
@@ -163,12 +224,14 @@ const CityWiseHotspot = () => {
             setFilteredCentroids([]);
         }
     };
-    
+
     return (
         <div className="content">
             <Row>
                 <Col md="12">
                     <Card>
+                    <button onClick={handleAlertTriggered}>Trigger Alert</button>
+
                         <CardHeader>Statistics</CardHeader>
                         <StatsPanel
                             hotspots={hotspots}
@@ -188,7 +251,9 @@ const CityWiseHotspot = () => {
                                 onCrimeClick={handleCrimeClick} 
                                 hotspots={selectedCity ? [selectedCity] : ''} 
                                 crimeData={crimeData} 
-                                filteredCentroids={filteredCentroids} // Pass filtered centroids
+                                filteredCentroids={filteredCentroids} 
+                                cameras={cameras}
+                                userLocation={{ lat: userLocation.lat, lon: userLocation.lon }}
                             />
                             <Collapse isOpen={isPanelOpen}>
                                 <div className={`side-panel ${isPanelOpen ? 'slide-in' : 'slide-out'}`}>
