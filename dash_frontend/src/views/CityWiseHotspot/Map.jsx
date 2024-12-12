@@ -24,7 +24,7 @@ const blueIcon = new Icon({
 });
 
 const redIcon = new Icon({
-  iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',  // Red marker icon from Leaflet
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',  // Red marker icon from Leaflet
   iconSize: [25, 41], // Size of the marker
   iconAnchor: [12, 41], // Anchor point for the marker
   popupAnchor: [1, -34], // Anchor point for the popup
@@ -34,7 +34,7 @@ const redIcon = new Icon({
 
 // Custom icon for user's current location
 const userLocationIcon = new Icon({
-  iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png', // You can use a different icon or color for this
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png', // You can use a different icon or color for this
   iconSize: [30, 50], // Larger size for the user's location marker
   iconAnchor: [15, 50], // Anchor it properly at the bottom
   popupAnchor: [1, -40], // Anchor point for the popup
@@ -65,9 +65,8 @@ const Map = ({
   // Update camera marker color on alert detection
   useEffect(() => {
     if (alerts.length > 0) {
-      // Trigger color change every second for 10 seconds
       const intervalId = setInterval(() => {
-        setColorToggle((prev) => !prev); // Toggle color
+        setColorToggle((prev) => !prev);
       }, 1000);
 
       // Stop the toggling after 10 seconds

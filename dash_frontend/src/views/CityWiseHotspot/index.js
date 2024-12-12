@@ -27,12 +27,14 @@ const CityWiseHotspot = () => {
     const [userLocation, setUserLocation] = useState({ lat: '19.025288', lon: '72.853416' });
     const [error, setError] = useState(null);
 
+    const { addAlert } = useAlerts();  // Get the addAlert function from the context
 
 
     
     const handleAlertTriggered = () => {
         // This is where the alert would be triggered
-       // addAlert("Alert triggered!", "danger", 40.7128, -74.0060, "Camera1");
+
+       addAlert("Alert triggered!", "danger", 40.7128, -74.0060, "Camera1");
     };
     
     // const mapRef = React.useRef(null);  
