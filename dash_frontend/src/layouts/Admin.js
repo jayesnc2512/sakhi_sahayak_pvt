@@ -74,7 +74,7 @@ function Dashboard(props) {
 
           let toDisplay=`${response.message}`
           triggerToast(response.message, type, response.input_source.lat, response.input_source.lon, response.input_source.Name)
-          addAlert(response.message, type, response.input_source.lat, response.input_source.lon, response.input_source.Name);
+          addAlert(response.message, type, response.input_source.lat, response.input_source.lon, response.input_source.Name,response.source_id);
         }
       } catch (e) {
         console.error("Error parsing server response:", e);

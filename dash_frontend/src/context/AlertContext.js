@@ -11,9 +11,9 @@ export const AlertProvider = ({ children }) => {
     const [alerts, setAlerts] = useState([]);
 
     // Function to add an alert
-    const addAlert = (message, type, lat, lon, sourceName) => {
+    const addAlert = (message, type, lat, lon, sourceName,source_id) => {
         const id = Date.now(); // Unique ID for the alert
-        const newAlert = { id, message, type, lat, lon, sourceName };
+        const newAlert = { id, message, type, lat, lon, sourceName,source_id };
         setAlerts((prev) => [...prev, newAlert]);
 
         // Remove alert after 15 seconds

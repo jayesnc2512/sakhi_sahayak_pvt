@@ -71,8 +71,9 @@ useEffect(() => {
   useEffect(() => {
     if (cameras.some((camera) => camera.alert)) {
       const intervalId = setInterval(() => {
-        setColorToggle((prev) => !prev);
+        setColorToggle(alerts);
       }, 1000);
+      console.log("alert", alerts)
 
       setTimeout(() => {
         clearInterval(intervalId);
