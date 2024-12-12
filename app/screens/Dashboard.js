@@ -65,11 +65,11 @@ export default function Dashboard({ navigation }) {
 
         <View style={styles.optionsContainer}>
           <View style={styles.optionsRow}>
-            <TouchableOpacity style={styles.optionsButton}>
+            <TouchableOpacity style={styles.optionsButton} onPress={() => navigation.navigate('Police')}>
               <Image source={require('../assets/police.png')} style={styles.optionsImage} />
               <Text style={styles.optionsText}>Police</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.optionsButton}>
+            <TouchableOpacity style={styles.optionsButton} onPress={() => navigation.navigate('Hospital')}>
               <Image source={require('../assets/ambulance.png')} style={styles.optionsImage} />
               <Text style={styles.optionsText}>Ambulance</Text>
             </TouchableOpacity>
