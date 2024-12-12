@@ -1,7 +1,11 @@
 from ml_models.gender_classification import genderClassification 
 from ml_models.violence_detection import ViolenceDetector
-from ml_models.cm_gc import continuousGenderClassification 
-from ml_models.cm_violence import continuousViolenceDetector
+# from ml_models.cm_gc import continuousGenderClassification 
+# from ml_models.cm_violence import continuousViolenceDetector
+from ml_models.Realtime_analysis.gc import continuousGenderClassification
+from ml_models.Realtime_analysis.violence import continuousViolenceDetector
+
+
 
 class videoTest:
     @staticmethod
