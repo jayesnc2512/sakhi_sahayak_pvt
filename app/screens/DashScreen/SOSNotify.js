@@ -9,6 +9,7 @@ import * as Sharing from 'expo-sharing';
 import * as SecureStore from 'expo-secure-store';
 import * as Contacts from 'expo-contacts';
 import * as Location from 'expo-location';
+import axios from 'axios';
 export default function SOSNotify() {
   const navigation = useNavigation();
   const hasCalled = useRef(false); // Ensure API calls happen only once
@@ -33,17 +34,34 @@ export default function SOSNotify() {
     fetchFavoriteContacts();
   }, []);
   const [apiCalled, setApiCalled] = useState(false);
+  const latlongtolocation = async(lat, lng) => {
+    try {
+      const headers = {
+        'User -Agent': 'YourAppName/1.0 (your.email@example.com)', // Replace with your app name and contact email
+        'Accept': 'application/json',
+      };
 
+      const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`;
+      const response = await axios.get(url, { headers });
+      const data = response.data;
+      return data;
+    } catch (error) {
+      console.error('Error fetching address:', error);
+    }
+  }
   const sendEmergencySMS = async (location) => {
     try {
       console.log('location', location);
+      const addressData = await latlongtolocation(location.lat, location.lng);
+      const address = addressData.display_name || 'Address not found';  
+
       const response = await fetch('https://7339-2409-40c0-1070-6544-493e-44a9-e6a0-1259.ngrok-free.app/tw/send-sms', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          message: `This is an emergency alert! Guest user is in danger. location during danger: ${location.lat}, ${location.lng}`,
+          message: `This is an emergency alert! Guest user is in danger. location during danger: ${location.lat}, ${location.lng} Address: ${address}`,
           phone_numbers: ["+918104782543", "+919067374010"],
         }),
       });
