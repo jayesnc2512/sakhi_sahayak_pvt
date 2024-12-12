@@ -145,6 +145,7 @@ export default function SafeMode({ navigation }) {
     }
   };
 
+
   useEffect(() => {
     const setupSafeMode = async () => {
       try {
