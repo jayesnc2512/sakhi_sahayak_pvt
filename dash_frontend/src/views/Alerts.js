@@ -97,8 +97,9 @@ const Alerts = () => {
     try {
       const response = await fetch('http://127.0.0.1:8000/alerts/');
       const json = await response.json();
+      const reverseData= await json.data.reverse();
       // console.log(data);
-      setAlerts(json.data);
+      setAlerts(reverseData);
       setUnReadAlerts(json?.data.filter((it) => it.read_status === 0))
       setReadAlerts(json?.data.filter((it) => it.read_status === 1))
     } catch (err) {
@@ -138,7 +139,7 @@ const Alerts = () => {
                 <td>{data.source_id}</td>
                 <td>{data.lat}  {data.lon}</td>
                 <td>
-                  <a href={data.url} target="_blank" rel="noopener noreferrer">
+                  <a href={data.proof_link} target="_blank" rel="noopener noreferrer">
                     {data.proof_link}
                   </a>
                 </td>

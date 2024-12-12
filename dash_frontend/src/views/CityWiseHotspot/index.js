@@ -57,20 +57,21 @@ const CityWiseHotspot = () => {
     
     const fetchCameras = async () => {
       try {
-        // const response = await fetch('http://127.0.0.1:8000/cameras/getCameras');
-        // const json = await response.json();  // Read response as text
-        const json = {
-            "data": [
-              {
-                "nickName": "Camera 1",
-                "Name": "Camera 1",
-                "modelNo": "XYZ123",
-                "link": "rtsp://admin:L23F18C4@192.168.173.191:554/cam/realmonitor?channel=1&subtype=0",
-                "lat": "19.84",
-                "lon": "72.84"
-              }
-            ]}        
-        console.log("Response text:",json.data);  // Log the response body
+        const response = await fetch('http://127.0.0.1:8000/cameras/getCameras');
+        const json = await response.json();  // Read response as text
+        // const json = {
+        //     "data": [
+        //       {
+        //         "nickName": "Camera 1",
+        //         "Name": "Camera 1",
+        //         "modelNo": "XYZ123",
+        //         "link": "rtsp://admin:L23F18C4@192.168.173.191:554/cam/realmonitor?channel=1&subtype=0",
+        //         "lat": "19.84",
+        //         "lon": "72.84"
+        //       }
+        //     ]}        
+        console.log("Response text:",json.data);
+ 
         setCameras(json.data);
         
        
