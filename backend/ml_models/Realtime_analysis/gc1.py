@@ -16,6 +16,7 @@ from ml_models.Realtime_analysis.violence import continuousViolenceDetector
 import tempfile
 from ml_models.Realtime_analysis.camera import Model
 from ml_models.Realtime_analysis.camera import violenceDetection
+from ml_models.Realtime_analysis.camera import real_time_analysis
 
 
 
@@ -86,14 +87,14 @@ class continuousGenderClassification:
 
     
     @staticmethod
-    async def process_video_feed(model, cap, websocket,input_source):
+    async def process_video_feed( cap, websocket,input_source):
         try:
             frame_count = 0
             gesture2=GestureRecognizer()
             # original_fps = cap.get(cv2.CAP_PROP_FPS)
             # frame_interval = int(original_fps / fps) if original_fps > 0 else 15
-            model_path = "ml_models/Realtime_analysis/vmodel.h5"
-            vmodel = continuousViolenceDetector.load_model(model_path)
+            # model_path = "ml_models/Realtime_analysis/vmodel.h5"
+            # vmodel = continuousViolenceDetector.load_model(model_path)
             queue = deque(maxlen=128)
             consecutive_violence_frames = 0
             last_alert_time = 0
@@ -109,8 +110,8 @@ class continuousGenderClassification:
 
                 # if frame_count % frame_interval == 0:
                 try:
-                        inference = model.predict(frame, confidence=40, overlap=70)
-                        predictions = inference.json()['predictions']
+                        processed_frame,male_count,female_count,detection_details = real_time_analysis(frame)
+                        # predictions = inference.json()['predictions']
                         inference_result, processed_frame = gesture2.process_frame_gesture1(frame)
                         is_violence,processed_frame=violenceDetection(frame=frame)
                         if is_violence:
@@ -122,7 +123,7 @@ class continuousGenderClassification:
                         
 
                         print(f"gesture inference",inference_result)
-                        frame, male_count, female_count = continuousGenderClassification.annotate_frame(processed_frame, predictions)
+                        # frame, male_count, female_count = continuousGenderClassification.annotate_frame(processed_frame, predictions)
                         classification = night.classify_day_night(frame)
                         
 
@@ -160,7 +161,7 @@ class continuousGenderClassification:
                         # await websocket.send_json({"message": output,"image": encoded_frame})
 
                         # Process lone woman detection and woman surrounded detection
-                        await continuousGenderClassification.detect_woman_surrounded(female_count, male_count, predictions, websocket,input_source,processed_frame)
+                        await continuousGenderClassification.detect_woman_surrounded(female_count, male_count, detection_details, websocket,input_source,processed_frame)
                         await continuousGenderClassification.detect_lone_woman(female_count, male_count,nightStatus, websocket,input_source,processed_frame)
 
                 except Exception as e:
@@ -250,12 +251,12 @@ class continuousGenderClassification:
             print("women surrounded checking")
             # Extract bounding box centers for all females and males
             for pred in predictions:
-                x, y, w, h = int(pred['x']), int(pred['y']), int(pred['width']), int(pred['height'])
-                label = pred['class']
+                x, y = int(pred['x']), int(pred['y'])
+                label = pred['class_id']
 
-                if label == 'female':
+                if label == '0':
                     woman_positions.append((x, y))
-                elif label == 'male':
+                elif label == '1':
                     man_positions.append((x, y))
 
             # Check if exactly one woman is detected
@@ -315,16 +316,16 @@ class continuousGenderClassification:
         try:
             # fps = 2  # Set frames per second to process
 
-            model = continuousGenderClassification.initialize_roboflow()
-            if model is None:
-                return
+            # model = continuousGenderClassification.initialize_roboflow()
+            # if model is None:
+            #     return
             input_video=input_source['link']
             print(input_video)
             if(input_video=='0'):
                 input_video=int(input_video)
             cap = continuousGenderClassification.process_video_input(input_video,websocket)
             if cap:
-               await continuousGenderClassification.process_video_feed(model, cap,websocket,input_source)
+               await continuousGenderClassification.process_video_feed( cap,websocket,input_source)
             else:
                 print("Error: Could not initialize video feed.")
         except Exception as e:

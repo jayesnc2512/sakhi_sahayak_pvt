@@ -31,11 +31,11 @@ const CityWiseHotspot = () => {
 
 
     
-    const handleAlertTriggered = () => {
-        // This is where the alert would be triggered
+    // const handleAlertTriggered = () => {
+    //     // This is where the alert would be triggered
 
-       addAlert("Alert triggered!", "danger", 40.7128, -74.0060, "Camera1");
-    };
+    //    addAlert("Alert triggered!", "danger", 40.7128, -74.0060, "Camera1");
+    // };
     
     // const mapRef = React.useRef(null);  
     const useUserLocation = () => {
@@ -233,7 +233,7 @@ const CityWiseHotspot = () => {
             <Row>
                 <Col md="12">
                     <Card>
-                    <button onClick={handleAlertTriggered}>Trigger Alert</button>
+                    {/* <button onClick={handqleAlertTriggered}>Trigger Alert</button> */}
 
                         <CardHeader>Statistics</CardHeader>
                         <StatsPanel

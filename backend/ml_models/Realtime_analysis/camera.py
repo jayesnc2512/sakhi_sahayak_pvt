@@ -9,7 +9,7 @@ from ultralytics import YOLO
 
 # Define Model Class (CLIP)
 class Model:
-    def __init__(self, settings_path: str = './settings.yaml'):
+    def __init__(self, settings_path: str = 'ml_models/Realtime_analysis/settings.yaml'):
         with open(settings_path, "r") as file:
             self.settings = yaml.safe_load(file)
 
@@ -74,20 +74,22 @@ class Model:
         return prediction
 
 # Real-Time Video Processing with Model
-def real_time_analysis(model: Model, yolo_model: YOLO):
+def real_time_analysis(frame):
+        yolo_model=YOLO
+        model=Model()
     # Initialize the webcam
-    cap = cv2.VideoCapture(0)  # Use 0 for the default webcam or replace with the correct index
+    # cap = cv2.VideoCapture(0)  # Use 0 for the default webcam or replace with the correct index
 
-    if not cap.isOpened():
-        print("Error: Cannot access the webcam.")
-        return
+    # if not cap.isOpened():
+    #     print("Error: Cannot access the webcam.")
+    #     return
 
-    while True:
-        # Capture a frame from the webcam
-        ret, frame = cap.read()
-        if not ret:
-            print("Failed to capture image.")
-            break
+    # while True:
+    #     # Capture a frame from the webcam
+    #     ret, frame = cap.read()
+    #     if not ret:
+    #         print("Failed to capture image.")
+    #         break
 
         # Resize the frame to a smaller resolution for faster inference
         frame_resized = cv2.resize(frame, (640, 480))  # Resize to 640x480
@@ -104,6 +106,45 @@ def real_time_analysis(model: Model, yolo_model: YOLO):
 
         # Visualize the results on the frame using YOLOv8
         annotated_frame = results[0].plot()  # Annotated frame with detections
+        detections = results[0].boxes  # Extract the detection boxes
+        class_names = results[0].names  # Class names dictionary {0: 'female', 1: 'male'}
+
+# Initialize counters
+        male_count = 0
+        female_count = 0
+
+# Iterate over each detected box
+        if detections:
+            for box in detections:
+                class_id = int(box.cls)  # Get the class ID for the detected object
+                if class_id == 0:  # Class 0 corresponds to 'female'
+                    female_count += 1
+                elif class_id == 1:  # Class 1 corresponds to 'male'
+                    male_count += 1
+
+        # Assuming the results object is from your YOLOv8 model prediction
+        # detections = results[0].boxes  # Extract the detection boxes
+        # class_names = results[0].names  # Class names dictionary {0: 'female', 1: 'male'}
+
+        # Initialize a list to store details of each detection
+        detection_details = []
+
+        # Iterate over each detected box
+        if detections:
+            for box in detections:
+                class_id = int(box.cls)  # Get the class ID for the detected object
+                coords = box.xyxy[0].cpu().numpy()  # Get bounding box coordinates (xmin, ymin, xmax, ymax)
+                detection_details.append({
+                    "class_id": class_id,
+                    "coordinates": {
+                        "x": (coords[0]+coords[2])/2,
+                        "y": (coords[1]+coords[3])/2,
+                    }
+                })
+
+        # Print or use the detection details
+
+        return annotated_frame,male_count,female_count,detection_details
 
         # Run prediction using CLIP on the frame
         # prediction = model.predict(frame)
@@ -119,26 +160,27 @@ def real_time_analysis(model: Model, yolo_model: YOLO):
         #     cv2.putText(annotated_frame, "violence: True", (20, 60), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA)
 
         # Display the frame with YOLOv8 annotations
-        cv2.imshow("Real-Time Analysis", annotated_frame)
+        # cv2.imshow("Real-Time Analysis", annotated_frame)
 
         # Exit if the user presses the 'q' key
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+    #     if cv2.waitKey(1) & 0xFF == ord('q'):
+    #         break
 
-    # Release resources
-    cap.release()
-    cv2.destroyAllWindows()
+    # # Release resources
+    # cap.release()
+    # cv2.destroyAllWindows()
 
 # Initialize the CLIP model and YOLOv8 model
-settings_path = './settings.yaml'  # Path to your settings file
+settings_path = 'ml_models/Realtime_analysis/settings.yaml'  # Path to your settings file
 clip_model = Model(settings_path)
-yolo_model = YOLO("best.pt")  # Replace with your custom-trained YOLOv8 model
+yolo_model = YOLO("ml_models/Realtime_analysis/best.pt")  # Replace with your custom-trained YOLOv8 model
 
 # Start real-time analysis with both models
-real_time_analysis(clip_model, yolo_model)
+# real_time_analysis(clip_model, yolo_model)
 
 
-def violenceDetection(model:Model,frame):
+def violenceDetection(frame):
+        model=Model()
         prediction = model.predict(frame)
         label = prediction['label']
         confidence = prediction['confidence']
@@ -150,4 +192,5 @@ def violenceDetection(model:Model,frame):
             is_violence=True
             print("violence: True")
             cv2.putText(frame, "violence: True", (20, 60), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA)
+        
         return is_violence,frame

@@ -28,16 +28,16 @@ class continuousMonitoring:
                     except Exception as e:
                         print(f"Error in gender classification task: {e}")
 
-                async def violence_detection_task():
-                    try:
-                        await videoTest.invokeContinuousViolenceDetection(input_source, websocket)
-                    except Exception as e:
-                        print(f"Error in violence detection task: {e}")
+                # async def violence_detection_task():
+                #     try:
+                #         await videoTest.invokeContinuousViolenceDetection(input_source, websocket)
+                #     except Exception as e:
+                #         print(f"Error in violence detection task: {e}")
 
                 # Run both tasks concurrently
                 await asyncio.gather(
                     gender_classification_task(),
-                    violence_detection_task()
+                    # violence_detection_task()
                 )
                 await asyncio.sleep(0) 
         except Exception as e:

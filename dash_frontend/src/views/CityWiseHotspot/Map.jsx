@@ -63,11 +63,13 @@ const Map = ({
   const [colorToggle, setColorToggle] = useState(false); // For toggling the colors (blue-red-blue-red)
   
   // Update camera marker color on alert detection
+  
   useEffect(() => {
     if (alerts.length > 0) {
       const intervalId = setInterval(() => {
-        setColorToggle((prev) => !prev);
+        setColorToggle(alerts);
       }, 1000);
+      console.log("alert", alerts)
 
       // Stop the toggling after 10 seconds
       setTimeout(() => {
@@ -78,7 +80,10 @@ const Map = ({
   }, [alerts]); // When alerts change, the effect runs
 
   // Function to get the correct icon based on color toggle
-  const getMarkerIcon = () => (colorToggle ? redIcon : blueIcon);
+  const getMarkerIcon = () => (colorToggle ? redIcon:blueIcon);
+
+
+ 
 
   return (
 
@@ -156,12 +161,12 @@ const Map = ({
       </MarkerClusterGroup>
 
       {/* Render Camera Markers */}
-      <MarkerClusterGroup>
+      {/* <MarkerClusterGroup> */}
         {cameras.map((camera) => (
           <Marker
             key={camera.id}
             position={[camera.lat, camera.lon]}
-            icon={getMarkerIcon()}  // Change icon based on the color toggle state
+            icon={camera.id===5?getMarkerIcon():blueIcon}  // Change icon based on the color toggle state
           >
             <Popup>
               <strong>{camera.name}</strong>
@@ -174,7 +179,7 @@ const Map = ({
             </Popup>
           </Marker>
         ))}
-      </MarkerClusterGroup>
+      {/* </MarkerClusterGroup> */}
 
       {/* Render User's Location Marker */}
       {userLocation && (

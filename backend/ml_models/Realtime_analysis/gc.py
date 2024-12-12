@@ -113,7 +113,7 @@ class continuousGenderClassification:
                         is_violence=continuousViolenceDetector.analyze_frame(frame,vmodel,queue)
                         label = "Violence: Yes" if is_violence else "Violence: No"
                         color = (0, 0, 255) if is_violence else (0, 255, 0)
-                        cv2.putText(processed_frame, label, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2)
+                        # cv2.putText(processed_frame, label, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2)
                         # cv2.imshow("Output", small_frame)
                         if is_violence:
                             consecutive_violence_frames += 1

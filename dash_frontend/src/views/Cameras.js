@@ -84,8 +84,11 @@ const Cameras = () => {
 
   const fetchCameras = async () => {
     try {
-      console.log("Response text:", json1.data);
-      setCameras(json1.data);
+      const response = await fetch("http://127.0.0.1:8000/cameras/getCameras");
+      const json = await response.json();
+      setCameras(json.data || []);
+      console.log("Response text:", json.data);
+      setCameras(json.data);
     } catch (e) {
       setError(e.message);
       console.error("Error fetching camera details:", e);
@@ -184,9 +187,7 @@ const Cameras = () => {
                       <th>Latitude</th>
                       <th>Longitude</th>
                       <th>Link</th>
-                      <th>Latitude</th>
-                      <th>Longitude</th>
-                      <th>Stream</th>
+              
                     </tr>
                   </thead>
                   <tbody>
