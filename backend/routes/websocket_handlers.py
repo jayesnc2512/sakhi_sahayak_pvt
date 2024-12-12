@@ -63,7 +63,7 @@ async def video_analysis(websocket: WebSocket):
             data = json.loads(message)
             invoke = data.get("invoke", None)
             print(f"Received video path: {invoke}")
-            # await continuousMonitoring.startMontitoring(websocket)
+            await continuousMonitoring.startMontitoring(websocket)
 
 
 
