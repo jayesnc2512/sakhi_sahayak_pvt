@@ -6,24 +6,62 @@ import { Audio } from 'expo-av';
 import * as FileSystem from 'expo-file-system'; 
 import { useNavigation } from '@react-navigation/native';
 import * as Sharing from 'expo-sharing';
+import * as SecureStore from 'expo-secure-store';
+import * as Contacts from 'expo-contacts';
 import * as Location from 'expo-location';
+import axios from 'axios';
 export default function SOSNotify() {
   const navigation = useNavigation();
   const hasCalled = useRef(false); // Ensure API calls happen only once
   const locationRef = useRef(null);
   const sharedOpacities = Array.from({ length: 4 }, () => useSharedValue(0));
-  const [apiCalled, setApiCalled] = useState(false);
+  const [favoriteContacts, setFavoriteContacts] = useState([]);
 
+  useEffect(() => {
+    const fetchFavoriteContacts = async () => {
+      const storedFavoriteContacts = await SecureStore.getItemAsync('favoriteContacts');
+      if (storedFavoriteContacts) {
+        const favoriteContactsIds = JSON.parse(storedFavoriteContacts);
+        const { status } = await Contacts.requestPermissionsAsync();
+        if (status === 'granted') {
+          const { data } = await Contacts.getContactsAsync();
+          const favoriteContactsList = favoriteContactsIds.map(id => data.find(contact => contact.id === id)).filter(Boolean);
+          setFavoriteContacts(favoriteContactsList);
+        }
+      }
+    };
+
+    fetchFavoriteContacts();
+  }, []);
+  const [apiCalled, setApiCalled] = useState(false);
+  const latlongtolocation = async(lat, lng) => {
+    try {
+      const headers = {
+        'User -Agent': 'YourAppName/1.0 (your.email@example.com)', // Replace with your app name and contact email
+        'Accept': 'application/json',
+      };
+
+      const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`;
+      const response = await axios.get(url, { headers });
+      const data = response.data;
+      return data;
+    } catch (error) {
+      console.error('Error fetching address:', error);
+    }
+  }
   const sendEmergencySMS = async (location) => {
     try {
       console.log('location', location);
+      const addressData = await latlongtolocation(location.lat, location.lng);
+      const address = addressData.display_name || 'Address not found';  
+
       const response = await fetch('https://7339-2409-40c0-1070-6544-493e-44a9-e6a0-1259.ngrok-free.app/tw/send-sms', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          message: `This is an emergency alert! Guest user is in danger. location during danger: ${location.lat}, ${location.lng}`,
+          message: `This is an emergency alert! Guest user is in danger. location during danger: ${location.lat}, ${location.lng} Address: ${address}`,
           phone_numbers: ["+918104782543", "+919067374010"],
         }),
       });
@@ -190,6 +228,11 @@ export default function SOSNotify() {
         </View>
       </View>
       <Text style={styles.notifyText}>Notifying SOS Contacts</Text>
+      <View style={styles.favoriteContactsContainer}>
+        {favoriteContacts.map((contact, index) => (
+          <Text key={index} style={styles.favoriteContactText}>{contact.name}</Text>
+        ))}
+      </View>
       <TouchableOpacity style={styles.cancelSOSButton} onPress={handleCancelSOS}>
         <Text style={styles.cancelText}>Cancel SOS</Text>
         <Image source={require('../../assets/cancel.png')} style={styles.cancelIcon} />
@@ -281,4 +324,13 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
   },
+  favoriteContactsContainer: {
+    marginVertical: 20,
+  },
+  favoriteContactText: {
+    fontSize: 16,
+    color: '#FFF',
+    marginBottom: 10,
+  },
+
 });
