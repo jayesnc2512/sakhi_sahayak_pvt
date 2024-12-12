@@ -5,12 +5,27 @@ import {
 import emailjs from "emailjs-com";
 import Swal from "sweetalert2";
 import "semantic-ui-css/semantic.min.css";
+import { format } from "date-fns";
+
 
 
 const Alerts = () => {
   const [modal, setModal] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
   const [description, setDescription] = useState("");
+  const [alerts, setAlerts] = useState([]);
+  const [readAlerts, setReadAlerts] = useState([]);
+  const [unReadAlerts, setUnReadAlerts] = useState([]);
+  const [selectedAlert, setSelectedAlert] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  
+  const [searchQueryAlerts, setSearchQueryAlerts] = useState("");
+  
+  const handleSearchAlertsChange = (event) => {
+    setSearchQueryAlerts(event.target.value);
+  };
+
 
   const SERVICE_ID = 'service_pwnn6cp';
   const TEMPLATE_ID = 'template_bev9uo7';
@@ -78,29 +93,28 @@ const Alerts = () => {
       );
   };
 
-  const dummyData = [
-    {
-      cameraId: 'CAM001',
-      location: 'Entrance Gate',
-      url: 'http://example.com/stream1',
-      alertType: 'Intrusion',
-      timestamp: '2024-12-12 10:15:00',
-    },
-    {
-      cameraId: 'CAM002',
-      location: 'Parking Lot',
-      url: 'http://example.com/stream2',
-      alertType: 'Motion Detected',
-      timestamp: '2024-12-12 10:20:00',
-    },
-    {
-      cameraId: 'CAM003',
-      location: 'Lobby',
-      url: 'http://example.com/stream3',
-      alertType: 'Unauthorized Access',
-      timestamp: '2024-12-12 10:25:00',
-    },
-  ];
+  const fetchAlerts = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/alerts/');
+      const json = await response.json();
+      // console.log(data);
+      setAlerts(json.data);
+      setUnReadAlerts(json?.data.filter((it) => it.read_status === 0))
+      setReadAlerts(json?.data.filter((it) => it.read_status === 1))
+    } catch (err) {
+      console.error("Error fetching alerts:", err);
+    }
+  };
+  useEffect(() => {
+    fetchAlerts();
+  }, []);
+
+  const formattedTime = (timestamp) => {
+    if (!timestamp || isNaN(timestamp)) return "Invalid Date"; 
+    const dateObject = new Date(timestamp * 1000); 
+    return format(dateObject, "MMMM dd, yyyy hh:mm a");
+  };
+
 
   return (
     <Card style={{marginTop: '6rem', marginLeft:'1rem', marginRight:'1rem'}}>
@@ -118,17 +132,17 @@ const Alerts = () => {
             </tr>
           </thead>
           <tbody>
-            {dummyData.map((data, index) => (
+            {alerts.map((data, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
-                <td>{data.cameraId}</td>
-                <td>{data.location}</td>
+                <td>{data.source_id}</td>
+                <td>{data.lat}  {data.lon}</td>
                 <td>
                   <a href={data.url} target="_blank" rel="noopener noreferrer">
-                    {data.url}
+                    {data.proof_link}
                   </a>
                 </td>
-                <td>{data.alertType}</td>
+                <td>{data.alert_message}</td>
                 <td>{data.timestamp}</td>
                 <td>
                   <Button color="primary" size="sm" onClick={() => handleLodgeComplaint(data)}>
@@ -145,10 +159,10 @@ const Alerts = () => {
           <ModalBody>
             {selectedRow && (
               <div>
-                <p><strong>Camera ID:</strong> {selectedRow.cameraId}</p>
-                <p><strong>Location:</strong> {selectedRow.location}</p>
-                <p><strong>URL:</strong> <a href={selectedRow.url} target="_blank" rel="noopener noreferrer">{selectedRow.url}</a></p>
-                <p><strong>Type of Alert:</strong> {selectedRow.alertType}</p>
+                <p><strong>Camera ID:</strong> {selectedRow.source_id}</p>
+                <p><strong>Location:</strong> {selectedRow.lat} {selectedRow.lon}</p>
+                <p><strong>URL:</strong> <a href={selectedRow.proof_link} target="_blank" rel="noopener noreferrer">{selectedRow.url}</a></p>
+                <p><strong>Type of Alert:</strong> {selectedRow.alert_message}</p>
                 <p><strong>Timestamp:</strong> {selectedRow.timestamp}</p>
                 <FormGroup>
                   <Label for="description">Description</Label>
