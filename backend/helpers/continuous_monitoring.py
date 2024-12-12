@@ -10,7 +10,7 @@ class continuousMonitoring:
         try:
             activeCameras=cameraDB.getActiveCamera()
             cam1=activeCameras[0]
-            cameraDB.updateCameraStatus()
+            # cameraDB.updateCameraStatus()
             print("input_source",cam1)
             return cam1
         except Exception as e:

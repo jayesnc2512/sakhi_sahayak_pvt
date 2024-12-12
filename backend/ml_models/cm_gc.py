@@ -80,6 +80,8 @@ class continuousGenderClassification:
         try:
             frame_count = 0
             original_fps = cap.get(cv2.CAP_PROP_FPS)
+            fps=original_fps
+            print(f"fps",fps)
             frame_interval = int(original_fps / fps) if original_fps > 0 else 15
 
             while cap.isOpened():
@@ -162,7 +164,7 @@ class continuousGenderClassification:
                 continuousGenderClassification.lone_woman_tracker=[t for t in continuousGenderClassification.lone_woman_tracker if (current_time - t).seconds <= 10]
                 # Trigger alert if lone woman detected continuously for 3 seconds
                 if len(continuousGenderClassification.lone_woman_tracker) >= 4:
-                    continuousGenderClassification.trigger_alert("lone women at night detected",websocket,input_source)
+                    await continuousGenderClassification.trigger_alert("lone women at night detected",websocket,input_source)
                     # await websocket.send_json({"message":"Lone Women detected"})
                     continuousGenderClassification.lone_woman_tracker.clear()
             else:
@@ -210,7 +212,7 @@ class continuousGenderClassification:
                     # Trigger alert if this condition persists for 3 seconds
                     if len(continuousGenderClassification.surrounded_woman_tracker) >= 3:
                         print("Woman surrounded by multiple men detected.")
-                        continuousGenderClassification.trigger_alert("Woman surrounded by multiple men detected.",websocket,input_source)
+                        await continuousGenderClassification.trigger_alert("Woman surrounded by multiple men detected.",websocket,input_source)
                         continuousGenderClassification.surrounded_woman_tracker.clear()
                 else:
                     continuousGenderClassification.surrounded_woman_tracker.clear()
@@ -237,7 +239,7 @@ class continuousGenderClassification:
     @staticmethod
     async def gender_classification_main(input_source,websocket):
         try:
-            fps = 2  # Set frames per second to process
+            # fps = 2  # Set frames per second to process
 
             model = continuousGenderClassification.initialize_roboflow()
             if model is None:
@@ -246,9 +248,9 @@ class continuousGenderClassification:
             print(input_video)
             if(input_video=='0'):
                 input_video=int(input_video)
-            cap, frame_interval = continuousGenderClassification.process_video_input(input_video, fps,websocket)
+            cap, frame_interval = continuousGenderClassification.process_video_input(input_video,websocket)
             if cap:
-               await continuousGenderClassification.process_video_feed(model, cap, fps,websocket,input_source)
+               await continuousGenderClassification.process_video_feed(model, cap,websocket,input_source)
             else:
                 print("Error: Could not initialize video feed.")
         except Exception as e:

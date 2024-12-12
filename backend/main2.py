@@ -10,11 +10,15 @@ import asyncio
 from routes.hotspotRoutes import router as hotspot_router
 from routes.websocket_handlers import router as video_analysis_router
 # from routes.websocket_handler_app import router as safe_mode_analysis_router
-from routes.twiliocallRoutes import router as twiliocaller
-from routes.twiliosmsRoutes import router as twiliosms
+# from routes.twiliocallRoutes import router as twiliocaller
+# from routes.twiliosmsRoutes import router as twiliosms
 # from routes.websocket_handler_app import router as safe_mode_analysis_router
 from routes.alertRoutes import router as alertRouter
 from routes.cameraRoutes import router as cameraRouter
+# from routes.websocket_livelocation import router as liveLocation
+# from routes.websocket_hotspotdetection import router as hotspotDetector
+from routes.dashboardRoute import router as dashBoardRouter
+from routes.gesture_handler import router as gesture_analysis_router
 
 app = FastAPI()
 
@@ -31,11 +35,18 @@ app.add_middleware(
 app.include_router(hotspot_router,prefix="/hotspot")
 app.include_router(video_analysis_router,prefix="/ws")
 # app.include_router(safe_mode_analysis_router,prefix="/ws")
-app.include_router(twiliocaller,prefix="/tw")
-app.include_router(twiliosms,prefix="/tw")
+# app.include_router(twiliocaller,prefix="/tw")
+# app.include_router(twiliosms,prefix="/tw")
 # app.include_router(safe_mode_analysis_router,prefix="/ws")
 app.include_router(alertRouter,prefix="/alerts")
 app.include_router(cameraRouter,prefix="/cameras")
+# app.include_router(liveLocation, prefix='/ws')
+# app.include_router(hotspotDetector, prefix='/ws')
+app.include_router(dashBoardRouter, prefix='/dashboard')
+app.include_router(gesture_analysis_router,prefix="/gesture")
+
+
+
 
 
 @app.on_event("startup")
