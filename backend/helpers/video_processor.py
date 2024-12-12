@@ -2,6 +2,7 @@ import base64
 import cv2
 import numpy as np
 from ml_models.gesture import process_frame
+from ml_models.gesture1 import GestureRecognizer
 
 class VideoProcessor:
     def __init__(self):
@@ -35,7 +36,7 @@ class VideoProcessor:
             return None
 
     @staticmethod
-    def analyze_frame(base64_frame):
+    def analyze_frame(base64_frame,ges):
         """
         Analyze a single frame and return inference results along with the processed frame.
         """
@@ -45,7 +46,7 @@ class VideoProcessor:
             return {"error": "Invalid frame data"}
 
         # Process frame for gesture detection
-        inference_result, processed_frame = process_frame(frame)
+        inference_result, processed_frame = ges.process_frame_gesture1(frame)
 
         # Encode the processed frame
         encoded_frame = VideoProcessor.encode_frame(processed_frame)

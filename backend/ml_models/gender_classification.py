@@ -6,6 +6,7 @@ import json
 import asyncio
 import base64
 import pytz
+from helpers.night import night
 
 # Initialize the Roboflow client and model
 class genderClassification:
@@ -94,31 +95,42 @@ class genderClassification:
                         predictions = inference.json()['predictions']
 
                         frame, male_count, female_count = genderClassification.annotate_frame(frame, predictions)
-                        
                         # Resize the frame for display
+                        classification = night.classify_day_night(frame)
+                        print(f"Classification: {classification}")
                         small_frame = cv2.resize(frame, (320, 240))
+                        
+                        cv2.putText(small_frame, classification, (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+
                         cv2.imshow("Video Feed", small_frame)
 
                         # Encode the frame to Base64
-                        _, buffer = cv2.imencode('.jpg', frame)
+                        _, buffer = cv2.imencode('.jpg', small_frame)
                         encoded_frame = base64.b64encode(buffer).decode('utf-8')
 
                         # Create the output JSON
                         timestamp = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(time.time() + 5*3600 + 30*60))
+                        nightStatus=None
+                        if(classification=="Night"):
+                            nightStatus=True
+                        elif(classification=="Day"):
+                            nightStatus=False
+
                         output = {
                             "timestamp": timestamp,
                             "male_count": male_count,
                             "female_count": female_count,
-                            
+                            "night":nightStatus
                         }
                         print(output)
+
 
                         # Send WebSocket message
                         await websocket.send_json({"message": output,"image": encoded_frame})
 
                         # Process lone woman detection and woman surrounded detection
                         await genderClassification.detect_woman_surrounded(female_count, male_count, predictions, websocket)
-                        await genderClassification.detect_lone_woman(female_count, male_count, websocket)
+                        await genderClassification.detect_lone_woman(female_count, male_count,nightStatus, websocket)
 
                     except Exception as e:
                         print(f"Error during inference: {e}")
@@ -137,7 +149,7 @@ class genderClassification:
 
 
     @staticmethod
-    async def detect_lone_woman(female_count, male_count,websocket):
+    async def detect_lone_woman(female_count, male_count,nightStatus,websocket):
         # Get the current time in UTC and convert it to IST
         ist = pytz.timezone('Asia/Kolkata')
         current_time = datetime.now(ist)
@@ -145,7 +157,8 @@ class genderClassification:
         print("current_hour",current_hour)
 
         # Check if time is between 20:00 (8 PM) and 06:00 (6 AM)
-        if current_hour >= 19 or current_hour < 6:
+        # if current_hour >= 23 or current_hour < 6 or nightStatus==True:
+        if nightStatus==True:
             if female_count == 1:
                 genderClassification.lone_woman_tracker.append(current_time)
                 # Retain only the last 6 timestamps (last 3 seconds at 2 FPS)
