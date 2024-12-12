@@ -1,23 +1,8 @@
 import React, { useState, useEffect } from "react";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardTitle,
-  Table,
-  Row,
-  Col,
-} from "reactstrap";
-import { db, auth } from "../firebase";
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-} from "firebase/firestore";
+import { Card, CardHeader, CardBody, CardTitle, Table, Row, Col } from "reactstrap";
 import Player from "../components/CamPlay/player";
 import styled from "styled-components";
-import json1 from '../views/json1.json';
+
 const PlayButton = styled.button`
   font-size: 1rem;
   cursor: pointer;
@@ -28,76 +13,50 @@ const StopButton = styled.button`
   font-size: 1rem;
   cursor: pointer;
 `;
+
 const CameraCell = styled.div`
-border: 1px solid #ddd;
-padding: 10px;
-margin: 5px;
-text-align: center;
-position: relative;
-padding-bottom: 56.25%; /* 16:9 aspect ratio */
-overflow: hidden;
-width: 100%;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 5px;
+  text-align: center;
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  overflow: hidden;
+  width: 100%;
 
-.placeholder {
-  background-color: #121212;
-  color: #fff;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  .placeholder {
+    background-color: #121212;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
-const EmptyCell = styled.div`
-border: 1px solid #ddd;
-padding: 10px;
-margin: 5px;
-text-align: center;
-position: relative;
-padding-bottom: 56.25%; /* 16:9 aspect ratio */
-overflow: hidden;
-width: 100%;
-
-.placeholder {
-  background-color: #121212;
-  color: #fff;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-`;
+const EmptyCell = styled(CameraCell)``;
 
 const Cameras = () => {
   const [cameras, setCameras] = useState([]);
-  const [uid, setUid] = useState(1);
   const [selectedCameras, setSelectedCameras] = useState({});
   const [gridSize, setGridSize] = useState(2);
-//rtsp://admin:L23F18C4@192.168.173.191:554/cam/realmonitor?channel=1&subtype=0
-//camera.link='https://192.168.173.179:8080/video';
 
   const fetchCameras = async () => {
     try {
-    //  const response = await fetch('http://127.0.0.1:8000/cameras/getCameras');
-    //  const json = await response.json();  // Read response as text
-      console.log("Response text:",json1.data);  // Log the response body
-      setCameras(json1.data);
-      
-     
+      const response = await fetch("http://127.0.0.1:8000/cameras/getCameras");
+      const json = await response.json();
+      setCameras(json.data || []);
     } catch (e) {
-      console.error('Error fetching camera details:', e);
+      console.error("Error fetching camera details:", e);
     }
   };
-  useEffect(() => { 
-      fetchCameras();
+
+  useEffect(() => {
+    fetchCameras();
   }, []);
 
   const handlePlayButtonClick = (id) => {
@@ -114,7 +73,6 @@ const Cameras = () => {
     }));
   };
 
-
   const renderGrid = () => {
     const cameraGrid = [];
     for (let i = 0; i < gridSize; i++) {
@@ -122,7 +80,7 @@ const Cameras = () => {
       for (let j = 0; j < gridSize; j++) {
         const index = i * gridSize + j;
         const camera = cameras[index];
-  
+
         if (camera) {
           const isPlaying = selectedCameras[camera.id];
           row.push(
@@ -150,8 +108,6 @@ const Cameras = () => {
     }
     return cameraGrid;
   };
-  
-
 
   return (
     <>
@@ -168,14 +124,14 @@ const Cameras = () => {
                     <tr>
                       <th>Name</th>
                       <th>Model</th>
-                      <th>link</th>
-                      <th>latitude</th>
-                      <th>longitude</th>
+                      <th>Link</th>
+                      <th>Latitude</th>
+                      <th>Longitude</th>
                       <th>Stream</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {cameras?.map((ele) => (
+                    {cameras.map((ele) => (
                       <tr key={ele.id}>
                         <td>{ele.Name}</td>
                         <td>{ele.modelNo}</td>
@@ -183,23 +139,10 @@ const Cameras = () => {
                         <td>{ele.lat}</td>
                         <td>{ele.lon}</td>
                         <td>
-                          {!selectedCameras[ele.id] && (
-                            <PlayButton
-                              onClick={() =>
-                                handlePlayButtonClick(ele.id)
-                              }
-                            >
-                              ▶️ Play
-                            </PlayButton>
-                          )}
-                          {selectedCameras[ele.id] && (
-                            <StopButton
-                              onClick={() =>
-                                handleStopButtonClick(ele.id)
-                              }
-                            >
-                              ⏹️ Stop
-                            </StopButton>
+                          {!selectedCameras[ele.id] ? (
+                            <PlayButton onClick={() => handlePlayButtonClick(ele.id)}>▶️ Play</PlayButton>
+                          ) : (
+                            <StopButton onClick={() => handleStopButtonClick(ele.id)}>⏹️ Stop</StopButton>
                           )}
                         </td>
                       </tr>

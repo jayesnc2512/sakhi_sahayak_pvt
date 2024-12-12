@@ -48,13 +48,13 @@ var routes = [
     component: <Maps />,
     layout: "",
   },
-  {
-    path: "/city-analysis",
-    name: "City-wise Analysis",
-    icon: "nc-icon nc-pin-3",
-    component: <CityWiseAnalysis />,
-    layout: "",
-  },
+  // {
+  //   path: "/city-analysis",
+  //   name: "City-wise Analysis",
+  //   icon: "nc-icon nc-pin-3",  
+  //   component: <CityWiseAnalysis />,
+  //   layout: "",
+  // },
   {
     path: "/city-hotspot",
     name: "City-wise Hotspots",

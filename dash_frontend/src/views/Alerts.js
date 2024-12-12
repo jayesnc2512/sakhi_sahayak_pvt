@@ -1,468 +1,175 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import {
-  Alert,
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  CardTitle,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Row,
-  Col,
-  InputGroup,
-  InputGroupText,
-  InputGroupAddon,
-  Input,
+  Card, CardBody, Table, Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label, Input
 } from "reactstrap";
-import { db, auth } from "../firebase";
-import routes from "../routes.js";
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-  doc,
-  updateDoc,
-} from "firebase/firestore";
-import { format } from "date-fns";
 import emailjs from "emailjs-com";
 import Swal from "sweetalert2";
 import "semantic-ui-css/semantic.min.css";
 
 
 const Alerts = () => {
-  const [alerts, setAlerts] = useState([]);
-  const [readAlerts, setReadAlerts] = useState([]);
-  const [unReadAlerts, setUnReadAlerts] = useState([]);
-  const [uid, setUid] = useState(1);
-  const [selectedAlert, setSelectedAlert] = useState(null);
-  const [modalOpen, setModalOpen] = useState(false);
-  const SERVICE_ID = process.env.REACT_APP_SERVICE_ID;
-  const TEMPLATE_ID = process.env.REACT_APP_TEMPLATE_ID;
-  const USER_ID = process.env.REACT_APP_USER_ID;
+  const [modal, setModal] = useState(false);
+  const [selectedRow, setSelectedRow] = useState(null);
+  const [description, setDescription] = useState("");
 
-  const DUMMY_ALERTS = [
-    { id: "1", message: "Violence Detected", read: false, created: 1690834567, uid: "123", color:'info' },
-    { id: "2", message: "", read: false, created: 1690834577, uid: "123", color:'info' },
-    { id: "3", message: "Something", read: true, created: 1690834587, uid: "123", color:'info' },
-  ];
+  const SERVICE_ID = 'service_pwnn6cp';
+  const TEMPLATE_ID = 'template_bev9uo7';
+  const PUBLIC_KEY = '8pffsjHzyG5ndbW9t'; // Replace USER_ID with PUBLIC_KEY
 
-  const fetchAlerts = async () => {
-    try {
-      const response = await fetch('http://127.0.0.1:8000/alerts/');
-      const json = await response.json();
-      // console.log(data);
-      // setAlerts(data);
-      setUnReadAlerts(json?.data.filter((it) => it.read_status === 0))
-      setReadAlerts(json?.data.filter((it) => it.read_status === 1))
+  const toggleModal = () => setModal(!modal);
 
-    } catch (err) {
-      console.error("Error fetching alerts:", err);
-    }
+  const handleLodgeComplaint = (row) => {
+    setSelectedRow(row);
+    toggleModal();
   };
+
   useEffect(() => {
-    fetchAlerts();
+    emailjs.init({
+      publicKey: '8pffsjHzyG5ndbW9t', // Replace with your actual public key
+      blockHeadless: true, // Prevent headless browsers from sending emails
+      limitRate: {
+        id: 'app', // Identifier for rate limiting
+        throttle: 10000, // Limit to 1 request per 10 seconds
+      },
+    });
   }, []);
 
+  const handleSendEmail = () => {
+    if (!selectedRow) return;
 
-  const [complaintText, setComplaintText] = useState("");
-  const [isComplaintOpen, setIsComplaintOpen] = useState(false);
-  
-  
-  const [searchQueryAlerts, setSearchQueryAlerts] = useState("");
-  
-
-  const handleSearchAlertsChange = (event) => {
-    setSearchQueryAlerts(event.target.value);
-  };
-  
-  
-
-  // const filteredAlerts = alerts.filter(alert =>
-  //   alert.message.toLowerCase().includes(searchQueryAlerts.toLowerCase())
-  // );
-  
-  
-
-  const formattedTime = (timestamp) => {
-    if (!timestamp || isNaN(timestamp)) return "Invalid Date"; 
-    const dateObject = new Date(timestamp * 1000); 
-    return format(dateObject, "MMMM dd, yyyy hh:mm a");
-  };
-
-  const handleComplaintChange = (event) => {
-    setComplaintText(event.target.value);
-  };
-
-  const handleOpenComplaint = (alert) => {
-    setSelectedAlert(alert);
-    setIsComplaintOpen(true);
-  };
-
-  const handleCloseComplaint = () => {
-    setIsComplaintOpen(false);
-    setComplaintText("");
-  };
-
-  const handleClose = () => {
-    setSelectedAlert(null);
-  };
-
-  
-  // const form = useRef();
-  const formRef = useRef(null); 
-
-  const handleOnSubmit = async (e) => {
-    handleClose();
-    e.preventDefault();
-    try {
-      const form = formRef.current; // Access the form element using the ref
-      // form.camName.value=selectedAlert.id;
-      // form.camLid.value=selectedAlert.camLid;
-      // form.date.value=selectedAlert.formattedDate;
-      // form.time.value=selectedAlert.formattedTime;
-      // form.location.value=`${selectedAlert.camLat},${selectedAlert.camLon}`;
-      const result = await emailjs.sendForm(
-        SERVICE_ID,
-        TEMPLATE_ID,
-        form,
-        USER_ID
-      );
-      console.log(result.text);
-      Swal.fire({
-        icon: "success",
-        title: "Complaint Sent Successfully",
-      });
-
-      
-      form.reset();
-      setComplaintText(""); 
-    } catch (error) {
-      console.log(error);
-      Swal.fire({
-        icon: "error",
-        title: "Ooops, something went wrong",
-        text: error,
-      });
+    // Validate description
+    if (!description.trim()) {
+      Swal.fire("Validation Error", "Please provide a description.", "warning");
+      return;
     }
-    handleCloseComplaint();
-  };
 
+    const templateParams = {
+      camera_id: selectedRow.cameraId,
+      location: selectedRow.location,
+      url: selectedRow.url,
+      alert_type: selectedRow.alertType,
+      timestamp: selectedRow.timestamp,
+      description,
+    };
 
-  // const unReadAlerts = alerts.filter((ale) => ale.read_status);
-  // const readAlerts = alerts.filter((ale) => ale.read);
-
-  console.log(selectedAlert);
-  const handleMarkAsViewed = async () => {
-    if (selectedAlert) {
-      try {
-        // Sending POST request to update the read status of the alert
-        const response = await fetch("http://127.0.0.1:8000/alerts/read", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ id: selectedAlert.id }),
-        });
-        fetchAlerts();
-
-        if (!response.ok) {
-          throw new Error("Failed to update read status");
+    emailjs
+      .send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
+      .then(
+        (response) => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Email Sent',
+            text: 'Email sent successfully!',
+            confirmButtonText: 'OK'
+          });
+          toggleModal();
+          // Reset description after sending email
+          setDescription('');
+        },
+        (error) => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Send Failed',
+            text: 'Failed to send email. Please try again.',
+            confirmButtonText: 'Close'
+          });
+          console.error('EmailJS Error:', error);
         }
-      } catch {
-        console.log("Error updating read status");
-      }
-    }
-  }
-
-
-  
-  const handleMarkAsUnviewed = async () => {
-    if (selectedAlert) {
-      try {
-    
-        // const response = await fetch(`/api/alerts/mark-as-unviewed`, {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify({ id: selectedAlert.id }),
-        // });
-  
-        // if (!response.ok) {
-        //   throw new Error("Failed to mark the alert as unviewed");
-        // }
-  
-      
-        setAlerts((prevAlerts) =>
-          prevAlerts.map((alert) =>
-            alert.id === selectedAlert.id ? { ...alert, read: false} : alert
-          )
-        );
-  
-        setSelectedAlert(null); 
-        toggleModal();
-      } catch (err) {
-        console.error("Error marking alert as unviewed:", err);
-      }
-    }
+      );
   };
-  
 
-  const toggleModal = () => {
-    setModalOpen(!modalOpen);
-  };
+  const dummyData = [
+    {
+      cameraId: 'CAM001',
+      location: 'Entrance Gate',
+      url: 'http://example.com/stream1',
+      alertType: 'Intrusion',
+      timestamp: '2024-12-12 10:15:00',
+    },
+    {
+      cameraId: 'CAM002',
+      location: 'Parking Lot',
+      url: 'http://example.com/stream2',
+      alertType: 'Motion Detected',
+      timestamp: '2024-12-12 10:20:00',
+    },
+    {
+      cameraId: 'CAM003',
+      location: 'Lobby',
+      url: 'http://example.com/stream3',
+      alertType: 'Unauthorized Access',
+      timestamp: '2024-12-12 10:25:00',
+    },
+  ];
 
   return (
-    <>
-      <div className="content">
-        {/* <Row> */}
-          <Col md="12">
-            <Card>
-              <CardHeader style={{display:'flex', justifyContent:'space-between'}}>
-                <CardTitle tag="h5">Alerts</CardTitle>
-                <form>
-                  <InputGroup className="no-border">
-                    <Input placeholder="Search..." />
-                    <InputGroupAddon addonType="append">
-                      <InputGroupText>
-                        <i className="nc-icon nc-zoom-split" />
-                      </InputGroupText>
-                    </InputGroupAddon>
-                  </InputGroup>
-                </form>
-              </CardHeader>
-              <CardBody>
-                <Row>
-                  <Col md="6">
-                    <Card className="card-plain">
-                      <CardHeader  >
-                        <CardTitle tag="h5">
-                          Alert ({unReadAlerts.length})
-                        </CardTitle>
-                       
-                      </CardHeader>
-                      <CardBody>
-                        {unReadAlerts.map((ele) => (
-                          <Alert
-                            color="danger"
-                            key={ele.id}
-                            onClick={() => {
-                              setSelectedAlert(ele);
-                              toggleModal();
-                            }}
-                          >
-                            <span>{ele.alert_message} : {ele.timestamp}</span>
-                          </Alert>
-                        ))}
-                        {/* <Modal isOpen={modalOpen} toggle={toggleModal}>
-                          <ModalHeader toggle={toggleModal}>
-                            Alert Actions
-                          </ModalHeader>
-                          <ModalBody>
-                            {selectedAlert && (
-                              <>
-                              <div>{selectedAlert.alert_message}</div>
-                              <table>
-                                <thead>
-                                  <tr>Latitude</tr>
-                                  <tr>Longitude</tr>
-                                </thead>
-                                <tbody>
-                                  <tr>selectedAlert.lat</tr>
-                                  <tr>selectedAlert.lon</tr>
-                                </tbody>
-                              </table>
-                              </>
-                            )}
-                          </ModalBody>
-                          <ModalFooter>
-                            <>
-                              <Button
-                                color="primary"
-                                onClick={handleMarkAsViewed}
-                              >
-                                Mark as Viewed
-                              </Button>{" "}
-                              <Button color="secondary" onClick={toggleModal}>
-                                Close
-                              </Button>
-                            </>
-                          </ModalFooter>
-                        </Modal> */}
-                      </CardBody>
-                    </Card>
-                  </Col>
-                  <Col md="6">
-                    <Card className="card-plain">
-                      <CardHeader>
-                        <CardTitle tag="h5">Viewed Alerts</CardTitle>
-                      </CardHeader>
-                      <CardBody>
-                        {readAlerts.map((ele) => (
-                          <Alert
-                            color="info"
-                            key={ele.id}
-                            onClick={() => {
-                              setSelectedAlert(ele);
-                              toggleModal();
-                            }}
-                          >
-                            <span>{ele.message}</span>
-                          </Alert>
-                        ))}
-                        
-                        <Modal isOpen={modalOpen} toggle={toggleModal}>
-                          <ModalHeader toggle={toggleModal}>
-                            Alert Actions
-                          </ModalHeader>
-                          <ModalBody>
-                            {selectedAlert && (
-                              <>
-                                <div>{selectedAlert.alert_message}</div>
-                              {/*give href below for a tag*/}
-                              <table>
-                                <thead>
-                                  <th style={{padding:"10px",paddingBottom:"2px"}}>Latitude</th>
-                                  <th style={{ padding: "10px", paddingBottom: "2px" }}>Longitude</th>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <td>{selectedAlert.lat}</td>
-                                    <td>{selectedAlert.lon}</td>
-                                    </tr>
-                                </tbody>
-                              </table>
-                                <a>Url: </a>
-                              </>
-                            )}
-                          </ModalBody>
-                          <ModalFooter>
-                            {selectedAlert && selectedAlert.read_status===0 && (
-                              <Button color="primary" onClick={handleMarkAsViewed}>
-                                Mark as Viewed
-                              </Button>
-                            )}
-                            {selectedAlert && selectedAlert.read_status===1 && (
-                              <>
-                                <Button color="primary" onClick={handleMarkAsUnviewed}>
-                                  Mark as Unviewed
-                                </Button>
-                                <Button
-                                  style={{
-                                    backgroundColor: "rgb(255, 64, 64)",
-                                    borderColor: "rgb(255, 64, 64)",
-                                    color: "white",
-                                  }}
-                                  onClick={() => handleOpenComplaint(selectedAlert)}
-                                >
-                                  Lodge a complaint
-                                </Button>
-                              </>
-                            )}
-                            <Button color="secondary" onClick={toggleModal}>
-                              Close
-                            </Button>
-                          </ModalFooter>
-                        </Modal>
-                        {/* Complaint Dialog */}
-                        <Modal
-                          isOpen={isComplaintOpen}
-                          toggle={handleCloseComplaint}
-                        >
-                          <ModalHeader toggle={handleCloseComplaint}>
-                            Lodge a Complaint
-                          </ModalHeader>
-                          <ModalBody>
-                            {selectedAlert && (
-                              <>
-                                <div>
-                                  <strong>Camera:</strong> <span>Camera 1</span>
-                                </div>
-                                <form ref={formRef} onSubmit={handleOnSubmit}>
-                                  <label>Camera Name: </label>
-                                  <input
-                                    type="text"
-                                    name="camName"
-                                    value="Camera 1"
-                                    readOnly
-                                  />
-                                  <br />
-                                  <label>License ID: </label>
-                                  <input
-                                    type="text"
-                                    name="camLid"
-                                    value={selectedAlert.id}
-                                    readOnly
-                                  />
-                                  <br />
-                                  <label>Timestamp: </label>
-                                  <input
-                                    type="text"
-                                    name="date"
-                                    value={
-                                      selectedAlert.timestamp}
-                                    readOnly
-                                  />
-                                  <br />
-                                  <label>Owner-id </label>
-                                  <input
-                                    type="text"
-                                    name="time"
-                                    value={selectedAlert.uid}
-                                    readOnly
-                                  />
-                                  <br />
-                                  {/* <label>Location: </label>
-          <input
-            type="text"
-            name="location"
-            value={`${selectedAlert.camLat},${selectedAlert.camLon}`}
-            readOnly
-          />
-              <br /> */}
-                                  <label>Additional Info:</label>
-                                  <textarea
-                                    type="text"
-                                    name="message"
-                                    value={complaintText}
-                                    onChange={handleComplaintChange}
-                                    placeholder="Enter additional info..."
-                                    rows={1}
-                                  />
+    <Card style={{marginTop: '6rem', marginLeft:'1rem', marginRight:'1rem'}}>
+      <CardBody>
+        <Table bordered hover responsive>
+          <thead>
+            <tr>
+              <th>Sr No.</th>
+              <th>Camera ID</th>
+              <th>Location</th>
+              <th>URL</th>
+              <th>Type of Alert</th>
+              <th>Timestamp</th>
+              <th>Lodge Complaint</th>
+            </tr>
+          </thead>
+          <tbody>
+            {dummyData.map((data, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{data.cameraId}</td>
+                <td>{data.location}</td>
+                <td>
+                  <a href={data.url} target="_blank" rel="noopener noreferrer">
+                    {data.url}
+                  </a>
+                </td>
+                <td>{data.alertType}</td>
+                <td>{data.timestamp}</td>
+                <td>
+                  <Button color="primary" size="sm" onClick={() => handleLodgeComplaint(data)}>
+                    Lodge Complaint
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
 
-                                  <Button type="submit" color="primary">
-                                    Send Complaint
-                                  </Button>
-                                </form>
-                              </>
-                            )}
-                          </ModalBody>
-
-                          <ModalFooter>
-                            <Button
-                              color="secondary"
-                              onClick={handleCloseComplaint}
-                            >
-                              Close
-                            </Button>
-                          </ModalFooter>
-                        </Modal>
-                      </CardBody>
-                    </Card>
-                  </Col>
-                </Row>
-              </CardBody>
-            </Card>
-            
-          </Col>
-        {/* </Row> */}
-
-      </div>
-    </>
+        <Modal isOpen={modal} toggle={toggleModal}>
+          <ModalHeader toggle={toggleModal}>Lodge Complaint</ModalHeader>
+          <ModalBody>
+            {selectedRow && (
+              <div>
+                <p><strong>Camera ID:</strong> {selectedRow.cameraId}</p>
+                <p><strong>Location:</strong> {selectedRow.location}</p>
+                <p><strong>URL:</strong> <a href={selectedRow.url} target="_blank" rel="noopener noreferrer">{selectedRow.url}</a></p>
+                <p><strong>Type of Alert:</strong> {selectedRow.alertType}</p>
+                <p><strong>Timestamp:</strong> {selectedRow.timestamp}</p>
+                <FormGroup>
+                  <Label for="description">Description</Label>
+                  <Input 
+                    type="textarea" 
+                    id="description" 
+                    placeholder="Enter your description here" 
+                    value={description} // Bind value to state
+                    onChange={(e) => setDescription(e.target.value)} // Update state on change
+                  />
+                </FormGroup>
+              </div>
+            )}
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={handleSendEmail}>Send Mail</Button>{' '}
+            <Button color="secondary" onClick={toggleModal}>Cancel</Button>
+          </ModalFooter>
+        </Modal>
+      </CardBody>
+    </Card>
   );
 };
 

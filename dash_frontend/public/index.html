@@ -53,5 +53,11 @@
             To begin the development, run `npm start` or `yarn start`.
             To create a production bundle, use `npm run build` or `yarn build`.
         -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+          emailjs.init("8pffsjHzyG5ndbW9t"); // Replace YOUR_PUBLIC_KEY with your actual public key from EmailJS
+        })();
+    </script>
   </body>
 </html>

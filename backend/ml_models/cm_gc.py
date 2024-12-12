@@ -7,6 +7,7 @@ import asyncio
 import base64
 import pytz
 from workers.alerts_DB import alertsDB
+from helpers.night import night
 
 # Initialize the Roboflow client and model
 class continuousGenderClassification:
@@ -94,10 +95,18 @@ class continuousGenderClassification:
                         predictions = inference.json()['predictions']
 
                         frame, male_count, female_count = continuousGenderClassification.annotate_frame(frame, predictions)
-                        
+                        classification = night.classify_day_night(frame)
+
+                        cv2.putText(frame, classification, (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+
                         # Resize the frame for display
                         # small_frame = cv2.resize(frame, (320, 240))
                         cv2.imshow("Video Feed", frame)
+                        nightStatus=None
+                        if(classification=="Night"):
+                            nightStatus=True
+                        elif(classification=="Day"):
+                            nightStatus=False
 
                         # Encode the frame to Base64
                         _, buffer = cv2.imencode('.jpg', frame)
@@ -118,7 +127,7 @@ class continuousGenderClassification:
 
                         # Process lone woman detection and woman surrounded detection
                         await continuousGenderClassification.detect_woman_surrounded(female_count, male_count, predictions, websocket,input_source)
-                        await continuousGenderClassification.detect_lone_woman(female_count, male_count, websocket,input_source)
+                        await continuousGenderClassification.detect_lone_woman(female_count, male_count,nightStatus, websocket,input_source)
 
                     except Exception as e:
                         print(f"Error during inference: {e}")
@@ -137,7 +146,7 @@ class continuousGenderClassification:
 
 
     @staticmethod
-    async def detect_lone_woman(female_count, male_count,websocket,input_source):
+    async def detect_lone_woman(female_count, male_count,nightStatus,websocket,input_source):
         # Get the current time in UTC and convert it to IST
         ist = pytz.timezone('Asia/Kolkata')
         current_time = datetime.now(ist)
@@ -145,7 +154,8 @@ class continuousGenderClassification:
         print("current_hour",current_hour)
 
         # Check if time is between 20:00 (8 PM) and 06:00 (6 AM)
-        if current_hour >= 20 or current_hour < 6:
+        # if current_hour >= 20 or current_hour < 6:
+        if nightStatus==True:
             if female_count == 1:
                 continuousGenderClassification.lone_woman_tracker.append(current_time)
                 # Retain only the last 6 timestamps (last 3 seconds at 2 FPS)
