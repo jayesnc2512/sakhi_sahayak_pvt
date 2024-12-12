@@ -9,37 +9,36 @@ import {
 } from 'react-leaflet';
 import { LatLngBounds, Icon } from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
-import { useAlerts } from '../../context/AlertContext';  // Import the custom hook for alerts
 import 'leaflet/dist/leaflet.css';
 import './reactleaf.css';
+import axios from 'axios'; // Import axios for API calls
 
 // Create Icons
 const blueIcon = new Icon({
-  iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',  // Default Leaflet blue marker
-  iconSize: [25, 41], // Size of the marker
-  iconAnchor: [12, 41], // Anchor point for the marker
-  popupAnchor: [1, -34], // Anchor point for the popup
-  shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',  // Shadow for the marker
-  shadowSize: [41, 41], // Size of the shadow
+  iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
+  shadowSize: [41, 41],
 });
 
 const redIcon = new Icon({
-  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',  // Red marker icon from Leaflet
-  iconSize: [25, 41], // Size of the marker
-  iconAnchor: [12, 41], // Anchor point for the marker
-  popupAnchor: [1, -34], // Anchor point for the popup
-  shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',  // Shadow for the marker
-  shadowSize: [41, 41], // Size of the shadow
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
+  shadowSize: [41, 41],
 });
 
-// Custom icon for user's current location
 const userLocationIcon = new Icon({
-  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png', // You can use a different icon or color for this
-  iconSize: [30, 50], // Larger size for the user's location marker
-  iconAnchor: [15, 50], // Anchor it properly at the bottom
-  popupAnchor: [1, -40], // Anchor point for the popup
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
+  iconSize: [30, 50],
+  iconAnchor: [15, 50],
+  popupAnchor: [1, -40],
   shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
-  shadowSize: [50, 50], // Shadow size
+  shadowSize: [50, 50],
 });
 
 const Map = ({
@@ -48,146 +47,172 @@ const Map = ({
   crimeData,
   onCrimeClick,
   filteredCentroids,
-  cameras,
-  userLocation, // Assuming you pass user's location as props
+  userLocation,
 }) => {
-  const isCrimeInsideCity = (crime, city) => {
-    if (!city || !city.coordinates || city.coordinates.length === 0) return false;
-
-    const bounds = new LatLngBounds(city.coordinates);
-    return bounds.contains([crime.latitude, crime.longitude]);
+  const [cameras, setCameras] = useState([]); // State for camera data
+  const [selectedCamera, setSelectedCamera] = useState(null); // State for the selected camera
+  const [colorToggle, setColorToggle] = useState(false);
+//http://127.0.0.1:8000/cameras/getCameras
+useEffect(() => {
+  const fetchCameras = async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:8000/cameras/getCameras'); // Replace with your API endpoint
+      const data = Array.isArray(response.data) ? response.data : []; // Ensure it's an array
+      setCameras(data);
+    } catch (error) {
+      console.error('Error fetching camera data:', error);
+      setCameras([]); // Fallback to empty array on error
+    }
   };
 
-  const { alerts } = useAlerts(); // Access alerts from context
-  const [activeMarkers, setActiveMarkers] = useState({}); // Track active markers and their colors
-  const [colorToggle, setColorToggle] = useState(false); // For toggling the colors (blue-red-blue-red)
-  
-  // Update camera marker color on alert detection
+  fetchCameras();
+}, []);
+
   useEffect(() => {
-    if (alerts.length > 0) {
+    if (cameras.some((camera) => camera.alert)) {
       const intervalId = setInterval(() => {
         setColorToggle((prev) => !prev);
       }, 1000);
 
-      // Stop the toggling after 10 seconds
       setTimeout(() => {
         clearInterval(intervalId);
-        setColorToggle(false); // Reset color toggle
+        setColorToggle(false);
       }, 10000);
     }
-  }, [alerts]); // When alerts change, the effect runs
+  }, [cameras]);
 
-  // Function to get the correct icon based on color toggle
   const getMarkerIcon = () => (colorToggle ? redIcon : blueIcon);
 
+  const closeModal = () => setSelectedCamera(null);
+
   return (
+    <div>
+      <MapContainer
+        center={[20.5937, 78.9629]}
+        zoom={5}
+        style={{ height: '500px', width: '100%' }}
+      >
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
+        />
 
-    <MapContainer
-      center={[20.5937, 78.9629]}
-      zoom={5}
-      style={{ height: '500px', width: '100%' }}
+        {/* Render Hotspot Polygons */}
+        {Array.isArray(hotspots) &&
+  hotspots.map((hotspot, index) => (
+    <Polygon
+      key={index}
+      positions={hotspot.coordinates}
+      color="blue"
+      weight={3}
+      fillColor="transparent"
+      fillOpacity={0}
+      eventHandlers={{
+        click: () =>
+          onCityClick({
+            name: hotspot.name,
+            totalCount: hotspot.totalCount || 0,
+            crime_rate: hotspot.crime_rate || 0,
+          }),
+      }}
     >
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
-      />
+      <Popup>
+        <strong>{hotspot.name}</strong>
+        <br />
+        Total Crimes: {hotspot.totalCount || 'N/A'}
+        <br />
+        Crime Rate: {hotspot.crime_rate?.toFixed(2) || 'N/A'}
+      </Popup>
+    </Polygon>
+  ))}
 
-      {/* Render Hotspot Polygons */}
-      {hotspots.length > 0 &&
-        hotspots.map((hotspot, index) => (
-          <Polygon
-            key={index}
-            positions={hotspot.coordinates}
-            color="blue"
-            weight={3}
-            fillColor="transparent"
-            fillOpacity={0}
-            eventHandlers={{
-              click: () =>
-                onCityClick({
-                  name: hotspot.name,
-                  totalCount: hotspot.totalCount || 0,
-                  crime_rate: hotspot.crime_rate || 0,
-                }),
-            }}
-          >
-            <Popup>
-              <strong>{hotspot.name}</strong>
-              <br />
-              Total Crimes: {hotspot.totalCount || 'N/A'}
-              <br />
-              Crime Rate: {hotspot.crime_rate?.toFixed(2) || 'N/A'}
-            </Popup>
-          </Polygon>
-        ))}
 
-      {/* Render Crime CircleMarkers if they are within city bounds */}
-      <MarkerClusterGroup>
-        {crimeData.map((crime) => {
-          let isInside = false;
-          for (const city of hotspots) {
-            if (isCrimeInsideCity(crime, city)) {
-              isInside = true;
-              break;
-            }
-          }
+        {/* Render Camera Markers */}
+        <MarkerClusterGroup>
+  {Array.isArray(cameras) &&
+    cameras.map((camera) =>
+      camera.lat && camera.lon ? (
+        <Marker
+          key={camera.id}
+          position={[camera.lat, camera.lon]}
+          icon={getMarkerIcon()}
+          eventHandlers={{
+            click: () => setSelectedCamera(camera),
+          }}
+        />
+      ) : null
+    )
+    }
+</MarkerClusterGroup>
 
-          return isInside ? (
-            <CircleMarker
-              key={crime.id}
-              center={[crime.latitude, crime.longitude]}
-              radius={5}
-              fillColor="red"
-              color="red"
-              weight={1}
-              fillOpacity={0.8}
-              eventHandlers={{
-                click: () => onCrimeClick(crime),
-              }}
-            >
-              <Popup>
-                <strong>{crime.name}</strong>
-                <br />
-                {crime.details}
-              </Popup>
-            </CircleMarker>
-          ) : null;
-        })}
-      </MarkerClusterGroup>
-
-      {/* Render Camera Markers */}
-      <MarkerClusterGroup>
-        {cameras.map((camera) => (
+        {/* Render User's Location Marker */}
+        {userLocation && (
           <Marker
-            key={camera.id}
-            position={[camera.lat, camera.lon]}
-            icon={getMarkerIcon()}  // Change icon based on the color toggle state
+            position={[userLocation.lat, userLocation.lon]}
+            icon={userLocationIcon}
           >
             <Popup>
-              <strong>{camera.name}</strong>
-              <br />
-              Status: {camera.status}
-              <br />
-              <a href={camera.link} target="_blank" rel="noopener noreferrer">
-                View Camera
-              </a>
+              <strong>Your Current Location</strong>
             </Popup>
           </Marker>
-        ))}
-      </MarkerClusterGroup>
+        )}
+      </MapContainer>
 
-      {/* Render User's Location Marker */}
-      {userLocation && (
-        <Marker
-          position={[userLocation.lat, userLocation.lon]}
-          icon={userLocationIcon} // Custom icon for user's location
+      {/* Modal for Selected Camera */}
+      {selectedCamera && (
+        <div
+          className="modal-overlay"
+          onClick={closeModal}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
         >
-          <Popup>
-            <strong>Your Current Location</strong>
-          </Popup>
-        </Marker>
+          <div
+            className="modal-content"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: '#fff',
+              padding: '20px',
+              borderRadius: '8px',
+              width: '400px',
+            }}
+          >
+            <button
+              onClick={closeModal}
+              style={{
+                position: 'absolute',
+                top: '10px',
+                right: '10px',
+                background: 'transparent',
+                border: 'none',
+                fontSize: '1.5rem',
+                cursor: 'pointer',
+              }}
+            >
+              &times;
+            </button>
+            <h3>{selectedCamera.name}</h3>
+            <p>Status: {selectedCamera.status}</p>
+            <p>Location: {selectedCamera.lat}, {selectedCamera.lon}</p>
+            <a
+              href={selectedCamera.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Camera Stream
+            </a>
+          </div>
+        </div>
       )}
-    </MapContainer>
+    </div>
   );
 };
 

@@ -183,7 +183,7 @@ export default function SafeMode({ navigation }) {
         }
 
         // Initialize WebSocket connection
-        const ws = new WebSocket('ws://a3cf-2409-40c0-2a-2e74-a973-9d9f-9ec9-9f62.ngrok-free.app/ws/safemode-analysis');
+        const ws = new WebSocket('ws://82b4-2409-40c0-2a-2e74-a973-9d9f-9ec9-9f62.ngrok-free.app/ws/safemode-analysis');
 
         ws.onopen = async () => {
           console.log('WebSocket connection established');
