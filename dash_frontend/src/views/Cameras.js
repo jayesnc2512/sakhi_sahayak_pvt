@@ -92,8 +92,7 @@ const Cameras = () => {
     }
   };
 
-  useEffect(() => {
-    fetchCameras();
+
 
   useEffect(() => {
     fetchCameras();
