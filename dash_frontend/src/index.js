@@ -13,6 +13,9 @@ import AdminLayout from "./layouts/Admin.js";
 import SignIn from "./layouts/SignIn.js";
 
 import { ToastProvider } from "./context/ToastContext.js";
+import { WebSocketProvider } from "./context/WebsocketContext.js";
+
+
 
 const LogIn = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -23,6 +26,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <BrowserRouter>
+  <WebSocketProvider>
     <AlertProvider>
 
     <ToastProvider>
@@ -32,6 +36,7 @@ root.render(
       </Routes>
       </ToastProvider>
     </AlertProvider>
+    </WebSocketProvider>
 
   </BrowserRouter>
 );
