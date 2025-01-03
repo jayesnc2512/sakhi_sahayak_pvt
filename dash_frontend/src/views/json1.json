@@ -1,6 +1,7 @@
 {
     "data": [
       {
+        "id" :1,
         "nickName": "Camera 1",
         "Name": "Camera 1",
         "modelNo": "XYZ123",
@@ -9,14 +10,16 @@
         "lon": "56.78"
       },
       {
+        "id" :2,
         "nickName": "Camera 2",
         "Name": "Camera 2",
         "modelNo": "ABC456",
-        "link": "http://192.168.173.97:8080/video",
+        "link": "http://192.168.173.97:8080/vnickNameeo",
         "lat": "34.56",
         "lon": "78.90"
       },
       {
+        "id" :3,
         "nickName": "Camera 3",
         "Name": "Camera 2",
         "modelNo": "ABC456",

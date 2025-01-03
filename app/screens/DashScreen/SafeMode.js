@@ -40,6 +40,21 @@ export default function SafeMode({ navigation }) {
       console.error('Error in handleCancelSafe:', error);
     }
   };
+  const latlongtolocation = async(lat, lng) => {
+    try {
+      const headers = {
+        'User -Agent': 'YourAppName/1.0 (your.email@example.com)', // Replace with your app name and contact email
+        'Accept': 'application/json',
+      };
+
+      const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`;
+      const response = await axios.get(url, { headers });
+      const data = response.data;
+      return data;
+    } catch (error) {
+      console.error('Error fetching address:', error);
+    }
+  }
 
   const startRecordingAudio = async () => {
     try {
@@ -168,7 +183,7 @@ export default function SafeMode({ navigation }) {
         }
 
         // Initialize WebSocket connection
-        const ws = new WebSocket('ws://7339-2409-40c0-1070-6544-493e-44a9-e6a0-1259.ngrok-free.app/ws/safemode-analysis');
+        const ws = new WebSocket('ws://82b4-2409-40c0-2a-2e74-a973-9d9f-9ec9-9f62.ngrok-free.app/ws/safemode-analysis');
 
         ws.onopen = async () => {
           console.log('WebSocket connection established');

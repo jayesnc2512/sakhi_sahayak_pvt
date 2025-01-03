@@ -12,7 +12,7 @@ export const WebSocketProvider = ({ children }) => {
 
   useEffect(() => {
     // Initialize WebSocket connection
-    const ws = new WebSocket("ws://7339-2409-40c0-1070-6544-493e-44a9-e6a0-1259.ngrok-free.app/ws/alertListener"); // Replace with your server address
+    const ws = new WebSocket("ws://a3cf-2409-40c0-2a-2e74-a973-9d9f-9ec9-9f62.ngrok-free.app/ws/base-alert"); // Replace with your server address
 
     ws.onopen = () => {
       console.log("WebSocket connection established");

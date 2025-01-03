@@ -1,6 +1,7 @@
 import json
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 from helpers.video_processor import VideoProcessor
+from ml_models.gesture1 import GestureRecognizer
 
 router = APIRouter()
 
@@ -11,6 +12,8 @@ async def gesture_analysis(websocket: WebSocket):
     """
     await websocket.accept()
     print("WebSocket connection established for gesture analysis.")
+    ges= GestureRecognizer()
+
 
     try:
         while True:
@@ -19,14 +22,15 @@ async def gesture_analysis(websocket: WebSocket):
             data = json.loads(message)
 
             # Extract the base64-encoded frame from the received data
+            
             base64_frame = data.get("frame", None)
             # print(f"base64_frame {base64_frame}")
             if not base64_frame:
                 await websocket.send_json({"error": "No frame data provided"})
                 continue
-
+            
             # Process the frame using VideoProcessor
-            result = VideoProcessor.analyze_frame(base64_frame)
+            result = VideoProcessor.analyze_frame(base64_frame,ges)
 
             # Check for errors in the processing
             if "error" in result:

@@ -1,4 +1,4 @@
- 
+
 import React from "react";
 import { useState, useEffect } from "react";
 // react plugin used to create charts
@@ -26,7 +26,7 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 function Dashboard() {
   const [alerts, setAlerts] = useState([]);
   const [cameras, setCameras] = useState([]);
-
+  const [data, setData] = useState([]);
   const [uid, setUid] = useState(1);
 
   // useEffect(() => {
@@ -59,6 +59,9 @@ function Dashboard() {
         console.warn("get alerts failed", err);
       }
 
+
+
+
       try {
         const camerasRef = collection(db, 'cameras');
         const q = query(camerasRef, where('uid', '==', uid));
@@ -75,6 +78,24 @@ function Dashboard() {
 
     getLocations();
   }, [uid]);
+
+  const fetchDetails = async () => {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/dashboard/")
+      const json = await response.json();
+      setData(json.data || []);
+
+    } catch (e) {
+      console.error("Error fetching camera details:", e);
+    }
+  };
+
+  useEffect(() => {
+    fetchDetails();
+  }, []);
+
+
+  
 
   const unReadAlerts = alerts.filter((ale) => !ale.read);
   const readAlerts = alerts.filter((ale) => ale.read);
@@ -95,7 +116,7 @@ function Dashboard() {
                   <Col md="8" xs="7">
                     <div className="numbers">
                       <p className="card-category">Registered Cameras</p>
-                      <CardTitle tag="p">{cameras.length}</CardTitle>
+                      <CardTitle tag="p">{data.lenCameras}</CardTitle>
                       <p />
                     </div>
                   </Col>
@@ -115,13 +136,13 @@ function Dashboard() {
                 <Row>
                   <Col md="4" xs="5">
                     <div className="icon-big text-center icon-warning">
-                    <i className="fa fa-bell text-danger" />
+                      <i className="fa fa-bell text-danger" />
                     </div>
                   </Col>
                   <Col md="8" xs="7">
                     <div className="numbers">
                       <p className="card-category">Alerts Generated</p>
-                      <CardTitle tag="p">{alerts.length}</CardTitle>
+                      <CardTitle tag="p">{data.alerts?.length}</CardTitle>
                       <p />
                     </div>
                   </Col>
@@ -147,7 +168,7 @@ function Dashboard() {
                   <Col md="8" xs="7">
                     <div className="numbers">
                       <p className="card-category">Complaints Raised</p>
-                      <CardTitle tag="p">23</CardTitle>
+                      <CardTitle tag="p">{data?.lenComplaints}</CardTitle>
                       <p />
                     </div>
                   </Col>
@@ -228,22 +249,22 @@ function Dashboard() {
               <CardFooter>
                 <div className="legend">
                   <div>
-                  <i className="fa fa-circle text-primary" /> Lone women at night
+                    <i className="fa fa-circle text-primary" /> Lone women at night
                   </div>
                   <div>
-                  <i className="fa fa-circle text-warning" /> Women surrounded by mens
+                    <i className="fa fa-circle text-warning" /> Women surrounded by mens
                   </div>
                   <div>
-                  <i className="fa fa-circle text-danger" /> SOS Alerts
+                    <i className="fa fa-circle text-danger" /> SOS Alerts
                   </div>
                   <div>
-                  <i className="fa fa-circle text-gray" /> Violence Detected
+                    <i className="fa fa-circle text-gray" /> Violence Detected
                   </div>
                   <div>
-                  <i className="fa fa-circle text-info" /> Distress alerts through safe mode
+                    <i className="fa fa-circle text-info" /> Distress alerts through safe mode
                   </div>
                   <div>
-                  <i className="fa fa-circle text-secondary" /> Gestures based alerts
+                    <i className="fa fa-circle text-secondary" /> Gestures based alerts
                   </div>
                 </div>
                 <hr />
@@ -272,7 +293,7 @@ function Dashboard() {
                   <i className="fa fa-circle text-info" /> Number of Users
                 </div>
                 <div>
-                <i className="fa fa-circle text-warning" /> Number of Cameras Registered
+                  <i className="fa fa-circle text-warning" /> Number of Cameras Registered
                 </div>
                 <hr />
                 <div className="card-stats">
